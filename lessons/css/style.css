@@ -1,0 +1,15 @@
+main {
+    width: 50%;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+article p, .codice {
+    background-color: lightskyblue;
+    padding: 20px;
+    font-family: "monotype", "courier new", sans-serif;
+}
+
+footer {
+}
+

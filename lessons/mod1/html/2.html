@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../../css/style.css"/>
+
+    <title>Corso FSD - Typo3 - Modulo 1 - Lezione 2</title>
+</head>
+
+<body>
+<header class="generical-padding">
+    <h1>Corso full stack - Typo3 Oriented</h1>
+</header>
+<hr>
+<main>
+    <h2>Lezione 2</h2>
+    <section>
+
+        <form name="login" action="" method="post" enctype=”multipart/form-data”>
+            <fieldset>
+                <legend>Dati personali</legend>
+                <label>Nome:</label>
+                <input required autofocus placeholder="Inserci il tuo nome primario" tabindex="1" name="nome"
+                       type="text">
+                <br>
+                <br>
+                <label>Cognome:</label>
+                <input required tabindex="2" name="cognome" type="text">
+                <br>
+                <br>
+                <label>Sesso:</label>
+                <br>
+                <br>
+                <input type="number" name="eta" min="13" max="130" step="2">
+                <br>
+                <br>
+                <label>Sesso:</label>
+                <br>
+                <br>
+                Maschio <input type="radio" name="sesso" value="M"/>
+                Femmina <input type="radio" name="sesso" value="F"/>
+                <br>
+                <br>
+                <label>Stato civile:</label>
+                <br>
+                <br>
+                <select name="stato-civile">
+                    <option name="single">Single
+                    </option>
+                    <option name="sposato">
+                        sposato
+                    </option>
+                </select>
+                <br>
+                <br>
+                <label>Data di nascita
+                    <input type="week" name="mydatetime">
+                </label>
+                <br>
+                <br>
+                <input type="hidden" name="logged" value="loggato">
+                <label>Stato d'animo:
+                    <input type="text" name="mood" placeholder="felice, triste, incuriosito, ..." list="stato-danimo">
+                    <datalist id="stato-danimo">
+                        <option value="triste">
+                        <option value="annoiato">
+                        <option value="curioso">
+                        <option value="felice">
+                        <option value="entusiasta!">
+                    </datalist>
+                </label>
+
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend>Dati utente</legend>
+                <br>
+                <label>Email:</label>
+                <input type="email" name="email" autocomplete="on" placeholder="email@domain.ext">
+                <br>
+                <br>
+                <label>User:</label>
+                <input name="user" type="text">
+                <br>
+                <br>
+                <label>Password:</label>
+                <input name="password" type="password" autocomplete="new-password">
+            </fieldset>
+            <br>
+            <label>Accetta Informativa privacy</label>
+            <input type="checkbox">
+            <br>
+            <br>
+            <button type="submit">
+                <i>invia</i>
+            </button>
+            <input type="reset" value="Resetta il form">
+        </form>
+        <br>
+        <br>
+        <form name="search">
+            <label>Cerca nel sito</label>
+            <input type="search" autocomplete="on" placeholder="article, section, ..." name="keyword" required
+                   maxlength="50">
+        </form>
+
+    </section>
+    <section>
+
+    </section>
+</main>
+<hr>
+<footer>
+    <address>Via XXI Maggio 87, Sesto San Giovanni, 20099, MI - <a href="tel:3333333">3389170501</a> - <a
+            href="mailto:mail@mail.it">paolo@mistre.it</a></address>
+
+
+</footer>
+
+</body>
+
+</html>
