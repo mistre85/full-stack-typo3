@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../../css/style.css"/>
+
+    <title>Corso FSD - Typo3 - Modulo 1 - Lezione 4</title>
+
+    <script type="text/javascript" src="../../js/main.js"></script>
+    <script type="text/javascript">
+        "use strict"
+
+        /*
+        il codice viene eseguito, intepretato,
+        in modo lineare.
+        Non so se c'è un errore fino a quando non
+        arrivo all'istruzione che lo contiene
+         */
+
+        //con l'istruzione debugger;  posso bloccare l'esecuzione del codice
+        //se apro la console di google (o di altro browser) posso eseguire
+        //step by step il codice per controllare l'esecuzione
+        //per trovare errori logici
+        //debugger;
+
+        //mi permette "stampare" a video, in console, delle informazioni
+        console.log("debug", "prima del dom");
+
+        //dichiarazione
+        var x;
+        //nomenclatura corretta
+        var prodottoCarrello;
+        //case sesitive
+        var prodottocarrello;
+        //altro formato
+        var utente_gestionale;
+
+        /*
+        best practice: mettere le dichiarazioni tutte in un punto all'inizio del codice
+         */
+
+
+        //assegnazione;
+        x = 6;
+
+        console.log("x", x);
+
+        //dichiarazione e assegnazione inline
+        var y = 5;
+
+        console.log("y", y);
+
+        x = 1;
+
+        console.log("x", x);
+
+        //tipi di dato
+        var numero = 1;
+        var stringa = "comapny social network";
+
+        console.log("stringa", stringa);
+        console.log("stringa", stringa.toUpperCase());
+        console.log("stringa manuale", "stringa".toUpperCase());
+
+        console.log("stringa manuale", "questo è \"relativo\"".toUpperCase());
+        console.log('string quotata', 'questo è "relativo" ');
+        console.log('string nomrale', "l'altro");
+
+        var numeroDecimale = 1.52;
+        console.log("fixed", numeroDecimale.toFixed(1))
+
+        //var numeroOttale = 0123; //non in use strict
+        //console.log("numeroDecimale", numeroOttale)
+
+        var numeroEsadecimale = 0x123;
+        console.log("numeroEsadecimale", numeroEsadecimale)
+
+        //not a number
+        var nan = NaN;
+        //nulla
+        var vuota = null;
+        //non definito
+        var nonDefinito = undefined;
+
+        //tipizzazione debole
+        var promiscua = 1;
+        promiscua = "ciao";
+
+        //sono tutte globali le variabili
+        var globale = 5;
+        x = x + 1;
+
+        console.log("x", x);
+
+        //variabile readonly globale
+        const MAX_RIGHE = 5;
+
+        x++;
+        console.log("x", x);
+        console.log("x", x++);
+        console.log("x", ++x);
+
+        //operatori relazionali
+        var maggioreX = x > y;
+
+        console.log("maggiore x ", maggioreX);
+
+        console.log(2 == "2");
+        console.log(2 === "2");
+
+        var somma = 2;
+        somma += "12";
+        console.log(somma);
+        console.log("paolo" + " mistretta");
+
+        var tipoVariabile = (typeof somma) == "string";
+        console.log(tipoVariabile);
+
+        /*
+        operatori logici
+        and &&
+        or ||
+         */
+
+        //array
+        var vuoto = [];
+        var votazioni = [6, 7, 10, 9];
+        console.log(votazioni);
+
+        var arrayPromiscuo = [6, "ciao", true, 9.2];
+        console.log(arrayPromiscuo);
+
+        //array multidimensionale (matrice)
+        var matrice = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        console.log(matrice);
+
+        if (true) {
+
+        } else if (true) {
+
+            if (true) {
+
+            } else {
+
+            }
+
+        } else if (true) {
+
+        } else {
+
+        }
+
+        //if inline
+        var esito = 5 > 1 ? true : false;
+
+        switch (2) {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                console.log("insufficienti")
+                break;
+            case 6:
+                console.log("insufficienti")
+                break;
+            default:
+                console.log("non classifico");
+                break;
+        }
+
+        var i = 0;
+
+        while (i < 10) {
+            i++;
+            console.log(i);
+        }
+
+        i = 0;
+
+        do {
+            i++;
+            console.log(i);
+        } while (i < 10);
+
+        var numeri = [1, 7, 5, 9, 10, 11];
+
+        i = 0;
+        while (i < numeri.length) {
+            console.log(numeri[i]);
+            i++;
+        }
+
+        for (i = 0; i < numeri.length; i++) {
+            console.log(numeri[i]);
+        }
+
+        for (var i in numeri) {
+            console.log(numeri[i]);
+        }
+
+        for (var valore of numeri) {
+
+            if (valore == 9) {
+                break;
+            }
+
+            if (valore == 1) continue;
+
+            console.log(valore);
+        }
+
+        function stampa2() {
+            console.log("stampa funzione");
+
+        }
+
+        function stampa(a, b) {
+
+            console.log("parametro a", a);
+            console.log("parametro b", b);
+
+            stampa2();
+
+        }
+
+        stampa(1, 2);
+
+        function stampaArray(array) {
+
+            for (var i in array) {
+                console.log(array[i]);
+            }
+
+        }
+
+        var arr1 = [Math.random(), Math.random(), Math.random()];
+        var arr2 = [Math.random(), Math.random(), Math.random()];
+        var arr3 = [Math.random(), Math.random(), Math.random()];
+
+        stampaArray(arr1);
+        stampaArray(arr2);
+        stampaArray(arr3);
+
+        function stampaArrayNoLimit() {
+
+            if (arguments.length == 0) {
+                console.log("no item specified");
+            }
+
+            for (var item of arguments) {
+
+                console.log(item);
+
+                if (typeof item == "object") {
+                    for (var subitem of item) {
+                        console.log(subitem);
+                    }
+                }
+            }
+        }
+
+        stampaArrayNoLimit([]);
+        console.log("******");
+        stampaArrayNoLimit(1, 2, 3, 4, 5, 6);
+        console.log("******");
+        stampaArrayNoLimit([1, 2, 3], [4, 5, 6]);
+
+    </script>
+
+</head>
+
+<body>
+
+<button class="block" onclick="alert('ok')">Click</button>
+<a href="javascript:alert('ciao')">prova</a>
+<a href="javascript:void(0)" onclick="alert('href')">href</a>
+
+<script type="text/javascript">
+    //parte prima del document ready e ha già a disposizione il DOM
+    console.log("debug", "dopo del dom");
+</script>
+<script type="text/javascript" src="../../js/main.js"/>
+</body>
+
+</html>
