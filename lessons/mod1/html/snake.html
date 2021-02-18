@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SnakeJS</title>
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .world {
+            background-color: lightseagreen;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .snake {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            left: 100px;
+            top: 100px;
+            z-index: 1;
+            background-color: lightcoral;
+            -webkit-box-shadow: 0px 0px 19px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 0px 0px 19px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: 0px 0px 19px 0px rgba(0, 0, 0, 0.75);
+        }
+
+        .apple {
+            width: 50px;
+            height: 50px;
+            background-color: darkred;
+            position: absolute;
+            z-index: 0;
+            -webkit-box-shadow: 0px 0px 19px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 0px 0px 19px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: 0px 0px 19px 0px rgba(0, 0, 0, 0.75);
+            border-radius: 50%;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            font-size: 20px;
+            background-color: lightgoldenrodyellow;
+            opacity: 0.8;
+            width: 100vw;
+            padding: 10px;
+            z-index: 20;
+        }
+    </style>
+</head>
+<body>
+
+<div id="world" class="world" tabindex="0">
+    <div id="head" class="snake"></div>
+    <div id="apple" class="apple"></div>
+    <footer> Eated Apple: <span id="eatedCount">0</span></footer>
+</div>
+<script type="text/javascript" src="../../js/snake_functional.js"></script>
+</body>
+</html>
