@@ -11,28 +11,271 @@
 
     <title>Corso FSD - Typo3 - Modulo 1 - Lezione 4</title>
 
-    <script type="text/javascript" src="../../js/main.js"></script>
     <script type="text/javascript">
         //per la verifica della dichiarazione di variabili (lezione 4)
         "use strict"
 
+        //variabile locale
+        let i;
+        for (i = 0; i < 10; i++) {
+            let a = 0;
+            console.log(i);
+        }
+
+        console.log("fine", i);
+
+        //console.log(a);
+
+
+        console.log("conversione", parseInt("10"));
+        console.log("conversione", parseInt("asdas10"));
+
+        //il NaN Può essere controllato
+        var conv = parseInt("asd10");
+
+        if (isNaN(conv)) {
+            console.log("Errore, non è un numero");
+        }
+
+        //undefiend Può essere controllato
+        var undef;
+
+        if (undef == null || undef == undefined) {
+            console.log("variabile undef");
+        }
+
+        //oggetti
+        var oggettoVuoto = {};
+
+        //oggetto letterale (json)
+        var snake = {
+            w: 50,
+            h: 50,
+            x: 0,
+            y: 0
+        };
+
+        console.log(snake);
+        //modifica degli attributi (variabili)
+        snake.x = 10;
+        snake.y = 20;
+        console.log(snake);
+
+        function stampaSnake(obj) {
+            console.log(obj);
+        }
+
+        stampaSnake(snake);
+
+        //apple con attributo quotato
+        var apple = {
+            "pos-x": 0
+        }
+
+        console.log(apple);
+        apple["pos-x"]
+
+        //apple standard
+        apple = {
+            x: 0,
+            y: 0
+        }
+
+        apple.w = 100;
+        console.log(apple);
+
+
+        var snake = {
+            w: 50,
+            h: 50,
+            x: 0,
+            y: 0,
+            stampa: function () {
+                console.log("snake-pos", "(" + this.x + "," + this.y + ")");
+            }
+        };
+
+        /*
+            gli oggetti vengono passati per riferimento
+            (puntatore) alle funzioni
+
+            questo significa che se l'oggetto viene modificato
+            all'interno della funzione viene modificato globalmente
+         */
+        function snakeMoveLef(snakeIn) {
+            snakeIn.x += 1;
+        }
+
+        snake.stampa();
+        snakeMoveLef(snake); // snakeIn = puntatore(snake)
+        snake.stampa();
+
+        var x = 1;
+
+        function somma5(xIn) {
+            xIn = xIn + 5;
+        }
+
+        console.log(x);
+        somma5(x); //xIn = valore(x)
+        console.log(x);
+
+        //oggetti e istanze
+        var nuovoOggetto = new Object(snake);
+        var nuovoSnake2 = new Object(snake);
+
+        console.log(nuovoOggetto);
+        console.log(nuovoSnake2);
+
+        console.log("string oggetto".toUpperCase());
+
+        var stringOggetto = new Object("string oggetto");
+        var numero = new Number(20);
+
+        console.log(Number.MAX_VALUE);
+
+        console.log("string oggetto".charAt(0));
+        console.log("string oggetto"[0]);
+
+        console.log("string separata da spazi".split(" "))
+        console.log(["ciao", "come", "stai"].join("-"))
+
+        //template di stringa
+        var utente = "Paolo"
+        var template = `Benvenut ${utente}, questo è il tuo profilo`;
+        console.log(template);
+
+        const regExp = /[0-9]/;
+        var regexpObj = new RegExp("[0-9]", "ig");
+
+        var voti = [5, 10, 3, 10, 2];
+
+        console.log(voti);
+        voti.push(1);
+        console.log(voti);
+        //rimuove in coda
+        var elPop = voti.pop();
+        console.log(voti);
+        //rimove in testa
+        var elShift = voti.shift();
+        console.log(voti);
+        var elSplice = voti.splice(1, 2);
+        console.log(voti);
+
+        console.log(elPop);
+        console.log(elShift);
+        console.log(elSplice);
+
+        var mySet = new Set();
+        mySet.add(1);
+        mySet.add(1);
+        mySet.add(2);
+        console.log(mySet);
+        mySet.delete(2);
+        console.log(mySet);
+
+        //il costruttore di un oggetto
+
+        function Snake() {
+
+            //variabile privata
+            var nome = "pippo";
+
+            //variabile pubblica (attributo)
+            this.x = 0;
+            this.y = 0;
+            this.w = 100;
+            this.h = 100;
+
+            this.stampa = function () {
+                console.log(this);
+            }
+
+            this.getNome = function () {
+                return nome;
+            }
+
+        }
+
+
+        var player1 = new Snake();
+        var player2 = new Snake();
+
+        //player1.stampaNuova();
+
+        //prototipizzazione
+        Snake.prototype.stampaNuova = function () {
+            debugger;
+            console.log("snake-pos", "(" + this.x + "," + this.y + ")");
+        }
+
+        player1.stampa();
+        player1.stampa();
+
+        String.prototype.padLeft = function (width, char) {
+            var result = this;
+            char = char || " ";
+            if (this.length < width) {
+                result = new Array(width - this.length + 1).join(char) + this;
+            }
+            return result;
+        }
+
+
+        //oggetti in ECMA6
+        class Snake6 {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+            }
+
+            stampa() {
+                console.log(this);
+            }
+        }
+
+        player1 = new Snake6(0, 0);
+        console.log(player1);
+
+        //classe principale (padre)
+        class Apple {
+
+            constructor() {
+                //attributo
+                this.x = 0;
+                this.y = 0;
+                this.eated = false;
+                this.color = "red";
+                this.foglia = true;
+            }
+
+
+        }
+
+        //classe che eredita dal padre (figlia)
+        class RottenApple extends Apple {
+
+            constructor() {
+                super();
+                this.color = "marrone";
+                this.foglia = false;
+                this.smell = "puzza";
+            }
+        }
+
+        var goodApple = new Apple();
+        var badApple = new RottenApple();
+
+        console.log(goodApple);
+        console.log(badApple);
 
 
     </script>
-
 </head>
 
 <body>
 
-<button class="block" onclick="alert('ok')">Click</button>
-<a href="javascript:alert('ciao')">prova</a>
-<a href="javascript:void(0)" onclick="alert('href')">href</a>
 
-<script type="text/javascript">
-    //parte prima del document ready e ha già a disposizione il DOM
-    console.log("debug", "dopo del dom");
-</script>
-<script type="text/javascript" src="../../js/main.js"/>
 </body>
 
 </html>

@@ -21,6 +21,7 @@ var snakeDirection = [SNAKE_WALK, 0];
 var applePosition = [0, 0];
 //conta le mele mangiate
 var eatedAppleCount = 0;
+
 //testa dello snake
 var snakeHead = document.getElementById("head");
 //spazio di movimento del gioco
@@ -33,6 +34,7 @@ var eatedApple = document.getElementById("eatedCount");
 
 world.onkeydown = function (event) {
 
+    console.log(event)
     event.preventDefault();
 
     switch (event.key) {
@@ -57,7 +59,7 @@ newApple();
 
 //inizializziamo il ciclo di gioco
 var gameplay = setInterval(play, 60);
-var gameplay = setInterval(newApple, 10000);
+var appleChange = setInterval(newApple, 10000);
 
 
 function play() {
@@ -74,8 +76,11 @@ function snakeCheckApple() {
     var snake_apple_collision = checkCollision(apple, snakeHead);
 
     if (snake_apple_collision) {
+        //model
         eatedAppleCount++;
+        //view
         eatedApple.innerText = eatedAppleCount;
+
         newApple();
     }
 
@@ -97,7 +102,10 @@ function checkCollision(div1, div2) {
 
 function newApple() {
 
+    //logica (model)
     applePosition = [Math.random() * world.clientWidth, Math.random() * world.clientHeight];
+
+    //presentazione (view)
     apple.style.left = applePosition[X] + "px";
     apple.style.top = applePosition[Y] + "px";
 }
@@ -142,12 +150,12 @@ function getHumanReadableDirection() {
         return "down";
     }
 }
-
+//model
 function snakeMove() {
     snakePosition[X] += snakeDirection[X];
     snakePosition[Y] += snakeDirection[Y];
 }
-
+//view
 function snakeUpdate() {
     snakeHead.style.left = snakePosition[X] + "px";
     snakeHead.style.top = snakePosition[Y] + "px";
