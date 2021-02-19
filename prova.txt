@@ -1,2 +1,4 @@
 nuova riga di codice
 aggiunta nuova riga per test GIT
+questo è un testo di appunti
+ma ho bisogno di aggiornarlo.
