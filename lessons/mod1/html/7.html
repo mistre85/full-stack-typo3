@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../../css/style.css"/>
+
+    <title>Corso FSD - Typo3 - Modulo 1 - Lezione 6</title>
+
+    <script type="text/javascript">
+        //per la verifica della dichiarazione di variabili (lezione 4)
+        "use strict"
+
+        /* */
+
+        //quando vogliamo creare un oggetto possiamo farlo attraverso diversi metodi
+        //che dipendono dalle varie versioni di javascript
+        //un esempio meno recente
+
+
+        function Persona(nome, cognome) {
+            this.nome = nome;
+            this.cognome = cognome;
+        }
+
+        //specifica ECMA6 (js 2015)
+        class Automobile {
+
+            //variabile privata
+            #numeroTelaio = (Math.random() * 1000).toFixed(0);
+
+            constructor(casa, modello) {
+                this.casa = casa;
+                this.cognome = modello;
+            }
+
+            get numeroTelaio() {
+                return this.#numeroTelaio;
+            }
+
+            set numeroTelaio(value) {
+                this.#numeroTelaio = value;
+            }
+
+            avviaTergicristalli() {
+                console.log("avvio tergicristalli");
+                this.#muoviTergicristalli();
+            }
+
+            #muoviTergicristalli() {
+                console.log("muovi tergicristalli");
+            }
+        }
+
+        //oggetto letterale
+        var animale = {
+            famiglia: "canidi",
+            razza: "bulldog-francese",
+
+            riproduciVerso: function () {
+                console.log("bau");
+            }
+        }
+
+        /*
+            quale scegliere?
+            dipende da tanti fattori:
+            - arrivo già da un linguaggio che usa class, extends, constructor quindi conosco il paradigma
+            - sto sviluppando un sito che non richiede particolari compatibilità di JS e quindi posso usare le specifiche ECMA6
+            - ritengo più pulita un modo di scrivere rispetto ad un altro
+            - alcune soluzioni offrono più flessibilità di altre.
+            - necessità di implementazione
+         */
+
+        //per esempio, come faccio a riprodurre il comportamento dell'animale,
+        //con un oggetto letterale? non posso dovrei copiare la definizione:
+        var animale = {
+            famiglia: "felino",
+            razza: "gatto-pugliese",
+
+            riproduciVerso: function () {
+                console.log("mee");
+            }
+        }
+
+        //invece con la gestione a costruttori
+        //per la creazione degli oggetti possiamo quindi indicare la parola new
+        var mario = new Persona("mario", "mario");
+        var daniele = new Persona("daniele", "daniele");
+        var ferrarif8 = new Automobile("ferrari", "F8 turbo");
+        var panda = new Automobile("fiat", "panda");
+
+        //javascript mette a disposizione anche un oggetto
+        //per la creazione attraverso il prototyping
+        var automobileGenerica = Object.create(Automobile.prototype);
+
+        /*
+         * ricordiamoci che il prototype è un oggetto di default
+         * creato da javascript automaticamente
+         * in tutte le funzioni e in tutti gli oggetti
+         * che vengono creati dal programmatore
+         */
+
+        console.log(Automobile.prototype);
+        console.log(Persona.prototype);
+        console.log(console.log.prototype);
+
+        function esempio() {
+            return false;
+        }
+
+        console.log(esempio.prototype);
+
+        //cosa significa?
+        //la flessibilità di javascript permette
+        //di inserire proprietà nuove ad un oggetto a livello di runtime
+        //proprio grazie a prototype
+
+        //abbiamo già visto che possiamo aggiungere parametri ad istanze di oggetti
+        console.log(panda);
+        panda.postiOmologati = 4;
+        console.log(ferrarif8);
+
+        //ma come ci comportiamo se abbiamo molte istanze?
+        //usiamo prototype
+
+        console.log(mario);
+        console.log(daniele);
+
+        Persona.prototype.calcolaCodiceFiscale = function calcolaCodiceFiscale() {
+            //avete notato?
+            //il codice che abbiamo scritto è generico, ma conosce la
+            //definizione della classe di appartenenza
+            //quindi possiamo usare this. per accedere alle proprietà dell'oggetto
+            //messe a disposizione dal programmatore
+            //ma la funzione si trova in un'altro posto e non presenta parametri
+            return this.nome.substring(0, 3).toUpperCase() + this.cognome.substring(0, 3).toUpperCase();
+        }
+
+        console.log(mario.calcolaCodiceFiscale());
+        console.log(daniele.calcolaCodiceFiscale());
+
+        /*
+            abbiamo però un effetto collaterale
+            altri programmatori potrebbero distruggere le nostre
+            protipizzazioni oppure abbiamo bisogno di rendere
+            indisponibile qualche variabile che può essere
+            assegnata solo attraverso specifiche istruzioni
+
+         */
+
+        //possiamo usare le description property e le reflection (ECMA 6)
+        //ma prima introduciamo il concetto di reflection
+        //la reflection è una classe che permette di lavorare
+        //in runtime sulla struttura degli elementi
+
+        console.log(Reflect.get(ferrarif8, "casa"));
+        console.log(ferrarif8.casa);
+
+        //questo significa che possiamo fare anche il contrario
+        //con qualche "funzionalità in più"
+
+        console.log(mario);
+        console.log(daniele);
+
+        //queste istruzioni sono equivalenti
+        Reflect.set(mario, "sesso", "m");
+        daniele.sesso = "m";
+
+        console.log(mario);
+        console.log(daniele);
+
+        //ma tronrando al nostro problema,
+        // possiamo inserire una specifica ulteriore
+        // bloccando la rivalorizzazione applicativa
+        // di variabili o funzioni prototipate
+
+        Reflect.defineProperty(mario, "password", {
+            value: parseInt(Math.random() * 10000),
+            writable: false,
+            //configurable: true,
+            //enumerable: true
+            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
+        })
+
+        console.log(mario);
+
+        //se ora cerco di modificare la proprietà
+        //viene generato un errore
+
+        //mario.password = parseInt(Math.random() * 10000);
+        //console.log(mario);
+
+        //per non complicare ulteriormente, consideriamo Reflect
+        //anche una classe che semplifica vecchi metodi di
+        //creazione degli oggetti
+        //potete approfondire anche qui
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect
+
+        /*
+            CLASSE PROXY (ES6)
+
+            consente di creare oggetti che hanno la capacità di modificare
+            il comportamento predefinito di altri oggetti.
+         */
+
+
+        var pandaProxy = new Proxy(panda, {
+            get(target, propertyName) {
+                console.log("Lettura di " + propertyName);
+                return target[propertyName];
+            },
+            set(target, propertyName, value) {
+                console.log("Assegnamento di " + value + " a " + propertyName);
+                target[propertyName] = value;
+                return true; //da specificare sempre nel set, altrimenti c'è errore
+            }
+        });
+
+        pandaProxy.numeroTelaio = 1500;
+
+        //quando?
+        //possiamo usarlo per validazioni, per esempio della classe persona
+
+        var validatore = {
+            set(target, propertyName, value) {
+                if (propertyName == "nome" || propertyName == "cognome") {
+                    if (value == "") console.log("Errore", "Non è possibile assegnare una stringa vuota");
+                    let hasNumberRegExp = /\d/;
+                    if (hasNumberRegExp.test(value)) console.log("Errore", "La stringa non può contenere numeri");
+                }
+                target[propertyName] = value;
+                return true;
+            }
+        };
+
+        var validaMario = new Proxy(mario, validatore);
+        var validaDaniele = new Proxy(daniele, validatore);
+
+        validaMario.nome = "123mario";
+        validaDaniele.nome = "daniele";
+
+        //oppure nei databinding
+
+        class Binder {
+            bindTo(dataSourceObj, dataSourceProperty, dataTargetObj, dataTargetProperty) {
+                var bindHandler = {
+                    set: function (target, property, newValue) {
+                        if (property == dataSourceProperty) {
+                            target[dataSourceProperty] = newValue;
+                            dataTargetObj[dataTargetProperty] = newValue;
+                        }
+                    }
+                };
+                return new Proxy(dataSourceObj, bindHandler);
+            }
+        }
+
+        var persona = {
+            nome: "Mario",
+            cognome: "Rossi"
+        };
+        var txtNome = document.getElementById("txtNome");
+        var binder = new Binder();
+        var personaConBinding = binder.bindTo(persona, "nome", txtNome, "value");
+        
+        setTimeout(function () {
+            personaConBinding.nome = "Marco";
+        }, 5000);
+
+
+    </script>
+</head>
+
+<body>
+
+
+</body>
+
+</html>
