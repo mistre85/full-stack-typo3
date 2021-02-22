@@ -9,35 +9,75 @@
 
     <link rel="stylesheet" href="../../css/style.css"/>
 
-    <title>Corso FSD - Typo3 - Modulo 1 - Lezione 6</title>
+    <title>Corso FSD - Typo3 - Modulo 1 - Lezione 7</title>
 
     <script type="text/javascript">
         //per la verifica della dichiarazione di variabili (lezione 4)
         "use strict"
 
-        /* */
+        /*
+            quando vogliamo creare un oggetto possiamo farlo attraverso diversi metodi
+            che dipendono dalle varie versioni di javascript.
+            a prescindere dalle varie forme che vedremo, quali sono i prinipi?
 
-        //quando vogliamo creare un oggetto possiamo farlo attraverso diversi metodi
-        //che dipendono dalle varie versioni di javascript
-        //un esempio meno recente
+            - Incapsulamento
+                la capacità di concentrare in un’unica entità (oggetto) dati e funzionalità
+            - Aggregazione
+                la possibilità di un oggetto di avere altri oggetti al suo interno
+            - Ereditarietà
+                la dipendenza delle caratteristiche di un oggetto da una o più definizioni di altri oggetti
+            - Polimorfismo
+                la capacità di gestire oggetti senza conoscerne in anticipo i dettagli
+                    - overloading: la possibilità di prevedere metodi che manipolano tipi di dato diversi
+                    - polimorfismo parametrico: la possibilità di prevedere tipi generici, non conosciuti a priori
+                    - polimorfismo per inclusione: la possibilità di avere espressioni il cui tipo può essere rappresentato da una classe e dalle classi da essa derivate
+            - Associazione
+                la possibilità di un oggetto di fare riferimento ad un altro oggetto
+        */
 
 
         function Persona(nome, cognome) {
+
+            //variabile privata (incapsulamento)
+            var cicatrici = 2;
+
+            //varibili pubbliche (incapsulamento)
             this.nome = nome;
             this.cognome = cognome;
         }
+
+        //ereditarietà
+        class Autista extends Persona {
+
+            constructor(nome, cognome, auto) {
+                //ereditarietà + polimorfismo
+                super(nome, cognome);
+
+                //associazione
+                this.auto = auto;
+            }
+        }
+
 
         //specifica ECMA6 (js 2015)
         class Automobile {
 
             //variabile privata
-            #numeroTelaio = (Math.random() * 1000).toFixed(0);
+            #numeroTelaio = Symbol();
+
+            //la classe Symbol ci pemrette di virtualizzare un ID univoco
+            //quindi Symbol() === Symbol() è sempre false
+
 
             constructor(casa, modello) {
                 this.casa = casa;
-                this.cognome = modello;
+                this.modello = modello;
+
+                //associazione
+                this.autista = new Autista("giudo", "sterzi", this);
             }
 
+            //proprietà (incapsulamento)
             get numeroTelaio() {
                 return this.#numeroTelaio;
             }
@@ -46,6 +86,7 @@
                 this.#numeroTelaio = value;
             }
 
+            //incapsulamento
             avviaTergicristalli() {
                 console.log("avvio tergicristalli");
                 this.#muoviTergicristalli();
@@ -57,14 +98,15 @@
         }
 
         //oggetto letterale
-        var animale = {
-            famiglia: "canidi",
-            razza: "bulldog-francese",
+        var gatto = {
+            famiglia: "felino",
+            razza: "gatto-pugliese",
 
             riproduciVerso: function () {
-                console.log("bau");
+                console.log("mee");
             }
         }
+
 
         /*
             quale scegliere?
@@ -78,13 +120,28 @@
 
         //per esempio, come faccio a riprodurre il comportamento dell'animale,
         //con un oggetto letterale? non posso dovrei copiare la definizione:
-        var animale = {
-            famiglia: "felino",
-            razza: "gatto-pugliese",
+        var cane = {
+            famiglia: "canidi",
+            razza: "bulldog-francese",
+            //aggregazione
+            coda: {
+                presente: false,
+                scodinzola: false,
+            },
 
             riproduciVerso: function () {
-                console.log("mee");
+                console.log("bau");
+            },
+
+            //gestione eccezioni, spieghiamo più avanti
+            scodinzola: function () {
+                if (!this.coda.presente) {
+                    throw new Error("Questo cane non può scondizolare");
+                } else {
+                    this.coda.scodinzola = true;
+                }
             }
+
         }
 
         //invece con la gestione a costruttori
@@ -190,10 +247,64 @@
         console.log(mario);
 
         //se ora cerco di modificare la proprietà
-        //viene generato un errore
+        //verrà generato un errore, per evitare questo problema,
+        //introduciamo il concetto di eccezione
 
-        //mario.password = parseInt(Math.random() * 10000);
-        //console.log(mario);
+        try {
+            //tentiamo di esegurie
+            mario.password = parseInt(Math.random() * 10000);
+            console.log(mario);
+        } catch (e) {
+            //se si scatenano errori, li catturiamo ed eseguiamo il catch
+            //dentro e abbiamo i dati
+            console.log(e.message);
+        } finally {
+            //in ogni caso possiamo eseguire il finally
+            console.log("gestita eccezione");
+        }
+
+        //le eccezzioni devono essere progettate per impedire che
+        //gli errori possano bloccare l'esecuzione del programma
+        //e si possa vere una scelta alternativa invece che un blocco
+
+        try {
+            cane.scodinzola();
+        } catch (e) {
+            console.log(e.message);
+        }
+
+        //alcune caratteristiche
+        //- non mi devo portare io gli errori in giro nello stack
+        //- posso crearmi le mie classi di errore
+        class CustomError extends Error {
+            constructor(message) {
+                super(message);
+                this.name = "CustomError";
+            }
+        }
+
+        //nota: queste sono le arrow function di ECMA6
+        //sono identiche alle funzioni ma più veloci da scrivere
+        var stack1 = () => {
+            throw new CustomError("custom-error-message")
+        };
+        var stack2 = () => stack1();
+        var stack3 = () => stack2();
+
+        try {
+            stack3();
+        } catch (e) {
+
+            //e posso anche controllarlo
+            if (e.name == "CustomError") {
+                console.log(e.message);
+            }
+        }
+
+        //come avrei dovuto fare se non avessi avuto le eccezioni?
+
+        //??
+        //??
 
         //per non complicare ulteriormente, consideriamo Reflect
         //anche una classe che semplifica vecchi metodi di
@@ -245,40 +356,170 @@
         validaDaniele.nome = "daniele";
 
         //oppure nei databinding
+        //vedere nel codice footer
 
-        class Binder {
-            bindTo(dataSourceObj, dataSourceProperty, dataTargetObj, dataTargetProperty) {
-                var bindHandler = {
-                    set: function (target, property, newValue) {
-                        if (property == dataSourceProperty) {
-                            target[dataSourceProperty] = newValue;
-                            dataTargetObj[dataTargetProperty] = newValue;
-                        }
+        //una osservazione
+        //il codice di un oggetto letterale è in realtà un JSON
+        //possiamo gestire i JSON delle istanze, ma non delle classi
+        //per questo è letterale, per esempio
+        //dobbiamo servirci di new
+        var marioJson = JSON.stringify(new Persona("mario", "json"));
+        //in pratica stiamo facendo una serializzazione
+        //quindi ha a che fare con i dati e non con la definizione
+        //quindi non troverò la serializzazione delle funzioni
+        console.log(marioJson);
+        //possiamo quindi istanziare un nuovo oggetto letterale, partendo dal json
+        var daniele = JSON.parse('{"nome":"daniele","cognome":"json"}');
+        console.log(daniele);
+
+        /*
+            design pattern
+
+            I Design Pattern sono soluzioni tecniche a problemi comuni di progettazione del software.
+            Essi rappresentano schemi logici di risoluzione di un problema riusabili
+            e indipendenti dal linguaggio di programmazione ed offrono un modello
+            di riferimento per la realizzazione di componenti software facilmente manutenibili.
+
+            https://it.wikipedia.org/wiki/Design_pattern
+            https://it.wikipedia.org/wiki/Gang_of_Four_(scrittori)
+
+            Pattern creazionali: si occupa della creazione di classi e oggetti
+            - Singleton Pattern
+            - Factory Pattern
+
+            Pattern strutturali: fornisce un modo per gestire le relazioni tra gli oggetti
+            - Module Pattern
+            - Adapter Pattern
+            - Facade Pattern
+            - MVC/MVVM Pattern
+
+            Pattern comportamentali: comunicazione tra gli oggetti di un’applicazione.
+            - Observer Pattern
+
+
+            Un pattern interessante
+            - Promise Pattern
+
+         */
+
+        //Singleton
+        //si prevede che l'oggetto abbia una sola istanza in tutto il runtime
+        //come lo costruiamo?
+
+        //una nota: stiamo usando una notazione IIFE (Immediately-invoked Function Expressions)
+        //a cosa serve? a eseguire una funzione esattamente quando viene definita
+        //perchè? per evitare errori con inclusioni di librerie, per isolare variabili
+        //non viene quindi definita una funzione ma restituito una valore di una funzione lanciat al volo
+        //perchè nel singleton? perchè ci serve che l'istanza sia subito definita
+
+        var singleton = (function () {
+
+            //variabile che conterrà l'istanza (attenzione non è this. !!)
+            //privata
+            var instance;
+
+            return {
+                getInstance: function () {
+
+                    if (!instance) {
+
+                        instance = {
+                            semaphore: "red",
+                            on: false,
+
+                            isGreen: function () {
+                                return this.semaphore == "red";
+                            },
+
+                            isOn: function () {
+                                return this.on;
+                            },
+
+                            setGreen: function () {
+                                this.semaphore = "green";
+                            },
+
+                            setYellow: function () {
+                                this.semaphore = "yellow";
+
+                            },
+                            setRed: function () {
+                                this.semaphore = "red";
+                            },
+                            print: function () {
+                                console.log("Semaphore color", this.semaphore);
+                            }
+                        };
                     }
-                };
-                return new Proxy(dataSourceObj, bindHandler);
+
+                    return instance;
+                }
+            };
+        })();
+
+        if (singleton.getInstance().isOn()) {
+            for (let i = 0; i < 100; i++) {
+                setInterval(() => {
+
+                    let sem = parseInt(Math.random() * 100);
+
+                    if (sem >= 0 && sem < 33)
+                        singleton.getInstance().setGreen();
+
+                    if (sem >= 33 && sem < 66)
+                        singleton.getInstance().setYellow();
+
+                    if (sem >= 33 && sem < 66)
+                        singleton.getInstance().setRed();
+
+                }, (Math.random() * 1000) + 1000);
             }
+
+            setInterval(() => {
+                singleton.getInstance().print();
+            }, 1000)
         }
 
-        var persona = {
-            nome: "Mario",
-            cognome: "Rossi"
-        };
-        var txtNome = document.getElementById("txtNome");
-        var binder = new Binder();
-        var personaConBinding = binder.bindTo(persona, "nome", txtNome, "value");
-        
-        setTimeout(function () {
-            personaConBinding.nome = "Marco";
-        }, 5000);
+        //Factory
+
 
 
     </script>
 </head>
 
 <body>
+<h1>Esempio bidning</h1>
+<input id="txtNome" name="nome"/>
+<script type="text/javascript">
 
+    //esempio di binder
+    class Binder {
+        bindTo(dataSourceObj, dataSourceProperty, dataTargetObj, dataTargetProperty) {
+            var bindHandler = {
+                set: function (target, property, newValue) {
+                    if (property == dataSourceProperty) {
+                        target[dataSourceProperty] = newValue;
+                        dataTargetObj[dataTargetProperty] = newValue;
+                    }
+                }
+            };
+            return new Proxy(dataSourceObj, bindHandler);
+        }
+    }
 
+    var persona = {
+        nome: "Mario",
+        cognome: "Rossi"
+    };
+    var txtNome = document.getElementById("txtNome");
+    var binder = new Binder();
+    var personaConBinding = binder.bindTo(persona, "nome", txtNome, "value");
+
+    setTimeout(function () {
+        personaConBinding.nome = "Marco";
+    }, 2000);
+
+</script>
 </body>
 
 </html>
