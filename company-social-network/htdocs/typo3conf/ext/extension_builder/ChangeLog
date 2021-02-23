@@ -1,0 +1,10 @@
+Add basic README information
+Change label "Persons" -> "Extension Authors"
+Avoid non static warning
+Fix order of render types
+Use renderType in TCA template
+Assign settings in index view
+Replace tabs with spaces
+Add missing publicResourcesPath
+Use relative instead of absolute paths
+[TASK] Update extension information
