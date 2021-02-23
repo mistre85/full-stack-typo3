@@ -482,6 +482,47 @@
 
         //Factory
 
+        class Moto extends Automobile {
+            constructor(casa, modello) {
+                super(casa, modello);
+            }
+        }
+
+        class Camion extends Automobile {
+            constructor(casa, modello) {
+                super(casa, modello);
+            }
+        }
+
+        var veicoloFactory = {
+
+            creaVeicolo: function (opzioni) {
+
+                debugger;
+                var veicolo = null;
+
+
+                switch (opzioni.tipo) {
+                    case "auto":
+                        veicolo = new Automobile(opzioni.casa, opzioni.modello);
+                        break;
+                    case "moto":
+                        veicolo = new Moto(opzioni.casa, opzioni.modello);
+                        break;
+                    case "camion":
+                        veicolo = new Camion(opzioni.casa, opzioni.modello);
+                        break;
+                }
+
+
+                return veicolo;
+            }
+        };
+
+
+        var moto = veicoloFactory.creaVeicolo({tipo: "moto", casa: "ducati", modello: "monster"});
+
+        console.log(moto);
 
 
     </script>
