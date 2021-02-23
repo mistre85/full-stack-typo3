@@ -1,0 +1,43 @@
+{
+  "name": "fluidtypo3/fluidpages",
+  "description": "The fluidpages package from FluidTYPO3",
+  "require": {
+    "fluidtypo3/flux": "^7.3|^8.0|dev-development",
+    "typo3/cms": "^7.6|^8.4",
+    "php": ">=7.0.0"
+  },
+  "type": "typo3-cms-extension",
+  "keywords": [
+    "TYPO3 CMS",
+    "templating",
+    "flux",
+    "fluidpages",
+    "fedext",
+    "fluid"
+  ],
+  "homepage": "http://fluidtypo3.org",
+  "license": "GPL-2.0+",
+  "preferred-install": "dist",
+  "support": {
+    "irc": "irc://irc.freenode.org/fedext",
+    "issues": "https://github.com/FluidTYPO3/fluidcontent/issues"
+  },
+  "suggest": {
+    "fluidtypo3/fluidcontent": "Gives the ability to render custom content elements with pure fluid.",
+    "fluidtypo3/fluidcontent_core": "Gives the ability to render core content elements with pure fluid."
+  },
+  "autoload": {
+    "psr-4": {
+      "FluidTYPO3\\Fluidpages\\": "Classes/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "FluidTYPO3\\Fluidpages\\Tests\\": "Tests/"
+    }
+  },
+  "require-dev": {
+    "fluidtypo3/flux": "dev-development",
+    "fluidtypo3/development": "^3.0"
+  }
+}

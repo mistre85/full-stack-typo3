@@ -1,278 +1,144 @@
 "use strict"
-/*
-    SNAKE JS FUNCTIONAL
-*/
 
-//la usiamo per attivare e disattivare console log
-var debug = false;
+class Cell {
 
-//grandezza di una cella del campo
-const FIELD_CELL_W = 10;
-const FIELD_CELL_H = 10;
+    constructor(status = "empty", x = 0, y = 0, w = 0, h = 0) {
 
-//costanti per gli indici degli offset (coordinate cartesiane)
-const X = 0, Y = 1;
-//costante per la gestione della "velocità" di pixel
-const SNAKE_WALK = 1;
+        debugger;
+        //dati del nostro oggetto
+        this.x = x;
+        this.y = y;
+        this.id = `f-${x}-${y}`;
 
-//direzione x,y (left,top)
-var snakeDirection = [0, SNAKE_WALK];
-//posizione dell mela
-var applePosition = [0, 0];
-//conta le mele mangiate
-var eatedAppleCount = 0;
-//contiene la posizione corrente dello snake
-var snakePositions = [[0, 0]];
+        //assumiamo di lavorare in termini generali con il dom
+        //potremmo però utilizzare la classe field per gestire le politiche di accesso al DOM
+        let cell = document.getElementById(this.id);
+
+        if (cell) {
+            this.cell = cell;
+        } else {
+
+            this.cell = document.createElement("div");
+            //dati del Node Element
+            this.cell.id = this.id;
+            this.cell.style.width = w + "px";
+            this.cell.style.height = h + "px";
+
+        }
+
+        this.setStatus(status);
+    }
+
+    setStatus(status) {
+        this.cell.className = "cell " + status;
+    }
+
+    getElement() {
+        return this.cell;
+    }
 
 
-/*
-Overrides
- */
+}
 
+class Snake extends Cell {
 
-// Warn if overriding existing method
-if (Array.prototype.equals)
-    console.warn("Overriding existing Array.prototype.equals. " +
-        "Possible causes: New API defines the method, there's " +
-        "a framework conflict or you've got double inclusions in your code."
-    );
+    static SNAKE_WALK = 1;
 
-// attach the .equals method to Array's prototype to call it on any array
-Array.prototype.equals = function (array) {
-    // if the other array is a falsy value, return
-    if (!array)
-        return false;
+    constructor() {
+        super("snake");
+        this.direction = [0, SNAKE_WALK];
+        this.snakePositions = [];
+    }
 
-    // compare lengths - can save a lot of time
-    if (this.length != array.length)
-        return false;
+    setDirection(direction) {
+        this.direction = direction;
+    }
 
-    for (var i = 0, l = this.length; i < l; i++) {
-        // Check if we have nested arrays
-        if (this[i] instanceof Array && array[i] instanceof Array) {
-            // recurse into the nested arrays
-            if (!this[i].equals(array[i]))
-                return false;
-        } else if (this[i] != array[i]) {
-            // Warning - two different object instances will never be equal: {x:20} != {x:20}
-            return false;
+    move() {
+
+        let currentHead = snakePositions[0];
+        let newHead = [0, 0]
+
+        newHead[X] = currentHead[X] + snakeDirection[X];
+        newHead[Y] = currentHead[Y] + snakeDirection[Y];
+
+        newHead = snakeCheckBound(newHead);
+        snakePositions.unshift(newHead);
+
+        for (let body = 0; body < snakePositions.length - 1; body++) {
+            updateCell(snakePositions[body], SNAKE_BODY);
+        }
+
+        var eatedApple = snakeCheckApple(newHead);
+
+        if (!eatedApple) {
+            //se mangio una mela si allunga la coda quindi non cancello l'ultimo
+            let tail = snakePositions[snakePositions.length - 1];
+            updateCell(tail, EMPTY_CELL);
+            snakePositions.pop()
         }
     }
-    return true;
 }
-// Hide method from for-in loops
-Object.defineProperty(Array.prototype, "equals", {enumerable: false});
 
+class Apple extends Cell {
 
-/*
-* Oggetti del dom
-* */
+    constructor() {
+        super("apple");
+    }
+}
 
-//testa dello snake
-var snakeHead = document.getElementById("head");
-//spazio di movimento del gioco
-var field = document.getElementById("field");
-//la mela
-var apple = document.getElementById("apple");
-//mele mangiate
-var eatedApple = document.getElementById("eatedCount");
+class Field {
 
+    constructor(cellDimension) {
 
-const FIELD_W = field.clientWidth / FIELD_CELL_W;
-const FIELD_H = field.clientHeight / FIELD_CELL_H;
+        this.field = document.getElementById("field");
+        this.fw = field.clientWidth / cellDimension;
+        this.fh = field.clientHeight / cellDimension;
+        this.cellDimension = cellDimension;
 
-const EMPTY_CELL = 1,
-    SNAKE_HEAD = 2,
-    SNAKE_BODY = 3,
-    APPLE_CELL = 4,
-    WALL_CELL = 5;
+        this.init();
+    }
 
+    init() {
 
-//la matrice di campo
-var fieldMatrix = [];
+        for (let x = 0; x < this.fw; x++) {
 
-//inizializziamo il campo;
-fieldMatrixInit();
+            this.matrix[x] = [];
 
-//inizializziamo il ciclo di gioco
-var gameInterval = setInterval(snakeMove, 60);
-//vent
-var appleInterval = setInterval(newApple, 10000);
-
-
-function fieldMatrixInit() {
-
-    for (let x = 0; x < FIELD_W; x++) {
-        fieldMatrix[x] = [];
-        for (let y = 0; y < FIELD_H; y++) {
-
-            var cell = document.createElement("div");
-
-            cell.id = `f-${x}-${y}`;
-            cell.className = "cell";
-            cell.style.width = FIELD_CELL_W + "px";
-            cell.style.height = FIELD_CELL_W + "px";
-
-            fieldMatrix[x][y] = EMPTY_CELL;
-
-            field.append(cell);
+            for (let y = 0; y < this.fh; y++) {
+                this.matrix[x][y] = new Cell(Cell.EMPTY, x, y, this.cellDimension);
+                field.append(this.matrix[x][y].getElement());
+            }
         }
     }
 
-    newApple();
 
 }
 
+class Game {
 
-function snakeCheckApple(snakeHead) {
-
-    if (snakeHead.equals(applePosition)) {
-        //model
-        eatedAppleCount++;
-        //view
-        eatedApple.innerText = eatedAppleCount;
-
-        clearInterval(appleInterval);
-        newApple();
-        appleInterval = setInterval(newApple, 10000);
-
-        return true;
+    constructor() {
+        this.field = new Field(10);
+        this.snake = new Snake(0, 0);
+        this.apple = new Apple(10, 10);
+        this.gameInterval = null;
+        this.appleInterval = null;
     }
 
-    return false;
-}
+    run() {
+        this.gameInterval = setInterval(this.move, 1000);
+        this.appleInterval = setInterval(this.newApple, 10000);
+    }
 
+    move() {
 
-function newApple() {
+        this.snake.move();
 
-    //cancello la vecchia mela
-    updateCell(applePosition, EMPTY_CELL);
+    }
 
-    //logica (model)
-    applePosition = [parseInt(Math.random() * FIELD_W), parseInt(Math.random() * FIELD_H)];
+    newApple() {
 
-    //presentazione (view)
-    updateCell(applePosition, APPLE_CELL);
-
-}
-
-function snakeCheckBound(snakePosition) {
-
-    //human readable direction
-    var hrDirection = getHumanReadableDirection();
-
-    switch (hrDirection) {
-        case "up" :
-            return snakePosition[X] < 0 ? [(FIELD_H - 1), snakePosition[Y]] : snakePosition;
-        case "down":
-            return snakePosition[X] >= FIELD_H ? [0, snakePosition[Y]] : snakePosition;
-        case "left":
-            return snakePosition[Y] < 0 ? [snakePosition[X], (FIELD_W - 1)] : snakePosition;
-        case "right":
-            return snakePosition[Y] >= FIELD_W ? [snakePosition[X], 0] : snakePosition;
-            break;
     }
 
 }
 
-function getHumanReadableDirection() {
-
-    if (snakeDirection[X] >= 1 && snakeDirection[Y] == 0) {
-        return "down";
-    }
-
-    if (snakeDirection[X] <= -1 && snakeDirection[Y] == 0) {
-        return "up";
-    }
-
-    if (snakeDirection[X] == 0 && snakeDirection[Y] < 0) {
-        return "left";
-    }
-
-    if (snakeDirection[X] == 0 && snakeDirection[Y] > 0) {
-        return "right";
-    }
-}
-
-/*
-inverto X e Y perchè sotto il punto di
- */
-function updateCell(position, value) {
-
-    let [x, y] = position;
-
-    //model
-    fieldMatrix[x][y] = value;
-
-    //view
-    var cell = document.getElementById(`f-${x}-${y}`);
-    var cellClass = "cell ";
-
-    switch (value) {
-        case EMPTY_CELL:
-            cellClass += " ";
-            break;
-        case SNAKE_BODY:
-        case SNAKE_HEAD:
-            cellClass += " snake";
-            break;
-        case APPLE_CELL:
-            cellClass += " apple";
-            break;
-        case WALL_CELL:
-            cellClass += " wall";
-            break;
-
-    }
-
-    cell.className = cellClass;
-}
-
-//model
-function snakeMove() {
-
-    let currentHead = snakePositions[0];
-    let newHead = [0, 0]
-
-    newHead[X] = currentHead[X] + snakeDirection[X];
-    newHead[Y] = currentHead[Y] + snakeDirection[Y];
-
-    newHead = snakeCheckBound(newHead);
-    snakePositions.unshift(newHead);
-
-    for (let body = 0; body < snakePositions.length - 1; body++) {
-        updateCell(snakePositions[body], SNAKE_BODY);
-    }
-
-    var eatedApple = snakeCheckApple(newHead);
-
-    if (!eatedApple) {
-        //se mangio una mela si allunga la coda quindi non cancello l'ultimo
-        let tail = snakePositions[snakePositions.length - 1];
-        updateCell(tail, EMPTY_CELL);
-        snakePositions.pop()
-    }
-
-}
-
-field.onkeydown = function (event) {
-
-    console.log(event)
-    event.preventDefault();
-
-    switch (event.key) {
-        case "ArrowUp":
-            snakeDirection = [-SNAKE_WALK, 0];
-            break;
-        case "ArrowDown" :
-            snakeDirection = [+SNAKE_WALK, 0];
-            break;
-        case "ArrowLeft":
-            snakeDirection = [0, -SNAKE_WALK];
-            break;
-        case "ArrowRight" :
-            snakeDirection = [0, SNAKE_WALK];
-            break;
-    }
-
-}
