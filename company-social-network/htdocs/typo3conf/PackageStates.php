@@ -282,6 +282,12 @@ return [
             'packagePath' => 'typo3conf/ext/extension_builder/',
             'suggestions' => [],
         ],
+        'rest' => [
+            'composerName' => 'cundd/rest',
+            'state' => 'active',
+            'packagePath' => 'typo3conf/ext/rest/',
+            'suggestions' => [],
+        ],
         'adodb' => [
             'composerName' => 'typo3/cms-adodb',
             'state' => 'inactive',

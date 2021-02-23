@@ -68,12 +68,8 @@ Object.defineProperty(Array.prototype, "equals", {enumerable: false});
 * Oggetti del dom
 * */
 
-//testa dello snake
-var snakeHead = document.getElementById("head");
 //spazio di movimento del gioco
 var field = document.getElementById("field");
-//la mela
-var apple = document.getElementById("apple");
 //mele mangiate
 var eatedApple = document.getElementById("eatedCount");
 

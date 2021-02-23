@@ -18,12 +18,14 @@
         /*
             quando vogliamo creare un oggetto possiamo farlo attraverso diversi metodi
             che dipendono dalle varie versioni di javascript.
-            a prescindere dalle varie forme che vedremo, quali sono i prinipi?
+            a prescindere dalle varie forme che vedremo, quali sono i principi?
 
             - Incapsulamento
                 la capacità di concentrare in un’unica entità (oggetto) dati e funzionalità
             - Aggregazione
                 la possibilità di un oggetto di avere altri oggetti al suo interno
+            - Associazione
+                la possibilità di un oggetto di fare riferimento ad un altro oggetto
             - Ereditarietà
                 la dipendenza delle caratteristiche di un oggetto da una o più definizioni di altri oggetti
             - Polimorfismo
@@ -31,35 +33,32 @@
                     - overloading: la possibilità di prevedere metodi che manipolano tipi di dato diversi
                     - polimorfismo parametrico: la possibilità di prevedere tipi generici, non conosciuti a priori
                     - polimorfismo per inclusione: la possibilità di avere espressioni il cui tipo può essere rappresentato da una classe e dalle classi da essa derivate
-            - Associazione
-                la possibilità di un oggetto di fare riferimento ad un altro oggetto
+
         */
 
 
         function Persona(nome, cognome) {
-
             //variabile privata (incapsulamento)
             var cicatrici = 2;
 
             //varibili pubbliche (incapsulamento)
             this.nome = nome;
             this.cognome = cognome;
+
         }
 
+        //specifica ECMA6 (js 2015)
         //ereditarietà
         class Autista extends Persona {
 
             constructor(nome, cognome, auto) {
                 //ereditarietà + polimorfismo
                 super(nome, cognome);
-
                 //associazione
                 this.auto = auto;
             }
         }
 
-
-        //specifica ECMA6 (js 2015)
         class Automobile {
 
             //variabile privata
@@ -76,6 +75,7 @@
                 //associazione
                 this.autista = new Autista("giudo", "sterzi", this);
             }
+
 
             //proprietà (incapsulamento)
             get numeroTelaio() {
@@ -107,7 +107,6 @@
             }
         }
 
-
         /*
             quale scegliere?
             dipende da tanti fattori:
@@ -115,7 +114,7 @@
             - sto sviluppando un sito che non richiede particolari compatibilità di JS e quindi posso usare le specifiche ECMA6
             - ritengo più pulita un modo di scrivere rispetto ad un altro
             - alcune soluzioni offrono più flessibilità di altre.
-            - necessità di implementazione
+            - necessità di implementazione (design pattern)
          */
 
         //per esempio, come faccio a riprodurre il comportamento dell'animale,
@@ -139,6 +138,14 @@
                     throw new Error("Questo cane non può scondizolare");
                 } else {
                     this.coda.scodinzola = true;
+                }
+            },
+
+            nonScodinzola: function () {
+                if (!this.coda.presente) {
+                    throw new Error("Questo cane non può scondizolare");
+                } else {
+                    this.coda.scodinzola = false;
                 }
             }
 
@@ -164,7 +171,7 @@
 
         console.log(Automobile.prototype);
         console.log(Persona.prototype);
-        console.log(console.log.prototype);
+        console.log(String.prototype);
 
         function esempio() {
             return false;
@@ -182,9 +189,6 @@
         panda.postiOmologati = 4;
         console.log(ferrarif8);
 
-        //ma come ci comportiamo se abbiamo molte istanze?
-        //usiamo prototype
-
         console.log(mario);
         console.log(daniele);
 
@@ -200,6 +204,7 @@
 
         console.log(mario.calcolaCodiceFiscale());
         console.log(daniele.calcolaCodiceFiscale());
+
 
         /*
             abbiamo però un effetto collaterale
@@ -242,13 +247,16 @@
             //configurable: true,
             //enumerable: true
             //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
-        })
+        });
 
-        console.log(mario);
+
+        /* eccezioni */
 
         //se ora cerco di modificare la proprietà
         //verrà generato un errore, per evitare questo problema,
         //introduciamo il concetto di eccezione
+
+        debugger;
 
         try {
             //tentiamo di esegurie
@@ -286,7 +294,7 @@
         //nota: queste sono le arrow function di ECMA6
         //sono identiche alle funzioni ma più veloci da scrivere
         var stack1 = () => {
-            throw new CustomError("custom-error-message")
+            throw new CustomError("custom-error-message");
         };
         var stack2 = () => stack1();
         var stack3 = () => stack2();
@@ -303,9 +311,6 @@
 
         //come avrei dovuto fare se non avessi avuto le eccezioni?
 
-        //??
-        //??
-
         //per non complicare ulteriormente, consideriamo Reflect
         //anche una classe che semplifica vecchi metodi di
         //creazione degli oggetti
@@ -321,10 +326,12 @@
 
 
         var pandaProxy = new Proxy(panda, {
+
             get(target, propertyName) {
                 console.log("Lettura di " + propertyName);
                 return target[propertyName];
             },
+
             set(target, propertyName, value) {
                 console.log("Assegnamento di " + value + " a " + propertyName);
                 target[propertyName] = value;
@@ -395,7 +402,6 @@
 
             Pattern comportamentali: comunicazione tra gli oggetti di un’applicazione.
             - Observer Pattern
-
 
             Un pattern interessante
             - Promise Pattern
