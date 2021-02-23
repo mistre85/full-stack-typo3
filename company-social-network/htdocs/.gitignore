@@ -22,3 +22,5 @@
 # Ignore temp directory.
 /typo3temp/
 sistemlnk.sh
+/typo3conf/LocalConfiguration.php
+/typo3conf/PackageStates.php
