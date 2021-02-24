@@ -9,563 +9,310 @@
 
     <link rel="stylesheet" href="../../css/style.css"/>
 
-    <title>Corso FSD - Typo3 - Modulo 1 - Lezione 7</title>
+    <title>Corso FSD - Typo3 - Modulo 1 - Lezione 8</title>
 
-    <script type="text/javascript">
-        //per la verifica della dichiarazione di variabili (lezione 4)
-        "use strict"
-
-        /*
-            quando vogliamo creare un oggetto possiamo farlo attraverso diversi metodi
-            che dipendono dalle varie versioni di javascript.
-            a prescindere dalle varie forme che vedremo, quali sono i principi?
-
-            - Incapsulamento
-                la capacità di concentrare in un’unica entità (oggetto) dati e funzionalità
-            - Aggregazione
-                la possibilità di un oggetto di avere altri oggetti al suo interno
-            - Associazione
-                la possibilità di un oggetto di fare riferimento ad un altro oggetto
-            - Ereditarietà
-                la dipendenza delle caratteristiche di un oggetto da una o più definizioni di altri oggetti
-            - Polimorfismo
-                la capacità di gestire oggetti senza conoscerne in anticipo i dettagli
-                    - overloading: la possibilità di prevedere metodi che manipolano tipi di dato diversi
-                    - polimorfismo parametrico: la possibilità di prevedere tipi generici, non conosciuti a priori
-                    - polimorfismo per inclusione: la possibilità di avere espressioni il cui tipo può essere rappresentato da una classe e dalle classi da essa derivate
-
-        */
-
-
-        function Persona(nome, cognome) {
-            //variabile privata (incapsulamento)
-            var cicatrici = 2;
-
-            //varibili pubbliche (incapsulamento)
-            this.nome = nome;
-            this.cognome = cognome;
-
+    <style type="text/css">
+        .drag-container {
+            display: flex;
+            justify-content: space-around;
         }
 
-        //specifica ECMA6 (js 2015)
-        //ereditarietà
-        class Autista extends Persona {
-
-            constructor(nome, cognome, auto) {
-                //ereditarietà + polimorfismo
-                super(nome, cognome);
-                //associazione
-                this.auto = auto;
-            }
+        #draggable {
+            width: 200px;
+            height: 20px;
+            text-align: center;
+            background-color: lightcoral;
         }
 
-        class Automobile {
-
-            //variabile privata
-            #numeroTelaio = Symbol();
-
-            //la classe Symbol ci pemrette di virtualizzare un ID univoco
-            //quindi Symbol() === Symbol() è sempre false
-
-
-            constructor(casa, modello) {
-                this.casa = casa;
-                this.modello = modello;
-
-                //associazione
-                this.autista = new Autista("giudo", "sterzi", this);
-            }
-
-
-            //proprietà (incapsulamento)
-            get numeroTelaio() {
-                return this.#numeroTelaio;
-            }
-
-            set numeroTelaio(value) {
-                this.#numeroTelaio = value;
-            }
-
-            //incapsulamento
-            avviaTergicristalli() {
-                console.log("avvio tergicristalli");
-                this.#muoviTergicristalli();
-            }
-
-            #muoviTergicristalli() {
-                console.log("muovi tergicristalli");
-            }
+        .dropzone {
+            width: 200px;
+            height: 20px;
+            background: lightgreen;
+            margin-bottom: 10px;
+            padding: 10px;
         }
+    </style>
 
-        //oggetto letterale
-        var gatto = {
-            famiglia: "felino",
-            razza: "gatto-pugliese",
-
-            riproduciVerso: function () {
-                console.log("mee");
-            }
-        }
-
-        /*
-            quale scegliere?
-            dipende da tanti fattori:
-            - arrivo già da un linguaggio che usa class, extends, constructor quindi conosco il paradigma
-            - sto sviluppando un sito che non richiede particolari compatibilità di JS e quindi posso usare le specifiche ECMA6
-            - ritengo più pulita un modo di scrivere rispetto ad un altro
-            - alcune soluzioni offrono più flessibilità di altre.
-            - necessità di implementazione (design pattern)
-         */
-
-        //per esempio, come faccio a riprodurre il comportamento dell'animale,
-        //con un oggetto letterale? non posso dovrei copiare la definizione:
-        var cane = {
-            famiglia: "canidi",
-            razza: "bulldog-francese",
-            //aggregazione
-            coda: {
-                presente: false,
-                scodinzola: false,
-            },
-
-            riproduciVerso: function () {
-                console.log("bau");
-            },
-
-            //gestione eccezioni, spieghiamo più avanti
-            scodinzola: function () {
-                if (!this.coda.presente) {
-                    throw new Error("Questo cane non può scondizolare");
-                } else {
-                    this.coda.scodinzola = true;
-                }
-            },
-
-            nonScodinzola: function () {
-                if (!this.coda.presente) {
-                    throw new Error("Questo cane non può scondizolare");
-                } else {
-                    this.coda.scodinzola = false;
-                }
-            }
-
-        }
-
-        //invece con la gestione a costruttori
-        //per la creazione degli oggetti possiamo quindi indicare la parola new
-        var mario = new Persona("mario", "mario");
-        var daniele = new Persona("daniele", "daniele");
-        var ferrarif8 = new Automobile("ferrari", "F8 turbo");
-        var panda = new Automobile("fiat", "panda");
-
-        //javascript mette a disposizione anche un oggetto
-        //per la creazione attraverso il prototyping
-        var automobileGenerica = Object.create(Automobile.prototype);
-
-        /*
-         * ricordiamoci che il prototype è un oggetto di default
-         * creato da javascript automaticamente
-         * in tutte le funzioni e in tutti gli oggetti
-         * che vengono creati dal programmatore
-         */
-
-        console.log(Automobile.prototype);
-        console.log(Persona.prototype);
-        console.log(String.prototype);
-
-        function esempio() {
-            return false;
-        }
-
-        console.log(esempio.prototype);
-
-        //cosa significa?
-        //la flessibilità di javascript permette
-        //di inserire proprietà nuove ad un oggetto a livello di runtime
-        //proprio grazie a prototype
-
-        //abbiamo già visto che possiamo aggiungere parametri ad istanze di oggetti
-        console.log(panda);
-        panda.postiOmologati = 4;
-        console.log(ferrarif8);
-
-        console.log(mario);
-        console.log(daniele);
-
-        Persona.prototype.calcolaCodiceFiscale = function calcolaCodiceFiscale() {
-            //avete notato?
-            //il codice che abbiamo scritto è generico, ma conosce la
-            //definizione della classe di appartenenza
-            //quindi possiamo usare this. per accedere alle proprietà dell'oggetto
-            //messe a disposizione dal programmatore
-            //ma la funzione si trova in un'altro posto e non presenta parametri
-            return this.nome.substring(0, 3).toUpperCase() + this.cognome.substring(0, 3).toUpperCase();
-        }
-
-        console.log(mario.calcolaCodiceFiscale());
-        console.log(daniele.calcolaCodiceFiscale());
-
-
-        /*
-            abbiamo però un effetto collaterale
-            altri programmatori potrebbero distruggere le nostre
-            protipizzazioni oppure abbiamo bisogno di rendere
-            indisponibile qualche variabile che può essere
-            assegnata solo attraverso specifiche istruzioni
-
-         */
-
-        //possiamo usare le description property e le reflection (ECMA 6)
-        //ma prima introduciamo il concetto di reflection
-        //la reflection è una classe che permette di lavorare
-        //in runtime sulla struttura degli elementi
-
-        console.log(Reflect.get(ferrarif8, "casa"));
-        console.log(ferrarif8.casa);
-
-        //questo significa che possiamo fare anche il contrario
-        //con qualche "funzionalità in più"
-
-        console.log(mario);
-        console.log(daniele);
-
-        //queste istruzioni sono equivalenti
-        Reflect.set(mario, "sesso", "m");
-        daniele.sesso = "m";
-
-        console.log(mario);
-        console.log(daniele);
-
-        //ma tronrando al nostro problema,
-        // possiamo inserire una specifica ulteriore
-        // bloccando la rivalorizzazione applicativa
-        // di variabili o funzioni prototipate
-
-        Reflect.defineProperty(mario, "password", {
-            value: parseInt(Math.random() * 10000),
-            writable: false,
-            //configurable: true,
-            //enumerable: true
-            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
-        });
-
-
-        /* eccezioni */
-
-        //se ora cerco di modificare la proprietà
-        //verrà generato un errore, per evitare questo problema,
-        //introduciamo il concetto di eccezione
-
-        debugger;
-
-        try {
-            //tentiamo di esegurie
-            mario.password = parseInt(Math.random() * 10000);
-            console.log(mario);
-        } catch (e) {
-            //se si scatenano errori, li catturiamo ed eseguiamo il catch
-            //dentro e abbiamo i dati
-            console.log(e.message);
-        } finally {
-            //in ogni caso possiamo eseguire il finally
-            console.log("gestita eccezione");
-        }
-
-        //le eccezzioni devono essere progettate per impedire che
-        //gli errori possano bloccare l'esecuzione del programma
-        //e si possa vere una scelta alternativa invece che un blocco
-
-        try {
-            cane.scodinzola();
-        } catch (e) {
-            console.log(e.message);
-        }
-
-        //alcune caratteristiche
-        //- non mi devo portare io gli errori in giro nello stack
-        //- posso crearmi le mie classi di errore
-        class CustomError extends Error {
-            constructor(message) {
-                super(message);
-                this.name = "CustomError";
-            }
-        }
-
-        //nota: queste sono le arrow function di ECMA6
-        //sono identiche alle funzioni ma più veloci da scrivere
-        var stack1 = () => {
-            throw new CustomError("custom-error-message");
-        };
-        var stack2 = () => stack1();
-        var stack3 = () => stack2();
-
-        try {
-            stack3();
-        } catch (e) {
-
-            //e posso anche controllarlo
-            if (e.name == "CustomError") {
-                console.log(e.message);
-            }
-        }
-
-        //come avrei dovuto fare se non avessi avuto le eccezioni?
-
-        //per non complicare ulteriormente, consideriamo Reflect
-        //anche una classe che semplifica vecchi metodi di
-        //creazione degli oggetti
-        //potete approfondire anche qui
-        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect
-
-        /*
-            CLASSE PROXY (ES6)
-
-            consente di creare oggetti che hanno la capacità di modificare
-            il comportamento predefinito di altri oggetti.
-         */
-
-
-        var pandaProxy = new Proxy(panda, {
-
-            get(target, propertyName) {
-                console.log("Lettura di " + propertyName);
-                return target[propertyName];
-            },
-
-            set(target, propertyName, value) {
-                console.log("Assegnamento di " + value + " a " + propertyName);
-                target[propertyName] = value;
-                return true; //da specificare sempre nel set, altrimenti c'è errore
-            }
-        });
-
-        pandaProxy.numeroTelaio = 1500;
-
-        //quando?
-        //possiamo usarlo per validazioni, per esempio della classe persona
-
-        var validatore = {
-            set(target, propertyName, value) {
-                if (propertyName == "nome" || propertyName == "cognome") {
-                    if (value == "") console.log("Errore", "Non è possibile assegnare una stringa vuota");
-                    let hasNumberRegExp = /\d/;
-                    if (hasNumberRegExp.test(value)) console.log("Errore", "La stringa non può contenere numeri");
-                }
-                target[propertyName] = value;
-                return true;
-            }
-        };
-
-        var validaMario = new Proxy(mario, validatore);
-        var validaDaniele = new Proxy(daniele, validatore);
-
-        validaMario.nome = "123mario";
-        validaDaniele.nome = "daniele";
-
-        //oppure nei databinding
-        //vedere nel codice footer
-
-        //una osservazione
-        //il codice di un oggetto letterale è in realtà un JSON
-        //possiamo gestire i JSON delle istanze, ma non delle classi
-        //per questo è letterale, per esempio
-        //dobbiamo servirci di new
-        var marioJson = JSON.stringify(new Persona("mario", "json"));
-        //in pratica stiamo facendo una serializzazione
-        //quindi ha a che fare con i dati e non con la definizione
-        //quindi non troverò la serializzazione delle funzioni
-        console.log(marioJson);
-        //possiamo quindi istanziare un nuovo oggetto letterale, partendo dal json
-        var daniele = JSON.parse('{"nome":"daniele","cognome":"json"}');
-        console.log(daniele);
-
-        /*
-            design pattern
-
-            I Design Pattern sono soluzioni tecniche a problemi comuni di progettazione del software.
-            Essi rappresentano schemi logici di risoluzione di un problema riusabili
-            e indipendenti dal linguaggio di programmazione ed offrono un modello
-            di riferimento per la realizzazione di componenti software facilmente manutenibili.
-
-            https://it.wikipedia.org/wiki/Design_pattern
-            https://it.wikipedia.org/wiki/Gang_of_Four_(scrittori)
-
-            Pattern creazionali: si occupa della creazione di classi e oggetti
-            - Singleton Pattern
-            - Factory Pattern
-
-            Pattern strutturali: fornisce un modo per gestire le relazioni tra gli oggetti
-            - Module Pattern
-            - Adapter Pattern
-            - Facade Pattern
-            - MVC/MVVM Pattern
-
-            Pattern comportamentali: comunicazione tra gli oggetti di un’applicazione.
-            - Observer Pattern
-
-            Un pattern interessante
-            - Promise Pattern
-
-         */
-
-        //Singleton
-        //si prevede che l'oggetto abbia una sola istanza in tutto il runtime
-        //come lo costruiamo?
-
-        //una nota: stiamo usando una notazione IIFE (Immediately-invoked Function Expressions)
-        //a cosa serve? a eseguire una funzione esattamente quando viene definita
-        //perchè? per evitare errori con inclusioni di librerie, per isolare variabili
-        //non viene quindi definita una funzione ma restituito una valore di una funzione lanciat al volo
-        //perchè nel singleton? perchè ci serve che l'istanza sia subito definita
-
-        var singleton = (function () {
-
-            //variabile che conterrà l'istanza (attenzione non è this. !!)
-            //privata
-            var instance;
-
-            return {
-                getInstance: function () {
-
-                    if (!instance) {
-
-                        instance = {
-                            semaphore: "red",
-                            on: false,
-
-                            isGreen: function () {
-                                return this.semaphore == "red";
-                            },
-
-                            isOn: function () {
-                                return this.on;
-                            },
-
-                            setGreen: function () {
-                                this.semaphore = "green";
-                            },
-
-                            setYellow: function () {
-                                this.semaphore = "yellow";
-
-                            },
-                            setRed: function () {
-                                this.semaphore = "red";
-                            },
-                            print: function () {
-                                console.log("Semaphore color", this.semaphore);
-                            }
-                        };
-                    }
-
-                    return instance;
-                }
-            };
-        })();
-
-        if (singleton.getInstance().isOn()) {
-            for (let i = 0; i < 100; i++) {
-                setInterval(() => {
-
-                    let sem = parseInt(Math.random() * 100);
-
-                    if (sem >= 0 && sem < 33)
-                        singleton.getInstance().setGreen();
-
-                    if (sem >= 33 && sem < 66)
-                        singleton.getInstance().setYellow();
-
-                    if (sem >= 33 && sem < 66)
-                        singleton.getInstance().setRed();
-
-                }, (Math.random() * 1000) + 1000);
-            }
-
-            setInterval(() => {
-                singleton.getInstance().print();
-            }, 1000)
-        }
-
-        //Factory
-
-        class Moto extends Automobile {
-            constructor(casa, modello) {
-                super(casa, modello);
-            }
-        }
-
-        class Camion extends Automobile {
-            constructor(casa, modello) {
-                super(casa, modello);
-            }
-        }
-
-        var veicoloFactory = {
-
-            creaVeicolo: function (opzioni) {
-
-                var veicolo = null;
-
-
-                switch (opzioni.tipo) {
-                    case "auto":
-                        veicolo = new Automobile(opzioni.casa, opzioni.modello);
-                        break;
-                    case "moto":
-                        veicolo = new Moto(opzioni.casa, opzioni.modello);
-                        break;
-                    case "camion":
-                        veicolo = new Camion(opzioni.casa, opzioni.modello);
-                        break;
-                }
-
-
-                return veicolo;
-            }
-        };
-
-
-        var moto = veicoloFactory.creaVeicolo({tipo: "moto", casa: "ducati", modello: "monster"});
-
-        console.log(moto);
-
-
-    </script>
 </head>
-
 <body>
-<h1>Esempio bidning</h1>
-<input id="txtNome" name="nome"/>
-<script type="text/javascript">
+<div id="element" class="attributo-class" onmouseover="this.style.color='red'">
+    Testo Elemento
+</div>
+<p class="par">Paragrafo 1</p>
+<p class="par">Paragrafo 2</p>
+<p>Paragrafo 3</p>
+<div id="propaga1">
+    propaga1
+    <div id="propaga2">
+        propaga 2
+    </div>
+</div>
+<div id="mutation">
 
-    //esempio di binder
-    class Binder {
-        bindTo(dataSourceObj, dataSourceProperty, dataTargetObj, dataTargetProperty) {
-            var bindHandler = {
-                set: function (target, property, newValue) {
-                    if (property == dataSourceProperty) {
-                        target[dataSourceProperty] = newValue;
-                        dataTargetObj[dataTargetProperty] = newValue;
-                    }
-                }
-            };
-            return new Proxy(dataSourceObj, bindHandler);
-        }
+</div>
+<hr>
+<div class="drag-container">
+    <div class="dropzone">
+        <div id="draggable" draggable="true">
+
+        </div>
+    </div>
+    <div class="dropzone"></div>
+    <div class="dropzone"></div>
+    <div class="dropzone"></div>
+</div>
+</body>
+<script type="text/javascript">
+    //per la verifica della dichiarazione di variabili (lezione 4)
+    "use strict"
+
+    //L’oggetto principale per l’interazione con il browser è window:
+    // esso rappresenta una finestra che contiene un documento HTML.
+    // Quindi ciascuna finestra o tab ha associato un proprio oggetto
+    // window e, allo stesso modo, a ciascun frame definito
+    // in una pagina HTML corrisponde un oggetto window.
+    // E' un contesto di esecuzione globale.
+
+    var x = 123;
+
+    function somma(a, b) {
+        return a + b;
     }
 
-    var persona = {
-        nome: "Mario",
-        cognome: "Rossi"
-    };
-    var txtNome = document.getElementById("txtNome");
-    var binder = new Binder();
-    var personaConBinding = binder.bindTo(persona, "nome", txtNome, "value");
+    console.log(x);
+    console.log(somma(3, 5));
+    console.log(window.x);
+    console.log(window.somma(3, 5));
+    console.log(this.x);
+    console.log(this.somma(3, 5));
 
-    setTimeout(function () {
-        personaConBinding.nome = "Marco";
-    }, 2000);
+    console.log(window);
+    //dimensioni della finestra
+    console.log(innerWidth + "x" + innerHeight);
+    //dimensioni dello schermo
+    console.log(window.screen.width + "x" + window.screen.height);
+
+    //timers
+    var timeout = setTimeout(function () {
+        console.log("test")
+    }, 5000);
+
+    var x = 0;
+    var interval = setInterval(function () {
+        x++;
+        console.log(x);
+    }, 1000);
+
+    clearInterval(interval);
+    clearTimeout(timeout);
+
+    //torna indietro
+    // window.history.back();
+    //torna indietro di 3
+    //window.history.go(-3);
+
+    console.log(window.location);
+    //cambiare indirizzo
+    //window.location.href = "https://www.google.it";
+
+    //possiamo recuperare anche i parametri
+    console.log(window.location.search);
+    console.log(window.navigator);
+
+    //altri oggetti?
+    console.log(document);
+    //elemento
+    console.log(document.getElementById("element"));
+    //attributo
+    console.log(document.getElementById("element").className);
+    //testo
+    console.log(document.getElementById("element").innerText);
+
+    //posso selezionare altri elementi
+    console.log(document.getElementsByTagName("p"));
+    console.log(document.querySelectorAll("p.par"));
+    console.log(document.querySelector("p.par"));
+
+    //possiamo manipolarli
+    document.querySelector("p.par").innerHTML = "Nuovo testo";
+
+    //potremmo anche, dato che javascript lo permette,
+    //salvare dei dati senza impatto su html
+    document.querySelector("p.par").dataOggi = new Date();
+    console.log(document.querySelector("p.par").dataOggi);
+    //ma questa pratica è stata sostituida dai data-attribute che vedremo con jquery
+
+    //posso anche navigare attraverso la struttura, ma attenzione ai tipi di dato del dom
+    var el = document.getElementById("element");
+
+    console.log(el);
+    console.log(el.childNodes);
+    console.log(el.children);
+    console.log(el.parentElement);
+    console.log(el.parentNode)
+    console.log(el.parentElement.children);
+    console.log(el.parentElement.childNodes);
+    console.log(el.parentNode.children);
+    console.log(el.parentNode.childNodes);
+
+    //è possibile anche creare elementi
+    var div = document.createElement("div");
+
+    div.innerText = "aggiunto";
+
+    //ma questo non ci permette di averli nel dom, dobbiamo aggiungerli
+    document.getElementById("element").append(div);
+
+    //eventi
+    //possiamo associare degli eventi sia da html che da js
+    var el = document.getElementById("element");
+
+    el.addEventListener("mouseleave", function () {
+
+        this.style.color = "black";
+        //alternativa
+        //e.target.style.color = "black";
+    });
+
+    //nota: il secondo parametro di addEventListener è una callback
+    //ossia una funzione che viene richiamata internamente, come è possibile?
+    //lo abbiamo visto in reflect
+
+    function eseguiCalcolo(funzioneDiCalcolo, arg1, arg2) {
+        return funzioneDiCalcolo(arg1, arg2);
+    }
+
+    var somma = (arg1, arg2) => {
+        return arg1 + arg2;
+    }
+
+    console.log(eseguiCalcolo(somma, 1, 1));
+    //possiamo passare funzioni anonime
+    console.log(eseguiCalcolo((x, y) => {
+        return x * y
+    }, 5, 7));
+
+    //possiamo anche usare la proprietà
+    el.onclick = function (event) {
+        event.cancelBubble = true;
+        event.stopPropagation();
+
+        event.preventDefault();
+        //attenzione, quando usiamo this
+        //javascript assegna this al dom element che ha scatenato l'evento
+        console.log(this);
+
+        //le informazioni dell'evento invece si trovano nel parametro della callback
+        console.log(event);
+
+        //per esempio con qualche pulsante ho fatto click
+        console.log(event.clientX);
+
+    }
+
+    //attenzioni alle propagazioni!
+    //https://www.w3.org/TR/DOM-Level-3-Events/
+
+    var propaga1 = document.getElementById("propaga1");
+    var propaga2 = document.getElementById("propaga2");
+
+    var handler = (e) => {
+        //e.stopPropagation();
+        console.log("propaga");
+    }
+
+    propaga1.addEventListener('click', handler);
+    propaga2.addEventListener('click', handler);
+
+    window.onload = function () {
+        console.log("pagina caricata");
+    }
+
+    window.onscroll = function () {
+        console.log(window.pageXOffset + "," + window.pageYOffset);
+    };
+
+    window.onresize = function () {
+        console.log(window.innerWidth + "," + window.innerHeight);
+    };
+
+    //drag&drop
+    //variabile di supporto
+    var dragged;
+
+
+    document.addEventListener("dragstart", function (event) {
+        // store a ref. on the dragged elem
+        dragged = event.target;
+        // make it half transparent
+        event.target.style.opacity = .5;
+    }, false);
+
+    document.addEventListener("dragend", function (event) {
+        // reset the transparency
+        event.target.style.opacity = "";
+    }, false);
+
+    /* events fired on the drop targets */
+    document.addEventListener("dragover", function (event) {
+        // prevent default to allow drop
+        event.preventDefault();
+    }, false);
+
+    document.addEventListener("dragenter", function (event) {
+        // highlight potential drop target when the draggable element enters it
+        if (event.target.className == "dropzone") {
+            event.target.style.background = "yellow";
+        }
+
+    }, false);
+
+    document.addEventListener("dragleave", function (event) {
+        // reset background of potential drop target when the draggable element leaves it
+        if (event.target.className == "dropzone") {
+            event.target.style.background = "";
+        }
+
+    }, false);
+
+    document.addEventListener("drop", function (event) {
+        // prevent default action (open as link for some elements)
+        event.preventDefault();
+        // move dragged elem to the selected drop target
+        if (event.target.className == "dropzone") {
+            event.target.style.background = "";
+            dragged.parentNode.removeChild(dragged);
+            event.target.appendChild(dragged);
+        }
+    }, false);
+
+    // mutationManager è una funzione di callback
+    // che utilizzeremo per sfruttare i dati acquisiti
+    // dall'observer
+    var mutationManager = function (mutationRecords) {
+        console.log(mutationRecords);
+    };
+    var observer = new MutationObserver(mutationManager);
+
+    var div = document.getElementById("mutation");
+    observer.observe(div, {childList: true, attributes: true});
+
+    div.style = "background-color:red";
+
+
+    //le chiamate con async e await
+    console.log(1);
+    fetch("esempio.json").then(response => {
+        console.log(2);
+        console.log(response);
+    }).catch(error => console.log("Si è verificato un errore!"));
+    console.log(3);
+    (async () => {
+        let response = await fetch("esempio.json");
+        console.log(4);
+        console.log(response.json());
+    })()
+    console.log(5);
 
 </script>
-</body>
-
 </html>
