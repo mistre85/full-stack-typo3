@@ -1,0 +1,68 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers">
+
+    <f:layout name="Page"/>
+
+    <f:section name="Configuration">
+        <flux:form id="NotLogged" label="Not logged page">
+            <!-- Insert fields, sheets, grid, form section objects etc. here, in this flux:form tag -->
+        </flux:form>
+        <flux:grid>
+            <!-- Edit this grid to change the "backend layout" structure -->
+            <flux:grid.row>
+                <flux:grid.column colPos="0" name="content" label="Contenuti"/>
+            </flux:grid.row>
+        </flux:grid>
+    </f:section>
+
+    <f:section name="Main">
+
+        <!-- template delle pagine non loggate -->
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                            aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">CSN</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="starter-template">
+                <h1>Company Social Network</h1>
+                <p class="lead">Se sei un nostro dipendente hai diritto a questo social!</p>
+            </div>
+            <f:comment>
+                vhs v: ViewHelper
+                questo permette di renderizzare i componenti (content element)
+                che sono stati inseriti nella pagina che ha agganciato questo template
+                https://viewhelpers.fluidtypo3.org/fluidtypo3/vhs/4.1.0/Content/Render.html
+            </f:comment>
+
+            <!-- inizio contenuti pagina -->
+            <v:content.render column="0"/>
+            <!-- fine contenuti pagina -->
+
+        </div>
+
+
+    </f:section>
+
+
+</div>

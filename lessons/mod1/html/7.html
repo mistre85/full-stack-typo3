@@ -83,7 +83,9 @@
             }
 
             set numeroTelaio(value) {
+
                 this.#numeroTelaio = value;
+
             }
 
             //incapsulamento
@@ -255,8 +257,6 @@
         //verrà generato un errore, per evitare questo problema,
         //introduciamo il concetto di eccezione
 
-        debugger;
-
         try {
             //tentiamo di esegurie
             mario.password = parseInt(Math.random() * 10000);
@@ -327,18 +327,35 @@
         var pandaProxy = new Proxy(panda, {
 
             get(target, propertyName) {
+
                 console.log("Lettura di " + propertyName);
                 return target[propertyName];
             },
 
             set(target, propertyName, value) {
+
+                if (isNaN(value)) {
+                    throw new CustomError("deve essere un numero");
+                }
+
                 console.log("Assegnamento di " + value + " a " + propertyName);
                 target[propertyName] = value;
                 return true; //da specificare sempre nel set, altrimenti c'è errore
             }
         });
 
-        pandaProxy.numeroTelaio = 1500;
+        var nuovoNumeroTelaio = "ARF-500";
+
+        try {
+
+            pandaProxy.numeroTelaio = nuovoNumeroTelaio;
+
+        } catch (error) {
+
+            var telaioInfo = nuovoNumeroTelaio.split("-");
+            pandaProxy.numeroTelaio = parseInt(telaioInfo[1]);
+
+        }
 
         //quando?
         //possiamo usarlo per validazioni, per esempio della classe persona
@@ -350,6 +367,7 @@
                     let hasNumberRegExp = /\d/;
                     if (hasNumberRegExp.test(value)) console.log("Errore", "La stringa non può contenere numeri");
                 }
+
                 target[propertyName] = value;
                 return true;
             }
@@ -417,7 +435,8 @@
         //non viene quindi definita una funzione ma restituito una valore di una funzione lanciat al volo
         //perchè nel singleton? perchè ci serve che l'istanza sia subito definita
 
-        var singleton = (function () {
+
+        var Singleton = (function () {
 
             //variabile che conterrà l'istanza (attenzione non è this. !!)
             //privata
@@ -430,7 +449,7 @@
 
                         instance = {
                             semaphore: "red",
-                            on: false,
+                            on: true,
 
                             isGreen: function () {
                                 return this.semaphore == "red";
@@ -462,26 +481,26 @@
             };
         })();
 
-        if (singleton.getInstance().isOn()) {
+        if (Singleton.getInstance().isOn()) {
             for (let i = 0; i < 100; i++) {
                 setInterval(() => {
 
                     let sem = parseInt(Math.random() * 100);
 
                     if (sem >= 0 && sem < 33)
-                        singleton.getInstance().setGreen();
+                        Singleton.getInstance().setGreen();
 
                     if (sem >= 33 && sem < 66)
-                        singleton.getInstance().setYellow();
+                        Singleton.getInstance().setYellow();
 
                     if (sem >= 33 && sem < 66)
-                        singleton.getInstance().setRed();
+                        Singleton.getInstance().setRed();
 
                 }, (Math.random() * 1000) + 1000);
             }
 
             setInterval(() => {
-                singleton.getInstance().print();
+                Singleton.getInstance().print();
             }, 1000)
         }
 
@@ -518,13 +537,20 @@
                         break;
                 }
 
-
+                var autista = new Autista(opzioni.nome_autista, opzioni.cognome_autista, veicolo);
+                veicolo.autista = autista;
                 return veicolo;
             }
         };
 
-
-        var moto = veicoloFactory.creaVeicolo({tipo: "moto", casa: "ducati", modello: "monster"});
+        debugger;
+        var moto = veicoloFactory.creaVeicolo({
+            tipo: "moto",
+            casa: "ducati",
+            modello: "monster",
+            nome_autista: "paolo",
+            cognome_autista: "mistretta"
+        });
 
         console.log(moto);
 
@@ -556,7 +582,9 @@
         nome: "Mario",
         cognome: "Rossi"
     };
+
     var txtNome = document.getElementById("txtNome");
+
     var binder = new Binder();
     var personaConBinding = binder.bindTo(persona, "nome", txtNome, "value");
 
