@@ -14,3 +14,10 @@ plugin.tx_companysocialnetwork {
 		}
 	}
 }
+
+#system libs
+page.includeCSS.boostrap = /fileadmin/templates/bootstrap/css/bootstrap.css
+
+#custom libs
+page.includeCSS.main = /fileadmin/templates/css/main.css
+#page.includeCSS.overrideBootstrap = /fileadmin/templates/css/ovverideBootstrap.css

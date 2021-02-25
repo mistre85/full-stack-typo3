@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3FlexForms>
+    <data>
+        <sheet index="options">
+            <language index="lDEF">
+                <field index="settings.helloWorld">
+                    <value index="vDEF">Componente di esempio</value>
+                </field>
+            </language>
+        </sheet>
+    </data>
+</T3FlexForms>
+
+
+        <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3FlexForms>
+<data>
+    <sheet index="options">
+        <language index="lDEF">
+            <field index="title">
+                <value index="vDEF">Login form per dipendenti</value>
+            </field>
+        </language>
+    </sheet>
+</data>
+</T3FlexForms>

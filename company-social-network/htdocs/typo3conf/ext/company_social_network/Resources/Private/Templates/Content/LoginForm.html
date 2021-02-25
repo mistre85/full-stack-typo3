@@ -8,7 +8,7 @@
     <f:section name="Configuration">
         <flux:form id="loginForm" label="Login form" description="Il form che permette l'accesso al sistema"
                    options="{group: 'Forms'}">
-
+            <flux:field.input name="title" label="Titolo"/>
         </flux:form>
     </f:section>
 
@@ -20,6 +20,7 @@
     </f:section>
 
     <f:section name="Main">
+        <h1>{title}</h1>
         <form>
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
