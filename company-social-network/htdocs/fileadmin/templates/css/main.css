@@ -1,3 +1,14 @@
+@font-face {
+    src: url("/fileadmin/templates/fonts/tt-norm-fonts/TTNorms-Regular.otf");
+    font-family: "tt-norm";
+}
+
+@font-face {
+    src: url("/fileadmin/templates/fonts/tt-norm-fonts/TTNorms-Bold.otf");
+    font-family: "tt-norm";
+    font-weight: bold;
+}
+
 body {
     padding-top: 50px;
 }
@@ -7,6 +18,7 @@ body {
     text-align: center;
 }
 
+<<<<<<< HEAD
 
 
 h1 {
@@ -33,3 +45,11 @@ h1 {
     width: 100%;
     height: 100%;
  }
+=======
+* {
+    font-family: tt-norm;
+    font-smooth: never;
+}
+
+
+>>>>>>> d3eef2f122894367856e95c2fc65a3b25df06b3d
