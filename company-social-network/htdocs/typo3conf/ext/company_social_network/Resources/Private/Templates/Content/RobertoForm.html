@@ -1,0 +1,59 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+    xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+    xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content" />
+
+    <f:section name="Configuration">
+        <flux:form id="RobertoForm" options="{group: 'Forms'}" label="Roberto Form"
+            description="Form di contatto personalizzato per Roberto">
+            <flux:field.text name="title" label="Titolo Form"></flux:field.text>
+            <flux:field.text name="autorizDatiPers" label="Autorizzazione datipersonali"></flux:field.text>
+            <flux:field.select name="settings.position" items="left,right" default="left"/>
+            
+
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <!-- If you wish, place custom backend preview content here -->
+        <strong>Roberto form</strong><br />
+        <i>preview in costruzione per Form Roberto</i>
+    </f:section>
+
+    <f:section name="Main">
+        <form>
+            <div class="form-group">
+                <h3>
+                    <f:format.raw>{title}</f:format.raw>
+                </h3>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Nome:</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Nome">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Cognome:</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Cognome">
+            </div>
+            <div class="form-group">
+                <label>Messaggio:</label>
+                <textarea class="form-control" rows="3"></textarea>
+
+            </div>
+            <div class="select">
+                <select class="form-control">
+                    <option value="M">M</option>
+                    <option value="F">F</option>
+                </select>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> {autorizDatiPers}
+                </label>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </f:section>
+</div>
