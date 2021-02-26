@@ -1,0 +1,95 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <f:comment>
+            1 - ricordarsi di cambiare l'id:
+            
+            una volta definito il nome del componente nell'id typo3 
+            associa un record al nome del file e all'id.
+            
+            se decidete di cambiare il nome del file o l'id dovete stare attenti 
+            perchè se l'editore ha già inserito i contenuti, questi ultimi verranno "perduti"
+
+            2- cambiare o controllare gruppo di appartenenza
+
+        </f:comment>
+        <flux:form id="beppeTeam" options="{group: 'Blocks'}" label="Beppe Team -(giuseppe)"
+        
+            description="Permette di inserire una galleria di immagini con titolo e descrizione relativa"
+        >
+
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+
+        <strong>Blocco Team</strong><br/>
+        <p>
+            Permette di inserire una galleria di immagini con titolo e descrizione relativa al team di lavoro
+        </p>
+    </f:section>
+
+    <f:section name="Main">
+
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/beppeTeam.css" />
+        <h1>Titolo</h1>
+        <p>
+            Descrizione1
+        </p>
+        <div class="team-blocks">
+            <div class="jumbotron">
+                <h3 id="titoloJumbo">Immagini della CNS</h3>
+                <hr>
+                <h4 id="subtitle">There are many variations of passages of Lorem Ipsum available</h42>
+                <div class="conteinerFlex">
+                    <div class="divImg">
+                        <img class="rotondo" src="https://picsum.photos/200" />
+                        <p class="top">Immagine 1</p>
+                        <div class="descrizione">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took
+                        </div>
+                    </div>
+                  <div class="divImg">
+                    <img class="rotondo" src="https://picsum.photos/200" />
+                    <p class="top">Immagine 1</p>
+                    <div class="descrizione">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                         when an unknown printer took 
+                    </div>
+                  </div>
+                  <div class="divImg">
+                    <img class="rotondo" src="https://picsum.photos/200" />
+                    <p class="top">Immagine 1</p>
+                    <div class="descrizione">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                         when an unknown printer took 
+                    </div>
+                  </div>
+                </div>
+                <div class="conteinerFlex">
+                    <div class="divImg">
+                        <img class="rotondo" src="https://picsum.photos/200" />
+                        <p class="top">Immagine 1</p>    
+                    </div>
+                    <div class="divImg">
+                        <img class="rotondo" src="https://picsum.photos/200" />
+                        <p class="top">Immagine 1</p>
+                    </div>
+                    <div class="divImg">
+                        <img class="rotondo" src="https://picsum.photos/200" />
+                        <p class="top">Immagine 1</p>                      
+                    </div>
+                  </div>                                     
+            </div>
+        </div>
+    </f:section>
+</div>
