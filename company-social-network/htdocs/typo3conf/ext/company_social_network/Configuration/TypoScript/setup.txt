@@ -12,6 +12,7 @@ plugin.tx_companysocialnetwork {
 				Example = div
 			}
 		}
+
 	}
 }
 

@@ -7,340 +7,206 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../../css/style.css"/>
+    <!-- possiamo prendere anche la compressa -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
-    <title>Corso FSD - Typo3 - Modulo 1 - Lezione 8</title>
+    <title>Corso FSD - Typo3 - Modulo 1 - Lezione 10</title>
 
     <style type="text/css">
-        .drag-container {
-            display: flex;
-            justify-content: space-around;
+        .block {
+            background-color: red;
+            width: 100px;
+            height: 100px;
+            margin: 20px;
+            display: block;
+            position: relative;
         }
 
-        #draggable {
-            width: 200px;
-            height: 20px;
-            text-align: center;
-            background-color: lightcoral;
-        }
 
-        .dropzone {
-            width: 200px;
-            height: 20px;
-            background: lightgreen;
-            margin-bottom: 10px;
-            padding: 10px;
-        }
-
-        .colorBlue {
-            color: blue;
-        }
     </style>
+
+    <script type="text/javascript">
+        "use strict"
+
+        //oggetto funzione jquery
+        console.log($);
+
+        console.log($("#mioBlocco")); //Un oggetto jQuery
+        console.log(jQuery("#mioBlocco")); //Lo stesso oggetto richiamato in modo diverso
+
+        //perchè non lo vedo?
+        //ricordiamoci il domready
+
+
+        //nota: se voglio caricare una funzione al volo che quivale al domready
+        $(() => {
+            console.log("dom caricato fz-anonima");
+        });
+
+        $(document).ready(function () {
+
+            console.log("dom caricato doc-ready");
+
+            //getElementBuId
+            console.log($("#mioBlocco")); //Un oggetto jQuery
+            console.log(jQuery("#mioBlocco")); //Lo stesso oggetto richiamato in modo diverso
+
+            //modifico la proprietà innerText
+            console.log($("#mioBlocco").text());
+            $("#mioBlocco").text("Mio blocco modificato da jquery");
+            console.log($("#mioBlocco").text());
+
+            //recupero gli elementi da una classe
+            console.log($(".altriBlocchi"));
+
+            //posso usare i seletori gerarchici
+            console.log($("#container #nav li"));
+
+            //aggiungiamo una voce di menu
+            $("#sub-nav").append($("<li class='item'>Services</li>"));
+
+            //posso anche sostiuire tutto il contenuto
+            $("#sub-nav").html("<li class='item'>Services</li>");
+
+            //selezione per attributo
+            console.log($("a[target='_blank']"));
+
+            //ciclare
+            $("a").each(function (index, value) {
+                console.log(index, value);
+            });
+
+            //modifica di attributi
+            $("#mioBlocco").attr('class', "mioBlocco");
+            $("#mioBlocco").css('color', "red");
+
+            //tutti in un colpo
+            $("a").attr('target', "_blank");
+
+            //posso anche rimuoverlo
+            $("li").removeAttr('class');
+
+            //gestire le classi singolarmente
+            $("li").addClass("active");
+            //non lo fa due volte
+            $("li").addClass("active");
+
+            //se c'è la mette se no la toglie
+            $("li").toggleClass("active");
+            $("li").toggleClass("active");
+            $("li").toggleClass("active");
+            $("li").toggleClass("active");
+
+            //posso sfruttare alcune funzioni per muovermi nel do,
+            console.log($("#sub-nav").parent());
+            console.log($("#sub-nav").parent().parent());
+            console.log($("#sub-nav").parent().parent().parent());
+            //sarebbe meglio evitare!
+            //però possiamo farlo meglio in questo modo
+            console.log($("#sub-nav").parents(".nav-container"));
+
+            //l'elemento a fianco
+            console.log($(".nav-container").next());
+
+            //un'altra funzione interessante è il wrap
+            $(".mioBlocco").wrap("<div class='wrap'></div>");
+
+            $("#a1").bind("click", (e) => {
+                e.preventDefault();
+            })
+
+            //e togliere TUTTI gli eventi
+            $("#a1").unbind();
+
+            //effetti
+            $(".fadein").fadeOut('slow');
+
+            $(".fadein").fadeIn('slow', (e) => {
+                //this non è più l'oggetto!
+                $(".fadein").css('background-color', 'green');
+            });
+
+            //non è l'utlimo log (doc-ready)
+            console.log("eseguito subito");
+
+            $(".animate").animate({
+                left: 100,
+                right: 100
+            }, 5000, function () {
+                $(".animate").css('background-color', 'green');
+            });
+
+            //chiamate esterne
+
+            //la chiamata completa
+            $.ajax({
+                url: "stub/user.json",
+                success: function (data, stato) {
+                    console.log(data);
+                    console.log(stato);
+                },
+                error: function (richiesta, stato, errori) {
+                    console.log(richiesta);
+                    console.log(stato);
+                    console.log(errori);
+                }
+            });
+
+            //chiamata contratta
+            $.get('stub/user.json', function (response) {
+                console.log(response);
+            });
+
+        })
+
+
+    </script>
 
 </head>
 <body>
-<div id="element" oncontextmenu="return false" class="attributo-class" onmouseover="this.style.color='red'">
-    Testo Elemento
+<div id="mioBlocco">
+    Mio blocco
 </div>
-<p class="par">Paragrafo 1</p>
-<p class="par">Paragrafo 2</p>
-<p>Paragrafo 3</p>
-<div id="propaga1">
-    propaga1
-    <div id="propaga2">
-        propaga 2
+<div class="altriBlocchi">Altri blocchi</div>
+<div class="altriBlocchi">Altri blocchi</div>
+<div class="altriBlocchi">Altri blocchi</div>
+<div class="altriBlocchi">Altri blocchi</div>
+<div class="altriBlocchi">Altri blocchi</div>
+<div class="altriBlocchi">Altri blocchi</div>
+
+<div id="container">
+    <div class="nav-container">
+        <ul id="nav">
+            <li class="active item">home</li>
+            <li class="item">register</li>
+            <li class="item">login</li>
+            <li class="item">
+                About
+                <ul id="sub-nav">
+                    <li class="item">Company</li>
+                    <li class="item">Project</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+
     </div>
 </div>
-<div id="mutation">
 
-</div>
-<hr>
-<div class="drag-container">
-    <div class="dropzone">
-        <div id="draggable" draggable="true">
+<a id="a1" href="1.html" target="_blank">Lezione 1</a>
+<a id="a2" href="2.html" target="_self">Lezione 2</a>
+<a id="a3" href="3.html" target="_top">Lezione 3</a>
+<a id="a4" href="4.html" target="_top">Lezione 4</a>
+<a id="a5" href="5.html" target="_blank">Lezione 5</a>
+<a id="a6" href="6.html" target="_blank">Lezione 6</a>
 
-        </div>
-    </div>
-    <div class="dropzone"></div>
-    <div class="dropzone"></div>
-    <div class="dropzone"></div>
+<div class="block fadein">
 </div>
-<a href="https://www.google.it" id="preventDefault">prevent default</a>
+
+<div class="block animate">
+</div>
+
 </body>
-<script type="text/javascript">
-    //per la verifica della dichiarazione di variabili (lezione 4)
-    "use strict"
-
-    //L’oggetto principale per l’interazione con il browser è window:
-    // esso rappresenta una finestra che contiene un documento HTML.
-    // Quindi ciascuna finestra o tab ha associato un proprio oggetto
-    // window e, allo stesso modo, a ciascun frame definito
-    // in una pagina HTML corrisponde un oggetto window.
-    // E' un contesto di esecuzione globale.
-
-    var x = 123;
-
-    function somma(a, b) {
-        return a + b;
-    }
-
-    console.log(x);
-    console.log(somma(3, 5));
-    console.log(window.x);
-    console.log(window.somma(3, 5));
-    console.log(this.x);
-    console.log(this.somma(3, 5));
-
-    console.log(window);
-    //dimensioni della finestra
-    console.log(innerWidth + "x" + innerHeight);
-    //dimensioni dello schermo
-    console.log(window.screen.width + "x" + window.screen.height);
-
-    //timers
-    var timeout = setTimeout(function () {
-        console.log("test");
-    }, 5000);
-
-    var x = 0;
-    var interval = setInterval(function () {
-        x++;
-        console.log(x);
-    }, 1000);
-
-    clearInterval(interval);
-    clearTimeout(timeout);
-
-    //torna indietro
-    window.history.back();
-    //torna indietro di 3
-    //window.history.go(-3);
-
-    console.log(window.location);
-    //cambiare indirizzo
-
-    //possiamo recuperare anche i parametri
-    console.log(window.location.search);
-    console.log(window.navigator);
-
-    //altri oggetti?
-
-    console.log(document);
-    //elemento
-    console.log(document.getElementById("element"));
-    //attributo
-    console.log(document.getElementById("element").className);
-    //testo
-    console.log(document.getElementById("element").innerText);
-
-    //posso selezionare altri elementi
-    console.log(document.getElementsByTagName("p"));
-    console.log(document.querySelectorAll("p.par"));
-    console.log(document.querySelector("p.par"));
-
-    //possiamo manipolarli
-    document.querySelector("p.par").innerHTML = "Nuovo testo";
-
-    //potremmo anche, dato che javascript lo permette,
-    //salvare dei dati senza impatto su html
-    document.querySelector("p.par").dataOggi = new Date();
-    console.log(document.querySelector("p.par").dataOggi);
-    //ma questa pratica è stata sostituida dai data-attribute che vedremo con jquery
-
-    //posso anche navigare attraverso la struttura, ma attenzione ai tipi di dato del dom
-    var el = document.getElementById("element");
-
-    console.log(el);
-    console.log(el.childNodes);
-    console.log(el.children);
-    console.log(el.parentElement);
-    console.log(el.parentNode)
-    console.log(el.parentElement.children);
-    console.log(el.parentElement.childNodes);
-    console.log(el.parentNode.children);
-    console.log(el.parentNode.childNodes);
-
-    //è possibile anche creare elementi
-    var div = document.createElement("div");
-    var div1 = document.createElement("div");
-
-    div.className = "colorBlue";
-    div.innerText = "aggiunto";
-    div1.innerText = "aggiunto1";
-
-    //ma questo non ci permette di averli nel dom, dobbiamo aggiungerli
-    document.getElementById("element").append(div);
-    document.getElementById("element").append(div1);
-
-    //eventi
-    //possiamo associare degli eventi sia da html che da js
-    var el = document.getElementById("element");
-
-    el.addEventListener("mouseleave", function (e) {
-
-        //this.style.color = "black";
-        e.target.style.color = "black";
-        console.log(e);
-    });
-
-    //nota: il secondo parametro di addEventListener è una callback
-    //ossia una funzione che viene richiamata internamente, come è possibile?
-    //lo abbiamo visto in reflect
-
-    function eseguiCalcolo(funzioneDiCalcolo, arg1, arg2) {
-        return funzioneDiCalcolo(arg1, arg2);
-    }
-
-    //variabiole funzione
-    //funzione anonima in versione EMCA 6
-    var somma = (arg1, arg2) => {
-        return arg1 + arg2;
-    }
-
-    var nostroEvento = {
-        target: null,
-        addEventListener: function (tipoEvento, funcHandler) {
-
-            if (tipoEvento == "") {
-                throw new Error("devi speicificare un evento");
-            }
-
-            if ((typeof funcHandler) != "function") {
-                throw new Error("devi passare una funzione");
-            }
-
-            setTimeout(funcHandler, 5000);
-
-        }
-    }
-
-    var nostroHandler = () => {
-        console.log("Hello world");
-    }
-
-    nostroEvento.addEventListener("timer", nostroHandler);
-
-
-    console.log(eseguiCalcolo(somma, 1, 1));
-    //possiamo passare funzioni anonime
-    console.log(eseguiCalcolo((x, y) => {
-        return x * y
-    }, 5, 7));
-
-    //possiamo anche usare la proprietà
-    el.onclick = function (event) {
-
-        event.cancelBubble = true;
-        //event.stopPropagation();
-
-        //event.preventDefault();
-
-        //attenzione, quando usiamo this
-        //javascript assegna this al dom element che ha scatenato l'evento
-        console.log(this);
-
-        //le informazioni dell'evento invece si trovano nel parametro della callback
-        console.log(event);
-
-        //per esempio con qualche pulsante ho fatto click
-        console.log(event.clientX);
-
-    }
-
-    //attenzioni alle propagazioni!
-    //https://www.w3.org/TR/DOM-Level-3-Events/
-
-    var propaga1 = document.getElementById("propaga1");
-    var propaga2 = document.getElementById("propaga2");
-
-    var handler = (e) => {
-        e.stopPropagation();
-        console.log("propaga");
-    }
-
-    propaga1.addEventListener('click', handler);
-    propaga2.addEventListener('click', handler);
-
-    //
-    window.onload = function () {
-        console.log("pagina caricata");
-    }
-
-    window.onscroll = function () {
-        console.log(window.pageXOffset + "," + window.pageYOffset);
-    };
-
-    window.onresize = function () {
-        console.log(window.innerWidth + "," + window.innerHeight);
-    };
-
-    //drag&drop
-    //variabile di supporto
-    var dragged;
-
-    document.addEventListener("dragstart", function (event) {
-        // store a ref. on the dragged elem
-        dragged = event.target;
-        // make it half transparent
-        event.target.style.opacity = .5;
-    }, false);
-
-    document.addEventListener("dragend", function (event) {
-        // reset the transparency
-        event.target.style.opacity = "";
-    }, false);
-
-    /* events fired on the drop targets */
-    document.addEventListener("dragover", function (event) {
-        // prevent default to allow drop
-        event.preventDefault();
-    }, false);
-
-    document.addEventListener("dragenter", function (event) {
-        // highlight potential drop target when the draggable element enters it
-        if (event.target.className == "dropzone") {
-            event.target.style.background = "yellow";
-        }
-
-    }, false);
-
-    document.addEventListener("dragleave", function (event) {
-        // reset background of potential drop target when the draggable element leaves it
-        if (event.target.className == "dropzone") {
-            event.target.style.background = "";
-        }
-
-    }, false);
-
-    document.addEventListener("drop", function (event) {
-        // prevent default action (open as link for some elements)
-        event.preventDefault();
-        // move dragged elem to the selected drop target
-        if (event.target.className == "dropzone") {
-            event.target.style.background = "";
-            dragged.parentNode.removeChild(dragged);
-            event.target.appendChild(dragged);
-        }
-    }, false);
-
-    // mutationManager è una funzione di callback
-    // che utilizzeremo per sfruttare i dati acquisiti
-    // dall'observer
-    var mutationManager = function (mutationRecords) {
-        console.log(mutationRecords);
-    };
-    var observer = new MutationObserver(mutationManager);
-
-    var div = document.getElementById("mutation");
-    observer.observe(div, {childList: true, attributes: true});
-
-    div.style = "background-color:red";
-
-    //prevent default
-    document.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.location.href = e.target.href + "?preventDefault=true";
-    })
-
-</script>
 </html>
