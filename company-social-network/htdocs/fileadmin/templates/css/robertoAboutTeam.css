@@ -1,0 +1,27 @@
+
+h1 {
+    font-weight: bold;
+    color: black;
+    font-size: 32px;
+  }
+
+  .Roberto_team-blocks{
+    border: 3px solid red;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+ }
+
+ .RobertonameAbout{
+    text-align: center;
+    border: 1px dotted black;
+ } 
+
+ .RobertophotoAbout{
+    text-align: center;
+    width:100%;
+    height:100%;
+    background-repeat: no-repeat;
+    
+ }
+

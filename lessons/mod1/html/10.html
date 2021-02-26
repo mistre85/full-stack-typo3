@@ -48,7 +48,7 @@
 
             console.log("dom caricato doc-ready");
 
-            //getElementBuId
+            //getElementById
             console.log($("#mioBlocco")); //Un oggetto jQuery
             console.log(jQuery("#mioBlocco")); //Lo stesso oggetto richiamato in modo diverso
 
@@ -64,7 +64,8 @@
             console.log($("#container #nav li"));
 
             //aggiungiamo una voce di menu
-            $("#sub-nav").append($("<li class='item'>Services</li>"));
+            var newItem = $("<li class='item'>Services</li>");
+            $("#sub-nav").append(newItem);
 
             //posso anche sostiuire tutto il contenuto
             $("#sub-nav").html("<li class='item'>Services</li>");
@@ -79,6 +80,7 @@
 
             //modifica di attributi
             $("#mioBlocco").attr('class', "mioBlocco");
+
             $("#mioBlocco").css('color', "red");
 
             //tutti in un colpo
@@ -99,9 +101,10 @@
             $("li").toggleClass("active");
 
             //posso sfruttare alcune funzioni per muovermi nel do,
-            console.log($("#sub-nav").parent());
-            console.log($("#sub-nav").parent().parent());
-            console.log($("#sub-nav").parent().parent().parent());
+            var subNav = $("#sub-nav");
+            console.log(subNav.parent());
+            console.log(subNav.parent().parent());
+            console.log(subNav.parent().parent().parent());
             //sarebbe meglio evitare!
             //però possiamo farlo meglio in questo modo
             console.log($("#sub-nav").parents(".nav-container"));
@@ -112,15 +115,29 @@
             //un'altra funzione interessante è il wrap
             $(".mioBlocco").wrap("<div class='wrap'></div>");
 
-            $("#a1").bind("click", (e) => {
+
+            //eventi
+            $("#a1").on("click mousenter", (e) => {
                 e.preventDefault();
+                console.log(this);
+                console.log(e.target);
             })
 
-            //e togliere TUTTI gli eventi
+            $("#a1").click(function (e) {
+                e.preventDefault();
+                console.log("e1");
+            })
+
+            //e togliere TUTTI gli eventi precedentemente aggiunti
             $("#a1").unbind();
+            $("#a1").click(function (e) {
+                e.preventDefault();
+                console.log("e2");
+            })
+
 
             //effetti
-            $(".fadein").fadeOut('slow');
+            $(".fadein").fadeOut(5000);
 
             $(".fadein").fadeIn('slow', (e) => {
                 //this non è più l'oggetto!
@@ -142,6 +159,7 @@
             //la chiamata completa
             $.ajax({
                 url: "stub/user.json",
+                method: "get",
                 success: function (data, stato) {
                     console.log(data);
                     console.log(stato);
@@ -154,11 +172,13 @@
             });
 
             //chiamata contratta
-            $.get('stub/user.json', function (response) {
+            $.get('stub/users.json', function (response) {
                 console.log(response);
-            });
+            })
 
         })
+
+        console.log("eseguito prima della fine del caricamento del dom");
 
 
     </script>

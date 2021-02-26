@@ -1,0 +1,49 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+    xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+    xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content" />
+
+    <f:section name="Configuration">
+        <flux:form id="RobertoTeam" options="{group: 'About'}" label="Roberto Team"
+            description="abaut page personalizzato per Roberto">
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <!-- If you wish, place custom backend preview content here -->
+       <p>
+            <strong>Roberto About</strong><br />
+            <i>preview Roberto About Team</i>
+       </p> 
+
+        <img src="https://picsum.photos/200/300"/>  
+    </f:section>
+
+
+    <f:section name="Main">
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/robertoAboutTeam.css" /> 
+        
+        <div class="Roberto_team-blocks">
+
+            <div class="RobertophotoAbout" >
+                <img src="https://picsum.photos/200/300" />
+            </div>
+            
+        
+            <div class="RobertonameAbout h1">
+                Roberto
+            </div>
+            
+            <div class="description">
+                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+            </div>
+      
+        </div>
+
+        
+
+    </f:section>
+
+
+ </div>
