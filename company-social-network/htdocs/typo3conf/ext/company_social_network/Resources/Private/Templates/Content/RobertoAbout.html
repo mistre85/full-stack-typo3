@@ -10,38 +10,40 @@
         </flux:form>
     </f:section>
 
-    <f:section name="Main">
-        <form>
-            <div class="form-group">
-                <h3>
-                    <f:format.raw>{title}</f:format.raw>
-                </h3>
-            </div>
+    <f:section name="Preview">
+        <!-- If you wish, place custom backend preview content here -->
+       <p>
+            <strong>Roberto About</strong><br />
+            <i>preview Roberto About Team</i>
+       </p> 
 
-            <div class="form-group">
-                <label for="exampleInputEmail1">Nome:</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Nome">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Cognome:</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Cognome">
-            </div>
-            <div class="form-group">
-                <label>Messaggio:</label>
-                <textarea class="form-control" rows="3"></textarea>
-
-            </div>
-            <div class="select">
-                <select class="form-control">
-                    <option value="M">M</option>
-                    <option value="F">F</option>
-                </select>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox"> {autorizDatiPers}
-                </label>
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
+        <img src="https://picsum.photos/200/300"/>  
     </f:section>
+
+
+    <f:section name="Main">
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/robertoAboutTeam.css" /> 
+        
+        <div class="Roberto_team-blocks">
+
+            <div class="RobertophotoAbout" >
+                <img src="https://picsum.photos/200/300" />
+            </div>
+            
+        
+            <div class="RobertonameAbout h1">
+                Roberto
+            </div>
+            
+            <div class="description">
+                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+            </div>
+      
+        </div>
+
+        
+
+    </f:section>
+
+
+ </div>
