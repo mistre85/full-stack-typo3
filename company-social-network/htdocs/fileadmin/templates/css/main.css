@@ -1,3 +1,14 @@
+@font-face {
+    src: url("/fileadmin/templates/fonts/tt-norm-fonts/TTNorms-Regular.otf");
+    font-family: "tt-norm";
+}
+
+@font-face {
+    src: url("/fileadmin/templates/fonts/tt-norm-fonts/TTNorms-Bold.otf");
+    font-family: "tt-norm";
+    font-weight: bold;
+}
+
 body {
     padding-top: 50px;
 }
@@ -6,3 +17,10 @@ body {
     padding: 40px 15px;
     text-align: center;
 }
+
+* {
+    font-family: tt-norm;
+    font-smooth: never;
+}
+
+

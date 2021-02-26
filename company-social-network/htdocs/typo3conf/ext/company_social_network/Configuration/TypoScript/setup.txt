@@ -17,8 +17,9 @@ plugin.tx_companysocialnetwork {
 }
 
 #system libs
-page.includeCSS.boostrap = /fileadmin/templates/bootstrap/css/bootstrap.css
+#usato l'helper
+#page.includeCSS.boostrap = /fileadmin/templates/bootstrap/css/bootstrap.css
 
 #custom libs
-page.includeCSS.main = /fileadmin/templates/css/main.css
-#page.includeCSS.overrideBootstrap = /fileadmin/templates/css/ovverideBootstrap.css
+#usato l'helper
+#page.includeCSS.main = /fileadmin/templates/css/main.css
