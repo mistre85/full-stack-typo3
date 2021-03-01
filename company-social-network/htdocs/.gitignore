@@ -24,3 +24,4 @@
 /typo3conf/LocalConfiguration.php
 /typo3conf/PackagesStates.php
 sistemlnk.sh
+/typo3conf/__realurl_autoconf.php
