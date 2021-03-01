@@ -7,9 +7,10 @@
 
     <f:section name="Configuration">
         <flux:form id="NotLogged" label="Not logged page">
-            <!-- Insert fields, sheets, grid, form section objects etc. here, in this flux:form tag -->
-            <flux:field.input name="pageTitle" label="Titolo di Pagina"></flux:field.input>
-            <flux:field.text name="pageDescription" enableRichText="true" label="Descrizione di Pagina"></flux:field.text>
+
+            <flux:field.input name="pageTitle" label="Titolo editoriale pagina"/>
+            <flux:field.text name="pageDescription" enableRichText="true" label="Descrizione editorale pagina"/>
+
         </flux:form>
         
         <flux:grid>
@@ -22,6 +23,7 @@
 
     <f:section name="Main">
 
+
         <!-- template delle pagine non loggate -->
 
         <f:render partial="TopMenu" arguments="{navBarClass: 'navbar-inverse navbar-fixed-top'}"/>
@@ -29,8 +31,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="starter-template">
-                    <h1>Company Social Network</h1>
-                    <p class="lead">Se sei un nostro dipendente hai diritto a questo social!</p>
+                    <h1>{f:if(condition: '{pageTitle}', then: '{pageTitle}', else:'{page.title}')}</h1>
+                    <p class="lead">{pageDescription}</p>
                 </div>
                 <f:comment>
                     vhs v: ViewHelper

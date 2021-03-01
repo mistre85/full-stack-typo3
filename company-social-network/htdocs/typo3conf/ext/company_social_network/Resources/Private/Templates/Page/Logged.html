@@ -7,7 +7,8 @@
 
     <f:section name="Configuration">
         <flux:form id="Logged" label="Logged page">
-            <!-- Insert fields, sheets, grid, form section objects etc. here, in this flux:form tag -->
+            <flux:field.input name="pageTitle" label="Titolo editoriale pagina"/>
+            <flux:field.text name="pageDescription" enableRichText="true" label="Descrizione editorale pagina"/>
         </flux:form>
         <flux:grid>
             <!-- Edit this grid to change the "backend layout" structure -->
