@@ -43,7 +43,14 @@
 
 
             <flux:field.input name="title" label="Titolo blocco"/>
-            <flux:field.input name="description" label="Descrizione blocco"/>
+
+            <f:comment>
+                /htdocs/typo3_src/typo3/sysext/rtehtmlarea da corporate portal
+                e la sovrascrivete nel progetto:
+                - cancellare tutte le cache di typo3
+                - aprire la pagina di typo3 in cui c'è il campo rte e disabilitare la cache di chrome
+            </f:comment>
+            <flux:field.text name="description" enableRichText="true" label="Descrizione blocco"/>
 
             <f:comment>
                 section e object ci permettono di definire
@@ -102,14 +109,16 @@
                     <div class="text-center">
                         <h1>{title}</h1>
                         <p class="description">
-                            {description}
+                            <f:format.html>{description}</f:format.html>
                         </p>
                     </div>
                 </f:if>
 
-                <f:for each="{teams}" as="team">
-                    <f:render partial="TeamBlockPerson" arguments="{item: team}"></f:render>
-                </f:for>
+                <div class="grid-teams">
+                    <f:for each="{teams}" as="team">
+                        <f:render partial="TeamBlockPerson" arguments="{item: team}"></f:render>
+                    </f:for>
+                </div>
 
 
             </div>

@@ -9,8 +9,48 @@
                 <field index="description">
                     <value index="vDEF">ecco il gruppo di lavoro</value>
                 </field>
-                <field index="Description">
-                    <value index="vDEF">descrizione con campo maiuscolo</value>
+                <field index="teams">
+                    <el index="el">
+                        <section index="1">
+                            <itemType index="person">
+                                <el>
+                                    <field index="name">
+                                        <value index="vDEF">paolo mistretta</value>
+                                    </field>
+                                    <field index="cv">
+                                        <value index="vDEF">backend dev</value>
+                                    </field>
+                                </el>
+                            </itemType>
+                            <itemType index="_TOGGLE">1</itemType>
+                        </section>
+                        <section index="2">
+                            <itemType index="person">
+                                <el>
+                                    <field index="name">
+                                        <value index="vDEF">roberto brambilla</value>
+                                    </field>
+                                    <field index="cv">
+                                        <value index="vDEF">frontend dev</value>
+                                    </field>
+                                </el>
+                            </itemType>
+                            <itemType index="_TOGGLE">1</itemType>
+                        </section>
+                        <section index="3">
+                            <itemType index="person">
+                                <el>
+                                    <field index="name">
+                                        <value index="vDEF">giuseppe orlando</value>
+                                    </field>
+                                    <field index="cv">
+                                        <value index="vDEF">PO</value>
+                                    </field>
+                                </el>
+                            </itemType>
+                            <itemType index="_TOGGLE">1</itemType>
+                        </section>
+                    </el>
                 </field>
             </language>
         </sheet>
