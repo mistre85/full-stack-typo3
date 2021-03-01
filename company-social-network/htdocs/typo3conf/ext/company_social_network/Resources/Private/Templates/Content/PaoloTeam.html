@@ -116,7 +116,8 @@
                 </f:if>
 
                 <div class="grid-teams">
-                    <f:for each="{teams}" as="team">
+
+                    <f:for each="{teams}" as="team" iteration="iter">
                         <f:render partial="TeamBlockPerson" arguments="{item: team}"></f:render>
                     </f:for>
                 </div>

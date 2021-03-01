@@ -13,14 +13,25 @@
             <a class="navbar-brand" href="/">CSN</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <v:menu.directory
-                    class="nav navbar-nav"
-                    pages="{settings.root_page_uid}">
+            <v:page.menu.directory entryLevel="1" levels="1" pages="{settings.menu_root_page}" as="menu"
+                                   expandAll="true" deferred="true" classActive="light-green" classCurrent="active">
+                <f:for each="{menu}" as="item" key="itemkey">
 
+                    <li class="nav-item">
+                        <f:link.typolink
+                                parameter="{item.uid}"
+                                class="p-0 nav-link {item.class}">
+                            <f:render partial="FalImage"
+                                      arguments="{image: '{fluxData.mobileMenuIcon}'}"/>
+                            {item.title}
+                        </f:link.typolink>
 
-            </v:menu.directory>
+                </f:for>
+            </v:page.menu.directory>
         </div>
     </div>
 </nav>
 <!-- /not logged menu -->
+
+
 
