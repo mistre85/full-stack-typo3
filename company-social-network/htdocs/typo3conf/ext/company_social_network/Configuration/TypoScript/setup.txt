@@ -23,3 +23,4 @@ plugin.tx_companysocialnetwork {
 #custom libs
 #usato l'helper
 #page.includeCSS.main = /fileadmin/templates/css/main.css
+#page.includeCSS.main = /fileadmin/templates/css/robertoAboutTeam.css
