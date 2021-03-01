@@ -5,6 +5,15 @@
 
     <f:layout name="Content"/>
 
+    <f:comment>
+        ""Database"" del componente
+        - typo3 converte questi dati in XML e li salva nella tabella tt_content
+        con il riferimento al nome del file di template:
+        - ctype contine il tipo di content element: nei contenuti custom è sempre fluidcontent_content
+        - pi_flexform: qui vi trovate i dati dell'editore e la griglia della vostra configuration (xml)
+        - tx_fed_dcefile: contiene il nome del file di content, collegato all'estensione (EXT_KEY)
+
+    </f:comment>
     <f:section name="Configuration">
         <f:comment>
             1 - ricordarsi di cambiare l'id:
@@ -31,6 +40,22 @@
                 a - capire quali campi dare a disposizione all'editore
                 b - collegarli al template
             </f:comment>
+
+
+            <flux:field.input name="title" label="Titolo blocco"/>
+            <flux:field.input name="description" label="Descrizione blocco"/>
+
+            <f:comment>
+                section e object ci permettono di definire
+                i valori di lista che vogliamo gestire all'interno
+                del component
+            </f:comment>
+            <flux:form.section name="teams" label="Lista blocchi collaboratori">
+                <flux:form.object name="person" label="Team person">
+                    <flux:field.input name="name" label="Nome"/>
+                    <flux:field.input name="cv" label="Curriculum"/>
+                </flux:form.object>
+            </flux:form.section>
 
         </flux:form>
     </f:section>
@@ -65,18 +90,28 @@
         </f:comment>
 
 
-        <div class="team-blocks clearfix">
+        <div id="block-team-{record.uid}" class="team-blocks clearfix">
             <div class="container">
-                <div class="text-center">
-                    <h1>Titolo</h1>
-                    <p class="description">
-                        Descrizione
-                    </p>
-                </div>
-                <f:render partial="TeamBlockPerson"></f:render>
-                <f:render partial="TeamBlockPerson"></f:render>
-                <f:render partial="TeamBlockPerson"></f:render>
-                <f:render partial="TeamBlockPerson"></f:render>
+                <f:comment>
+                    l'istruzione condition non permette
+                    OR tra stringhe è c'è un limite di 2 condizioni
+
+                    https://viewhelpers.fluidtypo3.org/typo3/cms-fluid/7.6.0/If.html
+                </f:comment>
+                <f:if condition="{title}">
+                    <div class="text-center">
+                        <h1>{title}</h1>
+                        <p class="description">
+                            {description}
+                        </p>
+                    </div>
+                </f:if>
+
+                <f:for each="{teams}" as="team">
+                    <f:render partial="TeamBlockPerson" arguments="{item: team}"></f:render>
+                </f:for>
+
+
             </div>
         </div>
 

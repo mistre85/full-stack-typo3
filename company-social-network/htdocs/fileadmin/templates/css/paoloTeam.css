@@ -20,3 +20,8 @@
     line-height: 25px;
     color: gray;
 }
+
+.title-block {
+    height: 100px;
+    background-color: red;
+}
