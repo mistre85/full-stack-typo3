@@ -1,0 +1,64 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="BeppeHerospace" options="{group: 'Visori'}" label="Visori - (beppe)"
+        description="Permette di inserire una galleria di immagini con titolo e desrizione relativa al team di lavoro">
+        
+        <flux:field.input name="title" label="Titolo visore"/>
+
+        <flux:field.text name="descriptionVisore" enableRichText="true" label="Descrizione visore"/>
+        
+
+</flux:form>
+
+
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>HeroScope</strong><br/>
+
+    </f:section>
+
+    <f:section name="Main">
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/beppeHerospace.css"/>
+        <div class="herospace" style="background-color: lime;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="text">
+                            <f:if condition="{title}">
+                                <h1>{title}</h1>
+                            </f:if>
+                            <f:if condition="{descriptionVisore}">
+                                <div class="description">
+                                    <f:format.html>{descriptionVisore}</f:format.html>
+                                </div>
+                            </f:if>                
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="empty-block">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+
+                </div>
+            </div>
+        </div>
+        
+
+    </f:section>
+</div>
