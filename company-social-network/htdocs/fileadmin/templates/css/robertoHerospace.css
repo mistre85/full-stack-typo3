@@ -1,0 +1,18 @@
+
+
+ .herospace{
+    height: 450px;
+    background-image: "https://picsum.photos/seed/picsum/1200";
+  }
+
+  .herospace .text{
+      margin-top: 50px;
+  }
+
+  .herospace .empty-block{
+      background-color: blanchedalmond;
+      margin: auto;
+      margin-top: 50px;
+      width: 300px;
+      border-radius: 5px;
+  }
