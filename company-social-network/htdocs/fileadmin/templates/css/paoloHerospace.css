@@ -1,0 +1,17 @@
+.herospace {
+    height: 500px;
+}
+
+.herospace .text {
+    margin-top: 200px;
+}
+
+.herospace .empty-block {
+
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    margin: auto;
+    margin-top: 95px;
+}
