@@ -1,0 +1,52 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="paoloHerospace" options="{group: 'Visori'}" label="Herospace (Paolo)"
+                   description="Permette di inserire un visore con immagine di fondo, titolo e descrizione + area libera">
+
+            <flux:field.input name="title" label="Titolo visore"/>
+            <flux:field.text name="description" enableRichText="true" label="Descrizione visore"/>
+
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>Herospace</strong><br/>
+        Permette di inserire un visore con immagine di fondo,
+        titolo e descrizione + area libera
+    </f:section>
+
+    <f:section name="Main">
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/paoloHerospace.css"/>
+        <!-- html -->
+        <div class="herospace" style="background-color: lightseagreen">
+            <!-- img -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="text">
+                            <f:if condition="{title}">
+                                <h1 class="title">{title}</h1>
+                            </f:if>
+                            <f:if condition="{description}">
+                                <div class="description">
+                                    <f:format.html>{description}</f:format.html>
+                                </div>
+                            </f:if>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="empty-block">
+                            <!-- ? -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </f:section>
+</div>
