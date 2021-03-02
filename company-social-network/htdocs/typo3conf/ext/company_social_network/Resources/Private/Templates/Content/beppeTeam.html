@@ -6,89 +6,55 @@
     <f:layout name="Content"/>
 
     <f:section name="Configuration">
-        <f:comment>
-            1 - ricordarsi di cambiare l'id:
-            
-            una volta definito il nome del componente nell'id typo3 
-            associa un record al nome del file e all'id.
-            
-            se decidete di cambiare il nome del file o l'id dovete stare attenti 
-            perchè se l'editore ha già inserito i contenuti, questi ultimi verranno "perduti"
+        <flux:form id="beppeTeam" options="{group: 'Blocks'}" label="Blocco Team - (beppe)"
+                   description="Permette di inserire una galleria di immagini con titolo e desrizione relativa al team di lavoro">
 
-            2- cambiare o controllare gruppo di appartenenza
-
-        </f:comment>
-        <flux:form id="beppeTeam" options="{group: 'Blocks'}" label="Beppe Team -(giuseppe)"
-        
-            description="Permette di inserire una galleria di immagini con titolo e descrizione relativa"
-        >
-
+            <flux:field.input name="title" label="Titolo blocco Beppe"/>
+            <flux:field.text name="descriptionBeppe" enableRichText="true" label="Descrizione blocco Beppe"/>
+            <flux:form.section name="familys" label="Lista blocchi famiglia">
+                <flux:form.object name="person" label="Team person">
+                    <flux:field.input name="name" label="Nome"/>
+                    <flux:field.input name="role" label="Ruolo"/>
+                </flux:form.object>
+            </flux:form.section>
         </flux:form>
     </f:section>
 
     <f:section name="Preview">
 
         <strong>Blocco Team</strong><br/>
-        <p>
-            Permette di inserire una galleria di immagini con titolo e descrizione relativa al team di lavoro
-        </p>
+        <p>Permette di inserire una galleria di immagini con titolo e descrizione relativa al team di lavoro</p>
+
+       
     </f:section>
 
     <f:section name="Main">
-
+    <f:debug>{familys}</f:debug>
         <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/beppeTeam.css" />
-        <h1>Titolo</h1>
-        <p>
-            Descrizione1
-        </p>
-        <div class="team-blocks">
-            <div class="jumbotron">
-                <h3 id="titoloJumbo">Immagini della CNS</h3>
-                <hr>
-                <h4 id="subtitle">There are many variations of passages of Lorem Ipsum available</h42>
-                <div class="conteinerFlex">
-                    <div class="divImg">
-                        <img class="rotondo" src="https://picsum.photos/200" />
-                        <p class="top">Immagine 1</p>
-                        <div class="descrizione">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took
-                        </div>
+        <div id="block-team-{record.uid}" class="team-blocks clearfix">
+            <div class="container">
+                <f:comment>
+                    l'istruzione condition non permette
+                    OR tra stringhe è c'è un limite di 2 condizioni
+
+                    https://viewhelpers.fluidtypo3.org/typo3/cms-fluid/7.6.0/If.html
+                </f:comment>
+                <f:if condition="{title}">
+                    <div class="text-center">
+                        <h1>{title}</h1>
+                        <p class="description">
+                            <f:format.html>{descriptionBeppe}</f:format.html>
+                        </p>
                     </div>
-                  <div class="divImg">
-                    <img class="rotondo" src="https://picsum.photos/200" />
-                    <p class="top">Immagine 1</p>
-                    <div class="descrizione">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                         when an unknown printer took 
-                    </div>
-                  </div>
-                  <div class="divImg">
-                    <img class="rotondo" src="https://picsum.photos/200" />
-                    <p class="top">Immagine 1</p>
-                    <div class="descrizione">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                         when an unknown printer took 
-                    </div>
-                  </div>
+                </f:if>
+
+                <div class="grid-teams">
+                    <f:for each="{familys}" as="family">
+                        <f:render partial="FamilyBlock" arguments="{item: family}"></f:render>
+                    </f:for>
                 </div>
-                <div class="conteinerFlex">
-                    <div class="divImg">
-                        <img class="rotondo" src="https://picsum.photos/200" />
-                        <p class="top">Immagine 1</p>    
-                    </div>
-                    <div class="divImg">
-                        <img class="rotondo" src="https://picsum.photos/200" />
-                        <p class="top">Immagine 1</p>
-                    </div>
-                    <div class="divImg">
-                        <img class="rotondo" src="https://picsum.photos/200" />
-                        <p class="top">Immagine 1</p>                      
-                    </div>
-                  </div>                                     
+
+
             </div>
         </div>
     </f:section>
