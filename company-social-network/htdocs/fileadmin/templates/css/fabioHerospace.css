@@ -1,0 +1,19 @@
+.herospace {
+    background-image: url("https://picsum.photos/1920/500");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 500px; 
+    overflow: hidden;   
+}
+
+.herospace .text{
+    padding-top: 150px;
+}
+
+.herospace .image{
+    padding-top: 150px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 20%;
+}
