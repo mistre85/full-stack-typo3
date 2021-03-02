@@ -25,14 +25,10 @@
 
         <!-- template delle pagine non loggate -->
 
-        <f:render partial="TopMenu" arguments="{navBarClass: 'navbar-inverse navbar-fixed-top'}"/>
+        <f:render partial="TopMenu" arguments="{navBarClass: 'navbar-inverse navbar-fixed-top',dropDownClass: 'navbar-inverse'}"/>
 
         <div class="container-fluid">
             <div class="row">
-                <div class="starter-template">
-                    <h1>{f:if(condition: '{pageTitle}', then: '{pageTitle}', else:'{page.title}')}</h1>
-                    <p class="lead">{pageDescription}</p>
-                </div>
                 <f:comment>
                     vhs v: ViewHelper
                     questo permette di renderizzare i componenti (content element)
