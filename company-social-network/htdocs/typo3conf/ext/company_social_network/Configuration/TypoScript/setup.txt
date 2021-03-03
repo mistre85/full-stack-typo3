@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+#https://docs.typo3.org/m/typo3/reference-typoscript/7.6/en-us/Setup/Top-levelObjects/Index.html
+>>>>>>> 5c66bd5104a9a9645330de981ba91ae405811d1a
 config.tx_realurl_enable = 1
 config.absRefPrefix = /
 

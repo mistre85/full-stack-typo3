@@ -13,7 +13,8 @@
                 <flux:form.object name="item" label="Elemento">
                     <flux:field.input name="value" label="Valore"/>
                 </flux:form.object>
-            </flux:form.section>            
+            </flux:form.section>   
+            <flux:field.inline.fal name="backgroundImage" maxItems="1" minItems="1" label="Immagine background"/>         
         </flux:form>
     </f:section>
 
@@ -24,21 +25,28 @@
 
     <f:section name="Main">
         <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/fabioHerospace.css"/>
-        <div class="herospace">
-            <div class="row">
-                <div class="col-lg-3 col-lg-offset-3 text">
-                    <h1>{title}</h1>
-                    <ul>
-                        <f:for each="{elenchi}" as="elenco" iteration="i">
-                            <li>{elenco.item.value}</li>
-                        </f:for>
-                    </ul>
-                </div>
-                <div class="col-lg-6 image">
-                    <!-- immagine -->
+        {v:content.resources.fal(field: 'backgroundImage') -> v:iterator.first() -> v:variable.set(name: 'falImage')}
+
+        <div class="herospace" style="background-image: url('{falImage.url}');">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-lg-offset-3">
+                        <div class="text">
+                            <h1>{title}</h1>
+                            <ul>
+                                <f:for each="{elenchi}" as="elenco" iteration="i">
+                                    <li>{elenco.item.value}</li>
+                                </f:for>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="image">
+                            {emptyBlockData}
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     </f:section>
 </div>
