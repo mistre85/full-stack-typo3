@@ -1,0 +1,51 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers">
+
+    <f:layout name="Page"/>
+
+    <f:section name="Configuration">
+        <flux:form id="userProfilePage" label="User Profile Page">
+
+        </flux:form>
+        <flux:grid>
+            <f:comment>
+                https://fluidtypo3.org/documentation/templating-manual/templating/creating-templates/grid.html
+            </f:comment>
+            <flux:grid.row>
+                <flux:grid.column colPos="0" name="content" label="Contenuti Sopra"/>
+            </flux:grid.row>
+            <flux:grid.row>
+                <flux:grid.column colPos="1" name="footerContent" label="Contenuti di footer"/>
+            </flux:grid.row>
+        </flux:grid>
+    </f:section>
+
+    <f:section name="Main">
+
+        <div class="container">
+
+            <f:render partial="TopMenu" arguments="{navBarClass: 'navbar-default'}"/>
+
+            <div class="jumbotron">
+                <h1>Benevenuto user!</h1>
+            </div>
+
+            <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/paoloUserProfile.css"/>
+
+            <f:debug>{_all}</f:debug>
+
+            <v:content.render column="0"/>
+
+            <f:render partial="ProfileForm" arguments="{_all}"/>
+
+        </div>
+
+        <v:content.render column="1"/>
+
+
+    </f:section>
+
+
+</div>

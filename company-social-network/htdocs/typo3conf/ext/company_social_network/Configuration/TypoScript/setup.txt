@@ -8,7 +8,6 @@ plugin.tx_companysocialnetwork {
 		templateRootPaths.0 = {$plugin.tx_companysocialnetwork.view.templateRootPaths.0}
 		partialRootPaths.0 = {$plugin.tx_companysocialnetwork.view.partialRootPaths.0}
 		layoutRootPaths.0 = {$plugin.tx_companysocialnetwork.view.layoutRootPaths.0}
-	}
 	#By default the following settings only will have relevance if you have fluidcontent_core extension loaded
 	settings{
 		container {
@@ -20,6 +19,8 @@ plugin.tx_companysocialnetwork {
 
 	}
 }
+
+
 
 #system libs
 #usato l'helper

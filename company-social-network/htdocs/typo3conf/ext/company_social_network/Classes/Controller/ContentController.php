@@ -41,4 +41,7 @@ class ContentController extends AbstractController
         $user = json_decode($json);
         $this->view->assign("user", $user);
     }
+
+
+
 }

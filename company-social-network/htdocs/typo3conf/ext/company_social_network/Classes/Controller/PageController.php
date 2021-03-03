@@ -1,4 +1,5 @@
 <?php
+
 namespace Wind\CompanySocialNetwork\Controller;
 
 /***************************************************************
@@ -32,7 +33,37 @@ use FluidTYPO3\Fluidpages\Controller\PageController as AbstractController;
  *
  * @route off
  */
-class PageController extends AbstractController {
+class PageController extends AbstractController
+{
 
+    function loggedAction()
+    {
 
+        //controlla DB o COOKIE
+        $logged = false;
+
+        if (!$logged) {
+            //eseguire una redirect
+        }
+
+    }
+
+    function userProfilePageAction()
+    {
+        var_dump($_REQUEST);
+        //die();
+        //todo: finire di impletare con dati veri
+        $userData = array(
+            'nome' => 'Paolo',
+            'cognome' => 'Mistretta',
+            'account' => array(
+                'username' => 'mistre',
+                'mail' => 'paolo@mistre.it'
+            )
+        );
+
+        //$this->view->assign('username',$userData['username']);
+        $this->view->assign('userData', $userData);
+        //$this->view->assignMultiple($userData);
+    }
 }
