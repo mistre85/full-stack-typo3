@@ -1,5 +1,8 @@
 .herospace{
     height: 500px;
+    line-height: 500px;
+    background-repeat: no-repeat;
+    background-position: center center;
     background-size: cover;
 }
 
