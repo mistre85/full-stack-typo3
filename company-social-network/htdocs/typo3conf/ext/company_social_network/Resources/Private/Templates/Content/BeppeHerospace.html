@@ -9,8 +9,8 @@
         <flux:form id="BeppeHerospace" options="{group: 'Visori'}" label="Visori - (beppe)"
         description="Permette di inserire una galleria di immagini con titolo e desrizione relativa al team di lavoro">
         
+        <flux:field.inline.fal name="backgroundImage" required="1" maxItems="1" minItems="0"/>
         <flux:field.input name="title" label="Titolo visore"/>
-
         <flux:field.text name="descriptionVisore" enableRichText="true" label="Descrizione visore"/>
         
 
@@ -26,13 +26,15 @@
 
     <f:section name="Main">
         <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/beppeHerospace.css"/>
-        <div class="herospace" style="background-color: lime;">
+        {v:content.resources.fal(field: 'backgroundImage') -> v:iterator.first() -> v:variable.set(name: 'immagine')}
+        
+        <div class="herospace" style="background-image: url('{immagine.url}');">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="text">
                             <f:if condition="{title}">
-                                <h1>{title}</h1>
+                                <h1 class="white">{title}</h1>
                             </f:if>
                             <f:if condition="{descriptionVisore}">
                                 <div class="description">

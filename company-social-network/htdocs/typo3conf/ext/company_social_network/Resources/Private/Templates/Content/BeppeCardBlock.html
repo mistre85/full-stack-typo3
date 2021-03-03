@@ -1,0 +1,55 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="BeppeCardBlock" options="{group: 'Blocks'}" label="Card Block - (beppe)"
+                   description="Permette di inserire una galleria di immagini con titolo e desrizione relativa al team di lavoro">
+
+            <flux:field.input name="title" label="Titolo blocco Card Beppe"/>
+            <flux:form.section name="vantaggi" label="Lista vantaggi Shutterstock">
+                <flux:form.object name="listaVantaggi" label="Lista Vantaggi">                    
+                    <flux:field.file name="icona" label="icona" allowed="png,svg, jpg, jpeg"/>
+                    <flux:field.input name="titoloVantaggio" label="titolo Vantaggio"/>
+                    <flux:field.text name="descrizioneVantaggio" label="descrizione Vantaggio"/>
+                    <flux:field.text name="buttonVantaggio" label="button Vantaggio" />
+                </flux:form.object>
+            </flux:form.section>
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>---</strong><br/>
+        
+
+    </f:section>
+
+    <f:section name="Main">
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/beppeTeam.css" />
+        
+        <div id="block-team-{record.uid}" class="team-blocks clearfix">
+            <div class="container">
+                
+                <f:if condition="{title}">
+                    <div class="text-center">
+                        <h1>{title}</h1>
+                        <p class="description">
+                            <f:format.html>{descriptionBeppe}</f:format.html>
+                        </p>
+                    </div>
+                </f:if>
+
+                <div class="grid-teams">
+                    <f:for each="{vantaggi}" as="vantaggiObj">
+                        <f:render partial="BeppeCardBlockPartial" arguments="{item: vantaggiObj}"></f:render>
+                    </f:for>
+                </div>
+
+
+            </div>
+        </div>
+    </f:section>
+</div>
