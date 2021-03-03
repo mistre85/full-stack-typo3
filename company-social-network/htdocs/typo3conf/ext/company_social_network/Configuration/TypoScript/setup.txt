@@ -1,3 +1,5 @@
+#commit
+#https://docs.typo3.org/m/typo3/reference-typoscript/7.6/en-us/Setup/Top-levelObjects/Index.html
 config.tx_realurl_enable = 1
 config.absRefPrefix = /
 

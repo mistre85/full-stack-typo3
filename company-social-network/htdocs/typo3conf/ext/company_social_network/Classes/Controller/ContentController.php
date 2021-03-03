@@ -35,8 +35,7 @@ use FluidTYPO3\Fluidcontent\Controller\ContentController as AbstractController;
  */
 class ContentController extends AbstractController
 {
-
-    function fabioUserProfileAction()
+    public function fabioUserProfileAction()
     {
         $json = file_get_contents("http://csn.local/fileadmin/assets/profile.json");
         $user = json_decode($json);
