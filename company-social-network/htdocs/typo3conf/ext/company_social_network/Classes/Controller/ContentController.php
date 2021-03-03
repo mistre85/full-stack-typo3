@@ -36,13 +36,10 @@ use FluidTYPO3\Fluidcontent\Controller\ContentController as AbstractController;
 class ContentController extends AbstractController
 {
 
-    function paoloHerospaceAction()
+    function fabioUserProfileAction()
     {
-        $data = $this->getData();
-
-        $title = strtoupper($data['title']);
-
-        $this->view->assign("title", $title);
-        $this->view->assign("emptyBlockData", "Blocco da costruire");
+        $json = file_get_contents("http://csn.local/fileadmin/assets/profile.json");
+        $user = json_decode($json);
+        $this->view->assign("user", $user);
     }
 }
