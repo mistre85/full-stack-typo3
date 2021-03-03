@@ -4,7 +4,6 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-
 }
 
 .herospace .text {
@@ -14,10 +13,10 @@
     background-color: lightcyan;
     opacity: 0.8;
     padding: 50px;
+    border-radius: 5px;
 }
 
 .herospace .empty-block {
-
     width: 100%;
     height: 250px;
     border-radius: 10px;
@@ -26,28 +25,4 @@
     line-height: 1.5;
     display: inline-block;
     vertical-align: middle;
-
 }
-
-@media screen and (max-width: 1200px) {
-
-    .herospace {
-        line-height: 250px;
-    }
-
-    .herospace .text {
-        width: 100%;
-        text-align: center;
-        padding: 10px
-    }
-
-    .herospace .text ul {
-        list-style-position: inside;
-    }
-
-    .herospace .empty-block {
-
-        height: 200px;
-    }
-}
-

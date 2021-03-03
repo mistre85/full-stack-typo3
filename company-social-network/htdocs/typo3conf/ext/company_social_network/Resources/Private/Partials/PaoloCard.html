@@ -7,8 +7,8 @@
         <div class="description">{card.descrizione}</div>
     </div>
     <f:if condition="{card.button}">
-        <div class="button">
+        <f:link.typolink class="button" parameter="{card.link}">
             {card.button}
-        </div>
+        </f:link.typolink>
     </f:if>
 </div>

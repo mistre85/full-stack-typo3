@@ -1,0 +1,15 @@
+.RobertoPersonaContainer {
+    margin: 20px;
+    text-align: center;
+}
+
+.containerBlock {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.containerInt {
+    border: 1px solid red;
+    width: 500px;
+}
