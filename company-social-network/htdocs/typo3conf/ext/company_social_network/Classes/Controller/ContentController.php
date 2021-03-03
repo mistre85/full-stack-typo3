@@ -54,10 +54,4 @@ class ContentController extends AbstractController
         $this->view->assign("title", $title);
         $this->view->assign("emptyBlockData", "Blocco da costruire");
     }
-
-    function paoloCardBlockAction()
-    {
-        $this->view->assign("daController", "valore");
-    }
-
 }
