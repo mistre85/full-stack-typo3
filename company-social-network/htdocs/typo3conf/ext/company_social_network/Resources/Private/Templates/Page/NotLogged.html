@@ -25,7 +25,8 @@
 
         <!-- template delle pagine non loggate -->
 
-        <f:render partial="TopMenu" arguments="{navBarClass: 'navbar-inverse navbar-fixed-top',dropDownClass: 'navbar-inverse'}"/>
+        <f:render partial="TopMenu"
+                  arguments="{navBarClass: 'navbar-inverse navbar-fixed-top',dropDownClass: 'navbar-inverse'}"/>
 
         <div class="container-fluid">
             <div class="row">
@@ -37,7 +38,10 @@
                 </f:comment>
 
                 <!-- inizio contenuti pagina -->
+
                 <v:content.render column="0"/>
+
+
                 <!-- fine contenuti pagina -->
 
             </div>

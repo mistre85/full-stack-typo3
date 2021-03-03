@@ -25,9 +25,9 @@
 
     <f:section name="Main">
 
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/paoloHerospace.css"/>
         {v:content.resources.fal(field: 'backgroundImage') -> v:iterator.first() -> v:variable.set(name: 'falImage')}
 
-        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/paoloHerospace.css"/>
         <!-- html -->
         <div class="herospace" style="background-image: url('{falImage.url}')">
             <!-- img -->

@@ -1,0 +1,14 @@
+<div class="card">
+    <div class="icon">
+        <f:image src="{card.icona}"/>
+    </div>
+    <div class="text">
+        <div class="title">{card.titolo}</div>
+        <div class="description">{card.descrizione}</div>
+    </div>
+    <f:if condition="{card.button}">
+        <div class="button">
+            {card.button}
+        </div>
+    </f:if>
+</div>
