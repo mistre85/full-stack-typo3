@@ -1,0 +1,41 @@
+.card-block .title {
+    text-align: center;
+    padding: 20px;
+}
+
+.card-block .card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.card {
+    text-align: center;
+    border: 1px solid lightgray;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.card .title {
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.card .description {
+    color: gray;
+}
+
+.card .icon img {
+    width: 50px;
+    height: 50px;
+}
+
+.card .button {
+    margin-top: 20px;
+    background-color: indianred;
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+}

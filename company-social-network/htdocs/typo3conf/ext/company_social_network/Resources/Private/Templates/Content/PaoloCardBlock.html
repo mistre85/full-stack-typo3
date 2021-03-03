@@ -1,0 +1,47 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="paoloCardBlock" options="{group: 'Blocks'}" label="Blocco Card - (Paolo)"
+                   description="permette di inserire una lista di card orizzontali che contengono icona,titolo,descrizione, pulsante">
+
+            <flux:field.input name="title" label="Titolo blocco"/>
+
+            <flux:form.section name="cardList" label="Lista card">
+                <flux:form.object name="card" label="Card">
+                    <flux:field.file name="icona" label="Icon" allowed="png,svg,jpg,jpeg,bmp"/>
+                    <flux:field.input name="titolo" label="Titolo"/>
+                    <flux:field.input name="descrizione" label="Descrizione"/>
+                    <flux:field.input name="button" label="Label bottone"/>
+                </flux:form.object>
+            </flux:form.section>
+
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>Blocco Card</strong><br/>
+        permette di inserire una lista di card orizzontali che contengono icona,titolo,descrizione, pulsante
+
+    </f:section>
+
+    <f:section name="Main">
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/paoloCardBlock.css"/>
+        <div class="container">
+            <div class="card-block">
+                <div class="row">
+                    <h2 class="title">{title}</h2>
+                </div>
+                <div class="row card-row">
+                    <f:for each="{cardList}" as="item" iteration="cardIter">
+                        <f:render partial="PaoloCard" arguments="{card: item.card}"/>
+                    </f:for>
+                </div>
+            </div>
+        </div>
+    </f:section>
+</div>
