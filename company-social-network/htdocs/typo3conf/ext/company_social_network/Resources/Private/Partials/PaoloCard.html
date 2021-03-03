@@ -1,0 +1,14 @@
+<div class="card">
+    <div class="icon">
+        <f:image src="{card.icona}"/>
+    </div>
+    <div class="text">
+        <div class="title">{card.titolo}</div>
+        <div class="description">{card.descrizione}</div>
+    </div>
+    <f:if condition="{card.button}">
+        <f:link.typolink class="button" parameter="{card.link}">
+            {card.button}
+        </f:link.typolink>
+    </f:if>
+</div>

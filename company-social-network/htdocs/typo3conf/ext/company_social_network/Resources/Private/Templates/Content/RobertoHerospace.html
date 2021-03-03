@@ -1,0 +1,58 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers" xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers" xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content" />
+
+    <f:section name="Configuration">
+        <flux:form id="example" options="{group: 'Visori'}" label="Roberto Herospace " description="Permetto di inserire un visore con immagine di sfondo, titolo e descrizione + area libera">
+            <flux:field.text name="title" enableRichText="true" label="Titolo Form"></flux:field.text>
+            <flux:field.input name="descriptionRow_1" label="Descrizione riga uno"></flux:field.input>
+            <flux:field.input name="descriptionRow_2" label="Descrizione riga due"></flux:field.input>
+
+            <flux:field.inline.fal name="backgroundImage" maxItems="1" minItems="1" label="Immagine di background" />
+
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>HeroSpace</strong><br /> Permetto di inserire un visore con immaginedi sfondo, titolo e descrizione + area libera
+    </f:section>
+
+    <f:section name="Main">
+
+        {v:content.resources.fal(field: 'backgroundImage') -> v:iterator.first() -> v:variable.set(name: 'falImage')}
+
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/robertoHerospace.css" />
+
+        <div class="herospace" style="background-image: url('{falImage.url}')">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                        <div class="text">
+                            <f:if condition="{title}">
+                                <h1>{title}</h1>
+                            </f:if>
+                            <div class="description">
+                                <f:format.html>{descriptionRow_1}</f:format.html>
+                            </div>
+                            <div class="description">
+                                <f:format.html>{descriptionRow_2}</f:format.html>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <div class="empty-block">
+                            {emptyblockData}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </f:section>
+</div>

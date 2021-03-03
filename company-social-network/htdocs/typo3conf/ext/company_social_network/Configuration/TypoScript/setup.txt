@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+#commit
+#https://docs.typo3.org/m/typo3/reference-typoscript/7.6/en-us/Setup/Top-levelObjects/Index.html
+>>>>>>> 21a6cb0dd96acdc3deb7ea887f366f9322e52a74
 config.tx_realurl_enable = 1
 config.absRefPrefix = /
 
@@ -6,7 +11,6 @@ plugin.tx_companysocialnetwork {
 		templateRootPaths.0 = {$plugin.tx_companysocialnetwork.view.templateRootPaths.0}
 		partialRootPaths.0 = {$plugin.tx_companysocialnetwork.view.partialRootPaths.0}
 		layoutRootPaths.0 = {$plugin.tx_companysocialnetwork.view.layoutRootPaths.0}
-	}
 	#By default the following settings only will have relevance if you have fluidcontent_core extension loaded
 	settings{
 		container {
@@ -18,6 +22,8 @@ plugin.tx_companysocialnetwork {
 
 	}
 }
+
+
 
 #system libs
 #usato l'helper

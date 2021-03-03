@@ -9,6 +9,8 @@
         <flux:form id="paoloHerospace" options="{group: 'Visori'}" label="Herospace (Paolo)"
                    description="Permette di inserire un visore con immagine di fondo, titolo e descrizione + area libera">
 
+            <flux:field.inline.fal name="backgroundImage" maxItems="1" minItems="0" label="Immagine background"/>
+
             <flux:field.input name="title" label="Titolo visore"/>
             <flux:field.text name="description" enableRichText="true" label="Descrizione visore"/>
 
@@ -22,13 +24,16 @@
     </f:section>
 
     <f:section name="Main">
+
         <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/paoloHerospace.css"/>
+        {v:content.resources.fal(field: 'backgroundImage') -> v:iterator.first() -> v:variable.set(name: 'falImage')}
+
         <!-- html -->
-        <div class="herospace" style="background-color: lightseagreen">
+        <div class="herospace" style="background-image: url('{falImage.url}')">
             <!-- img -->
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-8 col-xs-12">
                         <div class="text">
                             <f:if condition="{title}">
                                 <h1 class="title">{title}</h1>
@@ -40,9 +45,9 @@
                             </f:if>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4 col-xs-12">
                         <div class="empty-block">
-                            <!-- ? -->
+                            {emptyBlockData}
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 <?php
+
 namespace Wind\CompanySocialNetwork\Controller;
 
 /***************************************************************
@@ -32,7 +33,28 @@ use FluidTYPO3\Fluidcontent\Controller\ContentController as AbstractController;
  *
  * @route off
  */
-class ContentController extends AbstractController {
+class ContentController extends AbstractController
+{
+
+    /**
+     * ogni action nel controller viene eseguita
+     * PRIMA del render del content element (componente)
+     * possiamo quindi assegnare nuove variabili che verranno poi
+     * presentate nel template MAIN del componente.
+     *
+     * per creare una action bisogna specificare:
+     *  nomeFileComponente + Action
+     */
+    function paoloHerospaceAction()
+    {
+        $data = $this->getData();
+
+        $title = strtoupper($data['title']);
+
+        $this->view->assign("title", $title);
+        $this->view->assign("emptyBlockData", "Blocco da costruire");
+    }
+
 
 
 }

@@ -10,7 +10,14 @@
             1- ricordarsi di cambiare l'id
         </f:comment>
         <flux:form id="fabioTeam" label="Blocco Team - (Fabio)" description="Aggiunge descrizione Team di lavoro" options="{group: 'Blocchi'}">
-
+            <flux:field.input name="title" label="Titolo blocco"/>
+            <flux:field.text name="description" enableRichText="true" label="Descrizione blocco"/>
+            <flux:form.section name="teams" label="Lista blocchi collaboratori">
+                <flux:form.object name="person" label="Team person">
+                    <flux:field.input name="name" label="Nome"/>
+                    <flux:field.input name="cv" label="Curriculum"/>
+                </flux:form.object>
+            </flux:form.section>
         </flux:form>
     </f:section>
 
@@ -22,20 +29,20 @@
         <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/fabioTeam.css"/>
         <div class="team-blocks">
             <div class="container col-lg-12">
-                <div class="row">
-                    <div class="content title"><h1>Meet the Team</h1></div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 content subtitle">
-                        <h2>Lorem ipsum dolor sit amet, consectetur adipiscing alit.</h2>
+                <f:if condition="{title}">
+                    <div class="row">
+                        <div class="content title"><h1>{title}</h1></div>
                     </div>
-                    <f:render partial="TeamBlockCard"></f:render>
-                    <f:render partial="TeamBlockCard"></f:render>
-                    <f:render partial="TeamBlockCard"></f:render>
-                <div class="row">
-                    <f:render partial="TeamBlockCard"></f:render>
-                    <f:render partial="TeamBlockCard"></f:render>
-                    <f:render partial="TeamBlockCard"></f:render>
+                    <div class="row">
+                        <div class="col-lg-12 content subtitle">
+                            <h2>{description}/h2>
+                        </div>
+                    </div> 
+                </f:if>
+                <div class="grid-teams">
+                    <f:for each="{teams}" as="team" iteration="iter">
+                        <f:render partial="TeamBlockPerson" arguments="{item: team}"></f:render>
+                    </f:for>
                 </div>
             </div>
         </div>

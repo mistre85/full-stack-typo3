@@ -1,0 +1,55 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers" xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers" xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content" />
+
+    <f:section name="Configuration">
+        <flux:form id="RobertoCardBlock" options="{group: 'Blocks'}" label="Card Block Roberto Team" description="card Block personalizzato per Roberto">
+
+            <flux:form.section name="cardBlocks" label="Lista cardBlock">
+                <flux:form.object name="cardBlockTot" label="card Block Team">
+                    <flux:field.file name="iconaTot" label="icona Totale" allowed="*" />
+                    <flux:field.input name="titoloTot" label="titolo Totale" />
+                    <flux:field.text name="DescrizioneUnoTot" enableRichText="true" label="Descrizione Uno Totale" />
+                    <flux:field.text name="DescrizioneDueTot" enableRichText="true" label="Descrizione Due Totale" />
+                    <flux:field.text name="DescrizioneTreTot" enableRichText="true" label="Descrizione Tre Totale" />
+
+                    <flux:field.input name="button" label="Label bottone" />
+                    <flux:field.input name="link" label="Link bottone">
+                        <flux:wizard.link/>
+                    </flux:field.input>
+
+                </flux:form.object>
+            </flux:form.section>
+
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <!-- If you wish, place custom backend preview content here -->
+        <p>
+            <strong>Roberto Card Blck</strong><br/>
+            <i>preview Roberto Card Block</i>
+        </p>
+
+    </f:section>
+
+
+    <f:section name="Main">
+
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/robertoBlock.css" />
+
+        <div class="containerBlock">
+
+            <f:for each="{cardBlocks}" as="cardBlockRoberto">
+                <f:render partial="robertoBlock" arguments="{item: cardBlockRoberto}"></f:render>
+            </f:for>
+
+        </div>
+
+
+
+
+    </f:section>
+
+
+</div>

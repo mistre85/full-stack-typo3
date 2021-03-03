@@ -12,28 +12,27 @@ h1 {
     height: 100%;
  }
 
+ .RobertoPersonaContainer{
+  margin: 20px;
+  text-align: center;
+}
+
+ .RobertoPhotoAbout{
+  text-align: center;
+  background-repeat: no-repeat;
+}
+
  .RobertoNameAbout{
     text-align: center;
     border: 1px dotted black;
     border-radius: 5px;
  } 
 
- .RobertoPhotoAbout{
-    text-align: center;
-    background-repeat: no-repeat;
-    
- }
-
  .RobertoDescriptionAbout{
    text-align:justify;
    padding: 10px;
    border: 1px dotted black;
    border-radius: 5px;
- }
-
- .RobertoPersonaContainer{
-   margin: 20px;
-   text-align: center;
  }
 
  .imageClip{
