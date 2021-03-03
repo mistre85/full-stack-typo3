@@ -55,4 +55,6 @@ class ContentController extends AbstractController
         $this->view->assign("emptyBlockData", "Blocco da costruire");
     }
 
+
+
 }
