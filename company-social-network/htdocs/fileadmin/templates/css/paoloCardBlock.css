@@ -5,16 +5,18 @@
 
 .card-block .card-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: stretch;
+    flex-wrap: wrap;
 }
 
 .card {
     text-align: center;
     border: 1px solid lightgray;
-    width: 300px;
+    width: 250px;
     padding: 20px;
     border-radius: 10px;
+    margin: 20px;
 }
 
 .card .title {
@@ -38,4 +40,5 @@
     padding: 10px;
     color: white;
     border-radius: 10px;
+    display: block;
 }

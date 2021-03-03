@@ -29,4 +29,25 @@
 
 }
 
+@media screen and (max-width: 1200px) {
+
+    .herospace {
+        line-height: 250px;
+    }
+
+    .herospace .text {
+        width: 100%;
+        text-align: center;
+        padding: 10px
+    }
+
+    .herospace .text ul {
+        list-style-position: inside;
+    }
+
+    .herospace .empty-block {
+
+        height: 200px;
+    }
+}
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace Wind\CompanySocialNetwork\Controller;
 
 /***************************************************************
@@ -32,7 +33,22 @@ use FluidTYPO3\Fluidcontent\Controller\ContentController as AbstractController;
  *
  * @route off
  */
-class ContentController extends AbstractController {
+class ContentController extends AbstractController
+{
 
+    function paoloHerospaceAction()
+    {
+        $data = $this->getData();
+
+        $title = strtoupper($data['title']);
+
+        $this->view->assign("title", $title);
+        $this->view->assign("emptyBlockData", "Blocco da costruire");
+    }
+
+    function paoloCardBlockAction()
+    {
+        $this->view->assign("daController", "valore");
+    }
 
 }
