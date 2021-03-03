@@ -1,0 +1,24 @@
+<div class="RobertoPersonaContainer containerInt">
+    <div class="avatar">
+        <f:image src="{item.cardBlockTot.iconaTot}" />
+    </div>
+
+    <f:if condition="{title}">
+        <div class="RobertoTitolo h1">
+            {item.cardBlockTot.titoloTot}
+        </div>
+    </f:if>
+
+
+    <div class="RobertoDescriptionUno">
+        <f:format.html>{item.cardBlockTot.DescrizioneUnoTot}</f:format.html>
+    </div>
+
+    <div class="RobertoDescriptionDue">
+        <f:format.html>{item.cardBlockTot.DescrizioneDueTot}</f:format.html>
+    </div>
+
+    <div class="RobertoDescriptionTre">
+        <f:format.html>{item.cardBlockTot.DescrizioneTreTot}</f:format.html>
+    </div>
+</div>
