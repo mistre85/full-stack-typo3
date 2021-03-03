@@ -34,5 +34,10 @@ use FluidTYPO3\Fluidcontent\Controller\ContentController as AbstractController;
  */
 class ContentController extends AbstractController {
 
+    function RobertoHerospaceAction()
+    {
+        $this->view->assign("emptyblockData", "blocco da costruire");
+    }
+
 
 }

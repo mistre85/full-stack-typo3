@@ -26,3 +26,5 @@
     display: inline-block;
     vertical-align: middle;
 }
+
+@media screen and (max-width: 1200) {}
