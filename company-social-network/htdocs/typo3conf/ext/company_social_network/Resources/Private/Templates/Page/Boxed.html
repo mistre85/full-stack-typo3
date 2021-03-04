@@ -6,9 +6,11 @@
     <f:layout name="Page"/>
 
     <f:section name="Configuration">
-        <flux:form id="Logged" label="Logged page">
+        <flux:form id="Boxed" label="Boxed page layout">
+            <flux:field.checkbox name="loggedPage" default="1" label="Pagina logged"></flux:field.checkbox>
             <flux:field.input name="pageTitle" label="Titolo editoriale pagina"/>
             <flux:field.text name="pageDescription" enableRichText="true" label="Descrizione editorale pagina"/>
+
         </flux:form>
         <flux:grid>
             <!-- Edit this grid to change the "backend layout" structure -->
@@ -20,6 +22,7 @@
 
     <f:section name="Main">
 
+        <f:debug>{loggedPage}</f:debug>
         <div class="container">
 
             <f:render partial="TopMenu" arguments="{navBarClass: 'navbar-default'}"/>
