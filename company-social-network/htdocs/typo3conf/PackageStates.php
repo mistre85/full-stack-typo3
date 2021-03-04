@@ -282,12 +282,6 @@ return [
             'packagePath' => 'typo3conf/ext/builder/',
             'suggestions' => [],
         ],
-        'company_social_network_extbase' => [
-            'composerName' => 'company_social_network_extbase',
-            'state' => 'active',
-            'packagePath' => 'typo3conf/ext/company_social_network_extbase/',
-            'suggestions' => [],
-        ],
         'extension_builder' => [
             'composerName' => 'friendsoftypo3/extension-builder',
             'state' => 'active',

@@ -40,8 +40,34 @@ class ContentController extends AbstractController
         $json = file_get_contents("http://csn.local/fileadmin/assets/profile.json");
         $user = json_decode($json);
         $this->view->assign("user", $user);
+
+        $data = $this->getData();
+
+        $title = strtoupper($data['title']);
+
+        $prezzo = str_replace(",", ".", $data['price']);
+        $this->view->assign("prezzo", $prezzo);
+
+        $this->view->assign("title", $title);
+        $this->view->assign("emptyBlockData", "Blocco da costruire");
     }
 
-
-
+    public function fabioPostBachecaAction()
+    {
+        $data = [
+            [
+                ['name'=>'Mario Rossi', 'photo'=>'https://picsum.photos/100', 'likes'=>rand(0,100)],
+                ['text' => ['posttext'=>'Hello World!']]
+            ],
+            [
+                ['name'=>'Pippo Pluto', 'photo'=>'https://picsum.photos/100', 'likes'=>rand(0,100)],
+                ['text' => ['posttext'=>'orem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus ut velit quis sodales. Cras vehicula libero elit, sed vehicula sapien efficitur nec. Curabitur aliquam ut arcu non laoreet.']]
+            ],
+            [
+                ['name'=>'Pinco Pallino', 'photo'=>'https://picsum.photos/100', 'likes'=>rand(0,100)],
+                ['text' => ['posttext'=>'Aliquam et elit nec felis pharetra consectetur.']]
+            ],
+        ];
+        $this->view->assign('posts', $data);
+    }
 }
