@@ -50,7 +50,6 @@ class PageController extends AbstractController
 
     function userProfilePageAction()
     {
-        var_dump($_REQUEST);
         //die();
         //todo: finire di impletare con dati veri
         $userData = array(
