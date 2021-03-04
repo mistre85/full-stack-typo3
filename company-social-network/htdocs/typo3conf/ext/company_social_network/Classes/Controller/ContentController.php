@@ -68,15 +68,6 @@ class ContentController extends AbstractController
         $this->view->assign("emptyBlockData", "Blocco da costruire");
     }
 
-<<<<<<< HEAD
-    function beppeBachecaAction()
-    {
-        $data = [
-            array('user' => array('nome' => 'Giuseppe', 'cognome' => 'Orlando')),
-            array('post' => array('text' => 'Per la mia nuova COLLABORAZIONE, facciamo un giro a RAPONE (PZ) in Basilicata, dove ha sede l’azienda olearia “TENUTE GIARDINO SANTO STEFANO”, produttore dell’olio EVO “L’Orocolato”.
-            Ringrazio ancora il Responsabile Commerciale VITO ANGELILLO per la sua cortesia, professionalità e per quanta passione trasmette per il suo prodotto.', 'likes' => 100))
-        ];
-=======
     /*$data = array(
             'user' => array(
                 'avatar' => 'https://picsum.photos/140/140',
@@ -91,7 +82,7 @@ class ContentController extends AbstractController
 
         );*/
 
-    function paoloPostListAction()
+    function beppeBachecaAction()
     {
         //utente ->(1,*) post
         //post_utente ->1 utente
@@ -113,7 +104,6 @@ class ContentController extends AbstractController
                 'cognome' => 'brambilla'
             )),
         );
->>>>>>> a4edf7b6b2476951ccbb45b93809068d794e864b
 
         $this->view->assign("postList", $postList);
     }
