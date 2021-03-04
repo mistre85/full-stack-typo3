@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2021-03-04T19:04:58Z" product-name="csn">
+		<header/>
+		<body>
+			<trans-unit id="tx_csn_domain_model_feplugin">
+				<source>Frontend plugin</source>
+			</trans-unit>
+			<trans-unit id="tx_csn_domain_model_feplugin.description">
+				<source></source>
+			</trans-unit>
+			<trans-unit id="tx_csn_domain_model_user">
+				<source>User</source>
+			</trans-unit>
+			<trans-unit id="tx_csn_domain_model_user.avatar">
+				<source>Avatar</source>
+			</trans-unit>
+			<trans-unit id="tx_csn_domain_model_user.username">
+				<source>Username</source>
+			</trans-unit>
+			<trans-unit id="tx_csn_domain_model_user.email">
+				<source>Email</source>
+			</trans-unit>
+			<trans-unit id="tx_csn_domain_model_user.password">
+				<source>Password</source>
+			</trans-unit>
+			<trans-unit id="tx_csn_domain_model_user.nome">
+				<source>Nome</source>
+			</trans-unit>
+			<trans-unit id="tx_csn_domain_model_user.cognome">
+				<source>Cognome</source>
+			</trans-unit>
+			<trans-unit id="tx_csn_domain_model_user.post_list">
+				<source>Post List</source>
+			</trans-unit>
+			<trans-unit id="tx_csn_domain_model_post">
+				<source>Post</source>
+			</trans-unit>
+			<trans-unit id="tx_csn_domain_model_post.message">
+				<source>Message</source>
+			</trans-unit>
+			<trans-unit id="tx_csn_domain_model_post.likes">
+				<source>Likes</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

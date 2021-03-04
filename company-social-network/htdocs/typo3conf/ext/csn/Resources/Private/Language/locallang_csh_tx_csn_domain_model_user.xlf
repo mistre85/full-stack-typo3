@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2021-03-04T19:04:58Z" product-name="csn">
+		<header/>
+		<body>
+			<trans-unit id="tx_csn_domain_model_feplugin">
+				<source>Frontend plugin</source>
+			</trans-unit>
+			<trans-unit id="tx_csn_domain_model_feplugin.description">
+				<source></source>
+			</trans-unit>
+			<trans-unit id="avatar.description">
+				<source>avatar</source>
+			</trans-unit>
+			<trans-unit id="username.description">
+				<source>username</source>
+			</trans-unit>
+			<trans-unit id="email.description">
+				<source>email</source>
+			</trans-unit>
+			<trans-unit id="password.description">
+				<source>password</source>
+			</trans-unit>
+			<trans-unit id="nome.description">
+				<source>nome</source>
+			</trans-unit>
+			<trans-unit id="cognome.description">
+				<source>cognome</source>
+			</trans-unit>
+			<trans-unit id="post_list.description">
+				<source>postList</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
