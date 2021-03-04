@@ -51,6 +51,9 @@ class ContentController extends AbstractController
 
         $title = strtoupper($data['title']);
 
+        $prezzo = str_replace(",", ".", $data['price']);
+        $this->view->assign("prezzo", $prezzo);
+
         $this->view->assign("title", $title);
         $this->view->assign("emptyBlockData", "Blocco da costruire");
     }
@@ -64,6 +67,5 @@ class ContentController extends AbstractController
         $this->view->assign("title", $title);
         $this->view->assign("emptyBlockData", "Blocco da costruire");
     }
-
 
 }

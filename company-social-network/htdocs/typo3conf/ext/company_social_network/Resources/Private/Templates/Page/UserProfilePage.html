@@ -7,7 +7,7 @@
 
     <f:section name="Configuration">
         <flux:form id="userProfilePage" label="User Profile Page">
-
+            <flux:field.checkbox name="loggedPage" default="true" label="Pagina logged"></flux:field.checkbox>
         </flux:form>
         <flux:grid>
             <f:comment>
@@ -33,8 +33,6 @@
             </div>
 
             <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/paoloUserProfile.css"/>
-
-            <f:debug>{_all}</f:debug>
 
             <v:content.render column="0"/>
 

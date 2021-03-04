@@ -6,11 +6,11 @@
     <f:layout name="Page"/>
 
     <f:section name="Configuration">
-        <flux:form id="NotLogged" label="Not logged page">
+        <flux:form id="FullWidth" label="Full width page layout">
 
             <flux:field.input name="pageTitle" label="Titolo editoriale pagina"/>
             <flux:field.text name="pageDescription" enableRichText="true" label="Descrizione editorale pagina"/>
-
+            <flux:field.checkbox name="loggedPage" label="Pagina logged" ></flux:field.checkbox>
         </flux:form>
         
         <flux:grid>
