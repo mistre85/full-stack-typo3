@@ -55,6 +55,15 @@ class ContentController extends AbstractController
         $this->view->assign("emptyBlockData", "Blocco da costruire");
     }
 
+    function beppeHerospaceAction()
+    {
+        $data = $this->getData();
+
+        $title = strtoupper($data['title']);
+
+        $this->view->assign("title", $title);
+        $this->view->assign("emptyBlockData", "Blocco da costruire");
+    }
 
 
 }

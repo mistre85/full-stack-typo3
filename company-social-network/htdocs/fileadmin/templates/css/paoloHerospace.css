@@ -4,10 +4,6 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-<<<<<<< HEAD
-=======
-
->>>>>>> 21a6cb0dd96acdc3deb7ea887f366f9322e52a74
 }
 
 .herospace .text {
@@ -17,17 +13,10 @@
     background-color: lightcyan;
     opacity: 0.8;
     padding: 50px;
-<<<<<<< HEAD
-    border-radius: 5px;
-}
-
-.herospace .empty-block {
-=======
 }
 
 .herospace .empty-block {
 
->>>>>>> 21a6cb0dd96acdc3deb7ea887f366f9322e52a74
     width: 100%;
     height: 250px;
     border-radius: 10px;
@@ -36,9 +25,6 @@
     line-height: 1.5;
     display: inline-block;
     vertical-align: middle;
-<<<<<<< HEAD
-}
-=======
 
 }
 
@@ -64,4 +50,3 @@
     }
 }
 
->>>>>>> 21a6cb0dd96acdc3deb7ea887f366f9322e52a74

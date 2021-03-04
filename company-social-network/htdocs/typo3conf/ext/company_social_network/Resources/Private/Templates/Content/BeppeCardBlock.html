@@ -14,42 +14,38 @@
                 <flux:form.object name="listaVantaggi" label="Lista Vantaggi">                    
                     <flux:field.file name="icona" label="icona" allowed="png,svg, jpg, jpeg"/>
                     <flux:field.input name="titoloVantaggio" label="titolo Vantaggio"/>
-                    <flux:field.text name="descrizioneVantaggio" label="descrizione Vantaggio"/>
-                    <flux:field.text name="buttonVantaggio" label="button Vantaggio" />
+                    <flux:field.input name="descrizioneVantaggio" label="descrizione Vantaggio"/>
+                    <flux:field.input name="buttonVantaggio" label="button Vantaggio" />
+                    <flux:field.input name="linkVantaggio" label="link Vantaggio">
+                        <flux:wizard.link />
+                    </flux:field.input>
                 </flux:form.object>
             </flux:form.section>
         </flux:form>
     </f:section>
 
     <f:section name="Preview">
-        <strong>---</strong><br/>
-        
+        <strong>Blocco Card</strong><br/>
+        permette di inserire una lista di card orizzontali che contengono icona,titolo,descrizione, pulsante        
 
     </f:section>
 
     <f:section name="Main">
-        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/beppeTeam.css" />
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/BeppeCardBlock.css" />
         
-        <div id="block-team-{record.uid}" class="team-blocks clearfix">
-            <div class="container">
-                
-                <f:if condition="{title}">
-                    <div class="text-center">
-                        <h1>{title}</h1>
-                        <p class="description">
-                            <f:format.html>{descriptionBeppe}</f:format.html>
-                        </p>
-                    </div>
-                </f:if>
-
-                <div class="grid-teams">
+             <div class="container">   
+                <div class="card-block">             
+                    <f:if condition="{title}">
+                        <div class="row">
+                            <h1>{title}</h1>
+                        </div>
+                    </f:if>
+                <div class="row card-row">
                     <f:for each="{vantaggi}" as="vantaggiObj">
                         <f:render partial="BeppeCardBlockPartial" arguments="{item: vantaggiObj}"></f:render>
                     </f:for>
                 </div>
-
-
             </div>
-        </div>
+
     </f:section>
 </div>
