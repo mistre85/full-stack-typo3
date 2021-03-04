@@ -1,0 +1,31 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="paoloPostList" options="{group: 'Lists'}" label="Post List - (paolo)"
+                   description="Permette di inserire un compente che recupera la lista dei post di tutti gli utenti">
+
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>Post lists</strong><br/>
+        Permette di inserire un compente che recupera la lista dei post di tutti gli utenti
+    </f:section>
+
+    <f:section name="Main">
+
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/paoloPostList.css"/>
+
+        <div class="users-post-list">
+            <f:for each="{postList}" as="item">
+                <f:render partial="PaoloPostCard" arguments="{post:item}"/>
+            </f:for>
+        </div>
+
+    </f:section>
+</div>
