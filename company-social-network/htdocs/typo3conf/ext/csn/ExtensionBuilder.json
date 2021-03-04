@@ -183,7 +183,7 @@
                 "key": "cnsweb",
                 "mainModule": "web",
                 "name": "Modulo Web CNS",
-                "tabLabel": ""
+                "tabLabel": "CSN Module"
             }
         ],
         "description": "",
@@ -201,8 +201,8 @@
         },
         "extensionKey": "csn",
         "name": "Company Social Network (extbase)",
-        "originalExtensionKey": "",
-        "originalVendorName": "",
+        "originalExtensionKey": "csn",
+        "originalVendorName": "Wind",
         "persons": [],
         "plugins": [
             {
@@ -232,7 +232,7 @@
         }
     ],
     "log": {
-        "last_modified": "2021-03-04 07:04",
+        "last_modified": "2021-03-04 07:08",
         "extension_builder_version": "7.10.0",
         "be_user": " (1)"
     }
