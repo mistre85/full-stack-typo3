@@ -68,6 +68,7 @@ class ContentController extends AbstractController
         $this->view->assign("emptyBlockData", "Blocco da costruire");
     }
 
+<<<<<<< HEAD
     function beppeBachecaAction()
     {
         $data = [
@@ -75,8 +76,46 @@ class ContentController extends AbstractController
             array('post' => array('text' => 'Per la mia nuova COLLABORAZIONE, facciamo un giro a RAPONE (PZ) in Basilicata, dove ha sede l’azienda olearia “TENUTE GIARDINO SANTO STEFANO”, produttore dell’olio EVO “L’Orocolato”.
             Ringrazio ancora il Responsabile Commerciale VITO ANGELILLO per la sua cortesia, professionalità e per quanta passione trasmette per il suo prodotto.', 'likes' => 100))
         ];
+=======
+    /*$data = array(
+            'user' => array(
+                'avatar' => 'https://picsum.photos/140/140',
+                'nome' => 'paolo',
+                'cognome' => 'mistretta',
+            ),
+            'postList' => [
+                array('text' => 'buongiornissimo', 'like' => 10),
+                array('text' => 'lavoro ', 'like' => 1),
+                array('text' => 'sono stufo', 'like' => 1)
+            ]
 
-        $this->view->assign("data", $data);
+        );*/
+
+    function paoloPostListAction()
+    {
+        //utente ->(1,*) post
+        //post_utente ->1 utente
+
+        $postList = array(
+            array('text' => 'buongiornissimo', 'like' => 10, 'user' => array(
+                'avatar' => 'https://picsum.photos/140/140',
+                'nome' => 'paolo',
+                'cognome' => 'mistretta'
+            )),
+            array('text' => 'buongiornissimo', 'like' => 10, 'user' => array(
+                'avatar' => 'https://picsum.photos/140/140',
+                'nome' => 'fabio',
+                'cognome' => 'picciau'
+            )),
+            array('text' => 'buongiornissimo', 'like' => 10, 'user' => array(
+                'avatar' => 'https://picsum.photos/140/140',
+                'nome' => 'roberto',
+                'cognome' => 'brambilla'
+            )),
+        );
+>>>>>>> a4edf7b6b2476951ccbb45b93809068d794e864b
+
+        $this->view->assign("postList", $postList);
     }
 
     function contactListAction()
