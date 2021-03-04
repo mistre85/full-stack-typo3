@@ -3,57 +3,16 @@
     <f:layout name="Content" />
 
     <f:section name="Configuration">
-        <flux:form id="RobertoUserProfile" options="{group: 'Forms'}" label="User Profile Roberto Team" description="User Profile personalizzato per Roberto">
+        <flux:form id="robertoUserProfile" options="{group: 'Forms'}" label="Profilo utente - (Roberto)" description="Permette di gestire il profilo dell'utente loggato">
 
         </flux:form>
     </f:section>
 
     <f:section name="Preview">
-        <!-- If you wish, place custom backend preview content here -->
-        <p>
-            <strong>Roberto User Profile</strong><br/>
-            <i>preview Roberto User Profile</i>
-        </p>
-
+        <strong>Profilo utente</strong><br/> Permette di gestire il profilo dell'utente loggato (Roberto)
     </f:section>
-
 
     <f:section name="Main">
 
-        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/robertoUserProfile.css" />
-
-        <div class="contentUP col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-
-            <form class="form">
-                <div class="form-row">
-                    <div class="form-group col-md-8">
-
-                        <div class="avatar">
-                            <img src="https://picsum.photos/150" class="imageClip" />
-                        </div>
-
-                        <div class="form-group ">
-                            <div class="label col-lg-2">
-                                <label for="inputName " class=" col-form-label ">Nome</label>
-                            </div>
-                            <input type="text " class="form-control " id="inputName " placeholder="Nome">
-                        </div>
-
-                        <div class="form-group ">
-                            <label for="inputSurname " class="col-sm-2 col-form-label ">Cognome</label>
-                            <input type="text " class="form-control " id="inputSurname" placeholder="Cognome">
-                        </div>
-
-                        <label for="InputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                    </div>
-                </div>
-        </div>
-
-
     </f:section>
-
-
 </div>
