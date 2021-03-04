@@ -1,0 +1,38 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">  
+        <flux:form id="BeppeBacheca" options="{group: 'Lista'}" label="Post List (Beppe)"
+        
+        description="descrizione Post Lista"></flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>--Bacheca</strong><br/>
+
+    </f:section>
+
+    <f:section name="Main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>TEST BACHECA</h1>
+                    </div>
+                    <f:debug>{data}</f:debug>
+                    <f:for each="{data.0}" as="datiutente">
+                        <f:render partial="BeppeBachecaDati" arguments="{item: datiutente}"></f:render>
+                    </f:for>
+                </div>                     
+                <div class="row">
+                    <f:for each="{data.0}" as="datiPost">
+                        <f:render partial="BeppeBachecaDescrizionePost" arguments="{itemPost: datiPost}"></f:render>
+                    </f:for>
+                </div>
+
+            </div>
+    </f:section>
+</div>
