@@ -10,14 +10,8 @@
             <flux:field.checkbox name="loggedPage" default="true" label="Pagina logged"></flux:field.checkbox>
         </flux:form>
         <flux:grid>
-            <f:comment>
-                https://fluidtypo3.org/documentation/templating-manual/templating/creating-templates/grid.html
-            </f:comment>
             <flux:grid.row>
                 <flux:grid.column colPos="0" name="content" label="Contenuti Sopra"/>
-            </flux:grid.row>
-            <flux:grid.row>
-                <flux:grid.column colPos="1" name="footerContent" label="Contenuti di footer"/>
             </flux:grid.row>
         </flux:grid>
     </f:section>
@@ -39,9 +33,6 @@
             <f:render partial="ProfileForm" arguments="{_all}"/>
 
         </div>
-
-        <v:content.render column="1"/>
-
 
     </f:section>
 

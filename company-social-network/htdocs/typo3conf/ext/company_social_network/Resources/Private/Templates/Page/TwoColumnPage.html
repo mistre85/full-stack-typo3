@@ -6,7 +6,7 @@
     <f:layout name="Page"/>
 
     <f:section name="Configuration">
-        <flux:form id="Boxed" label="Boxed page layout">
+        <flux:form id="TwoColumnPage" label="Pagina a due colonne (8/4)">
             <flux:field.checkbox name="loggedPage" default="1" label="Pagina logged"></flux:field.checkbox>
             <flux:field.input name="pageTitle" label="Titolo editoriale pagina"/>
             <flux:field.text name="pageDescription" enableRichText="true" label="Descrizione editorale pagina"/>
@@ -14,7 +14,8 @@
         <flux:grid>
             <!-- Edit this grid to change the "backend layout" structure -->
             <flux:grid.row>
-                <flux:grid.column colPos="0" name="content" label="Contenuti"/>
+                <flux:grid.column colPos="0" name="content" label="Col-8"/>
+                <flux:grid.column colPos="0" name="right" label="Col-4 "/>
             </flux:grid.row>
         </flux:grid>
     </f:section>
@@ -25,11 +26,12 @@
 
             <f:render partial="TopMenu" arguments="{navBarClass: 'navbar-default'}"/>
 
-            <div class="jumbotron">
-                <h1>Benevenuto user!</h1>
+            <div class="col-lg-8">
+                <v:content.render column="0"/>
             </div>
-
-            <v:content.render column="0"/>
+            <div class="col-lg-4">
+                <v:content.render column="1"/>
+            </div>
 
         </div>
 

@@ -68,4 +68,20 @@ class ContentController extends AbstractController
         $this->view->assign("emptyBlockData", "Blocco da costruire");
     }
 
+    function postBlockAction()
+    {
+        $data = [
+            array('user' => array('nome' => '', 'cognome' => '')),
+            array('post' => array('text' => '', 'likes' => 100))
+        ];
+
+        $this->view->assign("data", $data);
+    }
+
+    function contactListAction()
+    {
+        $data = [
+            //nome, foto, stato
+        ];
+    }
 }
