@@ -1,0 +1,58 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="loginFormUserProfile" label="Login form User Profile" description="Il form che permette l'accesso al sistema"
+        options="{group: 'Forms'}">
+        <flux:field.input name="nameUserProfile" label="NomeUtente"/>
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>beppe user profile</strong><br/>
+
+    </f:section>
+
+    <f:section name="Main">
+        <div class="cornice">
+            <div class="row">            
+                <div class="col-lg-3 foto"><img src="{avatar}" class="rounded" alt=""></div>
+                <div class="col-lg-9 foto">
+                    <h2>{nomeTitle}</h2>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" placeholder="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input type="email" class="form-control" id="emailUserProfile" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="pwdUserProfile" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="Full Name">Username</label>
+                            <input type="text" class="form-control" id="fullname" placeholder="nome e cognome">
+                        </div> 
+                        <div class="form-group">
+                            <label for="Full Name">Title</label>
+                            <input type="text" class="form-control" id="roleTitle" placeholder="ruolo">
+                        </div>                        
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>                    
+                </div>                
+            </div>
+        </div>
+    </f:section>
+</div>

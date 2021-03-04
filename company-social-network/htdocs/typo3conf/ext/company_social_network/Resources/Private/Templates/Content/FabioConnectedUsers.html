@@ -1,0 +1,28 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="FabioConnectedUsers" options="{group: 'Blocchi'}" label="Utenti connessi (Fabio)" description="Mostra gli utenti connessi in chat">
+
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>Utenti connessi (Fabio)</strong><br/>
+        Mostra gli utenti connessi in chat
+    </f:section>
+
+    <f:section name="Main">
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/fabioMain.css"/>
+        <div class="chat">
+            <f:for each="{conn_users}" as="conn">
+                <f:render partial="FabioChat" arguments="{user: conn}"/>
+            </f:for>
+        </div>
+
+    </f:section>
+</div>

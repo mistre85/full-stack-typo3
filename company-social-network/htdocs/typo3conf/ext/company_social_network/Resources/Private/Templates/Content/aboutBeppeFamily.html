@@ -1,0 +1,47 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+                
+        <flux:form id="aboutBeppeFamily" options="{group: 'About'}" label="about Beppe Family"
+            description="about Beppe Family descrizione">
+            <flux:field.text name="nome" label="Nome Impiegato"></flux:field.text>
+            <flux:field.text name="Descrizione" label="Descrizione Impiegato"></flux:field.text>
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>---</strong><br/>
+
+    </f:section>
+
+    <f:section name="Main">
+        
+        <div id="block-team-{record.uid}" class="team-blocks clearfix">
+            <div class="container">
+                <!-- Se Title è stato valorizzato lo mostro -->
+                <f:if condition="{title}">
+                    <div class="text-center">
+                        <h1>{title}</h1>
+                        <p class="description">
+                            <f:format.html>{descriptionBeppe}</f:format.html>
+                        </p>
+                    </div>
+                </f:if>
+
+                <div class="grid-teams">
+                    <f:for each="{familys}" as="family">
+                        <f:render partial="FamilyBlock" arguments="{item: family}"></f:render>
+                    </f:for>
+                </div>
+
+
+            </div>
+        </div>
+
+    </f:section>
+</div>

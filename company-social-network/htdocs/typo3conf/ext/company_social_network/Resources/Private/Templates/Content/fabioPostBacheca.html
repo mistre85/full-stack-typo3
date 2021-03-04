@@ -17,6 +17,11 @@
     </f:section>
 
     <f:section name="Main">
-        <f:debug>{_all}</f:debug>
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/fabioMain.css"/>
+        <f:for each="{posts}" as="post">
+            <f:for each="{post}" as="pst">
+                <f:render partial="FabioPost" arguments="{post: pst}"/>
+            </f:for>
+        </f:for>
     </f:section>
 </div>
