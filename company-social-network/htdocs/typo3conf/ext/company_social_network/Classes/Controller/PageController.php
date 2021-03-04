@@ -50,7 +50,6 @@ class PageController extends AbstractController
 
     function userProfilePageAction()
     {
-        var_dump($_REQUEST);
         //die();
         //todo: finire di impletare con dati veri
         $userData = array(
@@ -66,4 +65,24 @@ class PageController extends AbstractController
         $this->view->assign('userData', $userData);
         //$this->view->assignMultiple($userData);
     }
+
+    function robertoUserProfilePageAction()
+    {
+        //var_dump($_REQUEST);
+        //die();
+        //todo: finire di impletare con dati veri
+        $userData = array(
+            'nome' => 'Roberto',
+            'cognome' => 'Brambilla',
+            'account' => array(
+                'username' => 'brambillar',
+                'mail' => 'roberto.brambilla@windtre.it.it'
+            )
+        );
+
+        //$this->view->assign('username',$userData['username']);
+        $this->view->assign('userData', $userData);
+        //$this->view->assignMultiple($userData);
+    }
+
 }
