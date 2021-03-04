@@ -1,0 +1,36 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers" xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers" xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content" />
+
+    <f:section name="Configuration">
+        <flux:form id="Roberto Chat" options="{group: 'Chat'}" label="Roberto Chat" description="Roberto Chat Main">
+
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <p>
+            <strong>Roberto Chat Main</strong><br/>
+            <i>preview Roberto Chat Main</i>
+        </p>
+
+    </f:section>
+
+
+    <f:section name="Main">
+
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/robertoBachecaChat.css" />
+
+        <div class="containerBlock">
+
+            <f:render partial="robertoBachecaChat" arguments="{_all}"></f:render>
+
+        </div>
+
+
+
+
+    </f:section>
+
+
+</div>
