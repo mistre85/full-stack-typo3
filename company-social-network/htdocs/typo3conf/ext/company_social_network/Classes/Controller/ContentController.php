@@ -108,10 +108,27 @@ class ContentController extends AbstractController
         $this->view->assign("postList", $postList);
     }
 
-    function contactListAction()
+    function beppeContactListAction()
     {
         $data = [
-            //nome, foto, stato
+            array(
+                'avatar' => 'https://picsum.photos/140/140',
+                'nome' => 'Paolo',
+                'cognome' => 'mistretta',
+                'stato' => 'attivo'
+            ),
+            array(
+                'avatar' => 'https://picsum.photos/140/140',
+                'nome' => 'Roberto',
+                'cognome' => 'Brambilla',
+                'stato' => 'disattivo'
+            ),
+            array(
+                'avatar' => 'https://picsum.photos/140/140',
+                'nome' => 'Giuseppe',
+                'cognome' => 'Orlando',
+                'stato' => 'attivo'
+            )
         ];
     }
 

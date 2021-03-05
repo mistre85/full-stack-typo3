@@ -1,7 +1,25 @@
 .boxPost{
-    display: block;
-    width: 250px;
+    width: 500px;
     margin: 12px;
     border: 1px solid grey;
     border-radius: 10px;
+}
+
+.img-circle{
+    width: 40px;
+}
+
+
+.flex{
+    display: flex;    
+}
+
+.title{
+    display: inline-block;
+    font-size: small;
+    margin-top: 1px;    
+}
+
+.icon{
+    display: inline-block;
 }

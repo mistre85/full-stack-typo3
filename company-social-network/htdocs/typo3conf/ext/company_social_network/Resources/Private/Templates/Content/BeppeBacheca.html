@@ -17,17 +17,18 @@
     </f:section>
 
     <f:section name="Main">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>TEST BACHECA</h1>
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/beppePostList.css"/>
+            <div class="">
+               
+                <f:debug>{postList}</f:debug>
+                <div class="row">                  
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                     
+                        <f:for each="{postList}" as="datiutente"> 
+                        <f:render partial="BeppeBachecaDati" arguments="{item: datiutente}"></f:render>
+                        </f:for>
                     </div>
-                    <f:debug>{postList}</f:debug>
-                    <f:for each="{postList}" as="datiutente">
-                        <f:render partial="BeppeBachecaDati" arguments="{item: datiutente.user}"></f:render>
-                        <f:render partial="BeppeBachecaDescrizionePost" arguments="{itemPost: datiutente}"></f:render>
-                    </f:for>
                 </div>
             </div>
     </f:section>
 </div>
+

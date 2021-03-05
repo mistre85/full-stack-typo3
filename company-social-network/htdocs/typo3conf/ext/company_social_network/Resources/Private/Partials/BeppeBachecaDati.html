@@ -1,11 +1,23 @@
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="boxPost">
-        <div class="icon">
-  
-            <img src="{item.avatar}" class="img-circle" />
+<div class="panel panel-default panelsize">
+    <div class="panel-heading">    
+        <div class="icon">  
+            <img src="{item.user.avatar}" class="img-circle resize" />
         </div>
         <div class="title">
-            <h3>{item.nome} {item.cognome}</h3>
-        </div>        
+            {item.user.nome} {item.cognome}
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="description">
+            {item.text}
+        </div>
+    </div>
+    <div class="panel-footer ">
+        <button type="button " class="btn btn-primary btn-xs ">
+            Like <span class="badege ">{item.like}​​</span>
+        </button>
     </div>
 </div>
+
+            
+
