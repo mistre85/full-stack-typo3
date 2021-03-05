@@ -3,7 +3,7 @@
     <f:layout name="Content" />
 
     <f:section name="Configuration">
-        <flux:form id="Roberto Chat" options="{group: 'Chat'}" label="Roberto Chat" description="Roberto Chat Main">
+        <flux:form id="RobertoPostList" options="{group: 'List'}" label="Roberto List" description="Roberto Chat Main">
 
         </flux:form>
     </f:section>
@@ -19,16 +19,13 @@
 
     <f:section name="Main">
 
-        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/robertoBachecaChat.css" />
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/robertoPostList.css" />
 
-        <div class="containerBlock">
-
-            <f:render partial="robertoBachecaChat" arguments="{_all}"></f:render>
-
+        <div class="users-post-list">
+            <f:for each="{postList}" as="item">
+                <f:render partial="robertoPostList" arguments="{post:item}" />
+            </f:for>
         </div>
-
-
-
 
     </f:section>
 

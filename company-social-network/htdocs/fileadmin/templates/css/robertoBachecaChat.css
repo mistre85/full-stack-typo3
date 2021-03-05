@@ -1,9 +1,12 @@
-.mainChat {
-    width: 80%;
-    margin: 0 auto;
+hr {
+    margin: 5px;
+    padding: 5px;
+}
+
+.mainChat .headerChat {
+    margin-top: 2px;
 }
 
 .top-info {
-    margin-top: 5px;
     text-align: left;
 }

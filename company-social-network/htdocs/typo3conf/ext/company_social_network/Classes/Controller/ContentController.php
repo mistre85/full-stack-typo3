@@ -148,4 +148,77 @@ class ContentController extends AbstractController
             //nome, foto, stato
         ];
     }
+
+
+    function robertoPostListAction()
+    {
+        $postList = array(
+            array(
+                'text' => 'post uno', 
+                'comment' => 'commento uno',
+                'like' => 10, 
+                'user' => array(
+                    'avatar' => 'https://picsum.photos/40/40',
+                    'nome' => 'paolo',
+                    'cognome' => 'mistretta'
+                
+            )),
+            array(
+                'text' => 'post due', 
+                'comment' => 'commento due',
+                'like' => 15, 
+                'user' => array(
+                    'avatar' => 'https://picsum.photos/40/40',
+                    'nome' => 'fabio',
+                    'cognome' => 'picciau'
+                )
+            ),
+            array(
+                'text' => 'post tre', 
+                'comment' => 'commento tre',
+                'like' => 50, 
+                'user' => array(
+                    'avatar' => 'https://picsum.photos/40/40',
+                    'nome' => 'roberto',
+                    'cognome' => 'brambilla'
+                )
+            ),
+        );
+        //var_dump($postList);
+        $this->view->assign("postList", $postList);
+    }
+
+    function robertoPostUserListAction()
+    {
+        $postUserList = array (
+            array (
+            'user' => array(
+                'avatar' => 'https://picsum.photos/40/40',
+                'nome' => 'paolo',
+                'cognome' => 'mistretta',
+                'stato' => '1'
+
+            )),
+            array (
+            'user' => array(
+                'avatar' => 'https://picsum.photos/40/40',
+                'nome' => 'fabio',
+                'cognome' => 'picciau',
+                'stato' => '0'
+
+            )),
+            array (
+            'user' => array(
+                'avatar' => 'https://picsum.photos/40/40',
+                'nome' => 'roberto',
+                'cognome' => 'brambilla',
+                'stato' => '1'
+            )),
+        );
+//        var_dump($postUserList);
+
+        $this->view->assign("postUserList", $postUserList);
+
+    }
+    
 }

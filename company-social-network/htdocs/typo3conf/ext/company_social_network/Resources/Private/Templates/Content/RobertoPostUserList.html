@@ -1,0 +1,33 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers" xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers" xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content" />
+
+    <f:section name="Configuration">
+        <flux:form id="RobertoPostUser" options="{group: 'List'}" label="Roberto Post User" description="Roberto lista utenti del Post e raltivo stato">
+
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <p>
+            <strong>Roberto Post User</strong><br/>
+            <i>preview Roberto Post User</i>
+        </p>
+
+    </f:section>
+
+
+    <f:section name="Main">
+
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/robertoPostUserList.css" />
+
+        <div class="users-post-user-list">
+            <f:for each="{postUserList}" as="item">
+                <f:render partial="robertoPostUser" arguments="{post:item}" />
+            </f:for>
+        </div>
+
+    </f:section>
+
+
+</div>
