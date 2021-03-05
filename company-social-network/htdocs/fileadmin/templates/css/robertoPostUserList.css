@@ -11,6 +11,10 @@
     height:10px;
 }
 
-.badegeColor{
+.badegeColorGray{
     background-color: gray;
+}
+
+.badegeColorGreen{
+    background-color: green;
 }

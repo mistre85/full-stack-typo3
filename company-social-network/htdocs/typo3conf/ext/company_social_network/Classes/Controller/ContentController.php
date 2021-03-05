@@ -196,7 +196,7 @@ class ContentController extends AbstractController
                 'avatar' => 'https://picsum.photos/40/40',
                 'nome' => 'paolo',
                 'cognome' => 'mistretta',
-                'stato' => '1'
+                'stato' => true
 
             )),
             array (
@@ -204,7 +204,7 @@ class ContentController extends AbstractController
                 'avatar' => 'https://picsum.photos/40/40',
                 'nome' => 'fabio',
                 'cognome' => 'picciau',
-                'stato' => '0'
+                'stato' => false
 
             )),
             array (
@@ -212,7 +212,7 @@ class ContentController extends AbstractController
                 'avatar' => 'https://picsum.photos/40/40',
                 'nome' => 'roberto',
                 'cognome' => 'brambilla',
-                'stato' => '1'
+                'stato' => true
             )),
         );
 //        var_dump($postUserList);

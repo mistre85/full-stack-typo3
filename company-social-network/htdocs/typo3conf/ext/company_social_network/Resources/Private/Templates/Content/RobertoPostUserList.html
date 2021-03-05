@@ -21,8 +21,8 @@
 
         <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/robertoPostUserList.css" />
 
+        <f:for each="{postUserList}" as="item">
         <div class="users-post-user-list">
-            <f:for each="{postUserList}" as="item">
                 <f:render partial="robertoPostUser" arguments="{post:item}" />
             </f:for>
         </div>
