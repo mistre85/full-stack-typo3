@@ -71,6 +71,57 @@ class ContentController extends AbstractController
         $this->view->assign('posts', $data);
     }
 
+    function beppeHerospaceAction()
+    {
+        $data = $this->getData();
+
+        $title = strtoupper($data['title']);
+
+        $this->view->assign("title", $title);
+        $this->view->assign("emptyBlockData", "Blocco da costruire");
+
+
+        /*$data = array(
+            'user' => array(
+                'avatar' => 'https://picsum.photos/140/140',
+                'nome' => 'paolo',
+                'cognome' => 'mistretta',
+            ),
+            'postList' => [
+                array('text' => 'buongiornissimo', 'like' => 10),
+                array('text' => 'lavoro ', 'like' => 1),
+                array('text' => 'sono stufo', 'like' => 1)
+            ]
+
+        );*/
+    }
+
+    function paoloPostListAction()
+    {
+        //utente ->(1,*) post
+        //post_utente ->1 utente
+
+        $postList = array(
+            array('text' => 'buongiornissimo', 'like' => 10, 'user' => array(
+                'avatar' => 'https://picsum.photos/140/140',
+                'nome' => 'paolo',
+                'cognome' => 'mistretta'
+            )),
+            array('text' => 'buongiornissimo', 'like' => 10, 'user' => array(
+                'avatar' => 'https://picsum.photos/140/140',
+                'nome' => 'fabio',
+                'cognome' => 'picciau'
+            )),
+            array('text' => 'buongiornissimo', 'like' => 10, 'user' => array(
+                'avatar' => 'https://picsum.photos/140/140',
+                'nome' => 'roberto',
+                'cognome' => 'brambilla'
+            )),
+        );
+
+        $this->view->assign("postList", $postList);
+    }
+
     public function fabioconnectedUsersAction()
     {
         $data = [
