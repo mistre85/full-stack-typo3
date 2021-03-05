@@ -2,12 +2,12 @@
     // var statoUser="{id}";
     // var id="{post}";
     // console.log( "pippo" + statoUser + "--id="+ id );
-    if( statoUser == 1){
-        $("#badege").css("background-color", "green");
-    }
-    else{
-        $("#badege").css("background-color", "grey");
-    }
+    // if( statoUser == 1){
+    //     $("#badege").css("background-color", "green");
+    // }
+    // else{
+    //     $("#badege").css("background-color", "grey");
+    // }
 </script>
 
 <div class="mainUser">
@@ -20,16 +20,16 @@
                     <img src="https://picsum.photos/40/40" class="img-circle">
                 </div>
                 <div class="state">
-                    <span id="badege" class="badge badge-light">3</span>
+                    <span id="badege" class="badge badge-light {f:if(condition:'{post.user.stato}',then: 'badegeColorGreen', else: 'badegeColorGray')}">3</span>
                 </div>
 
             </div>
             <div class="col-lg-9">
-                <div class="top-info">
+                <div class="top-info ">
                     <div class="name col-sm-12">{post.user.nome} {post.user.cognome}</div>
                 </div>
-                <div class="bottom-info">
-                    <span class="badge badge-pill {f:if(condition:'{post.user.stato}',then: 'badegeColorGreen', else: 'badegeColorGray')}"></span>
+                <div class="bottom-info clerfix">
+                   <span class="badge badge-pill ">4</span>
                 </div>
             </div>
         </div>
