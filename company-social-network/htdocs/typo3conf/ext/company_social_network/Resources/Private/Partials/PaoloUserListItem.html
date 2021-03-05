@@ -1,0 +1,19 @@
+<li class="user-info list-group-item">
+    <img src="{user.avatar}" class="avatar img-circle"/>
+    <!-- <span class=" bg-info badge user-status">{user.connected}</span> -->
+    <span class="user-name {user.status}">{user.nome} {user.cognome}</span>
+
+    <f:comment>
+        <span class="user-name {f:if(condition:'{user.connected}',then: 'connected', else: 'offline')}">{user.nome} {user.cognome}</span>
+        <f:if condition="{user.connected}">
+            <f:then>
+                <span class="user-name connected">{user.nome} {user.cognome}</span>
+            </f:then>
+            <f:else>
+                <span class="user-name offline">{user.nome} {user.cognome}</span>
+            </f:else>
+        </f:if>
+    </f:comment>
+
+</li>
+

@@ -108,6 +108,40 @@ class ContentController extends AbstractController
         $this->view->assign("postList", $postList);
     }
 
+    function paoloChatWidgetAction()
+    {
+        //utente ->(1,*) post
+        //post_utente ->1 utente
+
+        $userList = array(
+            array(
+                'avatar' => 'https://picsum.photos/140/140',
+                'nome' => 'paolo',
+                'cognome' => 'mistretta',
+                'connected' => true,
+            ),
+            array(
+                'avatar' => 'https://picsum.photos/140/140',
+                'nome' => 'fabio',
+                'cognome' => 'picciau',
+                'connected' => false
+            ),
+            array(
+                'avatar' => 'https://picsum.photos/140/140',
+                'nome' => 'roberto',
+                'cognome' => 'brambilla',
+                'connected' => true
+            ),
+        );
+
+
+        foreach ($userList as &$user) {
+            $user['status'] = $user['connected'] ? "connected" : "offline";
+        }
+
+        $this->view->assign("userList", $userList);
+    }
+
     function contactListAction()
     {
         $data = [
