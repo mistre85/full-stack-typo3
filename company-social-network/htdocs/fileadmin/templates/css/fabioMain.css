@@ -55,9 +55,39 @@
     border-radius: 15px;
 }
 
+.chat_title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
 .chat .conn {
     width: 8px;
     height: 8px;
-    background-color: green;
     border-radius: 50%;
+    position: relative;
+    top: -13px;
+    left: 40px;
+}
+
+.online {
+    background-color: green;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: relative;
+    top: -13px;
+    left: 40px;
+    border: 1px solid white;
+}
+
+.offline {
+    background-color: grey;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: relative;
+    top: -13px;
+    left: 40px;
+    border: 1px solid white;
 }

@@ -19,8 +19,9 @@
     <f:section name="Main">
         <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/fabioMain.css"/>
         <div class="chat">
-            <f:for each="{conn_users}" as="conn">
-                <f:render partial="FabioChat" arguments="{user: conn}"/>
+            <div class="chat_title">Contatti</div>
+            <f:for each="{conn_users}" as="conn" iteration="i">
+                <f:render partial="FabioChat" arguments="{user: conn, index: i}"/>
             </f:for>
         </div>
 

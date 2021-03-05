@@ -1,7 +1,20 @@
 <div class="post_head">
     <div class="photo">
         <img src="{user.photo}">
-        <div class="conn"></div>
+        <div class="conn{index.index}" data-active="{user.connected}"></div>
     </div>
     <div class="user_info">{user.name}</div>
 </div><br>
+<script>
+    $(document).ready(() => {
+        $('.photo').each((i) => {
+            if( $('.conn' + i).data('active') == 1 ) {
+                $('.conn' + i).removeClass('offline');
+                $('.conn' + i).addClass('online');
+            } else {
+                $('.conn' + i).removeClass('online');
+                $('.conn' + i).addClass('offline');
+            }
+        });
+    });
+</script>

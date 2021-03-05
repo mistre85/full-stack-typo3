@@ -125,10 +125,10 @@ class ContentController extends AbstractController
     public function fabioconnectedUsersAction()
     {
         $data = [
-            ['name' => 'Anna Rossi', 'photo' => 'https://picsum.photos/100', 'connected' => 1],
-            ['name' => 'Paola Bianchi', 'photo' => 'https://picsum.photos/100', 'connected' => 1],
-            ['name' => 'Lucio Lupo', 'photo' => 'https://picsum.photos/100', 'connected' => 1],
-            ['name' => 'Maura Mancini', 'photo' => 'https://picsum.photos/100', 'connected' => 0],
+            ['name' => 'Anna Rossi', 'photo' => 'https://picsum.photos/100', 'connected' => rand(0,1)],
+            ['name' => 'Paola Bianchi', 'photo' => 'https://picsum.photos/100', 'connected' => rand(0,1)],
+            ['name' => 'Lucio Lupo', 'photo' => 'https://picsum.photos/100', 'connected' => rand(0,1)],
+            ['name' => 'Maura Mancini', 'photo' => 'https://picsum.photos/100', 'connected' => rand(0,1)],
         ];
         $this->view->assign('conn_users', $data);
     }
