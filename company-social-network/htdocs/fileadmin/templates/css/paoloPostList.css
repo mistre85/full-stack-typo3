@@ -1,27 +1,21 @@
-.team-blocks {
-    background-color: #F1F1F1;
+.post-list-block .header {
+    vertical-align: middle;
 }
 
-.team-blocks .title, .team-blocks .description {
-    margin: 50px;
+.post-list-block .title {
+    margin-bottom: 30px;
+    display: inline-block;
 }
 
-.person {
-    margin: 20px;
-    text-align: center;
+.user-post-card .user-info img {
+    width: 50px;
 }
 
-.person .name {
-    margin: 20px;
-    font-weight: bold;
+.user-post-card .post-info .text {
+    padding: 20px;
 }
 
-.person .cv {
-    line-height: 25px;
-    color: gray;
-}
-
-.title-block {
-    height: 100px;
-    background-color: red;
+.likes-text {
+    line-height: 35px;
+    display: inline-block;
 }
