@@ -2,3 +2,15 @@
     background-color: rgba(240, 240, 240, 0.7);
 
 }
+
+
+.state{
+    right: -30px;
+    position: relative;
+    bottom: 40px;
+    height:10px;
+}
+
+.badegeColor{
+    background-color: gray;
+}
