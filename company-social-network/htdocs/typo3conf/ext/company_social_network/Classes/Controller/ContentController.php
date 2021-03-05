@@ -130,6 +130,8 @@ class ContentController extends AbstractController
                 'stato' => 'attivo'
             )
         ];
+
+        $this->view->assign("postList", $data);
     }
 
 

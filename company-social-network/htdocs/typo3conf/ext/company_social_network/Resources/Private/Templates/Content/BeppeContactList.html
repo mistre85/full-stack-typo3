@@ -17,16 +17,30 @@
     </f:section>
 
     <f:section name="Main">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>TEST CONTACT LIST</h1>
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/beppePostList.css"/>
+                   
+                    <div class="panel panel-default panelsize">
+                        <div class="panel-heading clearfix">
+                            <div class="row">
+                                <div class="col-lg-5">Contatti</div> 
+                                <div class="col-lg-1 col-lg-offset-5">
+                                   <!-- <span class="glyphicon-class glyphicon glyphicon-facetime-video"></span>-->
+                                   44
+                                </div>
+                                <div class="col-lg-1">
+                                    <!-- <span class="glyphicon-class glyphicon glyphicon-search"></span> -->
+                                    55
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <f:debug>{postList}</f:debug>
+                                <f:for each="{postList}" as="contactlist">
+                                    <f:render partial="BeppeContactList" arguments="{item: contactlist}"></f:render>                        
+                                </f:for>
+                            </div>    
+                        </div>
                     </div>
-                    <f:debug>{postList}</f:debug>
-                    <f:for each="{postList}" as="datiutente">
-                        <f:render partial="BeppeContactList" arguments="{item: datiutente.user}"></f:render>                        
-                    </f:for>
-                </div>
-            </div>
+            
     </f:section>
 </div>
