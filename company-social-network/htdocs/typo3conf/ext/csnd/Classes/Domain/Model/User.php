@@ -66,6 +66,23 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $postList = null;
 
     /**
+     * avatar
+     *
+     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     * @validate NotEmpty
+     * @cascade remove
+     */
+    protected $avatar = null;
+
+    /**
+     * online
+     *
+     * @var bool
+     * @validate NotEmpty
+     */
+    protected $online = false;
+
+    /**
      * Returns the username
      *
      * @return string $username
@@ -233,5 +250,57 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setPostList(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $postList)
     {
         $this->postList = $postList;
+    }
+
+    /**
+     * Returns the avatar
+     *
+     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $avatar
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * Sets the avatar
+     *
+     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $avatar
+     * @return void
+     */
+    public function setAvatar(\TYPO3\CMS\Extbase\Domain\Model\FileReference $avatar)
+    {
+        $this->avatar = $avatar;
+    }
+
+    /**
+     * Returns the online
+     *
+     * @return bool $online
+     */
+    public function getOnline()
+    {
+        return $this->online;
+    }
+
+    /**
+     * Sets the online
+     *
+     * @param bool $online
+     * @return void
+     */
+    public function setOnline($online)
+    {
+        $this->online = $online;
+    }
+
+    /**
+     * Returns the boolean state of online
+     *
+     * @return bool
+     */
+    public function isOnline()
+    {
+        return $this->online;
     }
 }

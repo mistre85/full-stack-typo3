@@ -7,10 +7,12 @@ CREATE TABLE tx_csnd_domain_model_user (
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	username varchar(255) DEFAULT '' NOT NULL,
+	avatar int(11) unsigned NOT NULL default '0',
 	email varchar(255) DEFAULT '' NOT NULL,
 	password varchar(255) DEFAULT '' NOT NULL,
 	nome varchar(255) DEFAULT '' NOT NULL,
 	cognome varchar(255) DEFAULT '' NOT NULL,
+	online tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	post_list int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,

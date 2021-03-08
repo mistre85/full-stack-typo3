@@ -1,9 +1,7 @@
 <?php
-
 namespace Wind\Csnd\Controller;
 
 use Wind\Csnd\Domain\Repository\PostRepository;
-
 /***
  *
  * This file is part of the "Company Social Network Data" Extension for TYPO3 CMS.
@@ -35,9 +33,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function listAction()
     {
-
         $posts = $this->postRepository->findAll();
-
         $this->view->assign('posts', $posts);
     }
 
