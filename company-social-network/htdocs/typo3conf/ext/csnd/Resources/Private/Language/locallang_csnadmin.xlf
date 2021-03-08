@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2021-03-08T08:49:34Z" product-name="csnd">
+		<header/>
+		<body>
+			<trans-unit id="tx_csnd_domain_model_postlist">
+				<source>Post List</source>
+			</trans-unit>
+			<trans-unit id="tx_csnd_domain_model_postlist.description">
+				<source></source>
+			</trans-unit>
+			<trans-unit id="tx_csnd_domain_model_userlist">
+				<source>User List</source>
+			</trans-unit>
+			<trans-unit id="tx_csnd_domain_model_userlist.description">
+				<source></source>
+			</trans-unit>
+			<trans-unit id="mlang_tabs_tab">
+				<source>CSN Admin</source>
+			</trans-unit>
+			<trans-unit id="mlang_labels_tabdescr">
+				<source></source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
