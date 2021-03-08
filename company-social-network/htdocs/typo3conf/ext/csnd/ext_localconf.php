@@ -9,12 +9,11 @@ call_user_func(
             'Wind.Csnd',
             'Postlist',
             [
-                'User' => 'list, show, new, create, edit, update, delete',
+
                 'Post' => 'list, show, new, create, edit, update, delete'
             ],
             // non-cacheable actions
             [
-                'User' => 'create, update, delete',
                 'Post' => 'create, update, delete'
             ]
         );
@@ -23,13 +22,11 @@ call_user_func(
             'Wind.Csnd',
             'Userlist',
             [
-                'User' => 'list, show, new, create, edit, update, delete',
-                'Post' => 'list, show, new, create, edit, update, delete'
+                'User' => 'list, show, new, create, edit, update, delete',               
             ],
             // non-cacheable actions
             [
-                'User' => 'create, update, delete',
-                'Post' => 'create, update, delete'
+                'User' => 'create, update, delete',               
             ]
         );
 

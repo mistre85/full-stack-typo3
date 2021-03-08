@@ -109,7 +109,28 @@ class ContentController extends AbstractController
     }
 
     function beppeContactListAction(){
-        
+        $data = [
+            array(
+                'avatar' => 'https://picsum.photos/140/140',
+                'nome' => 'Paolo',
+                'cognome' => 'mistretta',
+                'stato' => 'attivo'
+            ),
+            array(
+                'avatar' => 'https://picsum.photos/140/140',
+                'nome' => 'Roberto',
+                'cognome' => 'Brambilla',
+                'stato' => 'disattivo'
+            ),
+            array(
+                'avatar' => 'https://picsum.photos/140/140',
+                'nome' => 'Giuseppe',
+                'cognome' => 'Orlando',
+                'stato' => 'attivo'
+            )
+        ];
+
+        $this->view->assign("postList", $data);
     }
     function paoloChatWidgetAction()
     {
