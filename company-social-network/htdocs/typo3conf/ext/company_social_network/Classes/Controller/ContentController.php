@@ -27,6 +27,9 @@ namespace Wind\CompanySocialNetwork\Controller;
  ***************************************************************/
 
 use FluidTYPO3\Fluidcontent\Controller\ContentController as AbstractController;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use Wind\Csnd\Domain\Model\User;
 
 /**
  * Content Controller
@@ -35,6 +38,23 @@ use FluidTYPO3\Fluidcontent\Controller\ContentController as AbstractController;
  */
 class ContentController extends AbstractController
 {
+
+    /**
+     * postRepository
+     *
+     * @var \Wind\Csnd\Domain\Repository\PostRepository
+     * @inject
+     */
+    protected $postRepository = null;
+
+    /**
+     * userRepository
+     *
+     * @var \Wind\Csnd\Domain\Repository\UserRepository
+     * @inject
+     */
+    protected $userRepository = null;
+
 
     /**
      * ogni action nel controller viene eseguita
@@ -82,12 +102,14 @@ class ContentController extends AbstractController
 
         );*/
 
+
     function paoloPostListAction()
     {
         //utente ->(1,*) post
         //post_utente ->1 utente
 
-        $postList = array(
+        //stub
+        $postOld = array(
             array('text' => 'buongiornissimo', 'like' => 10, 'user' => array(
                 'avatar' => 'https://picsum.photos/140/140',
                 'nome' => 'paolo',
@@ -105,6 +127,10 @@ class ContentController extends AbstractController
             )),
         );
 
+        //dati reali
+        $postList = $this->postRepository->findAll();
+
+        $this->view->assign("postOld", $postOld);
         $this->view->assign("postList", $postList);
     }
 
@@ -138,6 +164,8 @@ class ContentController extends AbstractController
         foreach ($userList as &$user) {
             $user['status'] = $user['connected'] ? "connected" : "offline";
         }
+
+        $userList = $this->userRepository->findAll();
 
         $this->view->assign("userList", $userList);
     }

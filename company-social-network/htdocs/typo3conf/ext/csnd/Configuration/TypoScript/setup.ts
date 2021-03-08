@@ -10,7 +10,7 @@ plugin.tx_csnd_postlist {
   }
   persistence {
     storagePid = {$plugin.tx_csnd_postlist.persistence.storagePid}
-    #recursive = 1
+    recursive = 1
   }
   features {
     #skipDefaultArguments = 1
@@ -31,7 +31,7 @@ plugin.tx_csnd_userlist {
   }
   persistence {
     storagePid = {$plugin.tx_csnd_userlist.persistence.storagePid}
-    #recursive = 1
+    recursive = 1
   }
   features {
     #skipDefaultArguments = 1

@@ -2,19 +2,16 @@
 defined('TYPO3_MODE') || die('Access denied.');
 
 call_user_func(
-    function($extKey)
-	{
+    function ($extKey) {
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'Wind.Csnd',
             'Postlist',
             [
-                'User' => 'list, show, new, create, edit, update, delete',
                 'Post' => 'list, show, new, create, edit, update, delete'
             ],
             // non-cacheable actions
             [
-                'User' => 'create, update, delete',
                 'Post' => 'create, update, delete'
             ]
         );
@@ -23,19 +20,17 @@ call_user_func(
             'Wind.Csnd',
             'Userlist',
             [
-                'User' => 'list, show, new, create, edit, update, delete',
-                'Post' => 'list, show, new, create, edit, update, delete'
+                'User' => 'list, show, new, create, edit, update, delete'
             ],
             // non-cacheable actions
             [
-                'User' => 'create, update, delete',
-                'Post' => 'create, update, delete'
+                'User' => 'create, update, delete'
             ]
         );
 
-	// wizards
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-		'mod {
+        // wizards
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
+            'mod {
 			wizards.newContentElement.wizardItems.plugins {
 				elements {
 					postlist {
@@ -60,7 +55,7 @@ call_user_func(
 				show = *
 			}
 	   }'
-	);
+        );
     },
     $_EXTKEY
 );
