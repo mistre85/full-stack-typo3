@@ -105,68 +105,14 @@ class ContentController extends AbstractController
 
     function paoloPostListAction()
     {
-        //utente ->(1,*) post
-        //post_utente ->1 utente
-
-        //stub
-        $postOld = array(
-            array('text' => 'buongiornissimo', 'like' => 10, 'user' => array(
-                'avatar' => 'https://picsum.photos/140/140',
-                'nome' => 'paolo',
-                'cognome' => 'mistretta'
-            )),
-            array('text' => 'buongiornissimo', 'like' => 10, 'user' => array(
-                'avatar' => 'https://picsum.photos/140/140',
-                'nome' => 'fabio',
-                'cognome' => 'picciau'
-            )),
-            array('text' => 'buongiornissimo', 'like' => 10, 'user' => array(
-                'avatar' => 'https://picsum.photos/140/140',
-                'nome' => 'roberto',
-                'cognome' => 'brambilla'
-            )),
-        );
-
         //dati reali
         $postList = $this->postRepository->findAll();
-
-        $this->view->assign("postOld", $postOld);
         $this->view->assign("postList", $postList);
     }
 
     function paoloChatWidgetAction()
     {
-        //utente ->(1,*) post
-        //post_utente ->1 utente
-
-        $userList = array(
-            array(
-                'avatar' => 'https://picsum.photos/140/140',
-                'nome' => 'paolo',
-                'cognome' => 'mistretta',
-                'connected' => true,
-            ),
-            array(
-                'avatar' => 'https://picsum.photos/140/140',
-                'nome' => 'fabio',
-                'cognome' => 'picciau',
-                'connected' => false
-            ),
-            array(
-                'avatar' => 'https://picsum.photos/140/140',
-                'nome' => 'roberto',
-                'cognome' => 'brambilla',
-                'connected' => true
-            ),
-        );
-
-
-        foreach ($userList as &$user) {
-            $user['status'] = $user['connected'] ? "connected" : "offline";
-        }
-
         $userList = $this->userRepository->findAll();
-
         $this->view->assign("userList", $userList);
     }
 
