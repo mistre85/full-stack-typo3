@@ -312,12 +312,6 @@ return [
             'packagePath' => 'typo3/sysext/adodb/',
             'suggestions' => [],
         ],
-        'csndata' => [
-            'composerName' => 'csndata',
-            'state' => 'inactive',
-            'packagePath' => 'typo3conf/ext/csndata/',
-            'suggestions' => [],
-        ],
         'css_styled_content' => [
             'composerName' => 'typo3/cms-css-styled-content',
             'state' => 'inactive',
