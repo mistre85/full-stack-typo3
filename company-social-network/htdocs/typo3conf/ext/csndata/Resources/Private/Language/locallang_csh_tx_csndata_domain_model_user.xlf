@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="it" datatype="plaintext" original="messages" date="2021-03-05T12:50:07Z" product-name="csndata">
+		<header/>
+		<body>
+			<trans-unit id="tx_csndata_domain_model_csnplugin">
+				<source>CSN Plugin</source>
+			</trans-unit>
+			<trans-unit id="tx_csndata_domain_model_csnplugin.description">
+				<source>contiene i dati e i repository del progetto</source>
+			</trans-unit>
+			<trans-unit id="username.description">
+				<source>username</source>
+			</trans-unit>
+			<trans-unit id="email.description">
+				<source>email</source>
+			</trans-unit>
+			<trans-unit id="password.description">
+				<source>password</source>
+			</trans-unit>
+			<trans-unit id="nome.description">
+				<source>nome</source>
+			</trans-unit>
+			<trans-unit id="cognome.description">
+				<source>cognome</source>
+			</trans-unit>
+			<trans-unit id="avatar.description">
+				<source>avatar</source>
+			</trans-unit>
+			<trans-unit id="post_list.description">
+				<source>postList</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

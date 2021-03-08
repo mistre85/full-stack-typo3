@@ -21,7 +21,6 @@
 
         <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/paoloPostList.css"/>
 
-
         <div class="post-list-block clearfix">
             <div class="header">
                 <div class="title">
@@ -31,6 +30,7 @@
                     <small>ultimo aggiornamento: gg/mm/yy hh:mm</small>
                 </div>
             </div>
+            <f:debug>{postList}</f:debug>
             <div class="users-post-list">
                 <f:for each="{postList}" as="item">
                     <f:render partial="PaoloPostCard" arguments="{post:item}"/>

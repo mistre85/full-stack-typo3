@@ -37,6 +37,14 @@ class ContentController extends AbstractController
 {
 
     /**
+     * postRepository
+     *
+     * @var \Wind\Csndata\Domain\Repository\PostRepository
+     * @inject
+     */
+    protected $postRepository = null;
+
+    /**
      * ogni action nel controller viene eseguita
      * PRIMA del render del content element (componente)
      * possiamo quindi assegnare nuove variabili che verranno poi
@@ -87,7 +95,7 @@ class ContentController extends AbstractController
         //utente ->(1,*) post
         //post_utente ->1 utente
 
-        $postList = array(
+        /*$postList = array(
             array('text' => 'buongiornissimo', 'like' => 10, 'user' => array(
                 'avatar' => 'https://picsum.photos/140/140',
                 'nome' => 'paolo',
@@ -103,8 +111,9 @@ class ContentController extends AbstractController
                 'nome' => 'roberto',
                 'cognome' => 'brambilla'
             )),
-        );
+        );*/
 
+        $postList = $this->postRepository->findAll();
         $this->view->assign("postList", $postList);
     }
 
@@ -118,7 +127,7 @@ class ContentController extends AbstractController
                 'avatar' => 'https://picsum.photos/140/140',
                 'nome' => 'paolo',
                 'cognome' => 'mistretta',
-                'connected' => true,
+                'connected' => false,
             ),
             array(
                 'avatar' => 'https://picsum.photos/140/140',
@@ -130,7 +139,7 @@ class ContentController extends AbstractController
                 'avatar' => 'https://picsum.photos/140/140',
                 'nome' => 'roberto',
                 'cognome' => 'brambilla',
-                'connected' => true
+                'connected' => false
             ),
         );
 
