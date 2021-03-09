@@ -20,12 +20,12 @@
     <f:section name="Main">
 
         <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/robertoPostUserList.css" />
-        <f:debug>{userList}</f:debug>
         <f:for each="{userList}" as="item">
-        <div class="users-post-user-list">
+            <div class="users-post-user-list">
                 <f:render partial="robertoPostUser" arguments="{post:item}" />
-            </f:for>
-        </div>
+            </div>
+        </f:for>
+
 
     </f:section>
 
