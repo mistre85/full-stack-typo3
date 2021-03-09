@@ -300,6 +300,12 @@ return [
             'packagePath' => 'typo3conf/ext/rest/',
             'suggestions' => [],
         ],
+        't3adminer' => [
+            'composerName' => 't3adminer',
+            'state' => 'active',
+            'packagePath' => 'typo3conf/ext/t3adminer/',
+            'suggestions' => [],
+        ],
         'adodb' => [
             'composerName' => 'typo3/cms-adodb',
             'state' => 'inactive',

@@ -1,0 +1,58 @@
+<div class="mainChat">
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading clearfix">
+            <div class="col-lg-1">
+                <div class="avatar">
+                    <img src="{post.user.avatar}" class="img-circle">
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="top-info">
+                    <div class="name col-sm-12">{post.user.nome} {post.user.cognome}</div>
+                </div>
+                <div class="bottom-info">
+                    <div class="time col-sm-12">3 h</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-body">
+            <div class="contentText">
+                {post.text}
+            </div>
+        </div>
+        <div class="panel-body">
+
+            <div class="contentImage">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <!-- iframe class="embed-responsive-item" src="https://www.youtube.com/embed/tgbNymZ7vqY" "></iframe -->
+                </div>
+            </div>
+        </div>
+        <div class="panel-body ">
+
+            <div class="contentComment ">
+                {post.comment}
+            </div>
+        </div>
+
+        <div class="panel-footer ">
+            <button type="button " class="btn btn-primary btn-xs ">
+                <f:if condition="{post.likes}>0">
+                    <f:then>
+                        Piace a
+                        <span class="badege ">{post.likes}</span>
+                        dipendenti
+                    </f:then>
+                    <f:else>
+                        Nessun Like
+                    </f:else>
+                </f:if>
+            </button>
+        </div>
+    </div>
+
+
+</div>

@@ -3,8 +3,7 @@
 <nav class="navbar {navBarClass}">
     <div class="{containerClass}">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -14,22 +13,15 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <v:page.menu.directory entryLevel="1" levels="1" pages="{settings.root_page_uid}" as="menu"
-                                       expandAll="true" class="nav navbar-nav"
-                                       deferred="true">
+                <v:page.menu.directory entryLevel="1" levels="1" pages="{settings.root_page_uid}" as="menu" expandAll="true" class="nav navbar-nav" deferred="true">
 
                     <f:for each="{menu}" as="item" key="itemkey">
 
-                        <v:page.menu.directory entryLevel="1" levels="1" pages="{item.uid}"
-                                               as="subMenu"
-                                               expandAll="true"
-                                               deferred="true">
+                        <v:page.menu.directory entryLevel="1" levels="1" pages="{item.uid}" as="subMenu" expandAll="true" deferred="true">
                             <f:if condition="{subMenu->f:count()}>0">
                                 <f:then>
                                     <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                           role="button"
-                                           aria-haspopup="true" aria-expanded="false">{item.title}<span
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{item.title}<span
                                                 class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                             <f:for each="{subMenu}" as="subItem" key="subItemKey">
@@ -60,4 +52,3 @@
     </div>
 </nav>
 <!-- /not logged menu -->
-
