@@ -5,7 +5,10 @@
 
 .. include:: Includes.txt
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
 .. _start:
 
 =============================================================
@@ -24,7 +27,10 @@ Company Social Network Data
 		en
 
 	:Description:
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
 
 	:Keywords:
 		comma,separated,list,of,keywords
@@ -33,10 +39,15 @@ Company Social Network Data
 		2021
 
 	:Author:
+<<<<<<< HEAD
 		
 
 	:Email:
 		
+=======
+
+	:Email:
+>>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
 
 	:License:
 		This document is published under the Open Content License
@@ -48,7 +59,10 @@ Company Social Network Data
 	The content of this document is related to TYPO3,
 	a GNU/GPL CMS/Framework available from `www.typo3.org <http://www.typo3.org/>`_.
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
 	**Table of Contents**
 
 .. toctree::

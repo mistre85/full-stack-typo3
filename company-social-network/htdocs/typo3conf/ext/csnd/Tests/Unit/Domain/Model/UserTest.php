@@ -22,8 +22,11 @@ class UserTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         parent::tearDown();
     }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
     /**
      * @test
      */
@@ -54,6 +57,37 @@ class UserTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * @test
      */
+<<<<<<< HEAD
+=======
+    public function getAvatarReturnsInitialValueForFileReference()
+    {
+        self::assertEquals(
+            null,
+            $this->subject->getAvatar()
+        );
+
+    }
+
+    /**
+     * @test
+     */
+    public function setAvatarForFileReferenceSetsAvatar()
+    {
+        $fileReferenceFixture = new \TYPO3\CMS\Extbase\Domain\Model\FileReference();
+        $this->subject->setAvatar($fileReferenceFixture);
+
+        self::assertAttributeEquals(
+            $fileReferenceFixture,
+            'avatar',
+            $this->subject
+        );
+
+    }
+
+    /**
+     * @test
+     */
+>>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
     public function getEmailReturnsInitialValueForString()
     {
         self::assertSame(
@@ -162,6 +196,36 @@ class UserTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * @test
      */
+<<<<<<< HEAD
+=======
+    public function getOnlineReturnsInitialValueForBool()
+    {
+        self::assertSame(
+            false,
+            $this->subject->getOnline()
+        );
+
+    }
+
+    /**
+     * @test
+     */
+    public function setOnlineForBoolSetsOnline()
+    {
+        $this->subject->setOnline(true);
+
+        self::assertAttributeEquals(
+            true,
+            'online',
+            $this->subject
+        );
+
+    }
+
+    /**
+     * @test
+     */
+>>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
     public function getPostListReturnsInitialValueForPost()
     {
         $newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();

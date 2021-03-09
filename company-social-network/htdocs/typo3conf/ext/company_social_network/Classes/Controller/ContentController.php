@@ -27,6 +27,9 @@ namespace Wind\CompanySocialNetwork\Controller;
  ***************************************************************/
 
 use FluidTYPO3\Fluidcontent\Controller\ContentController as AbstractController;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use Wind\Csnd\Domain\Model\User;
 
 /**
  * Content Controller
@@ -38,7 +41,11 @@ class ContentController extends AbstractController
 
     /**
      * postRepository
+<<<<<<< HEAD
      * 
+=======
+     *
+>>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @var \Wind\Csnd\Domain\Repository\PostRepository
      * @inject
      */
@@ -46,12 +53,20 @@ class ContentController extends AbstractController
 
     /**
      * userRepository
+<<<<<<< HEAD
      * 
+=======
+     *
+>>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @var \Wind\Csnd\Domain\Repository\UserRepository
      * @inject
      */
     protected $userRepository = null;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
     /**
      * ogni action nel controller viene eseguita
      * PRIMA del render del content element (componente)
@@ -98,6 +113,7 @@ class ContentController extends AbstractController
 
         );*/
 
+<<<<<<< HEAD
     function beppeBachecaAction()
     {
         //utente ->(1,*) post
@@ -122,6 +138,12 @@ class ContentController extends AbstractController
         );
         */
         
+=======
+
+    function paoloPostListAction()
+    {
+        //dati reali
+>>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
         $postList = $this->postRepository->findAll();
         $this->view->assign("postList", $postList);
         
@@ -155,35 +177,7 @@ class ContentController extends AbstractController
     }
     function paoloChatWidgetAction()
     {
-        //utente ->(1,*) post
-        //post_utente ->1 utente
-
-        $userList = array(
-            array(
-                'avatar' => 'https://picsum.photos/140/140',
-                'nome' => 'paolo',
-                'cognome' => 'mistretta',
-                'connected' => true,
-            ),
-            array(
-                'avatar' => 'https://picsum.photos/140/140',
-                'nome' => 'fabio',
-                'cognome' => 'picciau',
-                'connected' => false
-            ),
-            array(
-                'avatar' => 'https://picsum.photos/140/140',
-                'nome' => 'roberto',
-                'cognome' => 'brambilla',
-                'connected' => true
-            ),
-        );
-
-
-        foreach ($userList as &$user) {
-            $user['status'] = $user['connected'] ? "connected" : "offline";
-        }
-
+        $userList = $this->userRepository->findAll();
         $this->view->assign("userList", $userList);
     }
 

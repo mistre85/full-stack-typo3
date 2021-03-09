@@ -9,7 +9,10 @@ call_user_func(
             'Wind.Csnd',
             'Postlist',
             [
+<<<<<<< HEAD
 
+=======
+>>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
                 'Post' => 'list, show, new, create, edit, update, delete'
             ],
             // non-cacheable actions
@@ -22,6 +25,7 @@ call_user_func(
             'Wind.Csnd',
             'Userlist',
             [
+<<<<<<< HEAD
                 'User' => 'list, show, new, create, edit, update, delete',               
             ],
             // non-cacheable actions
@@ -31,6 +35,16 @@ call_user_func(
         );
 
 
+=======
+                'User' => 'list, show, new, create, edit, update, delete'
+            ],
+            // non-cacheable actions
+            [
+                'User' => 'create, update, delete'
+            ]
+        );
+
+>>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
 	// wizards
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
 		'mod {

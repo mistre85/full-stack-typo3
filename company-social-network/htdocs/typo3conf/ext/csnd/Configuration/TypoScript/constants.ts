@@ -29,6 +29,7 @@ plugin.tx_csnd_userlist {
   }
 }
 
+<<<<<<< HEAD
 
 module.tx_csnd_csnadmin {
   view {
@@ -41,6 +42,19 @@ module.tx_csnd_csnadmin {
   }
   persistence {
     # cat=module.tx_csnd_csnadmin//a; type=string; label=Default storage PID
+=======
+module.tx_csnd_cnsadmin {
+  view {
+    # cat=module.tx_csnd_cnsadmin/file; type=string; label=Path to template root (BE)
+    templateRootPath = EXT:csnd/Resources/Private/Backend/Templates/
+    # cat=module.tx_csnd_cnsadmin/file; type=string; label=Path to template partials (BE)
+    partialRootPath = EXT:csnd/Resources/Private/Backend/Partials/
+    # cat=module.tx_csnd_cnsadmin/file; type=string; label=Path to template layouts (BE)
+    layoutRootPath = EXT:csnd/Resources/Private/Backend/Layouts/
+  }
+  persistence {
+    # cat=module.tx_csnd_cnsadmin//a; type=string; label=Default storage PID
+>>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
     storagePid = 1
   }
 }

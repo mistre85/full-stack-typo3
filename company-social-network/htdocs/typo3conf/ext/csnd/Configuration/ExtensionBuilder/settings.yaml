@@ -1,6 +1,10 @@
 #
 # Extension Builder settings for extension csnd
+<<<<<<< HEAD
 # generated 2021-03-08T08:26:00Z
+=======
+# generated 2021-03-08T09:19:00Z
+>>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
 #
 # See http://www.yaml.org/spec/1.2/spec.html
 #
@@ -64,7 +68,11 @@ overwriteSettings:
 #  ext_tables.sql: merge
 
 ## use static date attribute in xliff files ##
+<<<<<<< HEAD
 #staticDateInXliffFiles: 2021-03-08T08:26:00Z
+=======
+#staticDateInXliffFiles: 2021-03-08T09:19:00Z
+>>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
 
 ## skip docComment (license header) ##
 #skipDocComment
