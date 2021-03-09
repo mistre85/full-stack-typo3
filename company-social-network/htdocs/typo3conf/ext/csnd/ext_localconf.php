@@ -29,7 +29,6 @@ call_user_func(
             ]
         );
 
-
 	// wizards
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
 		'mod {

@@ -16,14 +16,14 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'searchFields' => 'username,email,password,nome,cognome,post_list',
+        'searchFields' => 'username,avatar,email,password,nome,cognome,online,post_list',
         'iconfile' => 'EXT:csnd/Resources/Public/Icons/tx_csnd_domain_model_user.gif'
     ],
     'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, username, email, password, nome, cognome, post_list',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, username, avatar, email, password, nome, cognome, online, post_list',
     ],
     'types' => [
-        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, username, email, password, nome, cognome, post_list, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
+        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, username, avatar, email, password, nome, cognome, online, post_list, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -116,6 +116,53 @@ return [
 			    'eval' => 'trim,required'
 			],
 	    ],
+	    'avatar' => [
+	        'exclude' => true,
+	        'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_user.avatar',
+	        'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
+			    'avatar',
+			    [
+			        'appearance' => [
+			            'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference'
+			        ],
+			        'foreign_types' => [
+			            '0' => [
+			                'showitem' => '
+			                --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+			                --palette--;;filePalette'
+			            ],
+			            \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
+			                'showitem' => '
+			                --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+			                --palette--;;filePalette'
+			            ],
+			            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+			                'showitem' => '
+			                --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+			                --palette--;;filePalette'
+			            ],
+			            \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
+			                'showitem' => '
+			                --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+			                --palette--;;filePalette'
+			            ],
+			            \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
+			                'showitem' => '
+			                --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+			                --palette--;;filePalette'
+			            ],
+			            \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
+			                'showitem' => '
+			                --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+			                --palette--;;filePalette'
+			            ]
+			        ],
+			        'maxitems' => 1,
+			        'minitems' => 1
+			    ],
+			    $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
+			),
+	    ],
 	    'email' => [
 	        'exclude' => true,
 	        'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_user.email',
@@ -131,7 +178,7 @@ return [
 	        'config' => [
 			    'type' => 'input',
 			    'size' => 30,
-			    'eval' => 'nospace,password'
+			    'eval' => 'nospace,password,required'
 			]
 	    ],
 	    'nome' => [
@@ -151,6 +198,19 @@ return [
 			    'size' => 30,
 			    'eval' => 'trim,required'
 			],
+	    ],
+	    'online' => [
+	        'exclude' => true,
+	        'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_user.online',
+	        'config' => [
+			    'type' => 'check',
+			    'items' => [
+			        '1' => [
+			            '0' => 'LLL:EXT:lang/locallang_core.xlf:labels.enabled'
+			        ]
+			    ],
+			    'default' => 0
+			]
 	    ],
 	    'post_list' => [
 	        'exclude' => true,

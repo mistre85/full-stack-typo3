@@ -20,7 +20,7 @@ plugin.tx_companysocialnetwork {
 
 	}
 
-	persistence{
+	persistence {
 	    storagePid = {$plugin.tx_companysocialnetwork.persistence.storagePid}
 	}
 }

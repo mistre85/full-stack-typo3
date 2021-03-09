@@ -8,7 +8,7 @@ namespace Wind\Csnd\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2021 
+ *  (c) 2021
  *
  ***/
 
@@ -18,7 +18,7 @@ namespace Wind\Csnd\Domain\Repository;
 class UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
     /**
-     * Initializes the repository
+     * Initializes the repository.
      *
      * @return void
      */

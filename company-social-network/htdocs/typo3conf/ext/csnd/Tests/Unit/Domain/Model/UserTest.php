@@ -22,8 +22,6 @@ class UserTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         parent::tearDown();
     }
 
-
-
     /**
      * @test
      */
@@ -46,6 +44,34 @@ class UserTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         self::assertAttributeEquals(
             'Conceived at T3CON10',
             'username',
+            $this->subject
+        );
+
+    }
+
+    /**
+     * @test
+     */
+    public function getAvatarReturnsInitialValueForFileReference()
+    {
+        self::assertEquals(
+            null,
+            $this->subject->getAvatar()
+        );
+
+    }
+
+    /**
+     * @test
+     */
+    public function setAvatarForFileReferenceSetsAvatar()
+    {
+        $fileReferenceFixture = new \TYPO3\CMS\Extbase\Domain\Model\FileReference();
+        $this->subject->setAvatar($fileReferenceFixture);
+
+        self::assertAttributeEquals(
+            $fileReferenceFixture,
+            'avatar',
             $this->subject
         );
 
@@ -154,6 +180,33 @@ class UserTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         self::assertAttributeEquals(
             'Conceived at T3CON10',
             'cognome',
+            $this->subject
+        );
+
+    }
+
+    /**
+     * @test
+     */
+    public function getOnlineReturnsInitialValueForBool()
+    {
+        self::assertSame(
+            false,
+            $this->subject->getOnline()
+        );
+
+    }
+
+    /**
+     * @test
+     */
+    public function setOnlineForBoolSetsOnline()
+    {
+        $this->subject->setOnline(true);
+
+        self::assertAttributeEquals(
+            true,
+            'online',
             $this->subject
         );
 

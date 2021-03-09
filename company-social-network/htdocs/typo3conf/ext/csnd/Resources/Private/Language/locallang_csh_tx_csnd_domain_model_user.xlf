@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2021-03-08T08:49:48Z" product-name="csnd">
+	<file source-language="en" datatype="plaintext" original="messages" date="2021-03-08T12:42:21Z" product-name="csnd">
 		<header/>
 		<body>
 			<trans-unit id="tx_csnd_domain_model_postlist">
@@ -10,13 +10,16 @@
 				<source></source>
 			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_userlist">
-				<source>User ist </source>
+				<source>User List</source>
 			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_userlist.description">
 				<source></source>
 			</trans-unit>
 			<trans-unit id="username.description">
 				<source>username</source>
+			</trans-unit>
+			<trans-unit id="avatar.description">
+				<source>avatar</source>
 			</trans-unit>
 			<trans-unit id="email.description">
 				<source>email</source>
@@ -29,6 +32,9 @@
 			</trans-unit>
 			<trans-unit id="cognome.description">
 				<source>cognome</source>
+			</trans-unit>
+			<trans-unit id="online.description">
+				<source>online</source>
 			</trans-unit>
 			<trans-unit id="post_list.description">
 				<source>postList</source>

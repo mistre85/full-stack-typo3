@@ -41,8 +41,6 @@ plugin.tx_csnd_userlist {
   }
 }
 
-
-
 plugin.tx_csnd._CSS_DEFAULT_STYLE (
     textarea.f3-form-error {
         background-color:#FF9F9F;
@@ -76,19 +74,17 @@ plugin.tx_csnd._CSS_DEFAULT_STYLE (
     }
 )
 
-
-
 # Module configuration
-module.tx_csnd_web_csndcsnadmin {
+module.tx_csnd_web_csndcnsadmin {
   persistence {
-    storagePid = {$module.tx_csnd_csnadmin.persistence.storagePid}
+    storagePid = {$module.tx_csnd_cnsadmin.persistence.storagePid}
   }
   view {
     templateRootPaths.0 = EXT:csnd/Resources/Private/Backend/Templates/
-    templateRootPaths.1 = {$module.tx_csnd_csnadmin.view.templateRootPath}
+    templateRootPaths.1 = {$module.tx_csnd_cnsadmin.view.templateRootPath}
     partialRootPaths.0 = EXT:csnd/Resources/Private/Backend/Partials/
-    partialRootPaths.1 = {$module.tx_csnd_csnadmin.view.partialRootPath}
+    partialRootPaths.1 = {$module.tx_csnd_cnsadmin.view.partialRootPath}
     layoutRootPaths.0 = EXT:csnd/Resources/Private/Backend/Layouts/
-    layoutRootPaths.1 = {$module.tx_csnd_csnadmin.view.layoutRootPath}
+    layoutRootPaths.1 = {$module.tx_csnd_cnsadmin.view.layoutRootPath}
   }
 }
