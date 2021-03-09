@@ -27,7 +27,9 @@ namespace Wind\CompanySocialNetwork\Controller;
  ***************************************************************/
 
 use FluidTYPO3\Fluidcontent\Controller\ContentController as AbstractController;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
+use Wind\Csnd\Domain\Model\User;
 
 /**
  * Content Controller
@@ -108,6 +110,7 @@ class ContentController extends AbstractController
 
         );*/
     }
+
 
     function paoloPostListAction()
     {

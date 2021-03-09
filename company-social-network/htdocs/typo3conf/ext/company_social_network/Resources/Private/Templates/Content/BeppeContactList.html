@@ -1,0 +1,46 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">  
+        <flux:form id="BeppeContactList" options="{group: 'Lista'}" label="Contact List (Beppe)"
+        
+        description="descrizione Post Lista"></flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>--Bacheca</strong><br/>
+
+    </f:section>
+
+    <f:section name="Main">
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/beppePostList.css"/>
+                   
+                    <div class="panel panel-default panelsize">
+                        <div class="panel-heading clearfix">
+                            <div class="row">
+                                <div class="col-lg-5">Contatti</div> 
+                                <div class="col-lg-1 col-lg-offset-5">
+                                   <!-- <span class="glyphicon-class glyphicon glyphicon-facetime-video"></span>-->
+                                   44
+                                </div>
+                                <div class="col-lg-1">
+                                    <!-- <span class="glyphicon-class glyphicon glyphicon-search"></span> -->
+                                    55
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <f:debug>{postList}</f:debug>
+                                <f:for each="{postList}" as="contactlist">
+                                    <f:render partial="BeppeContactList" arguments="{item: contactlist}"></f:render>                        
+                                </f:for>
+                            </div>    
+                        </div>
+                    </div>
+            
+    </f:section>
+</div>
