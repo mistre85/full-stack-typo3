@@ -6,7 +6,7 @@
     <f:layout name="Content"/>
 
     <f:section name="Configuration">
-        <flux:form id="FabioConnectedUsers" options="{group: 'Blocchi'}" label="Utenti connessi (Fabio)" description="Mostra gli utenti connessi in chat">
+        <flux:form id="ConnectedUsers" options="{group: 'Blocchi'}" label="Utenti connessi" description="Mostra gli utenti connessi in chat">
 
         </flux:form>
     </f:section>
@@ -17,7 +17,6 @@
     </f:section>
 
     <f:section name="Main">
-        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/fabioMain.css"/>
         <div class="chat">
             <div class="chat_title">Contatti</div>
             <f:for each="{conn_users}" as="conn" iteration="i">

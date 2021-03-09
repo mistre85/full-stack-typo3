@@ -29,9 +29,8 @@ plugin.tx_companysocialnetwork {
 
 #system libs
 #usato l'helper
-#page.includeCSS.boostrap = /fileadmin/templates/bootstrap/css/bootstrap.css
+page.includeCSS.boostrap = EXT:company-social-network/Resources/Public/bootstrap/css/bootstrap.css
 
 #custom libs
 #usato l'helper
-#page.includeCSS.main = /fileadmin/templates/css/main.css
-#page.includeCSS.main = /fileadmin/templates/css/robertoAboutTeam.css
+page.includeCSS.main = EXT:company-social-network/Resources/Public/css/main.css

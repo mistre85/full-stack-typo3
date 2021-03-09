@@ -1,0 +1,228 @@
+@font-face {
+    src: url("/fileadmin/templates/fonts/tt-norm-fonts/TTNorms-Regular.otf");
+    font-family: "tt-norm";
+}
+
+@font-face {
+    src: url("/fileadmin/templates/fonts/tt-norm-fonts/TTNorms-Bold.otf");
+    font-family: "tt-norm";
+    font-weight: bold;
+}
+
+.starter-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+html, body {
+    font-family: tt-norm;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-item {
+    text-align: center;
+    flex-grow: 1;
+    background-color: white;
+    width: 100px;
+    margin: 10px;
+}
+
+.ico img {
+    width: 80px;
+    height: auto;
+}
+
+.herospace {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 500px;
+}
+
+.herospace .text{
+    padding-top: 150px;
+    color: black;
+}
+
+.herospace .image{
+    display: inline-block;
+    padding-top: 150px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 10%;
+    width: 300px;
+    height: 300px;
+    vertical-align: middle;
+    line-height: 1.5;
+}
+
+.post {
+    background-color: #f1f1f1;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+}
+
+.post_head {
+    display: block;
+}
+
+.post_head .photo {
+    display: inline-block;
+}
+
+.post_head .photo img {
+    border-radius: 50%;
+    width: 50%;
+}
+
+.post_head .user_info {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.post_body, .text, .likes {
+    margin-top: 30px;
+    text-align: start;
+    color: #1c1e21;
+    line-height: 1.34;
+}
+
+.post_body .text {
+    font-size: 16px;
+}
+
+.post_body .likes {
+    color: #717171;
+}
+
+.post_body .buttons {
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+    margin: 0 auto;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.chat {
+    margin: 0 auto;
+    background-color: #f1f1f1;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+}
+
+.chat_title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.chat .conn {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    position: relative;
+    top: -13px;
+    left: 40px;
+}
+
+.online {
+    background-color: green;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: relative;
+    top: -13px;
+    left: 40px;
+    border: 1px solid white;
+}
+
+.offline {
+    background-color: grey;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: relative;
+    top: -13px;
+    left: 40px;
+    border: 1px solid white;
+}
+
+.team-blocks {
+    background-color: #f9f9f9;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+.content {
+    background-color: #f9f9f9;
+    display: block;
+    height: auto;
+    text-align: center;
+}
+
+.card {
+    text-align: center;
+    padding: 20px 30px 30px 30px;
+}
+
+.title {
+    border-bottom: #d6d6d6 1px solid;
+    padding: 5px;
+}
+
+.card_name {
+    padding: 20px 0px 30px 0px;
+    font-weight: 800;
+}
+
+.card_foto img {
+    border-radius: 50%;
+    width: 35%;
+}
+
+.card_desc {
+    color: #999;
+    font-size: 12px;
+    text-align: center;
+}
+
+.subtitle {
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.profile {
+    background-color: #f9f9f9;
+    padding: 60px;
+    margin: 0 auto;
+    display: block;
+    height: 700px;
+}
+
+.spacer {
+    height: 30px;
+    border-bottom: 1px solid #999;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.photo img {
+    border-radius: 50%;
+    width: 150px;
+    border: 1px solid #999;
+}

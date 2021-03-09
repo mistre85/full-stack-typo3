@@ -9,7 +9,7 @@
         <f:comment>
             1- ricordarsi di cambiare l'id
         </f:comment>
-        <flux:form id="fabioTeam" label="Blocco Team - (Fabio)" description="Aggiunge descrizione Team di lavoro" options="{group: 'Blocchi'}">
+        <flux:form id="Team" label="Blocco Team" description="Aggiunge descrizione Team di lavoro" options="{group: 'Blocchi'}">
             <flux:field.input name="title" label="Titolo blocco"/>
             <flux:field.text name="description" enableRichText="true" label="Descrizione blocco"/>
             <flux:form.section name="teams" label="Lista blocchi collaboratori">
@@ -22,11 +22,10 @@
     </f:section>
 
     <f:section name="Preview">
-        <strong>Blocco Team (Fabio)</strong><br/>
+        <strong>Blocco Team</strong><br/>
     </f:section>
 
     <f:section name="Main">
-        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/fabioTeam.css"/>
         <div class="team-blocks">
             <div class="container col-lg-12">
                 <f:if condition="{title}">

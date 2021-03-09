@@ -6,18 +6,17 @@
     <f:layout name="Content"/>
 
     <f:section name="Configuration">
-        <flux:form id="FabioPostBacheca" options="{group: 'Blocchi'}" label="Post in Bacheca (Fabio)" description="Mostra i post in Bacheca">
+        <flux:form id="PostBacheca" options="{group: 'Blocchi'}" label="Post in Bacheca" description="Mostra i post in Bacheca">
 
         </flux:form>
     </f:section>
 
     <f:section name="Preview">
-        <strong>Post in Bacheca (Fabio)</strong><br/>
+        <strong>Post in Bacheca</strong><br/>
         Mostra i post in Bacheca
     </f:section>
 
     <f:section name="Main">
-        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/fabioMain.css"/>
         <f:for each="{posts}" as="post">
             <f:for each="{post}" as="pst">
                 <f:render partial="FabioPost" arguments="{post: pst}"/>

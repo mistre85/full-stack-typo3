@@ -6,7 +6,7 @@
     <f:layout name="Content"/>
 
     <f:section name="Configuration">
-        <flux:form id="fabioCards" options="{group: 'Visori'}" label="Cards (Fabio)" description="Permette di inserire un visore con immagini e descrizione">
+        <flux:form id="Cards" options="{group: 'Visori'}" label="Cards" description="Permette di inserire un visore con immagini e descrizione">
             <flux:form.section name="cards" label="Visore Cards">
                 <flux:form.object name="item" label="Aggiungi Card">
                     <flux:field.file name="icon" allowed="jpg,png,svg" showThumbnails="1" label="Icona card" />
@@ -24,14 +24,12 @@
     </f:section>
 
     <f:section name="Main">
-        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/fabioCards.css"/>
-
         <div class="cards-block">
             <div class="container">
                 <div class="row">
                     <div class="flex-container">
                         <f:for each="{cards}" as="card">
-                            <f:render partial="FabioCard" arguments="{crd: card.item}"/>
+                            <f:render partial="Card" arguments="{crd: card.item}"/>
                         </f:for>
                     </div>
                 </div>

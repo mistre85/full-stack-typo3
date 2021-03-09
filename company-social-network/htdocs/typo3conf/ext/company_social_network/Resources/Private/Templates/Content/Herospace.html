@@ -6,7 +6,7 @@
     <f:layout name="Content"/>
 
     <f:section name="Configuration">
-        <flux:form id="fabioHerospace" options="{group: 'Visori'}" label="Herospace (Fabio)" description="Permette di inserire un visore con immagini e descrizione">
+        <flux:form id="Herospace" options="{group: 'Visori'}" label="Herospace" description="Permette di inserire un visore con immagini e descrizione">
             <flux:field.input name="title" label="Titolo Herospace"/>
             <flux:field.input name="description" label="Descrizione Herospace"/>
             <flux:form.section name="elenchi" label="Elenco puntato">
@@ -24,7 +24,6 @@
     </f:section>
 
     <f:section name="Main">
-        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/fabioHerospace.css"/>
         {v:content.resources.fal(field: 'backgroundImage') -> v:iterator.first() -> v:variable.set(name: 'falImage')}
 
         <div class="herospace" style="background-image: url('{falImage.url}');">
