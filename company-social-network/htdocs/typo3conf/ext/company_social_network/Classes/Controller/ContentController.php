@@ -27,6 +27,7 @@ namespace Wind\CompanySocialNetwork\Controller;
  ***************************************************************/
 
 use FluidTYPO3\Fluidcontent\Controller\ContentController as AbstractController;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /**
  * Content Controller
@@ -35,6 +36,15 @@ use FluidTYPO3\Fluidcontent\Controller\ContentController as AbstractController;
  */
 class ContentController extends AbstractController
 {
+
+    /**
+     * postRepository
+     *
+     * @var \Windtre\Csnd\Domain\Repository\PostRepository
+     * @inject
+     */
+    protected $postRepository = null;
+
     public function fabioUserProfileAction()
     {
         $json = file_get_contents("http://csn.local/fileadmin/assets/profile.json");
@@ -54,21 +64,24 @@ class ContentController extends AbstractController
 
     public function fabioPostBachecaAction()
     {
-        $data = [
-            [
-                ['name' => 'Mario Rossi', 'photo' => 'https://picsum.photos/100', 'likes' => rand(0, 100),
-                'posttext' => 'Hello World!']
-            ],
-            [
-                ['name' => 'Pippo Pluto', 'photo' => 'https://picsum.photos/100', 'likes' => rand(0, 100),
-                'posttext' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus ut velit quis sodales. Cras vehicula libero elit, sed vehicula sapien efficitur nec. Curabitur aliquam ut arcu non laoreet.']
-            ],
-            [
-                ['name' => 'Pinco Pallino', 'photo' => 'https://picsum.photos/100', 'likes' => rand(0, 100),
-                'posttext' => 'Aliquam et elit nec felis pharetra consectetur.']
-            ],
-        ];
-        $this->view->assign('posts', $data);
+//        $data = [
+//            [
+//                ['name' => 'Mario Rossi', 'photo' => 'https://picsum.photos/100', 'likes' => rand(0, 100),
+//                'posttext' => 'Hello World!']
+//            ],
+//            [
+//                ['name' => 'Pippo Pluto', 'photo' => 'https://picsum.photos/100', 'likes' => rand(0, 100),
+//                'posttext' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus ut velit quis sodales. Cras vehicula libero elit, sed vehicula sapien efficitur nec. Curabitur aliquam ut arcu non laoreet.']
+//            ],
+//            [
+//                ['name' => 'Pinco Pallino', 'photo' => 'https://picsum.photos/100', 'likes' => rand(0, 100),
+//                'posttext' => 'Aliquam et elit nec felis pharetra consectetur.']
+//            ],
+//        ];
+//        $this->view->assign('posts', $data);
+
+        $posts = $this->postRepository->findAll();
+        $this->view->assign('posts', $posts);
     }
 
     function beppeHerospaceAction()

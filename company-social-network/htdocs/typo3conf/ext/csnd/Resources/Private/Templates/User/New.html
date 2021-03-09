@@ -15,13 +15,13 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <f:section name="main">
 <h1>New User</h1>
 
-<f:flashMessages />
+    <f:flashMessages />
 
-<f:render partial="FormErrors" arguments="{object:User}" />
+    <f:render partial="FormErrors" arguments="{object:User}" />
 
-<f:form action="create"  name="newUser" object="{newUser}">
-<f:render partial="User/FormFields" />
-	<f:form.submit value="Create new" />
-</f:form>
-</f:section>
+    <f:form action="create"  name="newUser" object="{newUser}">
+        <f:render partial="User/FormFields" />
+        <f:form.submit value="Create new" />
+    </f:form>
+    </f:section>
 </html>
