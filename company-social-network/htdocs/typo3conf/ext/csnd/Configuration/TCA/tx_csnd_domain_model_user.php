@@ -112,8 +112,10 @@ return [
 	        'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_user.username',
 	        'config' => [
 			    'type' => 'input',
-			    'size' => 30,
-			    'eval' => 'trim,required'
+			    'size' => 5,
+			    'eval' => 'trim,required',
+                'max' => 35
+
 			],
 	    ],
 	    'email' => [

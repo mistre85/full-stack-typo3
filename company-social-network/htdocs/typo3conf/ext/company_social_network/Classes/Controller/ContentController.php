@@ -37,6 +37,22 @@ class ContentController extends AbstractController
 {
 
     /**
+     * postRepository
+     * 
+     * @var \Wind\Csnd\Domain\Repository\PostRepository
+     * @inject
+     */
+    protected $postRepository = null;
+
+    /**
+     * userRepository
+     * 
+     * @var \Wind\Csnd\Domain\Repository\UserRepository
+     * @inject
+     */
+    protected $userRepository = null;
+
+    /**
      * ogni action nel controller viene eseguita
      * PRIMA del render del content element (componente)
      * possiamo quindi assegnare nuove variabili che verranno poi
@@ -86,8 +102,8 @@ class ContentController extends AbstractController
     {
         //utente ->(1,*) post
         //post_utente ->1 utente
-
-        $postList = array(
+        //stub
+       /* $postList = array(
             array('text' => 'buongiornissimo', 'like' => 10, 'user' => array(
                 'avatar' => 'https://picsum.photos/140/140',
                 'nome' => 'paolo',
@@ -104,12 +120,16 @@ class ContentController extends AbstractController
                 'cognome' => 'brambilla'
             )),
         );
-
+        */
+        
+        $postList = $this->postRepository->findAll();
         $this->view->assign("postList", $postList);
+        
+        
     }
 
     function beppeContactListAction(){
-        $data = [
+        $userList = [
             array(
                 'avatar' => 'https://picsum.photos/140/140',
                 'nome' => 'Paolo',
@@ -130,7 +150,8 @@ class ContentController extends AbstractController
             )
         ];
 
-        $this->view->assign("postList", $data);
+        $userList = $this->userRepository->findAll();
+        $this->view->assign("postList", $userList);
     }
     function paoloChatWidgetAction()
     {
