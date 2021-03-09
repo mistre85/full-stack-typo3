@@ -15,9 +15,16 @@
         </div>
         <div class="panel-footer clearfix">
             <div class="likes-text">
-                Piace a
-                <span class="likes-count badge">{post.like}</span>
-                dipendenti
+                <f:if condition="{post.likes}>0">
+                    <f:then>
+                        Piace a
+                        <span class="likes-count badge">{post.likes}</span>
+                        dipendenti
+                    </f:then>
+                    <f:else>
+                        Ancora nessun like
+                    </f:else>
+                </f:if>
             </div>
             <button class="btn btn-primary pull-right" type="button">
                 Mi piace
