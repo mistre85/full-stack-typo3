@@ -282,6 +282,12 @@ return [
             'packagePath' => 'typo3conf/ext/builder/',
             'suggestions' => [],
         ],
+        'csnd' => [
+            'composerName' => 'csnd',
+            'state' => 'active',
+            'packagePath' => 'typo3conf/ext/csnd/',
+            'suggestions' => [],
+        ],
         'extension_builder' => [
             'composerName' => 'friendsoftypo3/extension-builder',
             'state' => 'active',
@@ -310,12 +316,6 @@ return [
             'composerName' => 'typo3/cms-adodb',
             'state' => 'inactive',
             'packagePath' => 'typo3/sysext/adodb/',
-            'suggestions' => [],
-        ],
-        'csndata' => [
-            'composerName' => 'csndata',
-            'state' => 'inactive',
-            'packagePath' => 'typo3conf/ext/csndata/',
             'suggestions' => [],
         ],
         'css_styled_content' => [

@@ -3,3 +3,5 @@ plugin.tx_companysocialnetwork.view {
 	partialRootPaths.0 = EXT:company_social_network/Resources/Private/Partials/
 	layoutRootPaths.0 = EXT:company_social_network/Resources/Private/Layouts/
 }
+
+plugin.tx_companysocialnetwork.storagePid = 1

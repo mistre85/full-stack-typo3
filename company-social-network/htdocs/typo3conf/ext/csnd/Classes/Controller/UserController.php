@@ -1,4 +1,5 @@
 <?php
+
 namespace Wind\Csnd\Controller;
 
 /***
@@ -8,7 +9,7 @@ namespace Wind\Csnd\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2021 
+ *  (c) 2021
  *
  ***/
 
@@ -19,7 +20,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
     /**
      * userRepository
-     * 
+     *
      * @var \Wind\Csnd\Domain\Repository\UserRepository
      * @inject
      */
@@ -27,7 +28,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action list
-     * 
+     *
      * @return void
      */
     public function listAction()
@@ -38,7 +39,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action show
-     * 
+     *
      * @param \Wind\Csnd\Domain\Model\User $user
      * @return void
      */
@@ -49,7 +50,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action new
-     * 
+     *
      * @return void
      */
     public function newAction()
@@ -59,7 +60,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action create
-     * 
+     *
      * @param \Wind\Csnd\Domain\Model\User $newUser
      * @return void
      */
@@ -72,7 +73,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action edit
-     * 
+     *
      * @param \Wind\Csnd\Domain\Model\User $user
      * @ignorevalidation $user
      * @return void
@@ -84,7 +85,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action update
-     * 
+     *
      * @param \Wind\Csnd\Domain\Model\User $user
      * @return void
      */
@@ -97,7 +98,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action delete
-     * 
+     *
      * @param \Wind\Csnd\Domain\Model\User $user
      * @return void
      */

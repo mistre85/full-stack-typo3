@@ -10,7 +10,7 @@ plugin.tx_csnd_postlist {
   }
   persistence {
     # cat=plugin.tx_csnd_postlist//a; type=string; label=Default storage PID
-    storagePid =
+    storagePid = 1
   }
 }
 
@@ -25,7 +25,7 @@ plugin.tx_csnd_userlist {
   }
   persistence {
     # cat=plugin.tx_csnd_userlist//a; type=string; label=Default storage PID
-    storagePid =
+    storagePid = 1
   }
 }
 
@@ -41,6 +41,6 @@ module.tx_csnd_csnadmin {
   }
   persistence {
     # cat=module.tx_csnd_csnadmin//a; type=string; label=Default storage PID
-    storagePid =
+    storagePid = 1
   }
 }

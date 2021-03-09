@@ -37,6 +37,22 @@ class ContentController extends AbstractController
 {
 
     /**
+     * postRepository
+     *
+     * @var \Wind\Csnd\Domain\Repository\PostRepository
+     * @inject
+     */
+    protected $postRepository = null;
+
+    /**
+     * userRepository
+     *
+     * @var \Wind\Csnd\Domain\Repository\UserRepository
+     * @inject
+     */
+    protected $userRepository = null;
+
+    /**
      * ogni action nel controller viene eseguita
      * PRIMA del render del content element (componente)
      * possiamo quindi assegnare nuove variabili che verranno poi
@@ -152,7 +168,7 @@ class ContentController extends AbstractController
 
     function robertoPostListAction()
     {
-        $postList = array(
+        /*$postList = array(
             array(
                 'text' => 'post uno', 
                 'comment' => 'commento uno',
@@ -183,14 +199,18 @@ class ContentController extends AbstractController
                     'cognome' => 'brambilla'
                 )
             ),
-        );
+        );*/
         //var_dump($postList);
+        //$this->view->assign("postList", $postList);
+        $postList = $this->postRepository->findAll();
+        //var_dump($postList->toArray());
         $this->view->assign("postList", $postList);
+
     }
 
     function robertoPostUserListAction()
     {
-        $postUserList = array (
+        /*$postUserList = array (
             array (
             'user' => array(
                 'avatar' => 'https://picsum.photos/40/40',
@@ -214,10 +234,19 @@ class ContentController extends AbstractController
                 'cognome' => 'brambilla',
                 'stato' => true
             )),
-        );
+        );*/
 //        var_dump($postUserList);
 
-        $this->view->assign("postUserList", $postUserList);
+        //$this->view->assign("postUserList", $postUserList);
+        //$postUserList = $this->userRepository->findAll();
+
+        /*foreach ($userList as &$user){
+            $user['status'] = $user['connected'] ? "connected" : "offline";
+        }*/
+
+        $userList = $this->userRepository->findAll();
+        $this->view->assign("userList", $userList);
+
 
     }
     
