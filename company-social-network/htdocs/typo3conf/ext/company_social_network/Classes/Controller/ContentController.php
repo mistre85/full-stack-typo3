@@ -108,6 +108,8 @@ class ContentController extends AbstractController
         //dati reali
         $postList = $this->postRepository->findAll();
         $this->view->assign("postList", $postList);
+
+
     }
 
     function paoloChatWidgetAction()
