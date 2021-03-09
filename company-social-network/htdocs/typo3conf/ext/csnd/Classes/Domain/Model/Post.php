@@ -8,11 +8,7 @@ namespace Wind\Csnd\Domain\Model;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
-<<<<<<< HEAD
- *  (c) 2021 
-=======
  *  (c) 2021
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
  *
  ***/
 
@@ -23,11 +19,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     /**
      * text
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @var string
      * @validate NotEmpty
      */
@@ -35,33 +27,21 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * likes
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @var int
      */
     protected $likes = 0;
 
     /**
      * user
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @var \Wind\Csnd\Domain\Model\User
      */
     protected $user = null;
 
     /**
      * Returns the text
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @return string $text
      */
     public function getText()
@@ -71,11 +51,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Sets the text
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @param string $text
      * @return void
      */
@@ -86,11 +62,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Returns the likes
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @return int $likes
      */
     public function getLikes()
@@ -100,11 +72,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Sets the likes
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @param int $likes
      * @return void
      */
@@ -115,11 +83,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Returns the user
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @return \Wind\Csnd\Domain\Model\User $user
      */
     public function getUser()
@@ -129,11 +93,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Sets the user
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @param \Wind\Csnd\Domain\Model\User $user
      * @return void
      */

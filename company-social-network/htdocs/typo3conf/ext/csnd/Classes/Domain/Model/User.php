@@ -8,11 +8,7 @@ namespace Wind\Csnd\Domain\Model;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
-<<<<<<< HEAD
- *  (c) 2021 
-=======
  *  (c) 2021
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
  *
  ***/
 
@@ -23,11 +19,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     /**
      * username
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @var string
      * @validate NotEmpty
      */
@@ -35,11 +27,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * email
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @var string
      * @validate NotEmpty
      */
@@ -47,11 +35,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * password
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @var string
      * @validate NotEmpty
      */
@@ -59,11 +43,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * nome
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @var string
      * @validate NotEmpty
      */
@@ -71,11 +51,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * cognome
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @var string
      * @validate NotEmpty
      */
@@ -83,43 +59,13 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * postList
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Wind\Csnd\Domain\Model\Post>
      * @cascade remove
      */
     protected $postList = null;
 
     /**
-<<<<<<< HEAD
-     * __construct
-     */
-    public function __construct()
-    {
-        //Do not remove the next line: It would break the functionality
-        $this->initStorageObjects();
-    }
-
-    /**
-     * Initializes all ObjectStorage properties
-     * Do not modify this method!
-     * It will be rewritten on each save in the extension builder
-     * You may modify the constructor of this class instead
-     * 
-     * @return void
-     */
-    protected function initStorageObjects()
-    {
-        $this->postList = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-    }
-
-    /**
-     * Returns the username
-     * 
-=======
      * avatar
      *
      * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
@@ -139,7 +85,6 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the username
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @return string $username
      */
     public function getUsername()
@@ -149,11 +94,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Sets the username
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @param string $username
      * @return void
      */
@@ -164,11 +105,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Returns the email
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @return string $email
      */
     public function getEmail()
@@ -178,11 +115,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Sets the email
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @param string $email
      * @return void
      */
@@ -193,11 +126,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Returns the password
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @return string $password
      */
     public function getPassword()
@@ -207,11 +136,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Sets the password
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @param string $password
      * @return void
      */
@@ -222,11 +147,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Returns the nome
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @return string $nome
      */
     public function getNome()
@@ -236,11 +157,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Sets the nome
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @param string $nome
      * @return void
      */
@@ -251,11 +168,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Returns the cognome
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @return string $cognome
      */
     public function getCognome()
@@ -265,11 +178,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Sets the cognome
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @param string $cognome
      * @return void
      */
@@ -279,10 +188,6 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-<<<<<<< HEAD
-     * Adds a Post
-     * 
-=======
      * __construct
      */
     public function __construct()
@@ -307,7 +212,6 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Adds a Post
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @param \Wind\Csnd\Domain\Model\Post $postList
      * @return void
      */
@@ -318,11 +222,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Removes a Post
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @param \Wind\Csnd\Domain\Model\Post $postListToRemove The Post to be removed
      * @return void
      */
@@ -333,11 +233,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Returns the postList
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Wind\Csnd\Domain\Model\Post> $postList
      */
     public function getPostList()
@@ -347,11 +243,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Sets the postList
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Wind\Csnd\Domain\Model\Post> $postList
      * @return void
      */
@@ -359,8 +251,6 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->postList = $postList;
     }
-<<<<<<< HEAD
-=======
 
     /**
      * Returns the avatar
@@ -413,5 +303,4 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->online;
     }
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
 }

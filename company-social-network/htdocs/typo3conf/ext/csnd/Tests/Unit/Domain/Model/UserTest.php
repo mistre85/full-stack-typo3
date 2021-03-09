@@ -22,11 +22,6 @@ class UserTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         parent::tearDown();
     }
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
     /**
      * @test
      */
@@ -57,8 +52,6 @@ class UserTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * @test
      */
-<<<<<<< HEAD
-=======
     public function getAvatarReturnsInitialValueForFileReference()
     {
         self::assertEquals(
@@ -87,7 +80,6 @@ class UserTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * @test
      */
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
     public function getEmailReturnsInitialValueForString()
     {
         self::assertSame(
@@ -196,8 +188,6 @@ class UserTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * @test
      */
-<<<<<<< HEAD
-=======
     public function getOnlineReturnsInitialValueForBool()
     {
         self::assertSame(
@@ -225,7 +215,6 @@ class UserTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * @test
      */
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
     public function getPostListReturnsInitialValueForPost()
     {
         $newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();

@@ -16,16 +16,6 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-<<<<<<< HEAD
-        'searchFields' => 'username,email,password,nome,cognome,post_list',
-        'iconfile' => 'EXT:csnd/Resources/Public/Icons/tx_csnd_domain_model_user.gif'
-    ],
-    'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, username, email, password, nome, cognome, post_list',
-    ],
-    'types' => [
-        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, username, email, password, nome, cognome, post_list, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
-=======
         'searchFields' => 'username,avatar,email,password,nome,cognome,online,post_list',
         'iconfile' => 'EXT:csnd/Resources/Public/Icons/tx_csnd_domain_model_user.gif'
     ],
@@ -34,7 +24,6 @@ return [
     ],
     'types' => [
         '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, username, avatar, email, password, nome, cognome, online, post_list, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -123,14 +112,6 @@ return [
 	        'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_user.username',
 	        'config' => [
 			    'type' => 'input',
-<<<<<<< HEAD
-			    'size' => 5,
-			    'eval' => 'trim,required',
-                'max' => 35
-
-			],
-	    ],
-=======
 			    'size' => 30,
 			    'eval' => 'trim,required'
 			],
@@ -182,7 +163,6 @@ return [
 			    $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
 			),
 	    ],
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
 	    'email' => [
 	        'exclude' => true,
 	        'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_user.email',
@@ -219,8 +199,6 @@ return [
 			    'eval' => 'trim,required'
 			],
 	    ],
-<<<<<<< HEAD
-=======
 	    'online' => [
 	        'exclude' => true,
 	        'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_user.online',
@@ -234,7 +212,6 @@ return [
 			    'default' => 0
 			]
 	    ],
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
 	    'post_list' => [
 	        'exclude' => true,
 	        'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_user.post_list',

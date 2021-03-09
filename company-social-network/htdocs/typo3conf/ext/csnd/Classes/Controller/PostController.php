@@ -1,10 +1,7 @@
 <?php
 namespace Wind\Csnd\Controller;
 
-<<<<<<< HEAD
-=======
 use Wind\Csnd\Domain\Repository\PostRepository;
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
 /***
  *
  * This file is part of the "Company Social Network Data" Extension for TYPO3 CMS.
@@ -12,11 +9,7 @@ use Wind\Csnd\Domain\Repository\PostRepository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
-<<<<<<< HEAD
- *  (c) 2021 
-=======
  *  (c) 2021
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
  *
  ***/
 
@@ -27,11 +20,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
     /**
      * postRepository
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @var \Wind\Csnd\Domain\Repository\PostRepository
      * @inject
      */
@@ -39,11 +28,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action list
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @return void
      */
     public function listAction()
@@ -54,11 +39,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action show
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @param \Wind\Csnd\Domain\Model\Post $post
      * @return void
      */
@@ -69,11 +50,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action new
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @return void
      */
     public function newAction()
@@ -83,11 +60,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action create
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @param \Wind\Csnd\Domain\Model\Post $newPost
      * @return void
      */
@@ -100,11 +73,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action edit
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @param \Wind\Csnd\Domain\Model\Post $post
      * @ignorevalidation $post
      * @return void
@@ -116,11 +85,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action update
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @param \Wind\Csnd\Domain\Model\Post $post
      * @return void
      */
@@ -133,11 +98,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action delete
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @param \Wind\Csnd\Domain\Model\Post $post
      * @return void
      */

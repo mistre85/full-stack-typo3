@@ -8,11 +8,7 @@ namespace Wind\Csnd\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
-<<<<<<< HEAD
- *  (c) 2021 
-=======
  *  (c) 2021
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
  *
  ***/
 
@@ -23,11 +19,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
     /**
      * userRepository
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @var \Wind\Csnd\Domain\Repository\UserRepository
      * @inject
      */
@@ -35,11 +27,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action list
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @return void
      */
     public function listAction()
@@ -50,11 +38,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action show
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @param \Wind\Csnd\Domain\Model\User $user
      * @return void
      */
@@ -65,11 +49,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action new
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @return void
      */
     public function newAction()
@@ -79,11 +59,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action create
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @param \Wind\Csnd\Domain\Model\User $newUser
      * @return void
      */
@@ -96,11 +72,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action edit
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @param \Wind\Csnd\Domain\Model\User $user
      * @ignorevalidation $user
      * @return void
@@ -112,11 +84,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action update
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @param \Wind\Csnd\Domain\Model\User $user
      * @return void
      */
@@ -129,11 +97,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action delete
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @param \Wind\Csnd\Domain\Model\User $user
      * @return void
      */

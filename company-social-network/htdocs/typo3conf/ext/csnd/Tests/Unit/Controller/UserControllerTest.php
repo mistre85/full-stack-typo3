@@ -25,11 +25,6 @@ class UserControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         parent::tearDown();
     }
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
     /**
      * @test
      */
@@ -100,10 +95,6 @@ class UserControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $this->subject->editAction($user);
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
     /**
      * @test
      */

@@ -3,10 +3,6 @@
 
 This Template is responsible for creating a table of domain objects.
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
 If you modify this template, do not forget to change the overwrite settings
 in /Configuration/ExtensionBuilder/settings.yaml:
   Resources:
@@ -24,18 +20,12 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <table  class="tx_csnd" >
 	<tr>
 		<th><f:translate key="tx_csnd_domain_model_user.username" /></th>
-<<<<<<< HEAD
-=======
 		<th><f:translate key="tx_csnd_domain_model_user.avatar" /></th>
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
 		<th><f:translate key="tx_csnd_domain_model_user.email" /></th>
 		<th><f:translate key="tx_csnd_domain_model_user.password" /></th>
 		<th><f:translate key="tx_csnd_domain_model_user.nome" /></th>
 		<th><f:translate key="tx_csnd_domain_model_user.cognome" /></th>
-<<<<<<< HEAD
-=======
 		<th><f:translate key="tx_csnd_domain_model_user.online" /></th>
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
 		<th> </th>
 		<th> </th>
 	</tr>
@@ -43,18 +33,12 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	<f:for each="{users}" as="user">
 		<tr>
 			<td><f:link.action action="show" arguments="{user : user}"> {user.username}</f:link.action></td>
-<<<<<<< HEAD
-=======
 			<td><f:link.action action="show" arguments="{user : user}"> {user.avatar.originalResource.name}</f:link.action></td>
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
 			<td><f:link.action action="show" arguments="{user : user}"> {user.email}</f:link.action></td>
 			<td><f:link.action action="show" arguments="{user : user}"> {user.password}</f:link.action></td>
 			<td><f:link.action action="show" arguments="{user : user}"> {user.nome}</f:link.action></td>
 			<td><f:link.action action="show" arguments="{user : user}"> {user.cognome}</f:link.action></td>
-<<<<<<< HEAD
-=======
 			<td><f:link.action action="show" arguments="{user : user}"> {user.online}</f:link.action></td>
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
 			<td><f:link.action action="edit" arguments="{user : user}">Edit</f:link.action></td>
 			<td><f:link.action action="delete" arguments="{user : user}">Delete</f:link.action></td>
 		</tr>
