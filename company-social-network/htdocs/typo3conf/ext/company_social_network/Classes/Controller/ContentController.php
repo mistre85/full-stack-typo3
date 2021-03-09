@@ -41,11 +41,7 @@ class ContentController extends AbstractController
 
     /**
      * postRepository
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @var \Wind\Csnd\Domain\Repository\PostRepository
      * @inject
      */
@@ -53,20 +49,13 @@ class ContentController extends AbstractController
 
     /**
      * userRepository
-<<<<<<< HEAD
-     * 
-=======
      *
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
      * @var \Wind\Csnd\Domain\Repository\UserRepository
      * @inject
      */
     protected $userRepository = null;
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
     /**
      * ogni action nel controller viene eseguita
      * PRIMA del render del content element (componente)
@@ -113,68 +102,16 @@ class ContentController extends AbstractController
 
         );*/
 
-<<<<<<< HEAD
-    function beppeBachecaAction()
-    {
-        //utente ->(1,*) post
-        //post_utente ->1 utente
-        //stub
-       /* $postList = array(
-            array('text' => 'buongiornissimo', 'like' => 10, 'user' => array(
-                'avatar' => 'https://picsum.photos/140/140',
-                'nome' => 'paolo',
-                'cognome' => 'mistretta'
-            )),
-            array('text' => 'buongiornissimo', 'like' => 10, 'user' => array(
-                'avatar' => 'https://picsum.photos/140/140',
-                'nome' => 'fabio',
-                'cognome' => 'picciau'
-            )),
-            array('text' => 'buongiornissimo', 'like' => 10, 'user' => array(
-                'avatar' => 'https://picsum.photos/140/140',
-                'nome' => 'roberto',
-                'cognome' => 'brambilla'
-            )),
-        );
-        */
-        
-=======
 
     function paoloPostListAction()
     {
         //dati reali
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
         $postList = $this->postRepository->findAll();
         $this->view->assign("postList", $postList);
         
         
     }
 
-    function beppeContactListAction(){
-        $userList = [
-            array(
-                'avatar' => 'https://picsum.photos/140/140',
-                'nome' => 'Paolo',
-                'cognome' => 'mistretta',
-                'stato' => 'attivo'
-            ),
-            array(
-                'avatar' => 'https://picsum.photos/140/140',
-                'nome' => 'Roberto',
-                'cognome' => 'Brambilla',
-                'stato' => 'disattivo'
-            ),
-            array(
-                'avatar' => 'https://picsum.photos/140/140',
-                'nome' => 'Giuseppe',
-                'cognome' => 'Orlando',
-                'stato' => 'attivo'
-            )
-        ];
-
-        $userList = $this->userRepository->findAll();
-        $this->view->assign("postList", $userList);
-    }
     function paoloChatWidgetAction()
     {
         $userList = $this->userRepository->findAll();
@@ -184,27 +121,8 @@ class ContentController extends AbstractController
     function contactListAction()
     {
         $data = [
-            array(
-                'avatar' => 'https://picsum.photos/140/140',
-                'nome' => 'Paolo',
-                'cognome' => 'mistretta',
-                'stato' => 'attivo'
-            ),
-            array(
-                'avatar' => 'https://picsum.photos/140/140',
-                'nome' => 'Roberto',
-                'cognome' => 'Brambilla',
-                'stato' => 'disattivo'
-            ),
-            array(
-                'avatar' => 'https://picsum.photos/140/140',
-                'nome' => 'Giuseppe',
-                'cognome' => 'Orlando',
-                'stato' => 'attivo'
-            )
+            //nome, foto, stato
         ];
-
-        $this->view->assign("postList", $data);
     }
 
 
