@@ -18,11 +18,7 @@ $EM_CONF[$_EXTKEY] = [
     'author_email' => '',
     'state' => 'alpha',
     'internal' => '',
-<<<<<<< HEAD
-    'uploadfolder' => '0',
-=======
     'uploadfolder' => '1',
->>>>>>> 25e4e879971a131c95fd893f19eacb7117d82a2a
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
     'version' => '1.0.0',
