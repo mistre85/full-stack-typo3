@@ -426,6 +426,6 @@ class FileGeneratorTest extends \EBT\ExtensionBuilder\Tests\BaseFunctionalTest
         self::assertFileExists($extensionDir . 'Resources/Private/Language/locallang_db.xlf');
         self::assertFileExists($extensionDir . 'Resources/Private/Language/locallang.xlf');
         self::assertFileExists($extensionDir . 'Resources/Private/Partials/' . $domainObject->getName() . '/Properties.html');
-        self::assertFileExists($extensionDir . 'Resources/Private/Partials/' . $domainObject->getName() . '/FormFields.html');
+        self::assertFileExists($extensionDir . 'Resources/Private/Partials/' . $domainObject->getName() . '/RegistrationFormFields.html');
     }
 }

@@ -26,6 +26,14 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $username = '';
 
     /**
+     * avatar
+     *
+     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     * @cascade remove
+     */
+    protected $avatar = null;
+
+    /**
      * email
      *
      * @var string
@@ -58,29 +66,20 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $cognome = '';
 
     /**
-     * postList
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Wind\Csnd\Domain\Model\Post>
-     * @cascade remove
-     */
-    protected $postList = null;
-
-    /**
-     * avatar
-     *
-     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     * @validate NotEmpty
-     * @cascade remove
-     */
-    protected $avatar = null;
-
-    /**
      * online
      *
      * @var bool
      * @validate NotEmpty
      */
     protected $online = false;
+
+    /**
+     * postList
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Wind\Csnd\Domain\Model\Post>
+     * @cascade remove
+     */
+    protected $postList = null;
 
     /**
      * Returns the username

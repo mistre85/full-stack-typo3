@@ -1,0 +1,40 @@
+<div xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+
+    <f:layout name="Default"/>
+
+
+    <f:section name="main">
+
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/registrationForm.css"/>
+
+        <div class="registration-form">
+
+
+            <f:flashMessages/>
+
+            <f:render partial="FormErrors" arguments="{object:User}"/>
+
+
+            <f:form
+                    additionalAttributes="{autocomplete: 'chrome-off'}"
+                    action="doLogin"
+                    enctype="multipart/form-data" name="newUser"
+                    object="{newUser}">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3>Login</h3>
+                    </div>
+                    <div class="panel-body">
+                        <f:render partial="User/LoginFormFields"/>
+                    </div>
+                    <div class="panel-footer">
+                        <f:form.submit class="btn btn-primary" value="Accedi"/>
+                    </div>
+                </div>
+            </f:form>
+
+        </div>
+    </f:section>
+</div>

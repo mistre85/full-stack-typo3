@@ -282,6 +282,12 @@ return [
             'packagePath' => 'typo3conf/ext/builder/',
             'suggestions' => [],
         ],
+        'csnd' => [
+            'composerName' => 'csnd',
+            'state' => 'active',
+            'packagePath' => 'typo3conf/ext/csnd/',
+            'suggestions' => [],
+        ],
         'extension_builder' => [
             'composerName' => 'friendsoftypo3/extension-builder',
             'state' => 'active',

@@ -3,8 +3,8 @@
         {
             "config": {
                 "position": [
-                    193,
-                    210
+                    224,
+                    309
                 ]
             },
             "name": "New Model Object",
@@ -48,7 +48,7 @@
                             "maxItems": "1",
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "propertyIsRequired": true,
+                            "propertyIsRequired": false,
                             "propertyName": "avatar",
                             "propertyType": "Image",
                             "uid": "827631740233"
@@ -125,8 +125,8 @@
         {
             "config": {
                 "position": [
-                    592,
-                    202
+                    469,
+                    89
                 ]
             },
             "name": "New Model Object",
@@ -233,17 +233,8 @@
                     "noncacheableActions": "",
                     "switchableActions": ""
                 },
-                "key": "postlist",
-                "name": "Post List"
-            },
-            {
-                "actions": {
-                    "controllerActionCombinations": "",
-                    "noncacheableActions": "",
-                    "switchableActions": ""
-                },
-                "key": "userlist",
-                "name": "User List"
+                "key": "Userplugin",
+                "name": "User Plugin"
             }
         ],
         "vendorName": "Wind"
@@ -275,7 +266,7 @@
         }
     ],
     "log": {
-        "last_modified": "2021-03-08 12:42",
+        "last_modified": "2021-03-09 10:26",
         "extension_builder_version": "7.10.0",
         "be_user": " (1)"
     }

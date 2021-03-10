@@ -1,5 +1,11 @@
 <?php
+
 namespace Wind\Csnd\Controller;
+
+use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
+use Wind\Csnd\Domain\Model\User;
 
 /***
  *
@@ -52,8 +58,47 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      *
      * @return void
      */
-    public function newAction()
+    public function registerAction()
     {
+        //registration Form
+    }
+
+    public function loginAction()
+    {
+        //login form
+    }
+
+
+    /**
+     * action doLogin
+     *
+     * @param \Wind\Csnd\Domain\Model\User $newUser
+     * @ignorevalidation $newUser
+     * @return void
+     */
+    public function doLoginAction(\Wind\Csnd\Domain\Model\User $newUser)
+    {
+        /** @var QueryResult $query */
+        $query = $this->userRepository->findByUsername($newUser->getUsername());
+
+        /** @var User $userFound */
+        $userFound = $query->getFirst();
+
+        if (empty($userFound)) {
+            $this->addFlashMessage('Non ti abbiamo trovato! riprova', "Login fallito", FlashMessage::ERROR);
+            $this->redirect('login');
+        } else {
+
+            if ($newUser->getPassword() == $userFound->getPassword()) {
+                $userFound->setOnline(true);
+                $this->userRepository->update($userFound);
+                $this->addFlashMessage("Benvenuto", "Login avvenuta con successo");
+                $this->redirectToURI("/personal/dashboard");
+            } else {
+                $this->addFlashMessage('utente o password errata,riprova', "Login fallito", FlashMessage::ERROR);
+                $this->redirect('login');
+            }
+        }
 
     }
 
@@ -63,11 +108,12 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @param \Wind\Csnd\Domain\Model\User $newUser
      * @return void
      */
-    public function createAction(\Wind\Csnd\Domain\Model\User $newUser)
+    public function subscriptionAction(\Wind\Csnd\Domain\Model\User $newUser)
     {
-        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
+        $this->addFlashMessage("Registrazione avvenuta con successo.", "Benvenuto in CSN");
         $this->userRepository->add($newUser);
-        $this->redirect('list');
+        $this->redirect('login');
+
     }
 
     /**

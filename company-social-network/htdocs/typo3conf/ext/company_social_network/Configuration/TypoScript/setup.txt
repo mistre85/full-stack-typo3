@@ -6,9 +6,10 @@ plugin.tx_vhs.settings.enableFooterRelocation = 0
 
 plugin.tx_companysocialnetwork {
 	view {
-		templateRootPaths.0 = {$plugin.tx_companysocialnetwork.view.templateRootPaths.0}
-		partialRootPaths.0 = {$plugin.tx_companysocialnetwork.view.partialRootPaths.0}
-		layoutRootPaths.0 = {$plugin.tx_companysocialnetwork.view.layoutRootPaths.0}
+            templateRootPaths.0 = {$plugin.tx_companysocialnetwork.view.templateRootPaths.0}
+            partialRootPaths.0 = {$plugin.tx_companysocialnetwork.view.partialRootPaths.0}
+            layoutRootPaths.0 = {$plugin.tx_companysocialnetwork.view.layoutRootPaths.0}
+		}
 	#By default the following settings only will have relevance if you have fluidcontent_core extension loaded
 	settings{
 		container {
@@ -17,21 +18,9 @@ plugin.tx_companysocialnetwork {
 				Example = div
 			}
 		}
-
 	}
 
 	persistence {
 	    storagePid = {$plugin.tx_companysocialnetwork.persistence.storagePid}
 	}
 }
-
-
-
-#system libs
-#usato l'helper
-#page.includeCSS.boostrap = /fileadmin/templates/bootstrap/css/bootstrap.css
-
-#custom libs
-#usato l'helper
-#page.includeCSS.main = /fileadmin/templates/css/main.css
-#page.includeCSS.main = /fileadmin/templates/css/robertoAboutTeam.css

@@ -7,14 +7,8 @@ call_user_func(
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
             'Wind.Csnd',
-            'Postlist',
-            'Post List'
-        );
-
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'Wind.Csnd',
-            'Userlist',
-            'User List'
+            'Userplugin',
+            'User Plugin'
         );
 
         if (TYPO3_MODE === 'BE') {

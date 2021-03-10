@@ -381,7 +381,7 @@ class FileGenerator
                         $this->mkdir_deep($absoluteTemplateRootFolder, 'Partials');
                         $partialDirectory = $absoluteTemplateRootFolder . 'Partials/';
                         $this->mkdir_deep($partialDirectory, $domainObject->getName());
-                        $formfieldsPartial = $partialDirectory . $domainObject->getName() . '/FormFields.html';
+                        $formfieldsPartial = $partialDirectory . $domainObject->getName() . '/RegistrationFormFields.html';
                         $fileContents = $this->generateDomainFormFieldsPartial(
                             $templateRootFolder . 'Partials/',
                             $domainObject

@@ -10,9 +10,9 @@
 
             <flux:field.input name="pageTitle" label="Titolo editoriale pagina"/>
             <flux:field.text name="pageDescription" enableRichText="true" label="Descrizione editorale pagina"/>
-            <flux:field.checkbox name="loggedPage" label="Pagina logged" ></flux:field.checkbox>
+            <flux:field.checkbox name="loggedPage" label="Pagina logged"></flux:field.checkbox>
         </flux:form>
-        
+
         <flux:grid>
             <!-- Edit this grid to change the "backend layout" structure -->
             <flux:grid.row>
@@ -40,7 +40,9 @@
 
                 <!-- inizio contenuti pagina -->
 
-                <v:content.render column="0"/>
+                <div class="content-margin">
+                    <v:content.render column="0"/>
+                </div>
 
 
                 <!-- fine contenuti pagina -->
