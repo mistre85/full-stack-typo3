@@ -103,6 +103,16 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     }
 
     /**
+     * action doLogin
+     *
+     * @return void
+     */
+    function logoutAction()
+    {
+        $this->redirectToURI("/");
+    }
+
+    /**
      * action create
      *
      * @param \Wind\Csnd\Domain\Model\User $newUser
