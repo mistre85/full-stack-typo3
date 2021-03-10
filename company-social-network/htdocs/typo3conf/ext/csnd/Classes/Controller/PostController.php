@@ -1,7 +1,6 @@
 <?php
 namespace Wind\Csnd\Controller;
 
-use Wind\Csnd\Domain\Repository\PostRepository;
 /***
  *
  * This file is part of the "Company Social Network Data" Extension for TYPO3 CMS.
@@ -9,7 +8,7 @@ use Wind\Csnd\Domain\Repository\PostRepository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2021
+ *  (c) 2021 
  *
  ***/
 
@@ -20,7 +19,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
     /**
      * postRepository
-     *
+     * 
      * @var \Wind\Csnd\Domain\Repository\PostRepository
      * @inject
      */
@@ -28,7 +27,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action list
-     *
+     * 
      * @return void
      */
     public function listAction()
@@ -39,7 +38,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action show
-     *
+     * 
      * @param \Wind\Csnd\Domain\Model\Post $post
      * @return void
      */
@@ -50,7 +49,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action new
-     *
+     * 
      * @return void
      */
     public function newAction()
@@ -60,7 +59,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action create
-     *
+     * 
      * @param \Wind\Csnd\Domain\Model\Post $newPost
      * @return void
      */
@@ -73,7 +72,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action edit
-     *
+     * 
      * @param \Wind\Csnd\Domain\Model\Post $post
      * @ignorevalidation $post
      * @return void
@@ -85,7 +84,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action update
-     *
+     * 
      * @param \Wind\Csnd\Domain\Model\Post $post
      * @return void
      */
@@ -98,7 +97,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action delete
-     *
+     * 
      * @param \Wind\Csnd\Domain\Model\Post $post
      * @return void
      */

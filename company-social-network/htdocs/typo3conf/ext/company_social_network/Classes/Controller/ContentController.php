@@ -118,14 +118,6 @@ class ContentController extends AbstractController
         $this->view->assign("userList", $userList);
     }
 
-    function contactListAction()
-    {
-        $data = [
-            //nome, foto, stato
-        ];
-    }
-
-
     function robertoPostListAction()
     {
         /*$postList = array(
@@ -208,6 +200,43 @@ class ContentController extends AbstractController
         $this->view->assign("userList", $userList);
 
 
+    }
+
+    function bachecaAction()
+    {
+        $postList = $this->userRepository->findAll();
+        $this->view->assign("postList", $postList);
+    }
+
+    function contactListAction()
+    {
+        $userList = $this->userRepository->findAll();
+        $this->view->assign("userList", $userList);
+    }
+
+    function registrationFormAction(){
+
+        $username = GeneralUtility::_GP('username');
+        $email = GeneralUtility::_GP('email');
+        $password = GeneralUtility::_GP('password');
+        $nome = GeneralUtility::_GP('nome');
+        $cognome = GeneralUtility::_GP('cognome');
+
+        if($username != "" && $email !="" && $password != "" && $nome != "" && $cognome != ""){
+            //ok
+        }else{
+            $errorMessage = "tutti i campi devono essere compilati";
+        }
+        $this->view->assign("error",$errorMessage);
+        $newUser = new User();
+        $newUser->setUsername($username);
+        $newUser->setEmail($email);
+        $newUser->setPassword($password);
+        $newUser->setNome($nome);
+        $newUser->setNome($cognome);
+        $newUser->setOnLine(false);
+
+        $this->userRepository->add($newUser);
     }
 
 }

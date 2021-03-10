@@ -1,0 +1,56 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="registrationForm" label="Regisration form" 
+                description="Permette la registrazione di un nuovo utente"
+                options="{group: 'Forms'}">
+            <flux:field.input name="title" label="Titolo"/>
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>Registration Form</strong>
+        <br>
+        <i>Permete la registrazione di nuovi utenti</i>
+    </f:section>
+
+    <f:section name="Main">
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/registrazione.css"/>
+        <br><br>
+        <f:if condition="{error}">
+
+        </f:if>
+        <div class="formposition">
+        <h1>{title}</h1>
+        <form action="" method="post">
+            <div class="form-group">
+                <label for="NuovoUtente">Nuovo Utente</label>
+                <input type="text" class="form-control" id="username" placeholder="username">
+            </div>           
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="NuovoUtente">Nome Utente</label>
+                <input type="text" class="form-control" id="nome" placeholder="nome">
+            </div>
+            <div class="form-group">
+                <label for="NuovoUtente">Cognome Utente</label>
+                <input type="text" class="form-control" id="cognome" placeholder="cognome">
+            </div>            
+            <button type="submit" class="btn btn-default">Iscriviti</button>
+        </form>
+    </div>
+
+    </f:section>
+</div>

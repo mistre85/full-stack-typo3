@@ -1,0 +1,51 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="CardBlock" options="{group: 'Blocks'}" label="Card Block"
+                   description="Permette di inserire una galleria di immagini con titolo e desrizione relativa al team di lavoro">
+
+            <flux:field.input name="title" label="Titolo blocco Card Beppe"/>
+            <flux:form.section name="vantaggi" label="Lista vantaggi Shutterstock">
+                <flux:form.object name="listaVantaggi" label="Lista Vantaggi">                    
+                    <flux:field.file name="icona" label="icona" allowed="png,svg, jpg, jpeg"/>
+                    <flux:field.input name="titoloVantaggio" label="titolo Vantaggio"/>
+                    <flux:field.input name="descrizioneVantaggio" label="descrizione Vantaggio"/>
+                    <flux:field.input name="buttonVantaggio" label="button Vantaggio" />
+                    <flux:field.input name="linkVantaggio" label="link Vantaggio">
+                        <flux:wizard.link />
+                    </flux:field.input>
+                </flux:form.object>
+            </flux:form.section>
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>Blocco Card</strong><br/>
+        permette di inserire una lista di card orizzontali che contengono icona,titolo,descrizione, pulsante        
+
+    </f:section>
+
+    <f:section name="Main">
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/BeppeCardBlock.css" />
+        
+             <div class="container">   
+                <div class="card-block">             
+                    <f:if condition="{title}">
+                        <div class="row">
+                            <h1>{title}</h1>
+                        </div>
+                    </f:if>
+                <div class="row card-row">
+                    <f:for each="{vantaggi}" as="vantaggiObj">
+                        <f:render partial="CardBlockPartial" arguments="{item: vantaggiObj}"></f:render>
+                    </f:for>
+                </div>
+            </div>
+
+    </f:section>
+</div>

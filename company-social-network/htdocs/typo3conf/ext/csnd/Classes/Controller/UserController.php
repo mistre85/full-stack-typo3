@@ -8,7 +8,7 @@ namespace Wind\Csnd\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2021
+ *  (c) 2021 
  *
  ***/
 
@@ -19,7 +19,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
     /**
      * userRepository
-     *
+     * 
      * @var \Wind\Csnd\Domain\Repository\UserRepository
      * @inject
      */
@@ -27,7 +27,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action list
-     *
+     * 
      * @return void
      */
     public function listAction()
@@ -38,7 +38,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action show
-     *
+     * 
      * @param \Wind\Csnd\Domain\Model\User $user
      * @return void
      */
@@ -48,31 +48,32 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     }
 
     /**
-     * action new
-     *
+     * action register
+     * 
      * @return void
      */
-    public function newAction()
+    public function registerAction()
     {
 
     }
+    
 
-    /**
-     * action create
-     *
+     /**
+     * action subscription
+     * 
      * @param \Wind\Csnd\Domain\Model\User $newUser
      * @return void
      */
-    public function createAction(\Wind\Csnd\Domain\Model\User $newUser)
+    public function subscriptionAction(\Wind\Csnd\Domain\Model\User $newUser)
     {
-        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
+        $this->addFlashMessage('Registrazione avvenuta con successo', 'Benvenuto in CSN', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
         $this->userRepository->add($newUser);
-        $this->redirect('list');
+        $this->redirectToUri('/login');
     }
 
     /**
      * action edit
-     *
+     * 
      * @param \Wind\Csnd\Domain\Model\User $user
      * @ignorevalidation $user
      * @return void
@@ -84,7 +85,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action update
-     *
+     * 
      * @param \Wind\Csnd\Domain\Model\User $user
      * @return void
      */
@@ -97,7 +98,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action delete
-     *
+     * 
      * @param \Wind\Csnd\Domain\Model\User $user
      * @return void
      */
@@ -106,5 +107,51 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $this->userRepository->remove($user);
         $this->redirect('list');
+    }
+
+    /**
+     * action login
+     * 
+     * 
+     */
+    public function loginAction()
+    {
+      
+    }
+
+    /**
+     * action dologin
+     * 
+     * @param \Wind\CsndDomain\Model\User $newUser
+     * @ignorevalidation $newUser
+     * @return void
+     */
+    public function dologinAction(\Wind\CsndDomain\Model\User $newUser)
+    {
+      /** @var QueryResult $query */
+      $query = $this->userRepository->findByUsername($newUser->getUsername());
+
+      /** @var User $userFound */
+      $userFound = $query->getFirst();
+
+      if (empty($userFound)){
+          $this->addFlashMessage('Non ti abbiamo trovato, riprova!',"Login Fallito", FlashMessage::ERROR);
+          $this->redirect('login');
+
+      } else {
+
+        if ($newUser->getPassword() == $userFound->getPassword()){
+
+            $userFound->setOnLine(true);
+            $this->userRepository->update($userfound);
+
+            $this->addFlashMessage("Benvenuto","Login avvenuta con successo!!");
+            $this->redirectToURI("personal/Bacheca");
+        }
+        else{
+            $this->addFlashMessage('utente o password errata, riprova',"Login Fallito", FlashMessage::ERROR);
+            $this->redirect('login');
+        }
+      }
     }
 }

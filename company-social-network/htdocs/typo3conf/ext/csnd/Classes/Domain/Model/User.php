@@ -8,7 +8,7 @@ namespace Wind\Csnd\Domain\Model;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2021
+ *  (c) 2021 
  *
  ***/
 
@@ -19,15 +19,23 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     /**
      * username
-     *
+     * 
      * @var string
      * @validate NotEmpty
      */
     protected $username = '';
 
     /**
+     * avatar
+     * 
+     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     * @cascade remove
+     */
+    protected $avatar = null;
+
+    /**
      * email
-     *
+     * 
      * @var string
      * @validate NotEmpty
      */
@@ -35,7 +43,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * password
-     *
+     * 
      * @var string
      * @validate NotEmpty
      */
@@ -43,7 +51,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * nome
-     *
+     * 
      * @var string
      * @validate NotEmpty
      */
@@ -51,141 +59,27 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * cognome
-     *
+     * 
      * @var string
      * @validate NotEmpty
      */
     protected $cognome = '';
 
     /**
-     * postList
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Wind\Csnd\Domain\Model\Post>
-     * @cascade remove
-     */
-    protected $postList = null;
-
-    /**
-     * avatar
-     *
-     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     * @validate NotEmpty
-     * @cascade remove
-     */
-    protected $avatar = null;
-
-    /**
      * online
-     *
+     * 
      * @var bool
      * @validate NotEmpty
      */
     protected $online = false;
 
     /**
-     * Returns the username
-     *
-     * @return string $username
+     * postList
+     * 
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Wind\Csnd\Domain\Model\Post>
+     * @cascade remove
      */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * Sets the username
-     *
-     * @param string $username
-     * @return void
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-    }
-
-    /**
-     * Returns the email
-     *
-     * @return string $email
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Sets the email
-     *
-     * @param string $email
-     * @return void
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    /**
-     * Returns the password
-     *
-     * @return string $password
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * Sets the password
-     *
-     * @param string $password
-     * @return void
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-    }
-
-    /**
-     * Returns the nome
-     *
-     * @return string $nome
-     */
-    public function getNome()
-    {
-        return $this->nome;
-    }
-
-    /**
-     * Sets the nome
-     *
-     * @param string $nome
-     * @return void
-     */
-    public function setNome($nome)
-    {
-        $this->nome = $nome;
-    }
-
-    /**
-     * Returns the cognome
-     *
-     * @return string $cognome
-     */
-    public function getCognome()
-    {
-        return $this->cognome;
-    }
-
-    /**
-     * Sets the cognome
-     *
-     * @param string $cognome
-     * @return void
-     */
-    public function setCognome($cognome)
-    {
-        $this->cognome = $cognome;
-    }
+    protected $postList = null;
 
     /**
      * __construct
@@ -201,7 +95,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Do not modify this method!
      * It will be rewritten on each save in the extension builder
      * You may modify the constructor of this class instead
-     *
+     * 
      * @return void
      */
     protected function initStorageObjects()
@@ -210,51 +104,29 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Adds a Post
-     *
-     * @param \Wind\Csnd\Domain\Model\Post $postList
-     * @return void
+     * Returns the username
+     * 
+     * @return string $username
      */
-    public function addPostList(\Wind\Csnd\Domain\Model\Post $postList)
+    public function getUsername()
     {
-        $this->postList->attach($postList);
+        return $this->username;
     }
 
     /**
-     * Removes a Post
-     *
-     * @param \Wind\Csnd\Domain\Model\Post $postListToRemove The Post to be removed
+     * Sets the username
+     * 
+     * @param string $username
      * @return void
      */
-    public function removePostList(\Wind\Csnd\Domain\Model\Post $postListToRemove)
+    public function setUsername($username)
     {
-        $this->postList->detach($postListToRemove);
-    }
-
-    /**
-     * Returns the postList
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Wind\Csnd\Domain\Model\Post> $postList
-     */
-    public function getPostList()
-    {
-        return $this->postList;
-    }
-
-    /**
-     * Sets the postList
-     *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Wind\Csnd\Domain\Model\Post> $postList
-     * @return void
-     */
-    public function setPostList(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $postList)
-    {
-        $this->postList = $postList;
+        $this->username = $username;
     }
 
     /**
      * Returns the avatar
-     *
+     * 
      * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $avatar
      */
     public function getAvatar()
@@ -264,7 +136,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Sets the avatar
-     *
+     * 
      * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $avatar
      * @return void
      */
@@ -274,8 +146,92 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
+     * Returns the email
+     * 
+     * @return string $email
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Sets the email
+     * 
+     * @param string $email
+     * @return void
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * Returns the password
+     * 
+     * @return string $password
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Sets the password
+     * 
+     * @param string $password
+     * @return void
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * Returns the nome
+     * 
+     * @return string $nome
+     */
+    public function getNome()
+    {
+        return $this->nome;
+    }
+
+    /**
+     * Sets the nome
+     * 
+     * @param string $nome
+     * @return void
+     */
+    public function setNome($nome)
+    {
+        $this->nome = $nome;
+    }
+
+    /**
+     * Returns the cognome
+     * 
+     * @return string $cognome
+     */
+    public function getCognome()
+    {
+        return $this->cognome;
+    }
+
+    /**
+     * Sets the cognome
+     * 
+     * @param string $cognome
+     * @return void
+     */
+    public function setCognome($cognome)
+    {
+        $this->cognome = $cognome;
+    }
+
+    /**
      * Returns the online
-     *
+     * 
      * @return bool $online
      */
     public function getOnline()
@@ -285,7 +241,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Sets the online
-     *
+     * 
      * @param bool $online
      * @return void
      */
@@ -296,11 +252,54 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Returns the boolean state of online
-     *
+     * 
      * @return bool
      */
     public function isOnline()
     {
         return $this->online;
+    }
+
+    /**
+     * Adds a Post
+     * 
+     * @param \Wind\Csnd\Domain\Model\Post $postList
+     * @return void
+     */
+    public function addPostList(\Wind\Csnd\Domain\Model\Post $postList)
+    {
+        $this->postList->attach($postList);
+    }
+
+    /**
+     * Removes a Post
+     * 
+     * @param \Wind\Csnd\Domain\Model\Post $postListToRemove The Post to be removed
+     * @return void
+     */
+    public function removePostList(\Wind\Csnd\Domain\Model\Post $postListToRemove)
+    {
+        $this->postList->detach($postListToRemove);
+    }
+
+    /**
+     * Returns the postList
+     * 
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Wind\Csnd\Domain\Model\Post> $postList
+     */
+    public function getPostList()
+    {
+        return $this->postList;
+    }
+
+    /**
+     * Sets the postList
+     * 
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Wind\Csnd\Domain\Model\Post> $postList
+     * @return void
+     */
+    public function setPostList(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $postList)
+    {
+        $this->postList = $postList;
     }
 }
