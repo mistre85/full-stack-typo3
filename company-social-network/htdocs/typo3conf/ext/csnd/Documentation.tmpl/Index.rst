@@ -5,6 +5,7 @@
 
 .. include:: Includes.txt
 
+
 .. _start:
 
 =============================================================
@@ -23,6 +24,7 @@ Company Social Network Data
 		en
 
 	:Description:
+		
 
 	:Keywords:
 		comma,separated,list,of,keywords
@@ -31,8 +33,10 @@ Company Social Network Data
 		2021
 
 	:Author:
+		
 
 	:Email:
+		
 
 	:License:
 		This document is published under the Open Content License
@@ -43,6 +47,7 @@ Company Social Network Data
 
 	The content of this document is related to TYPO3,
 	a GNU/GPL CMS/Framework available from `www.typo3.org <http://www.typo3.org/>`_.
+
 
 	**Table of Contents**
 

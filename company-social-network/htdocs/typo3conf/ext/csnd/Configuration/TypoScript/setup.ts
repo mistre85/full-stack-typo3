@@ -1,16 +1,16 @@
 
-plugin.tx_csnd_postlist {
+plugin.tx_csnd_userplugin {
   view {
     templateRootPaths.0 = EXT:csnd/Resources/Private/Templates/
-    templateRootPaths.1 = {$plugin.tx_csnd_postlist.view.templateRootPath}
+    templateRootPaths.1 = {$plugin.tx_csnd_userplugin.view.templateRootPath}
     partialRootPaths.0 = EXT:csnd/Resources/Private/Partials/
-    partialRootPaths.1 = {$plugin.tx_csnd_postlist.view.partialRootPath}
+    partialRootPaths.1 = {$plugin.tx_csnd_userplugin.view.partialRootPath}
     layoutRootPaths.0 = EXT:csnd/Resources/Private/Layouts/
-    layoutRootPaths.1 = {$plugin.tx_csnd_postlist.view.layoutRootPath}
+    layoutRootPaths.1 = {$plugin.tx_csnd_userplugin.view.layoutRootPath}
   }
   persistence {
-    storagePid = {$plugin.tx_csnd_postlist.persistence.storagePid}
-    recursive = 1
+    storagePid = {$plugin.tx_csnd_userplugin.persistence.storagePid}
+    #recursive = 1
   }
   features {
     #skipDefaultArguments = 1
@@ -20,26 +20,7 @@ plugin.tx_csnd_postlist {
   }
 }
 
-plugin.tx_csnd_userlist {
-  view {
-    templateRootPaths.0 = EXT:csnd/Resources/Private/Templates/
-    templateRootPaths.1 = {$plugin.tx_csnd_userlist.view.templateRootPath}
-    partialRootPaths.0 = EXT:csnd/Resources/Private/Partials/
-    partialRootPaths.1 = {$plugin.tx_csnd_userlist.view.partialRootPath}
-    layoutRootPaths.0 = EXT:csnd/Resources/Private/Layouts/
-    layoutRootPaths.1 = {$plugin.tx_csnd_userlist.view.layoutRootPath}
-  }
-  persistence {
-    storagePid = {$plugin.tx_csnd_userlist.persistence.storagePid}
-    recursive = 1
-  }
-  features {
-    #skipDefaultArguments = 1
-  }
-  mvc {
-    #callDefaultActionIfActionCantBeResolved = 1
-  }
-}
+
 
 plugin.tx_csnd._CSS_DEFAULT_STYLE (
     textarea.f3-form-error {
@@ -73,6 +54,8 @@ plugin.tx_csnd._CSS_DEFAULT_STYLE (
         color:green;
     }
 )
+
+
 
 # Module configuration
 module.tx_csnd_web_csndcnsadmin {

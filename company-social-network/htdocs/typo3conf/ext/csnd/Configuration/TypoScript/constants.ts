@@ -1,33 +1,19 @@
 
-plugin.tx_csnd_postlist {
+plugin.tx_csnd_userplugin {
   view {
-    # cat=plugin.tx_csnd_postlist/file; type=string; label=Path to template root (FE)
+    # cat=plugin.tx_csnd_userplugin/file; type=string; label=Path to template root (FE)
     templateRootPath = EXT:csnd/Resources/Private/Templates/
-    # cat=plugin.tx_csnd_postlist/file; type=string; label=Path to template partials (FE)
+    # cat=plugin.tx_csnd_userplugin/file; type=string; label=Path to template partials (FE)
     partialRootPath = EXT:csnd/Resources/Private/Partials/
-    # cat=plugin.tx_csnd_postlist/file; type=string; label=Path to template layouts (FE)
+    # cat=plugin.tx_csnd_userplugin/file; type=string; label=Path to template layouts (FE)
     layoutRootPath = EXT:csnd/Resources/Private/Layouts/
   }
   persistence {
-    # cat=plugin.tx_csnd_postlist//a; type=string; label=Default storage PID
-    storagePid = 1
+    # cat=plugin.tx_csnd_userplugin//a; type=string; label=Default storage PID
+    storagePid =
   }
 }
 
-plugin.tx_csnd_userlist {
-  view {
-    # cat=plugin.tx_csnd_userlist/file; type=string; label=Path to template root (FE)
-    templateRootPath = EXT:csnd/Resources/Private/Templates/
-    # cat=plugin.tx_csnd_userlist/file; type=string; label=Path to template partials (FE)
-    partialRootPath = EXT:csnd/Resources/Private/Partials/
-    # cat=plugin.tx_csnd_userlist/file; type=string; label=Path to template layouts (FE)
-    layoutRootPath = EXT:csnd/Resources/Private/Layouts/
-  }
-  persistence {
-    # cat=plugin.tx_csnd_userlist//a; type=string; label=Default storage PID
-    storagePid = 1
-  }
-}
 
 module.tx_csnd_cnsadmin {
   view {
@@ -40,6 +26,6 @@ module.tx_csnd_cnsadmin {
   }
   persistence {
     # cat=module.tx_csnd_cnsadmin//a; type=string; label=Default storage PID
-    storagePid = 1
+    storagePid =
   }
 }

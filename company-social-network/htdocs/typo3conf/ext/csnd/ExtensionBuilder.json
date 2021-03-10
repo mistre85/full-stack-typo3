@@ -233,20 +233,11 @@
                     "noncacheableActions": "",
                     "switchableActions": ""
                 },
-                "key": "postlist",
-                "name": "Post List"
-            },
-            {
-                "actions": {
-                    "controllerActionCombinations": "",
-                    "noncacheableActions": "",
-                    "switchableActions": ""
-                },
-                "key": "userlist",
-                "name": "User List"
+                "key": "userplugin",
+                "name": "User Plugin"
             }
         ],
-        "vendorName": "Wind"
+        "vendorName": "Windtre"
     },
     "wires": [
         {
@@ -275,7 +266,7 @@
         }
     ],
     "log": {
-        "last_modified": "2021-03-08 12:42",
+        "last_modified": "2021-03-10 08:19",
         "extension_builder_version": "7.10.0",
         "be_user": " (1)"
     }

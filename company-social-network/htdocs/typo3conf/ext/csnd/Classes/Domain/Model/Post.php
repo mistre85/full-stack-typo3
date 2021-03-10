@@ -1,5 +1,5 @@
 <?php
-namespace Wind\Csnd\Domain\Model;
+namespace Windtre\Csnd\Domain\Model;
 
 /***
  *
@@ -8,7 +8,7 @@ namespace Wind\Csnd\Domain\Model;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2021
+ *  (c) 2021 
  *
  ***/
 
@@ -19,7 +19,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     /**
      * text
-     *
+     * 
      * @var string
      * @validate NotEmpty
      */
@@ -27,21 +27,21 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * likes
-     *
+     * 
      * @var int
      */
     protected $likes = 0;
 
     /**
      * user
-     *
-     * @var \Wind\Csnd\Domain\Model\User
+     * 
+     * @var \Windtre\Csnd\Domain\Model\User
      */
     protected $user = null;
 
     /**
      * Returns the text
-     *
+     * 
      * @return string $text
      */
     public function getText()
@@ -51,7 +51,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Sets the text
-     *
+     * 
      * @param string $text
      * @return void
      */
@@ -62,7 +62,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Returns the likes
-     *
+     * 
      * @return int $likes
      */
     public function getLikes()
@@ -72,7 +72,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Sets the likes
-     *
+     * 
      * @param int $likes
      * @return void
      */
@@ -83,8 +83,8 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Returns the user
-     *
-     * @return \Wind\Csnd\Domain\Model\User $user
+     * 
+     * @return \Windtre\Csnd\Domain\Model\User $user
      */
     public function getUser()
     {
@@ -93,11 +93,11 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Sets the user
-     *
-     * @param \Wind\Csnd\Domain\Model\User $user
+     * 
+     * @param \Windtre\Csnd\Domain\Model\User $user
      * @return void
      */
-    public function setUser(\Wind\Csnd\Domain\Model\User $user)
+    public function setUser(\Windtre\Csnd\Domain\Model\User $user)
     {
         $this->user = $user;
     }

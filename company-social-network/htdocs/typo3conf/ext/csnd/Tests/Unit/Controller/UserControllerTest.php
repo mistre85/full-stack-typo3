@@ -1,5 +1,5 @@
 <?php
-namespace Wind\Csnd\Tests\Unit\Controller;
+namespace Windtre\Csnd\Tests\Unit\Controller;
 
 /**
  * Test case.
@@ -7,14 +7,14 @@ namespace Wind\Csnd\Tests\Unit\Controller;
 class UserControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 {
     /**
-     * @var \Wind\Csnd\Controller\UserController
+     * @var \Windtre\Csnd\Controller\UserController
      */
     protected $subject = null;
 
     protected function setUp()
     {
         parent::setUp();
-        $this->subject = $this->getMockBuilder(\Wind\Csnd\Controller\UserController::class)
+        $this->subject = $this->getMockBuilder(\Windtre\Csnd\Controller\UserController::class)
             ->setMethods(['redirect', 'forward', 'addFlashMessage'])
             ->disableOriginalConstructor()
             ->getMock();
@@ -24,6 +24,8 @@ class UserControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     {
         parent::tearDown();
     }
+
+
 
     /**
      * @test
@@ -35,7 +37,7 @@ class UserControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $userRepository = $this->getMockBuilder(\Wind\Csnd\Domain\Repository\UserRepository::class)
+        $userRepository = $this->getMockBuilder(\Windtre\Csnd\Domain\Repository\UserRepository::class)
             ->setMethods(['findAll'])
             ->disableOriginalConstructor()
             ->getMock();
@@ -54,7 +56,7 @@ class UserControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      */
     public function showActionAssignsTheGivenUserToView()
     {
-        $user = new \Wind\Csnd\Domain\Model\User();
+        $user = new \Windtre\Csnd\Domain\Model\User();
 
         $view = $this->getMockBuilder(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface::class)->getMock();
         $this->inject($this->subject, 'view', $view);
@@ -68,9 +70,9 @@ class UserControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      */
     public function createActionAddsTheGivenUserToUserRepository()
     {
-        $user = new \Wind\Csnd\Domain\Model\User();
+        $user = new \Windtre\Csnd\Domain\Model\User();
 
-        $userRepository = $this->getMockBuilder(\Wind\Csnd\Domain\Repository\UserRepository::class)
+        $userRepository = $this->getMockBuilder(\Windtre\Csnd\Domain\Repository\UserRepository::class)
             ->setMethods(['add'])
             ->disableOriginalConstructor()
             ->getMock();
@@ -86,7 +88,7 @@ class UserControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      */
     public function editActionAssignsTheGivenUserToView()
     {
-        $user = new \Wind\Csnd\Domain\Model\User();
+        $user = new \Windtre\Csnd\Domain\Model\User();
 
         $view = $this->getMockBuilder(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface::class)->getMock();
         $this->inject($this->subject, 'view', $view);
@@ -95,14 +97,15 @@ class UserControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $this->subject->editAction($user);
     }
 
+
     /**
      * @test
      */
     public function updateActionUpdatesTheGivenUserInUserRepository()
     {
-        $user = new \Wind\Csnd\Domain\Model\User();
+        $user = new \Windtre\Csnd\Domain\Model\User();
 
-        $userRepository = $this->getMockBuilder(\Wind\Csnd\Domain\Repository\UserRepository::class)
+        $userRepository = $this->getMockBuilder(\Windtre\Csnd\Domain\Repository\UserRepository::class)
             ->setMethods(['update'])
             ->disableOriginalConstructor()
             ->getMock();
@@ -118,9 +121,9 @@ class UserControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      */
     public function deleteActionRemovesTheGivenUserFromUserRepository()
     {
-        $user = new \Wind\Csnd\Domain\Model\User();
+        $user = new \Windtre\Csnd\Domain\Model\User();
 
-        $userRepository = $this->getMockBuilder(\Wind\Csnd\Domain\Repository\UserRepository::class)
+        $userRepository = $this->getMockBuilder(\Windtre\Csnd\Domain\Repository\UserRepository::class)
             ->setMethods(['remove'])
             ->disableOriginalConstructor()
             ->getMock();

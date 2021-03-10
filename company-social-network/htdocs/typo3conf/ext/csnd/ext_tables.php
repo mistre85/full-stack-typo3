@@ -6,21 +6,18 @@ call_user_func(
     {
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'Wind.Csnd',
-            'Postlist',
-            'Post List'
+            'Windtre.Csnd',
+            'Userplugin',
+            'User Plugin'
         );
 
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'Wind.Csnd',
-            'Userlist',
-            'User List'
-        );
+
+
 
         if (TYPO3_MODE === 'BE') {
 
             \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-                'Wind.Csnd',
+                'Windtre.Csnd',
                 'web', // Make module a submodule of 'web'
                 'cnsadmin', // Submodule key
                 '', // Position
@@ -38,11 +35,14 @@ call_user_func(
 
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($extKey, 'Configuration/TypoScript', 'Company Social Network Data');
 
+
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_csnd_domain_model_user', 'EXT:csnd/Resources/Private/Language/locallang_csh_tx_csnd_domain_model_user.xlf');
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_csnd_domain_model_user');
 
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_csnd_domain_model_post', 'EXT:csnd/Resources/Private/Language/locallang_csh_tx_csnd_domain_model_post.xlf');
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_csnd_domain_model_post');
+
+
 
     },
     $_EXTKEY

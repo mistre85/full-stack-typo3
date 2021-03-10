@@ -1,5 +1,5 @@
 <?php
-namespace Wind\Csnd\Tests\Unit\Domain\Model;
+namespace Windtre\Csnd\Tests\Unit\Domain\Model;
 
 /**
  * Test case.
@@ -7,20 +7,22 @@ namespace Wind\Csnd\Tests\Unit\Domain\Model;
 class PostTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 {
     /**
-     * @var \Wind\Csnd\Domain\Model\Post
+     * @var \Windtre\Csnd\Domain\Model\Post
      */
     protected $subject = null;
 
     protected function setUp()
     {
         parent::setUp();
-        $this->subject = new \Wind\Csnd\Domain\Model\Post();
+        $this->subject = new \Windtre\Csnd\Domain\Model\Post();
     }
 
     protected function tearDown()
     {
         parent::tearDown();
     }
+
+
 
     /**
      * @test
@@ -80,7 +82,7 @@ class PostTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      */
     public function setUserForUserSetsUser()
     {
-        $userFixture = new \Wind\Csnd\Domain\Model\User();
+        $userFixture = new \Windtre\Csnd\Domain\Model\User();
         $this->subject->setUser($userFixture);
 
         self::assertAttributeEquals(

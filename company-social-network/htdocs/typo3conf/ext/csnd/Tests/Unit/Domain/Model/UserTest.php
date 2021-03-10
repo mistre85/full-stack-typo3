@@ -1,5 +1,5 @@
 <?php
-namespace Wind\Csnd\Tests\Unit\Domain\Model;
+namespace Windtre\Csnd\Tests\Unit\Domain\Model;
 
 /**
  * Test case.
@@ -7,20 +7,22 @@ namespace Wind\Csnd\Tests\Unit\Domain\Model;
 class UserTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 {
     /**
-     * @var \Wind\Csnd\Domain\Model\User
+     * @var \Windtre\Csnd\Domain\Model\User
      */
     protected $subject = null;
 
     protected function setUp()
     {
         parent::setUp();
-        $this->subject = new \Wind\Csnd\Domain\Model\User();
+        $this->subject = new \Windtre\Csnd\Domain\Model\User();
     }
 
     protected function tearDown()
     {
         parent::tearDown();
     }
+
+
 
     /**
      * @test
@@ -230,7 +232,7 @@ class UserTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      */
     public function setPostListForObjectStorageContainingPostSetsPostList()
     {
-        $postList = new \Wind\Csnd\Domain\Model\Post();
+        $postList = new \Windtre\Csnd\Domain\Model\Post();
         $objectStorageHoldingExactlyOnePostList = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $objectStorageHoldingExactlyOnePostList->attach($postList);
         $this->subject->setPostList($objectStorageHoldingExactlyOnePostList);
@@ -248,7 +250,7 @@ class UserTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      */
     public function addPostListToObjectStorageHoldingPostList()
     {
-        $postList = new \Wind\Csnd\Domain\Model\Post();
+        $postList = new \Windtre\Csnd\Domain\Model\Post();
         $postListObjectStorageMock = $this->getMockBuilder(\TYPO3\CMS\Extbase\Persistence\ObjectStorage::class)
             ->setMethods(['attach'])
             ->disableOriginalConstructor()
@@ -265,7 +267,7 @@ class UserTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      */
     public function removePostListFromObjectStorageHoldingPostList()
     {
-        $postList = new \Wind\Csnd\Domain\Model\Post();
+        $postList = new \Windtre\Csnd\Domain\Model\Post();
         $postListObjectStorageMock = $this->getMockBuilder(\TYPO3\CMS\Extbase\Persistence\ObjectStorage::class)
             ->setMethods(['detach'])
             ->disableOriginalConstructor()

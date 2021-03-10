@@ -19,31 +19,33 @@
     </f:section>
 
     <f:section name="Main">
-        <div class="registration-form">
+        <div class="container registration-form">
             <h1>{title}</h1>
-            <form>
-                <div class="form-group">
-                    <label for="exampleInputUsername">Nome utente</label>
-                    <input type="username" class="form-control" id="exampleInputUsername" placeholder="Nome utente">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address !!!</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputName">Nome</label>
-                    <input type="name" class="form-control" id="exampleInputName" placeholder="Nome">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputSurname">Cognome</label>
-                    <input type="surname" class="form-control" id="exampleInputSurname" placeholder="cognome">
-                </div>
-                <button type="submit" class="btn btn-default">Registrati</button>
-            </form>
+            <div class="row">
+                <form method="post">
+                    <div class="form-group">
+                        <label for="username">Nome utente</label>
+                        <input type="username" class="form-control" id="username" placeholder="Nome utente">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="name" class="form-control" id="name" placeholder="Nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="surname">Cognome</label>
+                        <input type="surname" class="form-control" id="surname" placeholder="cognome">
+                    </div>
+                    <button type="submit" class="btn btn-default">Registrati</button>
+                </form>
+            </div>
         </div>
     </f:section>
 </div>

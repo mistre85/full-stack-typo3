@@ -226,3 +226,10 @@ h2 {
     width: 150px;
     border: 1px solid #999;
 }
+
+.formlogin {
+    display: block;
+    padding-top: 100px;
+    margin: 0 auto;
+    width: 500px;
+}
