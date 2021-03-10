@@ -1,10 +1,10 @@
 @font-face {
-    src: url("/fileadmin/templates/fonts/tt-norm-fonts/TTNorms-Regular.otf");
+    src: url("../fonts/tt-norm-fonts/TTNorms-Regular.otf");
     font-family: "tt-norm";
 }
 
 @font-face {
-    src: url("/fileadmin/templates/fonts/tt-norm-fonts/TTNorms-Bold.otf");
+    src: url("../fonts/tt-norm-fonts/TTNorms-Bold.otf");
     font-family: "tt-norm";
     font-weight: bold;
 }

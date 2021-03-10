@@ -282,6 +282,12 @@ return [
             'packagePath' => 'typo3conf/ext/builder/',
             'suggestions' => [],
         ],
+        'csnd' => [
+            'composerName' => 'csnd',
+            'state' => 'active',
+            'packagePath' => 'typo3conf/ext/csnd/',
+            'suggestions' => [],
+        ],
         'extension_builder' => [
             'composerName' => 'friendsoftypo3/extension-builder',
             'state' => 'active',
@@ -372,12 +378,6 @@ return [
             'composerName' => 'typo3/cms-sys-action',
             'state' => 'inactive',
             'packagePath' => 'typo3/sysext/sys_action/',
-            'suggestions' => [],
-        ],
-        't3adminer' => [
-            'composerName' => 't3adminer',
-            'state' => 'inactive',
-            'packagePath' => 'typo3conf/ext/t3adminer/',
             'suggestions' => [],
         ],
         'taskcenter' => [
