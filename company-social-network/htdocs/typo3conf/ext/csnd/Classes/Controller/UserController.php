@@ -122,21 +122,21 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     /**
      * action dologin
      * 
-     * @param \Wind\CsndDomain\Model\User $newUser
+     * @param \Wind\Csnd\Domain\Model\User $newUser
      * @ignorevalidation $newUser
      * @return void
      */
-    public function dologinAction(\Wind\CsndDomain\Model\User $newUser)
+    public function doLoginAction(\Wind\Csnd\Domain\Model\User $newUser)
     {
       /** @var QueryResult $query */
-      var_dump('wwwwwwwwwwwww');
+      
       $query = $this->userRepository->findByUsername($newUser->getUsername());
 
       /** @var User $userFound */
       $userFound = $query->getFirst();
 
       if (empty($userFound)){
-          $this->addFlashMessage('Non ti abbiamo trovato, riprova!',"Login Fallito", FlashMessage::ERROR);
+          $this->addFlashMessage('Non ti abbiamo trovato, riprova!',"Login Fallito", \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
           $this->redirect('login');
 
       } else {
@@ -144,13 +144,13 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         if ($newUser->getPassword() == $userFound->getPassword()){
 
             $userFound->setOnLine(true);
-            $this->userRepository->update($userfound);
+            $this->userRepository->update($userFound);
 
             $this->addFlashMessage("Benvenuto","Login avvenuta con successo!!");
             $this->redirectToURI("personal/Bacheca");
         }
         else{
-            $this->addFlashMessage('utente o password errata, riprova',"Login Fallito", FlashMessage::ERROR);
+            $this->addFlashMessage('utente o password errata, riprova',"Login Fallito", \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
             $this->redirect('login');
         }
       }
