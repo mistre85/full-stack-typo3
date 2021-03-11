@@ -11,8 +11,11 @@ call_user_func(
             'User Plugin'
         );
 
-
-
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+            'Wind.Csnd',
+            'Postplugin', //tx_postplugin_
+            'Post Plugin'
+        );
 
         if (TYPO3_MODE === 'BE') {
 

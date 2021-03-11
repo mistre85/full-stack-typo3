@@ -7,17 +7,52 @@ call_user_func(
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'Wind.Csnd',
-            'Userplugin',
+            'Postplugin',
             [
-                'User' => 'register, subscription, login, doLogin, logout',
+                'Post' => 'post, publicPost',
                 
             ],
             // non-cacheable actions
             [
-                'User' => 'subscription, doLogin, logout',
+                'Post' => 'publicPost',
               
             ]
         );
+
+
+	// wizards
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
+		'mod {
+			wizards.newContentElement.wizardItems.plugins {
+				elements {
+					Postplugin {
+						icon = ' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($extKey) . 'Resources/Public/Icons/user_plugin_postplugin.svg
+						title = LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_postplugin
+						description = LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_postplugin.description
+						tt_content_defValues {
+							CType = list
+							list_type = csnd_postplugin
+						}
+					}
+				}
+				show = *
+			}
+	   }'
+	);
+
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+		'Wind.Csnd',
+		'Userplugin',
+		[
+			'User' => 'register, subscription, login, doLogin, logout',
+			
+		],
+		// non-cacheable actions
+		[
+			'User' => 'subscription, doLogin, logout',
+		  
+		]
+	);
 
 
 	// wizards
@@ -37,8 +72,9 @@ call_user_func(
 				}
 				show = *
 			}
-	   }'
+	}'
 	);
+
     },
     $_EXTKEY
 );

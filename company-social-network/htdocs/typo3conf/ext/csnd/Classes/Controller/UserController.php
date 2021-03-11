@@ -128,8 +128,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function doLoginAction(\Wind\Csnd\Domain\Model\User $newUser)
     {
-      /** @var QueryResult $query */
-      
+      /** @var QueryResult $query */      
       $query = $this->userRepository->findByUsername($newUser->getUsername());
 
       /** @var User $userFound */

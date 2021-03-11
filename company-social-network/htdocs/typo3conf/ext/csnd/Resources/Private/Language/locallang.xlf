@@ -7,7 +7,13 @@
 				<source>User Plugin</source>
 			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_userplugin.description">
-				<source></source>
+				<source>Permette di gestire login e registrazione</source>
+			</trans-unit>
+			<trans-unit id="tx_csnd_domain_model_postplugin">
+				<source>Post Plugin</source>
+			</trans-unit>
+			<trans-unit id="tx_csnd_domain_model_postplugin.description">
+				<source>Permette di pubblicare Post agli utenti iscritti</source>
 			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_user">
 				<source>User</source>
@@ -40,7 +46,7 @@
 				<source>Post</source>
 			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_post.text">
-				<source>Text</source>
+				<source>Testo da inserire (locallang.xlf)</source>
 			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_post.likes">
 				<source>Likes</source>

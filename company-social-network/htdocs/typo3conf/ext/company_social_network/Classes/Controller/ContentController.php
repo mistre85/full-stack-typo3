@@ -204,7 +204,7 @@ class ContentController extends AbstractController
 
     function bachecaAction()
     {
-        $postList = $this->userRepository->findAll();
+        $postList = $this->postRepository->findAll();
         $this->view->assign("postList", $postList);
     }
 

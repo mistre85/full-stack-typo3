@@ -107,4 +107,27 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $this->postRepository->remove($post);
         $this->redirect('list');
     }
+
+    
+    /**
+     * action post
+     * 
+
+     */
+    public function postAction()
+    {
+    }
+
+    /**
+     * action create
+     * 
+     * @param \Wind\Csnd\Domain\Model\Post $newPost
+     * @return void
+     */
+    public function publicPostAction(\Wind\Csnd\Domain\Model\Post $newPost)
+    {
+        $this->postRepository->add($newPost);
+        $this->redirectToUri('/personal/bacheca');
+    }
+
 }
