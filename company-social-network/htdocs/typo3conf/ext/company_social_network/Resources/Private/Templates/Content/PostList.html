@@ -23,16 +23,14 @@
 
         <div class="post-list-block clearfix">
             <div class="header">
-                <div class="title">
-                    <h1>Ultimi post</h1>
-                </div>
-                <div class="last-update pull-right">
-                    <small>
-                        Data tuo ultimo post:
-                        <f:format.date format="d.m.Y - H:i:s">{lastUpdateDate}</f:format.date>
-                    </small>
-                </div>
+                <h2 class="title">Ultimi post</h2>
+
+                <small class="pull-right">
+                    <b>Data tuo ultimo post:</b><i>
+                    <f:format.date format="d.m.Y - H:i:s">{lastPost.crdate}</f:format.date>
+                </i></small>
             </div>
+
             <div class="users-post-list">
                 <f:for each="{postList}" as="item">
                     <f:render partial="PostCard" arguments="{post:item}"/>

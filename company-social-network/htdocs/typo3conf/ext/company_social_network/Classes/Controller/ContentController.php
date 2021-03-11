@@ -83,10 +83,11 @@ class ContentController extends AbstractController
         $userId = CompanySocialNetwork::readCookie('user');
         $user = $this->userRepository->findByUid($userId);
 
-        $lastPostDate = $this->postRepository->findMyLastPostDate($user);
+        $lastPost = $this->postRepository->findMyLastPost($user);
 
         $postList = $this->postRepository->findAll();
         $this->view->assign("postList", $postList);
+        $this->view->assign("lastPost", $lastPost);
 
     }
 

@@ -2,7 +2,8 @@
 defined('TYPO3_MODE') || die('Access denied.');
 
 call_user_func(
-    function ($extKey) {
+    function($extKey)
+	{
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'Wind.Csnd',
@@ -16,12 +17,12 @@ call_user_func(
             ]
         );
 
-        // wizards
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-            'mod {
+	// wizards
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
+		'mod {
 			wizards.newContentElement.wizardItems.plugins {
 				elements {
-					Userplugin {
+					userplugin {
 						icon = ' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($extKey) . 'Resources/Public/Icons/user_plugin_userplugin.svg
 						title = LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_userplugin
 						description = LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_userplugin.description
@@ -30,31 +31,7 @@ call_user_func(
 							list_type = csnd_userplugin
 						}
 					}
-				}
-				show = *
-			}
-	   }'
-        );
-
-
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'Wind.Csnd',
-            'Postplugin',
-            [
-                'Post' => 'post, publicPost',
-            ],
-            // non-cacheable actions
-            [
-                'Post' => 'publicPost',
-            ]
-        );
-
-        // wizards
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-            'mod {
-			wizards.newContentElement.wizardItems.plugins {
-				elements {
-					Postplugin {
+					postplugin {
 						icon = ' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($extKey) . 'Resources/Public/Icons/user_plugin_postplugin.svg
 						title = LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_postplugin
 						description = LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_postplugin.description
@@ -67,9 +44,7 @@ call_user_func(
 				show = *
 			}
 	   }'
-        );
-
-
+	);
     },
     $_EXTKEY
 );

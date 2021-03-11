@@ -18,11 +18,15 @@ html, body {
     font-family: tt-norm;
 }
 
-.content-margin {
-    margin-top: 50px;
+.header {
+    vertical-align: middle;
+    line-height: 50px;
 }
 
 .header .title {
-    margin-bottom: 30px;
-    display: inline-block;
+    display: inline;
+}
+
+.content-margin {
+    margin-top: 50px;
 }

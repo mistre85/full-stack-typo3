@@ -1,12 +1,10 @@
 <?php
-
 namespace Wind\Csnd\Controller;
 
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 use Wind\Csnd\Domain\Model\User;
 use Wind\Csnd\Domain\Repository\PostRepository;
 use Wind\Csnd\Utility\CompanySocialNetwork;
-
 /***
  *
  * This file is part of the "Company Social Network Data" Extension for TYPO3 CMS.
@@ -122,7 +120,6 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $this->redirect('list');
     }
 
-
     /**
      * post action
      * @return void
@@ -142,12 +139,10 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     public function publicPostAction(\Wind\Csnd\Domain\Model\Post $newPost)
     {
         $userId = CompanySocialNetwork::readCookie('user');
-
         /** @var User $utenteLoggato */
         $utenteLoggato = $this->userRepository->findByUid($userId);
         $newPost->setUser($utenteLoggato);
-
         $this->postRepository->add($newPost);
-        $this->redirectToURI("/personal/dashboard");
+        $this->redirectToURI('/personal/dashboard');
     }
 }

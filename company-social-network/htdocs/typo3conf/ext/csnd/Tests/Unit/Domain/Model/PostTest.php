@@ -90,4 +90,70 @@ class PostTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         );
 
     }
+
+    /**
+     * @test
+     */
+    public function getCommentsReturnsInitialValueForComment()
+    {
+        $newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        self::assertEquals(
+            $newObjectStorage,
+            $this->subject->getComments()
+        );
+
+    }
+
+    /**
+     * @test
+     */
+    public function setCommentsForObjectStorageContainingCommentSetsComments()
+    {
+        $comment = new \Wind\Csnd\Domain\Model\Comment();
+        $objectStorageHoldingExactlyOneComments = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $objectStorageHoldingExactlyOneComments->attach($comment);
+        $this->subject->setComments($objectStorageHoldingExactlyOneComments);
+
+        self::assertAttributeEquals(
+            $objectStorageHoldingExactlyOneComments,
+            'comments',
+            $this->subject
+        );
+
+    }
+
+    /**
+     * @test
+     */
+    public function addCommentToObjectStorageHoldingComments()
+    {
+        $comment = new \Wind\Csnd\Domain\Model\Comment();
+        $commentsObjectStorageMock = $this->getMockBuilder(\TYPO3\CMS\Extbase\Persistence\ObjectStorage::class)
+            ->setMethods(['attach'])
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $commentsObjectStorageMock->expects(self::once())->method('attach')->with(self::equalTo($comment));
+        $this->inject($this->subject, 'comments', $commentsObjectStorageMock);
+
+        $this->subject->addComment($comment);
+    }
+
+    /**
+     * @test
+     */
+    public function removeCommentFromObjectStorageHoldingComments()
+    {
+        $comment = new \Wind\Csnd\Domain\Model\Comment();
+        $commentsObjectStorageMock = $this->getMockBuilder(\TYPO3\CMS\Extbase\Persistence\ObjectStorage::class)
+            ->setMethods(['detach'])
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $commentsObjectStorageMock->expects(self::once())->method('detach')->with(self::equalTo($comment));
+        $this->inject($this->subject, 'comments', $commentsObjectStorageMock);
+
+        $this->subject->removeComment($comment);
+
+    }
 }

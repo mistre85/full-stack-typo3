@@ -16,14 +16,14 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'searchFields' => 'text,likes,user',
+        'searchFields' => 'text,likes,user,comments',
         'iconfile' => 'EXT:csnd/Resources/Public/Icons/tx_csnd_domain_model_post.gif'
     ],
     'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, text, likes, user',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, text, likes, user, comments,crdate',
     ],
     'types' => [
-        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, text, likes, user, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
+        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, text, likes, user, comments, crdate, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -108,44 +108,75 @@ return [
             ],
         ],
         'text' => [
-	        'exclude' => true,
-	        'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_post.text',
-	        'config' => [
-			    'type' => 'text',
-			    'cols' => 40,
-			    'rows' => 15,
-			    'eval' => 'trim,required'
-			]
-	    ],
-	    'likes' => [
-	        'exclude' => true,
-	        'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_post.likes',
-	        'config' => [
-			    'type' => 'input',
-			    'size' => 4,
-			    'eval' => 'int'
-			]
-	    ],
-	    'user' => [
-	        'exclude' => true,
-	        'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_post.user',
-	        'config' => [
-			    'type' => 'inline',
-			    'foreign_table' => 'tx_csnd_domain_model_user',
-			    'minitems' => 0,
-			    'maxitems' => 1,
-			    'appearance' => [
-			        'collapseAll' => 0,
-			        'levelLinksPosition' => 'top',
-			        'showSynchronizationLink' => 1,
-			        'showPossibleLocalizationRecords' => 1,
-			        'showAllLocalizationLink' => 1
-			    ],
-			],
-	    ],
-        'user' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_post.text',
             'config' => [
-                'type' => 'passthrough',
+                'type' => 'text',
+                'cols' => 40,
+                'rows' => 15,
+                'eval' => 'trim,required'
+            ]
+        ],
+        'likes' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_post.likes',
+            'config' => [
+                'type' => 'input',
+                'size' => 4,
+                'eval' => 'int'
+            ]
+        ],
+        'user' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_post.user',
+            'config' => [
+                'type' => 'inline',
+                'foreign_table' => 'tx_csnd_domain_model_user',
+                'minitems' => 0,
+                'maxitems' => 1,
+                'appearance' => [
+                    'collapseAll' => 0,
+                    'levelLinksPosition' => 'top',
+                    'showSynchronizationLink' => 1,
+                    'showPossibleLocalizationRecords' => 1,
+                    'showAllLocalizationLink' => 1
+                ],
+            ],
+        ],
+        'comments' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_post.comments',
+            'config' => [
+                'type' => 'inline',
+                'foreign_table' => 'tx_csnd_domain_model_comment',
+                'foreign_field' => 'post',
+                'maxitems' => 9999,
+                'appearance' => [
+                    'collapseAll' => 0,
+                    'levelLinksPosition' => 'top',
+                    'showSynchronizationLink' => 1,
+                    'showPossibleLocalizationRecords' => 1,
+                    'showAllLocalizationLink' => 1
+                ],
+            ],
+        ],
+        'user' => [
+            'exclude' => true,
+            'label' => "User",
+            'config' => [
+                'type' => 'select',
+                'foreign_table' => 'tx_csnd_domain_model_user'
+            ],
+        ],
+        'crdate' => [
+            'exclude' => true,
+            'label' => "Crdate",
+            'config' => [
+                'type' => 'input',
+                'size' => '13',
+                'max' => '20',
+                'eval' => 'datetime',
+                'default' => '0'
             ],
         ],
     ],

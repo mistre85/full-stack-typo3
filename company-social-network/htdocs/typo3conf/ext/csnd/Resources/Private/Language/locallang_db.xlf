@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2021-03-09T22:26:36Z" product-name="csnd">
+	<file source-language="en" datatype="plaintext" original="messages" date="2021-03-11T23:49:16Z" product-name="csnd">
 		<header/>
 		<body>
 			<trans-unit id="tx_csnd_domain_model_userplugin">
 				<source>User Plugin</source>
 			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_userplugin.description">
-				<source>Permette di gestire login e registrazione</source>
+				<source></source>
 			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_postplugin">
-				<source>Post plugin</source>
+				<source>Post Plugin</source>
 			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_postplugin.description">
-				<source>permette di pubblicare un post agli utenti iscritti</source>
+				<source></source>
 			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_user">
 				<source>User</source>
@@ -52,6 +52,18 @@
 				<source>Likes</source>
 			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_post.user">
+				<source>User</source>
+			</trans-unit>
+			<trans-unit id="tx_csnd_domain_model_post.comments">
+				<source>Comments</source>
+			</trans-unit>
+			<trans-unit id="tx_csnd_domain_model_comment">
+				<source>Comment</source>
+			</trans-unit>
+			<trans-unit id="tx_csnd_domain_model_comment.text">
+				<source>Text</source>
+			</trans-unit>
+			<trans-unit id="tx_csnd_domain_model_comment.user">
 				<source>User</source>
 			</trans-unit>
 		</body>

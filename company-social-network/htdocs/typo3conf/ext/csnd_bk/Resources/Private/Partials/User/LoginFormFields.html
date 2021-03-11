@@ -1,0 +1,16 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<div class="form-group">
+    <label for="username">
+        <f:translate key="tx_csnd_domain_model_user.username"/>
+        <span class="required"></span>
+    </label>
+    <f:form.textfield additionalAttributes="{autocomplete: 'false'}" class="form-control" property="username"/>
+</div>
+<div class="form-group">
+    <label for="password">
+        <f:translate key="tx_csnd_domain_model_user.password"/>
+        <span class="required"></span>
+    </label>
+    <f:form.password additionalAttributes="{autocomplete: 'false'}" class="form-control" property="password"/>
+</div>
+</html>
