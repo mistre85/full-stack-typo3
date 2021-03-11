@@ -28,6 +28,7 @@ namespace Wind\CompanySocialNetwork\Controller;
 
 use FluidTYPO3\Fluidcontent\Controller\ContentController as AbstractController;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Wind\Csnd\Utility\CompanySocialNetwork;
 
 
 /**
@@ -79,7 +80,11 @@ class ContentController extends AbstractController
 
     function postListAction()
     {
-        //dati reali
+        $userId = CompanySocialNetwork::readCookie('user');
+        $user = $this->userRepository->findByUid($userId);
+
+        $lastPostDate = $this->postRepository->findMyLastPostDate($user);
+
         $postList = $this->postRepository->findAll();
         $this->view->assign("postList", $postList);
 

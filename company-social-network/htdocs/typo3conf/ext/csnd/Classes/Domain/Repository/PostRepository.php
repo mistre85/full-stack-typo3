@@ -2,6 +2,9 @@
 
 namespace Wind\Csnd\Domain\Repository;
 
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use Wind\Csnd\Domain\Model\User;
+
 /***
  *
  * This file is part of the "Company Social Network Data" Extension for TYPO3 CMS.
@@ -19,4 +22,25 @@ namespace Wind\Csnd\Domain\Repository;
 class PostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
 
+    protected $defaultOrderings = array(
+        'crdate' => QueryInterface::ORDER_DESCENDING,
+    );
+
+    /**
+     * @param User $user
+     */
+    public function findMyLastPostDate(User $user)
+    {
+        $query = $this->createQuery();
+
+        $query->matching(
+            $query->equals("user.uid", $user->getUid())
+        );
+
+        $posts = $query->execute();
+
+        //ultimo per data descending
+        return $posts->getFirst();
+
+    }
 }

@@ -192,8 +192,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
         CompanySocialNetwork::deleteCookie('user');
 
-        $this->redirecToUri("/");
-
+        $this->redirectToUri("/");
 
     }
 

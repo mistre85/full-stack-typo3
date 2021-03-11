@@ -27,7 +27,10 @@
                     <h1>Ultimi post</h1>
                 </div>
                 <div class="last-update pull-right">
-                    <small>ultimo aggiornamento: gg/mm/yy hh:mm</small>
+                    <small>
+                        Data tuo ultimo post:
+                        <f:format.date format="d.m.Y - H:i:s">{lastUpdateDate}</f:format.date>
+                    </small>
                 </div>
             </div>
             <div class="users-post-list">
