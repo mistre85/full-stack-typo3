@@ -126,8 +126,18 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function publicPostAction(\Wind\Csnd\Domain\Model\Post $newPost)
     {
+        //$utenteloggato = ???:
+        //$utenteLoggato = new User();
+       
+        //$utenteLoggato->setUsername();
+        //$utenteLoggato->setNome();
+        //$utenteLoggato->setCognome();
+        //$newPost->setUser($utenteLoggato);
+
+
         $this->postRepository->add($newPost);
         $this->redirectToUri('/personal/bacheca');
+        
     }
 
 }

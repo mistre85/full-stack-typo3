@@ -46,7 +46,7 @@
 				<source>Post</source>
 			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_post.text">
-				<source>Testo da inserire (locallang.xlf)</source>
+				<source></source>
 			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_post.likes">
 				<source>Likes</source>

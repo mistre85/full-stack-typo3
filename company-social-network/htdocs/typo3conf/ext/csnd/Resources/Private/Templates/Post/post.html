@@ -13,15 +13,25 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<h2>scrivi il tuo Post</h2>
+  <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/PostList.css"/>
 
 <f:flashMessages />
-
 <f:render partial="FormErrors" arguments="{object:Post}" />
 
-<f:form action="publicPost"  enctype="multipart/form-data"  name="newPost" object="{newPost}">
-<f:render partial="Post/postFormField" />
-	<f:form.submit value="pubblica il tuo Post" />
-</f:form>
+
+  <f:form action="publicPost"  enctype="multipart/form-data"  name="newPost" object="{newPost}">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4>Crea il tuo Post!</h4>
+    </div>
+      <div class="panel-body">  
+        <f:render partial="Post/postFormField" />
+      </div>
+      <div class="panel-footer right">
+        <f:form.submit class="btn btn-primary" value="pubblica il tuo Post" />
+      </div> 
+    </div>
+  </f:form>
+ 
 </f:section>
 </html>
