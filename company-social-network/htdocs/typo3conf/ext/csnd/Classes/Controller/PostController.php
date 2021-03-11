@@ -1,7 +1,11 @@
 <?php
+
 namespace Wind\Csnd\Controller;
 
+use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
+use Wind\Csnd\Domain\Model\User;
 use Wind\Csnd\Domain\Repository\PostRepository;
+
 /***
  *
  * This file is part of the "Company Social Network Data" Extension for TYPO3 CMS.
@@ -25,6 +29,14 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @inject
      */
     protected $postRepository = null;
+
+    /**
+     * userRepository
+     *
+     * @var \Wind\Csnd\Domain\Repository\UserRepository
+     * @inject
+     */
+    protected $userRepository = null;
 
     /**
      * action list
@@ -107,5 +119,33 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $this->postRepository->remove($post);
         $this->redirect('list');
+    }
+
+
+    /**
+     * post action
+     * @return void
+     */
+    public function postAction()
+    {
+
+    }
+
+    /**
+     * action create
+     *
+     * @param \Wind\Csnd\Domain\Model\Post $newPost
+     * @ignorevalidation
+     * @return void
+     */
+    public function publicPostAction(\Wind\Csnd\Domain\Model\Post $newPost)
+    {
+
+        /** @var QueryResult $utenteLoggato */
+        $utenteLoggato = $this->userRepository->findByUsername("mistre");
+        $newPost->setUser($utenteLoggato->getFirst());
+
+        $this->postRepository->add($newPost);
+        $this->redirectToURI("/personal/dashboard");
     }
 }
