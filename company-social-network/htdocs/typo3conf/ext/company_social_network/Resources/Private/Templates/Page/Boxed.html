@@ -1,6 +1,8 @@
-<div xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers" xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers" xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers">
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers">
 
-    <f:layout name="Page" />
+    <f:layout name="Page"/>
 
     <f:section name="Configuration">
         <flux:form id="Logged" label="Logged page">
@@ -10,7 +12,7 @@
         <flux:grid>
             <!-- Edit this grid to change the "backend layout" structure -->
             <flux:grid.row>
-                <flux:grid.column colPos="0" name="content" label="Contenuti" />
+                <flux:grid.column colPos="0" name="content" label="Contenuti"/>
             </flux:grid.row>
         </flux:grid>
     </f:section>
@@ -19,13 +21,13 @@
 
         <div class="container">
 
-            <f:render partial="TopMenu" arguments="{navBarClass: 'navbar-default'}" />
+            <v:render.uncache partial="TopMenu" arguments="{navBarClass: 'navbar-default'}"/>
 
             <div class="jumbotron">
                 <h1>Benevenuto user!</h1>
             </div>
 
-            <v:content.render column="0" />
+            <v:content.render column="0"/>
 
         </div>
 

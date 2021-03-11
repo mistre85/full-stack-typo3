@@ -36,53 +36,6 @@ use FluidTYPO3\Fluidpages\Controller\PageController as AbstractController;
 class PageController extends AbstractController
 {
 
-    function loggedAction()
-    {
 
-        //controlla DB o COOKIE
-        $logged = false;
-
-        if (!$logged) {
-            //eseguire una redirect
-        }
-
-    }
-
-    function userProfilePageAction()
-    {
-        //die();
-        //todo: finire di impletare con dati veri
-        $userData = array(
-            'nome' => 'Paolo',
-            'cognome' => 'Mistretta',
-            'account' => array(
-                'username' => 'mistre',
-                'mail' => 'paolo@mistre.it'
-            )
-        );
-
-        //$this->view->assign('username',$userData['username']);
-        $this->view->assign('userData', $userData);
-        //$this->view->assignMultiple($userData);
-    }
-
-    function robertoUserProfilePageAction()
-    {
-        //var_dump($_REQUEST);
-        //die();
-        //todo: finire di impletare con dati veri
-        $userData = array(
-            'nome' => 'Roberto',
-            'cognome' => 'Brambilla',
-            'account' => array(
-                'username' => 'brambillar',
-                'mail' => 'roberto.brambilla@windtre.it.it'
-            )
-        );
-
-        //$this->view->assign('username',$userData['username']);
-        $this->view->assign('userData', $userData);
-        //$this->view->assignMultiple($userData);
-    }
 
 }

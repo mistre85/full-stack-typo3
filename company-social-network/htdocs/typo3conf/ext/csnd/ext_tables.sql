@@ -95,3 +95,11 @@ CREATE TABLE tx_csnd_domain_model_post (
 	user int(11) unsigned DEFAULT '0' NOT NULL,
 
 );
+
+CREATE TABLE pages (
+    csn_loggedpage tinyint(1) unsigned DEFAULT '0' NOT NULL
+);
+
+CREATE TABLE pages_language_overlay (
+    csn_loggedpage tinyint(1) unsigned DEFAULT '0' NOT NULL
+);

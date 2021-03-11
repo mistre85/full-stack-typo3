@@ -8,6 +8,7 @@ use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 use Wind\Csnd\Domain\Model\User;
+use Wind\Csnd\Utility\CompanySocialNetwork;
 
 /***
  *
@@ -32,6 +33,14 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @inject
      */
     protected $userRepository = null;
+
+    /**
+     * CompanySocialNetwork
+     *
+     * @var \Wind\Csnd\Utility\CompanySocialNetwork
+     * @inject
+     */
+    protected $csn = null;
 
 
     /**
@@ -126,7 +135,6 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function doLoginAction(\Wind\Csnd\Domain\Model\User $newUser)
     {
-
         /** @var QueryResult $query */
         $query = $this->userRepository->findByUsername($newUser->getUsername());
 
@@ -143,6 +151,9 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
                 $userFound->setOnline(true);
                 $this->userRepository->update($userFound);
+
+                CompanySocialNetwork::registerUserCookie($userFound);
+
                 $this->addFlashMessage("Benvenuto", "Login avvenuta con successo");
                 $this->redirectToURI("/personal/dashboard");
 
@@ -160,11 +171,30 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      *
      * @return void
      */
-    function logoutAction(\Wind\Csnd\Domain\Model\User $newUser)
+    function logoutAction()
     {
-        $this->addFlashMessage('Arrivederci', "Logout riuscito");
-        $newUser->setOnline(false);
-        $this->userRepository->update($newUser);
+        $userLogged = $this->csn->isUserLogged();
+
+        if (!$userLogged) {
+            $this->redirectToUri("/");
+        }
+
+        $userCookie = $this->csn->readUserCookie();
+        /** @var User $user */
+        $user = $this->userRepository->findByUid($userCookie);
+
+        if (empty($user)) {
+            $this->redirectToUri("/");
+        }
+
+        $user->setOnline(false);
+        $this->userRepository->update($user);
+
+        CompanySocialNetwork::deleteCookie('user');
+
+        $this->redirecToUri("/");
+
+
     }
 
     /**
