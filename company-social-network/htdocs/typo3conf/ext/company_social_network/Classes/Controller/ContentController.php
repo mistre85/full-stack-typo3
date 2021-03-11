@@ -27,6 +27,7 @@ namespace Wind\CompanySocialNetwork\Controller;
  ***************************************************************/
 
 use FluidTYPO3\Fluidcontent\Controller\ContentController as AbstractController;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 
 /**
@@ -86,8 +87,10 @@ class ContentController extends AbstractController
 
     function chatWidgetAction()
     {
+
         $userList = $this->userRepository->findAll();
         $this->view->assign("userList", $userList);
     }
+
 
 }

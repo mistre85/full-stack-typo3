@@ -240,6 +240,12 @@ return [
             'packagePath' => 'typo3/sysext/tstemplate/',
             'suggestions' => [],
         ],
+        'version' => [
+            'composerName' => 'typo3/cms-version',
+            'state' => 'active',
+            'packagePath' => 'typo3/sysext/version/',
+            'suggestions' => [],
+        ],
         'viewpage' => [
             'composerName' => 'typo3/cms-viewpage',
             'state' => 'active',
@@ -387,12 +393,6 @@ return [
             'suggestions' => [
                 'sys_action',
             ],
-        ],
-        'version' => [
-            'composerName' => 'typo3/cms-version',
-            'state' => 'inactive',
-            'packagePath' => 'typo3/sysext/version/',
-            'suggestions' => [],
         ],
         'workspaces' => [
             'composerName' => 'typo3/cms-workspaces',

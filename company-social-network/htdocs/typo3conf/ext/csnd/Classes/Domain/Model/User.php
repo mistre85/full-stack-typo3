@@ -1,4 +1,5 @@
 <?php
+
 namespace Wind\Csnd\Domain\Model;
 
 /***
@@ -37,6 +38,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * email
      *
      * @var string
+     * @validate TYPO3\CMS\Extbase\Validation\Validator\EmailAddressValidator
      * @validate NotEmpty
      */
     protected $email = '';

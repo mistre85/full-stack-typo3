@@ -9,11 +9,10 @@ call_user_func(
             'Userplugin',
             [
                 'User' => 'register, subscription, login, doLogin, logout',
-
             ],
             // non-cacheable actions
             [
-                'User' => 'subcription, doLogin, logout',
+                'User' => 'subscription, doLogin, logout',
             ]
         );
 
