@@ -66,9 +66,9 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function subscriptionAction(\Wind\Csnd\Domain\Model\User $newUser)
     {
-        $this->addFlashMessage('Registrazione avvenuta con successo', 'Benvenuto in CSN', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
+        $this->addFlashMessage('Registrazione avvenuta con successo', 'Benvenuto in CSN', \TYPO3\CMS\Core\Messaging\FlashMessage::OK);
         $this->userRepository->add($newUser);
-        $this->redirectToUri('/login');
+        $this->redirectToUri('/Login');
     }
 
     /**
@@ -129,6 +129,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     public function dologinAction(\Wind\CsndDomain\Model\User $newUser)
     {
       /** @var QueryResult $query */
+      var_dump('wwwwwwwwwwwww');
       $query = $this->userRepository->findByUsername($newUser->getUsername());
 
       /** @var User $userFound */
