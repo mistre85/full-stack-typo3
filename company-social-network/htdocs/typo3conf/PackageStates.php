@@ -276,6 +276,12 @@ return [
             'packagePath' => 'typo3conf/ext/company_social_network/',
             'suggestions' => [],
         ],
+        'dea' => [
+            'composerName' => 'dea',
+            'state' => 'active',
+            'packagePath' => 'typo3conf/ext/dea/',
+            'suggestions' => [],
+        ],
         'builder' => [
             'composerName' => 'fluidtypo3/builder',
             'state' => 'active',

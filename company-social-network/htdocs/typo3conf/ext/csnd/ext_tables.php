@@ -11,6 +11,11 @@ call_user_func(
             'User Plugin'
         );
 
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+            'Windtre.Csnd',
+            'Postplugin',
+            'Post Plugin'
+        );
 
 
 

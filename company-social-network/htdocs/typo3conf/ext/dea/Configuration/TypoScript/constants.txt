@@ -1,0 +1,5 @@
+plugin.tx_dea.view {
+	templateRootPaths.0 = EXT:dea/Resources/Private/Templates/
+	partialRootPaths.0 = EXT:dea/Resources/Private/Partials/
+	layoutRootPaths.0 = EXT:dea/Resources/Private/Layouts/
+}

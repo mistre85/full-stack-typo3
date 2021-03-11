@@ -1,16 +1,16 @@
 <div class="post">
     <div class="post_head">
         <div class="photo"><img src="{post.photo}"></div>
-        <div class="user_info">{post.name}</div>
+        <div class="user_info">{post.user}</div>
     </div>
     <div class="post_body">
         <div class="text">
-            {post.posttext}
+            {post.text}
         </div>
         <div class="likes l{index}">
             Piace a {post.likes} persone
         </div>
-        <div class="buttons b{index.index}" data-index="{index.index}">
+        <div class="buttons b{index}" data-index="{index}">
             <img src="http://csn.local/fileadmin/assets/like.png">
         </div>
     </div>

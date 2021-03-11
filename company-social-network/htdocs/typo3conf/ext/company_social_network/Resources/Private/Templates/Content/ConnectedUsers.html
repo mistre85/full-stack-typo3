@@ -12,7 +12,7 @@
     </f:section>
 
     <f:section name="Preview">
-        <strong>Utenti connessi (Fabio)</strong><br/>
+        <strong>Utenti connessi</strong><br/>
         Mostra gli utenti connessi in chat
     </f:section>
 
@@ -20,7 +20,7 @@
         <div class="chat">
             <div class="chat_title">Contatti</div>
             <f:for each="{conn_users}" as="conn" iteration="i">
-                <f:render partial="FabioChat" arguments="{user: conn, index: i}"/>
+                <f:render partial="Chat" arguments="{user: conn, index: i}"/>
             </f:for>
         </div>
 

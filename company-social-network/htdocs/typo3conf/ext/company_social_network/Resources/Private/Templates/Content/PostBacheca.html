@@ -15,12 +15,9 @@
         <strong>Post in Bacheca</strong><br/>
         Mostra i post in Bacheca
     </f:section>
-
     <f:section name="Main">
         <f:for each="{posts}" as="post">
-            <f:for each="{post}" as="pst">
-                <f:render partial="FabioPost" arguments="{post: pst}"/>
-            </f:for>
+            <f:render partial="Post" arguments="{post: post}"/>
         </f:for>
     </f:section>
 </div>

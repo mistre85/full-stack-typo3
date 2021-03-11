@@ -14,6 +14,21 @@ plugin.tx_csnd_userplugin {
   }
 }
 
+plugin.tx_csnd_postplugin {
+  view {
+    # cat=plugin.tx_csnd_postplugin/file; type=string; label=Path to template root (FE)
+    templateRootPath = EXT:csnd/Resources/Private/Templates/
+    # cat=plugin.tx_csnd_postplugin/file; type=string; label=Path to template partials (FE)
+    partialRootPath = EXT:csnd/Resources/Private/Partials/
+    # cat=plugin.tx_csnd_postplugin/file; type=string; label=Path to template layouts (FE)
+    layoutRootPath = EXT:csnd/Resources/Private/Layouts/
+  }
+  persistence {
+    # cat=plugin.tx_csnd_postplugin//a; type=string; label=Default storage PID
+    storagePid =
+  }
+}
+
 
 module.tx_csnd_cnsadmin {
   view {

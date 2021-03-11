@@ -1,0 +1,36 @@
+#commit
+#https://docs.typo3.org/m/typo3/reference-typoscript/7.6/en-us/Setup/Top-levelObjects/Index.html
+config.tx_realurl_enable = 1
+config.absRefPrefix = /
+plugin.tx_vhs.settings.enableFooterRelocation = 0
+
+plugin.tx_dea {
+	view {
+		templateRootPaths.0 = {$plugin.tx_dea.view.templateRootPaths.0}
+		partialRootPaths.0 = {$plugin.tx_dea.view.partialRootPaths.0}
+		layoutRootPaths.0 = {$plugin.tx_dea.view.layoutRootPaths.0}
+	#By default the following settings only will have relevance if you have fluidcontent_core extension loaded
+	settings{
+		container {
+			types {
+				default = div
+				Example = div
+			}
+		}
+
+	}
+
+	persistence {
+	    storagePid = {$plugin.tx_dea.persistence.storagePid}
+	}
+}
+
+
+
+#system libs
+#usato l'helper
+page.includeCSS.boostrap = EXT:dea/Resources/Public/bootstrap/css/bootstrap.css
+
+#custom libs
+#usato l'helper
+page.includeCSS.main = EXT:dea/Resources/Public/css/main.css

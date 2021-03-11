@@ -3,6 +3,7 @@ namespace Windtre\Csnd\Controller;
 
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /***
  *
@@ -119,16 +120,37 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function loginAction()
     {
-
+        //DebuggerUtility::var_dump($GLOBALS['BE_USER']->isAdminPanelVisible());
     }
 
     /**
      * action doLogin
      *
+     * @param \Windtre\Csnd\Domain\Model\User $newUser
+     * @ignorevalidation $newUser
      * @return void
      */
-    public function doLoginAction()
+    public function doLoginAction(\Windtre\Csnd\Domain\Model\User $newUser)
     {
+        $query = $this->userRepository->findByUsername($newUser->getUsername());
+        /** @var \Windtre\Csnd\Domain\Model\User $userFound */
+        $userFound = $query->getFirst();
 
+//        DebuggerUtility::var_dump($userFound);
+//        die();
+
+        if( empty($userFound) ) {
+            $this->addFlashMessage('Non sei stato riconosciuto', 'Login fallito', FlashMessage::ERROR);
+            $this->redirect('login');
+        } else {
+            if( $newUser->getPassword() == $userFound->getPassword() ) {
+                $userFound->setOnline(true);
+                $this->userRepository->update('Benvenuto', 'Login avvenuta con successo', FlashMessage::OK);
+                $this->redirectToUri('area-personale/profilo/');
+            } else {
+                $this->addFlashMessage('Utente o password errata, riprova', 'Login fallito', FlashMessage::WARNING);
+                $this->redirect('login');
+            }
+        }
     }
 }

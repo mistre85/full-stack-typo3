@@ -1,6 +1,10 @@
 <?php
 namespace Windtre\Csnd\Controller;
 
+use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use Windtre\Csnd\Domain\Model\User;
+
 /***
  *
  * This file is part of the "Company Social Network Data" Extension for TYPO3 CMS.
@@ -24,6 +28,14 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @inject
      */
     protected $postRepository = null;
+
+    /**
+     * userRepository
+     *
+     * @var \Windtre\Csnd\Domain\Repository\UserRepository
+     * @inject
+     */
+    protected $userRepository = null;
 
     /**
      * action list
@@ -106,5 +118,30 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $this->postRepository->remove($post);
         $this->redirect('list');
+    }
+
+    /**
+     * action post
+     *
+     * @return void
+     */
+    public function postAction()
+    {
+
+    }
+
+    /**
+     * action publicPost
+     *
+     * @param \Windtre\Csnd\Domain\Model\Post $newPost
+     * @return void
+     */
+    public function savepostAction(\Windtre\Csnd\Domain\Model\Post $newPost)
+    {
+        /** @var QueryResult $utenteLoggato */
+        $utenteLoggato = $this->userRepository->findByUsername('fabiox3');
+        $newPost->setUser($utenteLoggato->getFirst());
+        $this->postRepository->add($newPost);
+        $this->redirectToUri('area-personale/bacheca');
     }
 }

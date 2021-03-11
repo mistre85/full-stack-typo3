@@ -7,7 +7,7 @@
 				<source>User Plugin</source>
 			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_userplugin.description">
-				<source></source>
+				<source>Permette di gestire login e regisrazione</source>
 			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_user">
 				<source>User</source>
@@ -48,6 +48,12 @@
 			<trans-unit id="tx_csnd_domain_model_post.user">
 				<source>User</source>
 			</trans-unit>
+            <trans-unit id="tx_csnd_domain_model_postplugin">
+                <source>Post Plugin</source>
+            </trans-unit>
+            <trans-unit id="tx_csnd_domain_model_postplugin.description">
+                <source>Permette di pubblicare post agli utenti iscritti</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -1,0 +1,22 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="home" options="{group: 'DEA'}" label="Visore Home" description="Mostra il visore per la homepage">
+            <flux:field.text name="text" enableRichText="false" label="Testo libero"/>
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>Visore Home</strong><br/>
+        Mostra il visore per la homepage
+    </f:section>
+
+    <f:section name="Main">
+        {description}
+    </f:section>
+</div>
