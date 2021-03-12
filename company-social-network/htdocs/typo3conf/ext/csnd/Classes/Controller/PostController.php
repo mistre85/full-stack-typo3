@@ -139,10 +139,13 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     public function publicPostAction(\Wind\Csnd\Domain\Model\Post $newPost)
     {
         $userId = CompanySocialNetwork::readCookie('user');
+
         /** @var User $utenteLoggato */
         $utenteLoggato = $this->userRepository->findByUid($userId);
+
         $newPost->setUser($utenteLoggato);
         $this->postRepository->add($newPost);
+
         $this->redirectToURI('/personal/dashboard');
     }
 }

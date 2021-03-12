@@ -139,9 +139,12 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $this->redirect('login');
         } else {
             if ($newUser->getPassword() == $userFound->getPassword()) {
+
                 $userFound->setOnline(true);
                 $this->userRepository->update($userFound);
+
                 CompanySocialNetwork::registerUserCookie($userFound);
+
                 $this->addFlashMessage('Benvenuto', 'Login avvenuta con successo');
                 $this->redirectToURI('/personal/dashboard');
             } else {

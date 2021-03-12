@@ -27,7 +27,6 @@ namespace Wind\CompanySocialNetwork\Controller;
  ***************************************************************/
 
 use FluidTYPO3\Fluidcontent\Controller\ContentController as AbstractController;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Wind\Csnd\Utility\CompanySocialNetwork;
 
 
@@ -84,8 +83,8 @@ class ContentController extends AbstractController
         $user = $this->userRepository->findByUid($userId);
 
         $lastPost = $this->postRepository->findMyLastPost($user);
-
         $postList = $this->postRepository->findAll();
+
         $this->view->assign("postList", $postList);
         $this->view->assign("lastPost", $lastPost);
 

@@ -29,7 +29,11 @@ class PostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     public function findMyLastPost(User $user)
     {
         $query = $this->createQuery();
-        $query->matching($query->equals('user.uid', $user->getUid()));
+
+        $query->matching(
+            $query->equals('user.uid', $user->getUid())
+        );
+
         $posts = $query->execute();
         //ultimo per data descending
         return $posts->getFirst();

@@ -170,7 +170,7 @@ return [
         ],
         'crdate' => [
             'exclude' => true,
-            'label' => "Crdate",
+            'label' => "Creation date",
             'config' => [
                 'type' => 'input',
                 'size' => '13',

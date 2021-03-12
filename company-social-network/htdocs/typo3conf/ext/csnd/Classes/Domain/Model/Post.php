@@ -49,10 +49,9 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $comments = null;
 
     /**
-     * online
+     * crdate
      *
      * @var int
-     * @validate NotEmpty
      */
     protected $crdate = null;
 
