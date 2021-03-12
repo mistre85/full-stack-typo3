@@ -17,27 +17,6 @@ call_user_func(
             ]
         );
 
-        // wizards
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-            'mod {
-                wizards.newContentElement.wizardItems.plugins {
-                    elements {
-                        userplugin {
-                            icon = ' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($extKey) . 'Resources/Public/Icons/user_plugin_userplugin.svg
-                            title = LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_userplugin
-                            description = LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_userplugin.description
-                            tt_content_defValues {
-                                CType = list
-                                list_type = csnd_userplugin
-                            }
-                        }
-                    }
-                    show = *
-                }
-           }'
-        );
-
-
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'Windtre.Csnd',
             'Postplugin',
@@ -55,6 +34,15 @@ call_user_func(
             'mod {
                 wizards.newContentElement.wizardItems.plugins {
                     elements {
+                        userplugin {
+                            icon = ' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($extKey) . 'Resources/Public/Icons/user_plugin_userplugin.svg
+                            title = LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_userplugin
+                            description = LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_userplugin.description
+                            tt_content_defValues {
+                                CType = list
+                                list_type = csnd_userplugin
+                            }
+                        }
                         Postplugin {
                             icon = ' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($extKey) . 'Resources/Public/Icons/post_plugin_postplugin.svg
                             title = LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_postplugin

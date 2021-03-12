@@ -4,6 +4,7 @@ namespace Windtre\Csnd\Controller;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use Windtre\CompanySocialNetwork\Utility\CompanySocialNetwork;
 
 /***
  *
@@ -145,7 +146,10 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         } else {
             if( $newUser->getPassword() == $userFound->getPassword() ) {
                 $userFound->setOnline(true);
-                $this->userRepository->update('Benvenuto', 'Login avvenuta con successo', FlashMessage::OK);
+                $this->userRepository->update($userFound);
+
+                CompanySocialNetwork::registerCookie($userFound);
+
                 $this->redirectToUri('area-personale/profilo/');
             } else {
                 $this->addFlashMessage('Utente o password errata, riprova', 'Login fallito', FlashMessage::WARNING);
