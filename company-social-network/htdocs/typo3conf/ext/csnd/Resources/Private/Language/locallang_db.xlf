@@ -4,7 +4,7 @@
 		<header/>
 		<body>
 			<trans-unit id="tx_csnd_domain_model_userplugin">
-				<source>User Plugin</source>
+				<source>+ User Plugin -</source>
 			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_userplugin.description">
 				<source></source>

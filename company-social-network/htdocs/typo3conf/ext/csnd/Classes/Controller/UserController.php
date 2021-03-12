@@ -1,6 +1,8 @@
 <?php
 namespace Wind\Csnd\Controller;
 
+use Wind\Csnd\Utility\CompanySocialNetwork;
+use \Wind\Csnd\Domain\Model\User;
 /***
  *
  * This file is part of the "Company Social Network Data" Extension for TYPO3 CMS.
@@ -128,30 +130,34 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function doLoginAction(\Wind\Csnd\Domain\Model\User $newUser)
     {
-      /** @var QueryResult $query */      
-      $query = $this->userRepository->findByUsername($newUser->getUsername());
+        /** @var QueryResult $query */      
+        $query = $this->userRepository->findByUsername($newUser->getUsername());
 
-      /** @var User $userFound */
-      $userFound = $query->getFirst();
+        /** @var User $userFound */
+        
+        $userFound = $query->getFirst();
 
-      if (empty($userFound)){
-          $this->addFlashMessage('Non ti abbiamo trovato, riprova!',"Login Fallito", \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
-          $this->redirect('login');
+            if (empty($userFound)){
+                $this->addFlashMessage('Non ti abbiamo trovato, riprova!',"Login Fallito", \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+                $this->redirect('login');
 
-      } else {
+            } else {
 
-        if ($newUser->getPassword() == $userFound->getPassword()){
+                if ($newUser->getPassword() == $userFound->getPassword()){
 
-            $userFound->setOnLine(true);
-            $this->userRepository->update($userFound);
+                    $userFound->setOnLine(true);
+                    $this->userRepository->update($userFound);
+                    //var_dump($userFound);
+                   
+                    CompanySocialNetwork::registerUserCookie($userFound);
 
-            $this->addFlashMessage("Benvenuto","Login avvenuta con successo!!");
-            $this->redirectToURI("personal/Bacheca");
+                    $this->addFlashMessage("Benvenuto","Login avvenuta con successo!!");
+                    $this->redirectToURI("personal/Bacheca");
+                }
+                else{
+                    $this->addFlashMessage('utente o password errata, riprova',"Login Fallito", \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+                    $this->redirect('login');
+                }
+            }
         }
-        else{
-            $this->addFlashMessage('utente o password errata, riprova',"Login Fallito", \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
-            $this->redirect('login');
-        }
-      }
-    }
 }
