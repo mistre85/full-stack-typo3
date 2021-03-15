@@ -9,7 +9,7 @@
         <flux:form id="CardBlock" options="{group: 'Blocks'}" label="Card Block"
                    description="Permette di inserire una galleria di immagini con titolo e desrizione relativa al team di lavoro">
 
-            <flux:field.input name="title" label="Titolo blocco Card Beppe"/>
+            <flux:field.input name="title" label="Titolo blocco Card"/>
             <flux:form.section name="vantaggi" label="Lista vantaggi Shutterstock">
                 <flux:form.object name="listaVantaggi" label="Lista Vantaggi">                    
                     <flux:field.file name="icona" label="icona" allowed="png,svg, jpg, jpeg"/>
@@ -41,6 +41,7 @@
                         </div>
                     </f:if>
                 <div class="row card-row">
+                    <<f:debug>{vantaggi}</f:debug>
                     <f:for each="{vantaggi}" as="vantaggiObj">
                         <f:render partial="CardBlockPartial" arguments="{item: vantaggiObj}"></f:render>
                     </f:for>

@@ -137,27 +137,34 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         
         $userFound = $query->getFirst();
 
-            if (empty($userFound)){
-                $this->addFlashMessage('Non ti abbiamo trovato, riprova!',"Login Fallito", \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+        if (empty($userFound)){
+            $this->addFlashMessage('Non ti abbiamo trovato, riprova!',"Login Fallito", \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+            $this->redirect('login');
+
+        } else {
+
+            if ($newUser->getPassword() == $userFound->getPassword()){
+
+                $userFound->setOnLine(true);
+                $this->userRepository->update($userFound);
+                //var_dump($userFound);
+                
+                CompanySocialNetwork::registerUserCookie($userFound);
+
+                $this->addFlashMessage("Benvenuto","Login avvenuta con successo!!");
+                $this->redirectToURI("personal/Bacheca");
+            }
+            else{
+                $this->addFlashMessage('utente o password errata, riprova',"Login Fallito", \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
                 $this->redirect('login');
-
-            } else {
-
-                if ($newUser->getPassword() == $userFound->getPassword()){
-
-                    $userFound->setOnLine(true);
-                    $this->userRepository->update($userFound);
-                    //var_dump($userFound);
-                   
-                    CompanySocialNetwork::registerUserCookie($userFound);
-
-                    $this->addFlashMessage("Benvenuto","Login avvenuta con successo!!");
-                    $this->redirectToURI("personal/Bacheca");
-                }
-                else{
-                    $this->addFlashMessage('utente o password errata, riprova',"Login Fallito", \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
-                    $this->redirect('login');
-                }
             }
         }
+    }
+
+    public function logoutAction()
+    {
+         
+          setcookie('user', "", -1, '/', "typo.local");
+          $this->redirectToUri('/');
+    }
 }

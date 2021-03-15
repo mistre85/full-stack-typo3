@@ -1,5 +1,11 @@
 {namespace v=FluidTYPO3\Vhs\ViewHelpers}
+{namespace csn=Wind\Csnd\ViewHelpers}
+
 <!-- not logged menu -->
+
+
+
+
 <nav class="navbar {navBarClass}">
     <div class="{containerClass}">
         <div class="navbar-header">
@@ -47,6 +53,11 @@
                     </f:for>
 
                 </v:page.menu.directory>
+                <li>
+                    <a>
+                        <csn:ifUserLogged />
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
