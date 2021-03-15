@@ -41,9 +41,9 @@
                         </div>
                     </f:if>
                 <div class="row card-row">
-                    <<f:debug>{vantaggi}</f:debug>
+                  
                     <f:for each="{vantaggi}" as="vantaggiObj">
-                        <f:render partial="CardBlockPartial" arguments="{item: vantaggiObj}"></f:render>
+                        <f:render partial="CardBlockPartial" arguments="{item: vantaggiObj.listaVantaggi}"></f:render>
                     </f:for>
                 </div>
             </div>
