@@ -5,8 +5,16 @@ namespace Wind\Csnd\Utility;
 
 
 use Wind\Csnd\Domain\Model\User;
-use Wind\Csnd\Exception\UserNotExistCookieException;
 
+
+/**
+ * Class CompanySocialNetwork
+ *
+ * Collettore di scenari di flusso dati
+ * contenenitore di funzione
+ *
+ * @package Wind\Csnd\Utility
+ */
 class CompanySocialNetwork
 {
     /**
@@ -41,29 +49,28 @@ class CompanySocialNetwork
 
     }
 
-    /**
-     * @param \Wind\Csnd\Domain\Model\User $user
-     */
-    public static function registerUserCookie(User $user)
-    {
-        CompanySocialNetwork::registerCookie('user', $user->getUid());
-    }
-
     public function readUserCookie()
     {
         $userCookie = CompanySocialNetwork::readCookie('user');
         return $userCookie;
     }
 
-    public static function readCookie($name)
+
+    /**
+     * @param User $userFound
+     */
+    public static function registerUserCookie(User $userFound)
     {
-        return $_COOKIE[$name];
+        setcookie('user', $userFound->getUid(), 0, '/', "localhost");
     }
 
-    public static function registerCookie($cookieName, $data)
+    public static function readCookie($name)
     {
-        setcookie($cookieName, $data, 0, '/', "localhost");
-        //setrawcookie($cookieName, $data, 0, '/', "localhost");
+        if (empty($name)) {
+            return false;
+        }
+
+        return $_COOKIE[$name];
     }
 
     public static function deleteCookie($cookieName)

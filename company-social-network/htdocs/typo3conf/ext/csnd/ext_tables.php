@@ -1,9 +1,10 @@
 <?php
 defined('TYPO3_MODE') || die('Access denied.');
 
+//configurazioni di backend
+
 call_user_func(
-    function($extKey)
-    {
+    function ($extKey) {
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
             'Wind.Csnd',
@@ -25,11 +26,11 @@ call_user_func(
                 'cnsadmin', // Submodule key
                 '', // Position
                 [
-                    'User' => 'list, show, new, create, edit, update, delete','Post' => 'list, show, new, create, edit, update, delete','Comment' => 'list, show, new, create, edit, update, delete, ',
+                    'User' => 'list, show, new, create, edit, update, delete', 'Post' => 'list, show, new, create, edit, update, delete', 'Comment' => 'list, show, new, create, edit, update, delete, ',
                 ],
                 [
                     'access' => 'user,group',
-					'icon'   => 'EXT:' . $extKey . '/Resources/Public/Icons/user_mod_cnsadmin.svg',
+                    'icon' => 'EXT:' . $extKey . '/Resources/Public/Icons/user_mod_cnsadmin.svg',
                     'labels' => 'LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_cnsadmin.xlf',
                 ]
             );

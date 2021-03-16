@@ -1,5 +1,5 @@
 <?php
-defined ('TYPO3_MODE') or die ('Access denied.');
+defined('TYPO3_MODE') or die ('Access denied.');
 
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['fluidpages']['setup'] = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['fluidpages']);
 
@@ -149,7 +149,7 @@ if (FALSE === empty($additionalDoktypes)) {
 $GLOBALS['TCA']['pages']['ctrl']['requestUpdate'] .= ',tx_fluidpages_templatefile,tx_fed_page_controller_action,tx_fed_page_controller_action_sub';
 
 if (TRUE === isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['fluidpages']['setup']['pagesLanguageConfigurationOverlay'])
-    && TRUE === (boolean) $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['fluidpages']['setup']['pagesLanguageConfigurationOverlay']) {
+    && TRUE === (boolean)$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['fluidpages']['setup']['pagesLanguageConfigurationOverlay']) {
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages_language_overlay', [
         'tx_fed_page_flexform' => [
             'exclude' => 1,

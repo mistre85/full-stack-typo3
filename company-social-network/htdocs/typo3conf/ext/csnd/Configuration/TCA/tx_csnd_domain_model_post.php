@@ -20,7 +20,7 @@ return [
         'iconfile' => 'EXT:csnd/Resources/Public/Icons/tx_csnd_domain_model_post.gif'
     ],
     'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, text, likes, user, comments,crdate',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, text, likes, user, comments, crdate',
     ],
     'types' => [
         '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, text, likes, user, comments, crdate, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],

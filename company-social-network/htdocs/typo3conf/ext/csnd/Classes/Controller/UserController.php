@@ -1,13 +1,12 @@
 <?php
+
 namespace Wind\Csnd\Controller;
 
-use http\Cookie;
-use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 use Wind\Csnd\Domain\Model\User;
 use Wind\Csnd\Utility\CompanySocialNetwork;
+
 /***
  *
  * This file is part of the "Company Social Network Data" Extension for TYPO3 CMS.
@@ -101,6 +100,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     }
 
     //custom action
+
     /**
      * action register
      *
@@ -161,19 +161,8 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     function logoutAction()
     {
-        $userLogged = $this->csn->isUserLogged();
-        if (!$userLogged) {
-            $this->redirectToUri('/');
-        }
-        $userCookie = $this->csn->readUserCookie();
-        /** @var User $user */
-        $user = $this->userRepository->findByUid($userCookie);
-        if (empty($user)) {
-            $this->redirectToUri('/');
-        }
-        $user->setOnline(false);
-        $this->userRepository->update($user);
-        CompanySocialNetwork::deleteCookie('user');
+        //unset($_COOKIE['user']);
+        setcookie('user', "", -1, '/', "localhost");
         $this->redirectToUri('/');
     }
 
