@@ -6,17 +6,24 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 class IfUserLoggedViewHelper extends AbstractViewHelper
 {
 
-    public function render()
+    /** 
+     * @param array $page
+     * @return mixed|null
+     */
+    public function render($page)
     {
         // return "<h1>Prova</h1>";
-        $userCookie = $_COOKIE['user'];
+        //id di pagine di tipo logged
+  
+        $loggedPage = array(6, 7, 8);
+        $isLoggedPage = in_array($page['uid'], $loggedPage);
+        $isLoggedUser = !empty($_COOKIE['user']);
 
-        if (!empty($userCookie)){
-            return "Connesso";
+        if($isLoggedPage && !$isLoggedUser){
+            return null; 
         }
-        else{
-            return "Disconnesso";
-        }
+
+        return $this->renderChildren();
     }
 
 }
