@@ -2,16 +2,16 @@
 
 namespace Wind\Csnd\ViewHelpers;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\Object\ObjectManagerInterface;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 
 class IfUserLoggedViewHelper extends AbstractViewHelper
 {
-    /**
-     * @var \Wind\Csnd\Utility\CompanySocialNetwork
-     * @inject
-     */
-    protected $csn = null;
 
     /**
      * @param array $page
@@ -19,17 +19,18 @@ class IfUserLoggedViewHelper extends AbstractViewHelper
      */
     public function render($page)
     {
+        //id di pagine di tipo logged
+        //$loggedPage = array(7, 8, 20); //spostato in typoscript
         $loggedPage = $page['csn_loggedpage'];
 
-        $userLogged = $this->csn->isUserLogged();
+        $isLoggedPage = in_array($page['uid'], $loggedPage);
+        $isLoggedUser = !empty($_COOKIE['user']);
 
-        if ($loggedPage && !$userLogged) {
+        if ($isLoggedPage && !$isLoggedUser) {
             return null;
         }
 
         return $this->renderChildren();
-
     }
-
 
 }

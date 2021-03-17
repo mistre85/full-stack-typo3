@@ -148,10 +148,16 @@ CREATE TABLE tx_csnd_domain_model_comment (
 
 );
 
+#
+# Table structure for table 'pages'
+#
 CREATE TABLE pages (
     csn_loggedpage tinyint(1) unsigned DEFAULT '0' NOT NULL
 );
 
+#
+# Table structure for table 'pages_language_overlay'
+#
 CREATE TABLE pages_language_overlay (
     csn_loggedpage tinyint(1) unsigned DEFAULT '0' NOT NULL
 );

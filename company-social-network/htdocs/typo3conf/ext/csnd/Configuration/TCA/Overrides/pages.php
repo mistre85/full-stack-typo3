@@ -7,7 +7,13 @@ if (!defined('TYPO3_MODE')) {
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages', array(
     'csn_loggedpage' => array(
         'label' => 'Logged page',
+        /*
+         * Se impostato, a tutti gli utenti di backend viene impedito di modificare
+         * il campo a meno che non siano membri di un gruppo di utenti di backend
+         * con questo campo aggiunto come "Campo di esclusione consentito" (o utente "amministratore").
+         */
         'exclude' => 1,
+        /* https://docs.typo3.org/m/typo3/reference-tca/7.6/en-us/Reference/Columns/Common/Index.html */
         'config' => array(
             'type' => 'check',
             'default' => '0'
