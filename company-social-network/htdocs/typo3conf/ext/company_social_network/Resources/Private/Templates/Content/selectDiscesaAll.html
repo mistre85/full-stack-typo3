@@ -1,0 +1,34 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="loginForm" label="Login form select ALLLLLL" description="Il form che permette l'accesso al sistema"
+                   options="{group: 'Forms'}">
+            <flux:field.input name="title" label="Titolo"/>
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>Login Form</strong>
+        <br>
+        <i>Preview in costruzione</i>
+    </f:section>
+
+    <f:section name="Main">
+        <h1>{title}</h1>
+
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address !!!</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+            </div>
+
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+
+    </f:section>
+</div>

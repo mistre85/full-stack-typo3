@@ -16,6 +16,7 @@ class IfUserLoggedViewHelper extends AbstractViewHelper
         //id di pagine di tipo logged
   
         $loggedPage = array(6, 7, 8);
+        
         $isLoggedPage = in_array($page['uid'], $loggedPage);
         $isLoggedUser = !empty($_COOKIE['user']);
 
