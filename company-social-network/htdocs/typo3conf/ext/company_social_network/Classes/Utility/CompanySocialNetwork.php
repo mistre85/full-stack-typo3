@@ -32,7 +32,20 @@ class CompanySocialNetwork
      */
     public function isUserLogged()
     {
-        $userCookie = $this->readUserCookie();
+        $user = $this->getLoggedUser();
+
+        ///logica di access token
+
+        if (empty($user)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function getLoggedUser()
+    {
+        $userCookie = self::readUserCookie();
 
         if (empty($userCookie)) {
             return false;
@@ -41,15 +54,10 @@ class CompanySocialNetwork
         /** @var User $user */
         $user = $this->userRepository->findByUid($userCookie);
 
-        if (empty($user)) {
-            return false;
-        }
-
-        return true;
-
+        return $user;
     }
 
-    public function readUserCookie()
+    public static function readUserCookie()
     {
         $userCookie = CompanySocialNetwork::readCookie('user');
         return $userCookie;
@@ -77,5 +85,6 @@ class CompanySocialNetwork
     {
         setcookie($cookieName, "", -1, '/', "localhost");
     }
+
 
 }

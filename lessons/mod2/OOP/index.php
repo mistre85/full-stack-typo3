@@ -265,3 +265,17 @@ $figlio1->calcolaCF();
 
 //final class impedirebbe di ereditare la classe
 
+function stampaPersona(Persona $persona)
+{
+    $persona->stampa();
+}
+
+$persona1 = new Figlio();
+$persona2 = new Straniera();
+$persona3 = new Adulto();
+
+stampaPersona($persona1);
+stampaPersona($persona2);
+stampaPersona($persona3);
+
+stampaPersona("prova");

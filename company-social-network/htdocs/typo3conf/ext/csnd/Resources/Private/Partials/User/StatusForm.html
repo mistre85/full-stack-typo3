@@ -1,0 +1,16 @@
+<div class="status-info">
+    <h2 class="title">
+        Stato
+        <span
+                class=" pull-right label {f:if(condition:'{user.online}',then:'label-success',else:'label-default')}">
+                <span class="glyphicon glyphicon-eye-{f:if(condition:'{user.online}',then:'open',else:'close')}"
+                      aria-hidden="true"></span> {f:if(condition:'{user.online}',then:'online',else:'offline')}
+            </span>
+    </h2>
+
+    <f:form action="toggleStatus" enctype="multipart/form-data" name="newUser" object="{newUser}">
+        <f:form.submit class="btn
+        {f:if(condition:'{user.online}',then:'btn-default',else:'btn-success')}
+        btn-xs btn-block" value="{f:if(condition:'{user.online}',then:'Passa offline',else:'Passa online')}"/>
+    </f:form>
+</div>

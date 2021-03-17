@@ -27,7 +27,7 @@
             </div>
             <ul class="user-list list-group">
                 <f:for each="{userList}" as="item">
-                    <f:render partial="UserListItem" arguments="{user:item}"/>
+                    <v:render.uncache partial="UserListItem" arguments="{user:item}"/>
                 </f:for>
             </ul>
         </div>

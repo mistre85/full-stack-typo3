@@ -19,11 +19,14 @@ class IfUserLoggedViewHelper extends AbstractViewHelper
      */
     public function render($page)
     {
-        //id di pagine di tipo logged
+        //id di pagine di tipo logged - soluzione statica
         //$loggedPage = array(7, 8, 20); //spostato in typoscript
-        $loggedPage = $page['csn_loggedpage'];
+        //$isLoggedPage = in_array($page['uid'], $loggedPage);
 
-        $isLoggedPage = in_array($page['uid'], $loggedPage);
+        //soluzione con il campo in pages
+        $loggedPage = $page['csn_loggedpage'];
+        $isLoggedPage = $loggedPage;
+
         $isLoggedUser = !empty($_COOKIE['user']);
 
         if ($isLoggedPage && !$isLoggedUser) {

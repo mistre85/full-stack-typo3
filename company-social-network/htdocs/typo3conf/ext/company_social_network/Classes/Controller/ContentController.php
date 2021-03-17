@@ -47,6 +47,15 @@ class ContentController extends AbstractController
 
 
     /**
+     * CompanySocialNetwork
+     *
+     * @var \Wind\Csnd\Utility\CompanySocialNetwork
+     * @inject
+     */
+    protected $csn = null;
+
+
+    /**
      * postRepository
      *
      * @var \Wind\Csnd\Domain\Repository\PostRepository
@@ -95,8 +104,12 @@ class ContentController extends AbstractController
 
     function chatWidgetAction()
     {
+        $userId = CompanySocialNetwork::readUserCookie();
+        $userList = $this->userRepository->findAllOther($userId);
 
-        $userList = $this->userRepository->findAll();
+        //$user = $this->csn->getLoggedUser();
+        //$userList = $this->userRepository->findAllExcept($user);
+
         $this->view->assign("userList", $userList);
     }
 
