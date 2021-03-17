@@ -167,4 +167,37 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
           setcookie('user', "", -1, '/', "typo.local");
           $this->redirectToUri('/');
     }
+
+    /**
+     * action status
+
+    */
+    public function statusAction()
+    {
+        $userCookie = $_COOKIE['user'];
+          
+        /** @var User $user  */
+        $user = $this->userRepository->findByUid($userCookie);
+
+        $this->view->assign('user', $user);
+       
+    }
+
+    /**
+     * toggleStatus
+
+    */
+    public function toggleStatusAction()
+    {
+        $userCookie = $_COOKIE['user'];
+
+        /** @var User $user  */
+        $user = $this->userRepository->findByUid($userCookie);
+
+        $user->setOnline(!$user->getOnline());
+        $this->userRepository->update($user);
+        
+        $this->view->assign('user', $user);
+        
+    }
 }

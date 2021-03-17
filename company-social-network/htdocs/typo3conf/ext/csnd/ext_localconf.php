@@ -44,12 +44,12 @@ call_user_func(
 		'Wind.Csnd',
 		'Userplugin',
 		[
-			'User' => 'register, subscription, login, doLogin, logout',
+			'User' => 'register, subscription, login, doLogin, logout, status, toggleStatus',
 			
 		],
 		// non-cacheable actions
 		[
-			'User' => 'subscription, doLogin, logout',
+			'User' => 'subscription, doLogin, logout, status, toggleStatus'
 		  
 		]
 	);
