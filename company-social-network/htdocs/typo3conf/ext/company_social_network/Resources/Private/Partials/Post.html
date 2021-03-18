@@ -1,17 +1,20 @@
 <div class="post">
     <div class="post_head">
-        <div class="photo"><img src="{post.photo}"></div>
-        <div class="user_info">{post.user}</div>
+        <div class="photo"><img src="{post.user.avatar}"></div>
+        <div class="user_info">{post.user.username} ha scritto</div>
     </div>
     <div class="post_body">
         <div class="text">
             {post.text}
         </div>
         <div class="likes l{index}">
-            Piace a {post.likes} persone
+            {f:if(condition: '{post.likes} == 0', then: 'Ancora nessun like', else: 'Piace a {post.likes} persone')}
+
         </div>
         <div class="buttons b{index}" data-index="{index}">
-            <img src="http://csn.local/fileadmin/assets/like.png">
+            <f:link.action action="like" arguments="{postuid: post.uid}" controller="Post" pluginName="Postplugin" extensionName="csnd" >
+                <img src="http://csn.local/fileadmin/assets/like.png">
+            </f:link.action>
         </div>
     </div>
 </div>

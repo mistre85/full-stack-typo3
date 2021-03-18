@@ -30,6 +30,7 @@ use FluidTYPO3\Fluidcontent\Controller\ContentController as AbstractController;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use Windtre\CompanySocialNetwork\Utility\CompanySocialNetwork;
 use Windtre\Csnd\Domain\Model\User;
 
 /**
@@ -47,6 +48,22 @@ class ContentController extends AbstractController
      * @inject
      */
     protected $postRepository = null;
+
+    /**
+     * userRepository
+     *
+     * @var \Windtre\Csnd\Domain\Repository\UserRepository
+     * @inject
+     */
+    protected $userRepository = null;
+
+    /**
+     * companySocialNetwork
+     *
+     * @var \Windtre\CompanySocialNetwork\Utility\CompanySocialNetwork
+     * @inject
+     */
+    protected $csn = null;
 
     public function userProfileAction()
     {
@@ -73,13 +90,8 @@ class ContentController extends AbstractController
 
     public function connectedUsersAction()
     {
-        $data = [
-            ['name' => 'Anna Rossi', 'photo' => 'https://picsum.photos/100', 'connected' => rand(0,1)],
-            ['name' => 'Paola Bianchi', 'photo' => 'https://picsum.photos/100', 'connected' => rand(0,1)],
-            ['name' => 'Lucio Lupo', 'photo' => 'https://picsum.photos/100', 'connected' => rand(0,1)],
-            ['name' => 'Maura Mancini', 'photo' => 'https://picsum.photos/100', 'connected' => rand(0,1)],
-        ];
-        $this->view->assign('conn_users', $data);
+        $userlist = $this->userRepository->findAllExceptUser($this->csn->getLoggedUser());
+        $this->view->assign('conn_users', $userlist);
     }
 
     public function registrationFormAction()

@@ -9,11 +9,11 @@ call_user_func(
             'Windtre.Csnd',
             'Userplugin',
             [
-                'User' => 'register, subscription, login, doLogin, logout'
+                'User' => 'register, subscription, login, doLogin, logout, status, showHide'
             ],
             // non-cacheable actions
             [
-                'User' => 'subscription, doLogin, logout'
+                'User' => 'subscription, doLogin, logout, status, showHide'
             ]
         );
 
@@ -21,11 +21,11 @@ call_user_func(
             'Windtre.Csnd',
             'Postplugin',
             [
-                'Post' => 'post, savepost'
+                'Post' => 'post, savepost, like'
             ],
             // non-cacheable actions
             [
-                'Post' => 'savepost'
+                'Post' => 'savepost, like'
             ]
         );
 

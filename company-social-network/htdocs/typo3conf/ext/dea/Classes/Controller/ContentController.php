@@ -39,11 +39,8 @@ use Windtre\Csnd\Domain\Model\User;
  */
 class ContentController extends AbstractController
 {
-    public function homeAction()
-    {
-        setcookie("AdmPanel", "localhost:8000", time()+3600);
-        $GLOBALS['BE_USER'] = true;
-        var_dump($GLOBALS['BE_USER']);
-        var_dump(isset($_COOKIE['AdmPanel']));
-    }
+//    public function homeAction()
+//    {
+//        var_dump($GLOBALS);
+//    }
 }

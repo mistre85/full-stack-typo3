@@ -3,6 +3,8 @@ namespace Windtre\Csnd\Controller;
 
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use Windtre\CompanySocialNetwork\Utility\CompanySocialNetwork;
+use Windtre\Csnd\Domain\Model\Post;
 use Windtre\Csnd\Domain\Model\User;
 
 /***
@@ -36,6 +38,12 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @inject
      */
     protected $userRepository = null;
+
+    /**
+     * @var \Windtre\CompanySocialNetwork\Utility\CompanySocialNetwork
+     * @inject
+     */
+    protected $csn = null;
 
     /**
      * action list
@@ -127,7 +135,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function postAction()
     {
-
+        $posts = $this->postRepository->findAll();
     }
 
     /**
@@ -138,10 +146,30 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function savepostAction(\Windtre\Csnd\Domain\Model\Post $newPost)
     {
+        /** @var CompanySocialNetwork $user */
+        $user = $this->csn->getLoggedUser();
+
         /** @var QueryResult $utenteLoggato */
-        $utenteLoggato = $this->userRepository->findByUsername('fabiox3');
+        $utenteLoggato = $this->userRepository->findByUsername($user->getUsername());
         $newPost->setUser($utenteLoggato->getFirst());
         $this->postRepository->add($newPost);
         $this->redirectToUri('area-personale/bacheca');
+    }
+
+    /**
+     * @param int $postuid
+     */
+    public function likeAction($postuid)
+    {
+        //todo: rivedere il modello di dominio
+
+        /** @var Post $newlike */
+        $newlike = $this->postRepository->findByUid($postuid);
+        $sumlikes = ($newlike->getLikes()+count($postuid));
+
+        $newlike->setLikes($sumlikes);
+        $this->postRepository->update($newlike);
+
+        $this->redirect('post');
     }
 }

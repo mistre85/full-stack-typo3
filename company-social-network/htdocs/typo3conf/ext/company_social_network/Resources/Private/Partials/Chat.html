@@ -1,9 +1,9 @@
 <div class="post_head">
     <div class="photo">
-        <img src="{user.photo}">
-        <div class="conn{index.index}" data-active="{user.connected}"></div>
+        <img src="{user.avatar}">
+        <div class="conn{index.index}" data-active="{user.online}"></div>
     </div>
-    <div class="user_info">{user.name}</div>
+    <div class="user_info">{user.nome} {user.cognome}</div>
 </div><br>
 <script>
     $(document).ready(() => {

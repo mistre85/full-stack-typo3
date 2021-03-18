@@ -7,12 +7,13 @@
 
     <f:section name="Configuration">
         <flux:form id="Standard" label="Standard page layout">
+            <flux:field.input name="pageTitle" label="Titolo editoriale pagina"/>
         </flux:form>
         
         <flux:grid>
             <!-- Edit this grid to change the "backend layout" structure -->
             <flux:grid.row>
-                <flux:grid.column colPos="0" name="content" label="Contenuti"/>
+                <flux:grid.column colPos="0" name="content" label="Content"/>
             </flux:grid.row>
         </flux:grid>
     </f:section>

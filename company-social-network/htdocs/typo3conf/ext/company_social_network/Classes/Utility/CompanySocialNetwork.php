@@ -2,6 +2,8 @@
 
 namespace Windtre\CompanySocialNetwork\Utility;
 
+use Windtre\Csnd\Domain\Model\User;
+
 class CompanySocialNetwork
 {
     /**
@@ -28,4 +30,16 @@ class CompanySocialNetwork
         return $_COOKIE[$name];
     }
 
+    public static function deleteCookie()
+    {
+        setcookie('user', '', -1, '/', 'csn.local');
+    }
+
+    public function getLoggedUser()
+    {
+        /** @var User $user */
+        $usercookie = CompanySocialNetwork::readCookie('user');
+        $user = $this->userRepository->findByUid($usercookie);
+        return $user;
+    }
 }

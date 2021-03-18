@@ -1,10 +1,13 @@
 <?php
 namespace Windtre\Csnd\Controller;
 
+use Symfony\Component\Finder\Comparator\NumberComparator;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use Windtre\CompanySocialNetwork\Utility\CompanySocialNetwork;
+use Windtre\Csnd\Domain\Model\User;
+use Windtre\Csnd\Domain\Repository\UserRepository;
 
 /***
  *
@@ -29,6 +32,12 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @inject
      */
     protected $userRepository = null;
+
+    /**
+     * @var \Windtre\CompanySocialNetwork\Utility\CompanySocialNetwork
+     * @inject
+     */
+    protected $csn = null;
 
     /**
      * action list
@@ -156,5 +165,29 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 $this->redirect('login');
             }
         }
+    }
+
+    public function logoutAction()
+    {
+        CompanySocialNetwork::deleteCookie();
+        $this->redirect('login');
+    }
+
+    /**
+     *
+     */
+    public function statusAction()
+    {
+        $this->view->assign('user', $this->csn->getLoggedUser());
+    }
+
+    public function showHideAction()
+    {
+        $user = $this->csn->getLoggedUser();
+        $user->setOnline(!$user->getOnline());
+
+        $this->userRepository->update($user);
+        $this->view->assign('user', $user);
+        $this->redirect('status');
     }
 }
