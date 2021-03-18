@@ -3,7 +3,6 @@
 
 This Template is responsible for creating a table of domain objects.
 
-
 If you modify this template, do not forget to change the overwrite settings
 in /Configuration/ExtensionBuilder/settings.yaml:
   Resources:
@@ -21,7 +20,6 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <table  class="tx_csnd" >
 	<tr>
 		<th><f:translate key="tx_csnd_domain_model_post.text" /></th>
-		<th><f:translate key="tx_csnd_domain_model_post.likes" /></th>
 		<th> </th>
 		<th> </th>
 	</tr>
@@ -29,7 +27,6 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	<f:for each="{posts}" as="post">
 		<tr>
 			<td><f:link.action action="show" arguments="{post : post}"> {post.text}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{post : post}"> {post.likes}</f:link.action></td>
 			<td><f:link.action action="edit" arguments="{post : post}">Edit</f:link.action></td>
 			<td><f:link.action action="delete" arguments="{post : post}">Delete</f:link.action></td>
 		</tr>

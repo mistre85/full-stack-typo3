@@ -3,8 +3,8 @@
         {
             "config": {
                 "position": [
-                    193,
-                    210
+                    217,
+                    279
                 ]
             },
             "name": "New Model Object",
@@ -48,7 +48,7 @@
                             "maxItems": "1",
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "propertyIsRequired": true,
+                            "propertyIsRequired": false,
                             "propertyName": "avatar",
                             "propertyType": "Image",
                             "uid": "827631740233"
@@ -125,8 +125,8 @@
         {
             "config": {
                 "position": [
-                    592,
-                    202
+                    997,
+                    228
                 ]
             },
             "name": "New Model Object",
@@ -164,16 +164,6 @@
                             "propertyName": "text",
                             "propertyType": "Text",
                             "uid": "329052806230"
-                        },
-                        {
-                            "allowedFileTypes": "",
-                            "maxItems": "1",
-                            "propertyDescription": "",
-                            "propertyIsExcludeField": true,
-                            "propertyIsRequired": false,
-                            "propertyName": "likes",
-                            "propertyType": "Integer",
-                            "uid": "1390235326442"
                         }
                     ]
                 },
@@ -189,6 +179,92 @@
                             "relationWire": "[wired]",
                             "renderType": "selectSingle",
                             "uid": "967023998302"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "comments",
+                            "relationType": "zeroToMany",
+                            "relationWire": "[wired]",
+                            "renderType": "inline",
+                            "uid": "360003846245"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "likes",
+                            "relationType": "manyToMany",
+                            "relationWire": "[wired]",
+                            "renderType": "selectMultipleSideBySide",
+                            "uid": "848293166198"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "config": {
+                "position": [
+                    432,
+                    570
+                ]
+            },
+            "name": "New Model Object",
+            "value": {
+                "actionGroup": {
+                    "_default0_list": true,
+                    "_default1_show": true,
+                    "_default2_new_create": true,
+                    "_default3_edit_update": true,
+                    "_default4_delete": true,
+                    "customActions": [
+                        ""
+                    ]
+                },
+                "name": "Comment",
+                "objectsettings": {
+                    "addDeletedField": true,
+                    "addHiddenField": true,
+                    "addStarttimeEndtimeFields": true,
+                    "aggregateRoot": true,
+                    "categorizable": false,
+                    "description": "",
+                    "mapToTable": "",
+                    "parentClass": "",
+                    "sorting": false,
+                    "type": "Entity",
+                    "uid": "5602767875"
+                },
+                "propertyGroup": {
+                    "properties": [
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsRequired": true,
+                            "propertyName": "text",
+                            "propertyType": "String",
+                            "uid": "860634073733"
+                        }
+                    ]
+                },
+                "relationGroup": {
+                    "relations": [
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": false,
+                            "relationDescription": "",
+                            "relationName": "user",
+                            "relationType": "zeroToOne",
+                            "relationWire": "[wired]",
+                            "renderType": "selectSingle",
+                            "uid": "1165955835711"
                         }
                     ]
                 }
@@ -235,6 +311,15 @@
                 },
                 "key": "userplugin",
                 "name": "User Plugin"
+            },
+            {
+                "actions": {
+                    "controllerActionCombinations": "",
+                    "noncacheableActions": "",
+                    "switchableActions": ""
+                },
+                "key": "postplugin",
+                "name": "Post Plugin"
             }
         ],
         "vendorName": "Wind"
@@ -263,10 +348,46 @@
                 "terminal": "SOURCES",
                 "uid": "316194828816"
             }
+        },
+        {
+            "src": {
+                "moduleId": 1,
+                "terminal": "relationWire_1",
+                "uid": "360003846245"
+            },
+            "tgt": {
+                "moduleId": 2,
+                "terminal": "SOURCES",
+                "uid": "5602767875"
+            }
+        },
+        {
+            "src": {
+                "moduleId": 2,
+                "terminal": "relationWire_0",
+                "uid": "1165955835711"
+            },
+            "tgt": {
+                "moduleId": 0,
+                "terminal": "SOURCES",
+                "uid": "316194828816"
+            }
+        },
+        {
+            "src": {
+                "moduleId": 1,
+                "terminal": "relationWire_2",
+                "uid": "848293166198"
+            },
+            "tgt": {
+                "moduleId": 0,
+                "terminal": "SOURCES",
+                "uid": "316194828816"
+            }
         }
     ],
     "log": {
-        "last_modified": "2021-03-10 08:19",
+        "last_modified": "2021-03-18 11:54",
         "extension_builder_version": "7.10.0",
         "be_user": " (1)"
     }

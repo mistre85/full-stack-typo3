@@ -1,6 +1,11 @@
 <?php
 namespace Wind\Csnd\Controller;
 
+use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
+use Wind\Csnd\Domain\Model\Post;
+use Wind\Csnd\Domain\Model\User;
+use Wind\Csnd\Domain\Repository\PostRepository;
+use Wind\Csnd\Utility\CompanySocialNetwork;
 /***
  *
  * This file is part of the "Company Social Network Data" Extension for TYPO3 CMS.
@@ -8,7 +13,7 @@ namespace Wind\Csnd\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2021 
+ *  (c) 2021
  *
  ***/
 
@@ -19,15 +24,23 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
     /**
      * postRepository
-     * 
+     *
      * @var \Wind\Csnd\Domain\Repository\PostRepository
      * @inject
      */
     protected $postRepository = null;
 
     /**
+     * userRepository
+     *
+     * @var \Wind\Csnd\Domain\Repository\UserRepository
+     * @inject
+     */
+    protected $userRepository = null;
+
+    /**
      * action list
-     * 
+     *
      * @return void
      */
     public function listAction()
@@ -38,7 +51,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action show
-     * 
+     *
      * @param \Wind\Csnd\Domain\Model\Post $post
      * @return void
      */
@@ -49,7 +62,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action new
-     * 
+     *
      * @return void
      */
     public function newAction()
@@ -59,7 +72,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action create
-     * 
+     *
      * @param \Wind\Csnd\Domain\Model\Post $newPost
      * @return void
      */
@@ -72,7 +85,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action edit
-     * 
+     *
      * @param \Wind\Csnd\Domain\Model\Post $post
      * @ignorevalidation $post
      * @return void
@@ -84,7 +97,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action update
-     * 
+     *
      * @param \Wind\Csnd\Domain\Model\Post $post
      * @return void
      */
@@ -97,7 +110,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action delete
-     * 
+     *
      * @param \Wind\Csnd\Domain\Model\Post $post
      * @return void
      */
@@ -108,49 +121,44 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $this->redirect('list');
     }
 
-    
     /**
-     * action post
-     * 
-
+     * post action
+     *
+     * @return void
      */
     public function postAction()
     {
+
     }
 
     /**
      * action create
-     * 
+     *
      * @param \Wind\Csnd\Domain\Model\Post $newPost
+     * @ignorevalidation
      * @return void
      */
     public function publicPostAction(\Wind\Csnd\Domain\Model\Post $newPost)
     {
+        $userId = CompanySocialNetwork::readCookie('user');
+        /** @var User $utenteLoggato */
+        $utenteLoggato = $this->userRepository->findByUid($userId);
+        $newPost->setUser($utenteLoggato);
         $this->postRepository->add($newPost);
-        $this->redirectToUri('/personal/bacheca');
-        
+        $this->redirectToURI('/personal/dashboard');
     }
 
     /**
      * @param int $postUid
-     * 
      */
-    public function likeAction($postUid)
+    public function likeAction(int $postUid)
     {
-        var_dump($postUid);
-        //query per recuperare il post
-        /**
-         * @var \Wind\Csnd\Domain\Model\Post $post
-         */
-        // prendo dal db i valori corrispondenti alla riga dove c'è il numero di posto definito dalla variabile $postUid
-        $post = $this->postRepository->findByUid($postUid);
-        //cambiare il valore dell'item (+1 sul modello)
-        $numLike = $post->getLikes();
-        $post->setLikes($numLike+1);
-        //dopo aver fatto il cambiamento aggiornare nel repository
-        $this->postRepository->update($post);
-        $this->redirectToUri('/personal/bacheca');
+        //utente che fa il mi piace (??) --> //todo: rivedere il modello di dominio
+        //assegnare il mi piace a quel post
+        /** @var Post $postToLike */
+        $postToLike = $this->postRepository->findByUid($postUid);
+        $postToLike->setLikes($postToLike->getLikes() + 1);
+        $this->postRepository->update($postToLike);
+        $this->redirectToUri('/personal/dashboard');
     }
-
-
 }

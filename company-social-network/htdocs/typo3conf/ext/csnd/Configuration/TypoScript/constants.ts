@@ -14,7 +14,6 @@ plugin.tx_csnd_userplugin {
   }
 }
 
-
 plugin.tx_csnd_postplugin {
   view {
     # cat=plugin.tx_csnd_postplugin/file; type=string; label=Path to template root (FE)
@@ -29,7 +28,6 @@ plugin.tx_csnd_postplugin {
     storagePid =
   }
 }
-
 
 module.tx_csnd_cnsadmin {
   view {

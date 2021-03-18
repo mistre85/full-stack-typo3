@@ -20,7 +20,6 @@ plugin.tx_csnd_userplugin {
   }
 }
 
-
 plugin.tx_csnd_postplugin {
   view {
     templateRootPaths.0 = EXT:csnd/Resources/Private/Templates/
@@ -41,8 +40,6 @@ plugin.tx_csnd_postplugin {
     #callDefaultActionIfActionCantBeResolved = 1
   }
 }
-
-
 
 plugin.tx_csnd._CSS_DEFAULT_STYLE (
     textarea.f3-form-error {
@@ -75,9 +72,11 @@ plugin.tx_csnd._CSS_DEFAULT_STYLE (
     .typo3-messages .message-ok {
         color:green;
     }
+
+    .typo3-messages{
+        list-style:none;
+    }
 )
-
-
 
 # Module configuration
 module.tx_csnd_web_csndcnsadmin {

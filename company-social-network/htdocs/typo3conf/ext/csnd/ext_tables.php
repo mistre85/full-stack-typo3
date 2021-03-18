@@ -13,7 +13,7 @@ call_user_func(
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
             'Wind.Csnd',
-            'Postplugin', //tx_postplugin_
+            'Postplugin',
             'Post Plugin'
         );
 
@@ -25,8 +25,7 @@ call_user_func(
                 'cnsadmin', // Submodule key
                 '', // Position
                 [
-                    'User' => 'list, show, new, create, edit, update, delete',
-                    'Post' => 'list, show, new, create, edit, update, delete',
+                    'User' => 'list, show, new, create, edit, update, delete','Post' => 'list, show, new, create, edit, update, delete','Comment' => 'list, show, new, create, edit, update, delete, ',
                 ],
                 [
                     'access' => 'user,group',
@@ -39,14 +38,14 @@ call_user_func(
 
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($extKey, 'Configuration/TypoScript', 'Company Social Network Data');
 
-
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_csnd_domain_model_user', 'EXT:csnd/Resources/Private/Language/locallang_csh_tx_csnd_domain_model_user.xlf');
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_csnd_domain_model_user');
 
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_csnd_domain_model_post', 'EXT:csnd/Resources/Private/Language/locallang_csh_tx_csnd_domain_model_post.xlf');
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_csnd_domain_model_post');
 
-
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_csnd_domain_model_comment', 'EXT:csnd/Resources/Private/Language/locallang_csh_tx_csnd_domain_model_comment.xlf');
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_csnd_domain_model_comment');
 
     },
     $_EXTKEY
