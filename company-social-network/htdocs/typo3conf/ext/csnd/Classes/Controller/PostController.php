@@ -126,18 +126,31 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function publicPostAction(\Wind\Csnd\Domain\Model\Post $newPost)
     {
-        //$utenteloggato = ???:
-        //$utenteLoggato = new User();
-       
-        //$utenteLoggato->setUsername();
-        //$utenteLoggato->setNome();
-        //$utenteLoggato->setCognome();
-        //$newPost->setUser($utenteLoggato);
-
-
         $this->postRepository->add($newPost);
         $this->redirectToUri('/personal/bacheca');
         
     }
+
+    /**
+     * @param int $postUid
+     * 
+     */
+    public function likeAction($postUid)
+    {
+        var_dump($postUid);
+        //query per recuperare il post
+        /**
+         * @var \Wind\Csnd\Domain\Model\Post $post
+         */
+        // prendo dal db i valori corrispondenti alla riga dove c'è il numero di posto definito dalla variabile $postUid
+        $post = $this->postRepository->findByUid($postUid);
+        //cambiare il valore dell'item (+1 sul modello)
+        $numLike = $post->getLikes();
+        $post->setLikes($numLike+1);
+        //dopo aver fatto il cambiamento aggiornare nel repository
+        $this->postRepository->update($post);
+        $this->redirectToUri('/personal/bacheca');
+    }
+
 
 }

@@ -15,9 +15,22 @@
         </div>
     </div>
     <div class="panel-footer ">
-        <button type="button " class="btn btn-primary btn-xs ">
-            Like <span class="badege ">{item.like}​​</span>
-        </button>
+        <f:debug>{item}</f:debug>
+        <f:if condition="{item.likes}>0">
+            <f:then>
+                Piace a
+                <span class="like-count badge">{item.likes}</span>
+                dipendenti
+            </f:then>
+            <f:else>
+                Ancora Nessun Like
+            </f:else>
+        </f:if>
+        <f:link.action arguments="{postUid: item}" controller="Post" extensionName="csnd"
+                pluginName="postplugin" action="like" 
+                class="btn btn-primary pull-right">
+                Like
+        </f:link.action>
     </div>
 </div>
 

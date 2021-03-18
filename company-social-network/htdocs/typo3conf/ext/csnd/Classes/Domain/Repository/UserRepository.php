@@ -17,4 +17,21 @@ namespace Wind\Csnd\Domain\Repository;
  */
 class UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
+    /**
+     * @param int $userid
+     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * 
+     * @var \Wind\Csnd\Domain\Repository\UserRepository
+     * @inject
+     */
+    public function findAllUserNotMe($userid)
+    {
+        $query = $this->createQuery();
+        $query->matching($query->logicalNot($query->equals('uid', $userid)));
+        //$query->matching($query->equals('uid', $userid));
+        // non funziona // $query->matching($query->contains('uid', $userid));
+        return $query->execute();
     }
+
+
+}

@@ -6,7 +6,8 @@
             <img src="https://picsum.photos/150" class="img-circle" />                       
         </div>
         <svg height="14" width="14" class="badgeImg">
-            <circle cx="7" cy="7" r="5" stroke="white" stroke-width="2" fill="green" />
+            <circle cx="7" cy="7" r="5" stroke="white" stroke-width="2" 
+            fill="{f:if(condition:'{item.online}', then: 'green', else: 'red')}" />
          </svg>
         <div class="title">
             <h4>{item.nome} {item.cognome}</h4>
