@@ -1,4 +1,4 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
 <f:layout name="Default" />
 
 This Template is responsible for displaying a single view for a domain object
@@ -12,12 +12,11 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
-<f:section name="main">
-<h1>Single View for User</h1>
+<f:section name="content">
+<h1>Single View for Comment</h1>
 
 <f:flashMessages />
-<f:render partial="User/Properties" arguments="{user:user}" />
+<f:render partial="Comment/Properties" arguments="{comment:comment}" />
 <f:link.action action="list">Back to list</f:link.action><br />
-<f:link.action action="new">New User</f:link.action>
+<f:link.action action="create">New Comment</f:link.action>
 </f:section>
-</html>

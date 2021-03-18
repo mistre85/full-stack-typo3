@@ -21,7 +21,7 @@
 
                     <f:for each="{menu}" as="item" key="itemkey">
 
-                        <v:page.menu.directory entryLevel="1" levels="1" pages="{item.uid}" as="subMenu"
+                        <v:menu.directory entryLevel="1" levels="1" pages="{item.uid}" as="subMenu"
                                                expandAll="true" deferred="true">
                             <csn:ifUserLogged page="{item}">
                                 <f:if condition="{subMenu->f:count()}>0">
@@ -52,7 +52,7 @@
                                     </f:else>
                                 </f:if>
                             </csn:ifUserLogged>
-                        </v:page.menu.directory>
+                        </v:menu.directory>
                     </f:for>
                 </v:page.menu.directory>
             </ul>

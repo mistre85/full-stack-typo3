@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2021-03-11T23:49:16Z" product-name="csnd">
+	<file source-language="en" datatype="plaintext" original="messages" date="2021-03-18T11:54:07Z" product-name="csnd">
 		<header/>
 		<body>
 			<trans-unit id="tx_csnd_domain_model_userplugin">
@@ -18,14 +18,14 @@
 			<trans-unit id="text.description">
 				<source>text</source>
 			</trans-unit>
-			<trans-unit id="likes.description">
-				<source>likes</source>
-			</trans-unit>
 			<trans-unit id="user.description">
 				<source>user</source>
 			</trans-unit>
 			<trans-unit id="comments.description">
 				<source>comments</source>
+			</trans-unit>
+			<trans-unit id="likes.description">
+				<source>likes</source>
 			</trans-unit>
 		</body>
 	</file>

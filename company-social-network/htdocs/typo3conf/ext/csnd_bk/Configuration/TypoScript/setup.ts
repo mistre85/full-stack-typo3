@@ -21,24 +21,24 @@ plugin.tx_csnd_userplugin {
 }
 
 plugin.tx_csnd_postplugin {
-    view {
-        templateRootPaths.0 = EXT:csnd/Resources/Private/Templates/
-        templateRootPaths.1 = {$plugin.tx_csnd_postplugin.view.templateRootPath}
-        partialRootPaths.0 = EXT:csnd/Resources/Private/Partials/
-        partialRootPaths.1 = {$plugin.tx_csnd_postplugin.view.partialRootPath}
-        layoutRootPaths.0 = EXT:csnd/Resources/Private/Layouts/
-        layoutRootPaths.1 = {$plugin.tx_csnd_postplugin.view.layoutRootPath}
-    }
-    persistence {
-        storagePid = {$plugin.tx_csnd_postplugin.persistence.storagePid}
-        #recursive = 1
-    }
-    features {
-        #skipDefaultArguments = 1
-    }
-    mvc {
-        #callDefaultActionIfActionCantBeResolved = 1
-    }
+  view {
+    templateRootPaths.0 = EXT:csnd/Resources/Private/Templates/
+    templateRootPaths.1 = {$plugin.tx_csnd_postplugin.view.templateRootPath}
+    partialRootPaths.0 = EXT:csnd/Resources/Private/Partials/
+    partialRootPaths.1 = {$plugin.tx_csnd_postplugin.view.partialRootPath}
+    layoutRootPaths.0 = EXT:csnd/Resources/Private/Layouts/
+    layoutRootPaths.1 = {$plugin.tx_csnd_postplugin.view.layoutRootPath}
+  }
+  persistence {
+    storagePid = {$plugin.tx_csnd_postplugin.persistence.storagePid}
+    #recursive = 1
+  }
+  features {
+    #skipDefaultArguments = 1
+  }
+  mvc {
+    #callDefaultActionIfActionCantBeResolved = 1
+  }
 }
 
 plugin.tx_csnd._CSS_DEFAULT_STYLE (

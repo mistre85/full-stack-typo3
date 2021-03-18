@@ -26,9 +26,11 @@
                     </f:else>
                 </f:if>
             </div>
-            <button class="btn btn-primary pull-right" type="button">
+            <f:link.action arguments="{postUid: '{post.uid}'}" controller="Post" extensionName="csnd"
+                           pluginName="postplugin" action="like"
+                           class="btn btn-primary pull-right">
                 Mi piace
-            </button>
+            </f:link.action>
         </div>
     </div>
 </div>

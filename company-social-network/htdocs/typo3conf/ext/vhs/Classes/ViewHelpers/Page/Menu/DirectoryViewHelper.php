@@ -25,4 +25,5 @@ namespace FluidTYPO3\Vhs\ViewHelpers\Page\Menu;
  */
 class DirectoryViewHelper extends \FluidTYPO3\Vhs\ViewHelpers\Menu\DirectoryViewHelper
 {
+
 }

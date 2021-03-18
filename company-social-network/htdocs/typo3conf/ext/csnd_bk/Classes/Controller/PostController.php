@@ -3,6 +3,7 @@
 namespace Wind\Csnd\Controller;
 
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
+use Wind\Csnd\Domain\Model\Post;
 use Wind\Csnd\Domain\Model\User;
 use Wind\Csnd\Domain\Repository\PostRepository;
 use Wind\Csnd\Utility\CompanySocialNetwork;
@@ -122,7 +123,6 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $this->redirect('list');
     }
 
-
     /**
      * post action
      * @return void
@@ -145,9 +145,30 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
         /** @var User $utenteLoggato */
         $utenteLoggato = $this->userRepository->findByUid($userId);
-        $newPost->setUser($utenteLoggato);
 
+        $newPost->setUser($utenteLoggato);
         $this->postRepository->add($newPost);
-        $this->redirectToURI("/personal/dashboard");
+
+        $this->redirectToURI('/personal/dashboard');
     }
+
+    /**
+     * @param int $postUid
+     */
+    public function likeAction(int $postUid)
+    {
+        //utente che fa il mi piace (??) --> //todo: rivedere il modello di dominio
+
+        //assegnare il mi piace a quel post
+        /** @var Post $postToLike */
+        $postToLike = $this->postRepository->findByUid($postUid);
+
+        $postToLike->setLikes($postToLike->getLikes() + 1);
+
+        $this->postRepository->update($postToLike);
+
+        $this->redirectToUri('/personal/dashboard');
+
+    }
+
 }

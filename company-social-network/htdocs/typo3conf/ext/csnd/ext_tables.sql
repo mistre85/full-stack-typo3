@@ -55,9 +55,9 @@ CREATE TABLE tx_csnd_domain_model_post (
 	user int(11) unsigned DEFAULT '0' NOT NULL,
 
 	text text NOT NULL,
-	likes int(11) DEFAULT '0' NOT NULL,
 	user int(11) unsigned DEFAULT '0',
 	comments int(11) unsigned DEFAULT '0' NOT NULL,
+	likes int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -149,6 +149,19 @@ CREATE TABLE tx_csnd_domain_model_comment (
 );
 
 #
+# Table structure for table 'tx_csnd_post_likes_user_mm'
+#
+CREATE TABLE tx_csnd_post_likes_user_mm (
+	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
+	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
+);
+
+#
 # Table structure for table 'pages'
 #
 CREATE TABLE pages (
@@ -161,3 +174,4 @@ CREATE TABLE pages (
 CREATE TABLE pages_language_overlay (
     csn_loggedpage tinyint(1) unsigned DEFAULT '0' NOT NULL
 );
+

@@ -1,5 +1,4 @@
 <?php
-
 namespace Wind\Csnd\Domain\Model;
 
 /***
@@ -19,19 +18,19 @@ namespace Wind\Csnd\Domain\Model;
 class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     /**
+     * crdate
+     *
+     * @var int
+     */
+    protected $crdate = null;
+
+    /**
      * text
      *
      * @var string
      * @validate NotEmpty
      */
     protected $text = '';
-
-    /**
-     * likes
-     *
-     * @var int
-     */
-    protected $likes = 0;
 
     /**
      * user
@@ -49,11 +48,11 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $comments = null;
 
     /**
-     * crdate
+     * likes
      *
-     * @var int
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Wind\Csnd\Domain\Model\User>
      */
-    protected $crdate = null;
+    protected $likes = null;
 
     /**
      * @return int
@@ -70,7 +69,6 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->crdate = $crdate;
     }
-
 
     /**
      * Returns the text
@@ -91,27 +89,6 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setText($text)
     {
         $this->text = $text;
-    }
-
-    /**
-     * Returns the likes
-     *
-     * @return int $likes
-     */
-    public function getLikes()
-    {
-        return $this->likes;
-    }
-
-    /**
-     * Sets the likes
-     *
-     * @param int $likes
-     * @return void
-     */
-    public function setLikes($likes)
-    {
-        $this->likes = $likes;
     }
 
     /**
@@ -155,6 +132,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected function initStorageObjects()
     {
         $this->comments = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->likes = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
 
     /**
@@ -198,5 +176,48 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setComments(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $comments)
     {
         $this->comments = $comments;
+    }
+
+    /**
+     * Adds a User
+     *
+     * @param \Wind\Csnd\Domain\Model\User $like
+     * @return void
+     */
+    public function addLike(\Wind\Csnd\Domain\Model\User $like)
+    {
+        $this->likes->attach($like);
+    }
+
+    /**
+     * Removes a User
+     *
+     * @param \Wind\Csnd\Domain\Model\User $likeToRemove The User to be removed
+     * @return void
+     */
+    public function removeLike(\Wind\Csnd\Domain\Model\User $likeToRemove)
+    {
+        $this->likes->detach($likeToRemove);
+    }
+
+    /**
+     * Returns the likes
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Wind\Csnd\Domain\Model\User> $likes
+     */
+    public function getLikes()
+    {
+        return $this->likes;
+    }
+
+    /**
+     * Sets the likes
+     *
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Wind\Csnd\Domain\Model\User> $likes
+     * @return void
+     */
+    public function setLikes(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $likes)
+    {
+        $this->likes = $likes;
     }
 }

@@ -52,20 +52,6 @@ class PostTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * @test
      */
-    public function getLikesReturnsInitialValueForInt()
-    {
-    }
-
-    /**
-     * @test
-     */
-    public function setLikesForIntSetsLikes()
-    {
-    }
-
-    /**
-     * @test
-     */
     public function getUserReturnsInitialValueForUser()
     {
         self::assertEquals(
@@ -154,6 +140,72 @@ class PostTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $this->inject($this->subject, 'comments', $commentsObjectStorageMock);
 
         $this->subject->removeComment($comment);
+
+    }
+
+    /**
+     * @test
+     */
+    public function getLikesReturnsInitialValueForUser()
+    {
+        $newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        self::assertEquals(
+            $newObjectStorage,
+            $this->subject->getLikes()
+        );
+
+    }
+
+    /**
+     * @test
+     */
+    public function setLikesForObjectStorageContainingUserSetsLikes()
+    {
+        $like = new \Wind\Csnd\Domain\Model\User();
+        $objectStorageHoldingExactlyOneLikes = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $objectStorageHoldingExactlyOneLikes->attach($like);
+        $this->subject->setLikes($objectStorageHoldingExactlyOneLikes);
+
+        self::assertAttributeEquals(
+            $objectStorageHoldingExactlyOneLikes,
+            'likes',
+            $this->subject
+        );
+
+    }
+
+    /**
+     * @test
+     */
+    public function addLikeToObjectStorageHoldingLikes()
+    {
+        $like = new \Wind\Csnd\Domain\Model\User();
+        $likesObjectStorageMock = $this->getMockBuilder(\TYPO3\CMS\Extbase\Persistence\ObjectStorage::class)
+            ->setMethods(['attach'])
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $likesObjectStorageMock->expects(self::once())->method('attach')->with(self::equalTo($like));
+        $this->inject($this->subject, 'likes', $likesObjectStorageMock);
+
+        $this->subject->addLike($like);
+    }
+
+    /**
+     * @test
+     */
+    public function removeLikeFromObjectStorageHoldingLikes()
+    {
+        $like = new \Wind\Csnd\Domain\Model\User();
+        $likesObjectStorageMock = $this->getMockBuilder(\TYPO3\CMS\Extbase\Persistence\ObjectStorage::class)
+            ->setMethods(['detach'])
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $likesObjectStorageMock->expects(self::once())->method('detach')->with(self::equalTo($like));
+        $this->inject($this->subject, 'likes', $likesObjectStorageMock);
+
+        $this->subject->removeLike($like);
 
     }
 }

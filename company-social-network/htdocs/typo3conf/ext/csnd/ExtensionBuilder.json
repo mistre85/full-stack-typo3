@@ -3,8 +3,8 @@
         {
             "config": {
                 "position": [
-                    241,
-                    282
+                    217,
+                    279
                 ]
             },
             "name": "New Model Object",
@@ -125,8 +125,8 @@
         {
             "config": {
                 "position": [
-                    742,
-                    248
+                    997,
+                    228
                 ]
             },
             "name": "New Model Object",
@@ -164,16 +164,6 @@
                             "propertyName": "text",
                             "propertyType": "Text",
                             "uid": "329052806230"
-                        },
-                        {
-                            "allowedFileTypes": "",
-                            "maxItems": "1",
-                            "propertyDescription": "",
-                            "propertyIsExcludeField": true,
-                            "propertyIsRequired": false,
-                            "propertyName": "likes",
-                            "propertyType": "Integer",
-                            "uid": "1390235326442"
                         }
                     ]
                 },
@@ -200,6 +190,17 @@
                             "relationWire": "[wired]",
                             "renderType": "inline",
                             "uid": "360003846245"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "likes",
+                            "relationType": "manyToMany",
+                            "relationWire": "[wired]",
+                            "renderType": "selectMultipleSideBySide",
+                            "uid": "848293166198"
                         }
                     ]
                 }
@@ -262,7 +263,7 @@
                             "relationName": "user",
                             "relationType": "zeroToOne",
                             "relationWire": "[wired]",
-                            "renderType": "selectSingleBox",
+                            "renderType": "selectSingle",
                             "uid": "1165955835711"
                         }
                     ]
@@ -371,10 +372,22 @@
                 "terminal": "SOURCES",
                 "uid": "316194828816"
             }
+        },
+        {
+            "src": {
+                "moduleId": 1,
+                "terminal": "relationWire_2",
+                "uid": "848293166198"
+            },
+            "tgt": {
+                "moduleId": 0,
+                "terminal": "SOURCES",
+                "uid": "316194828816"
+            }
         }
     ],
     "log": {
-        "last_modified": "2021-03-11 11:49",
+        "last_modified": "2021-03-18 11:54",
         "extension_builder_version": "7.10.0",
         "be_user": " (1)"
     }

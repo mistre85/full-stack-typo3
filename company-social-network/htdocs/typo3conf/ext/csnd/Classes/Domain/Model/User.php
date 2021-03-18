@@ -1,5 +1,4 @@
 <?php
-
 namespace Wind\Csnd\Domain\Model;
 
 /***

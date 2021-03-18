@@ -1,4 +1,5 @@
 <?php
+
 namespace Wind\Csnd\Domain\Model;
 
 /***
@@ -38,6 +39,38 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var \Wind\Csnd\Domain\Model\User
      */
     protected $user = null;
+
+    /**
+     * comments
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Wind\Csnd\Domain\Model\Comment>
+     * @cascade remove
+     */
+    protected $comments = null;
+
+    /**
+     * crdate
+     *
+     * @var int
+     */
+    protected $crdate = null;
+
+    /**
+     * @return int
+     */
+    public function getCrdate()
+    {
+        return $this->crdate;
+    }
+
+    /**
+     * @param int $crdate
+     */
+    public function setCrdate($crdate)
+    {
+        $this->crdate = $crdate;
+    }
+
 
     /**
      * Returns the text
@@ -100,5 +133,70 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setUser(\Wind\Csnd\Domain\Model\User $user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * __construct
+     */
+    public function __construct()
+    {
+        //Do not remove the next line: It would break the functionality
+        $this->initStorageObjects();
+    }
+
+    /**
+     * Initializes all ObjectStorage properties
+     * Do not modify this method!
+     * It will be rewritten on each save in the extension builder
+     * You may modify the constructor of this class instead
+     *
+     * @return void
+     */
+    protected function initStorageObjects()
+    {
+        $this->comments = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+    }
+
+    /**
+     * Adds a Comment
+     *
+     * @param \Wind\Csnd\Domain\Model\Comment $comment
+     * @return void
+     */
+    public function addComment(\Wind\Csnd\Domain\Model\Comment $comment)
+    {
+        $this->comments->attach($comment);
+    }
+
+    /**
+     * Removes a Comment
+     *
+     * @param \Wind\Csnd\Domain\Model\Comment $commentToRemove The Comment to be removed
+     * @return void
+     */
+    public function removeComment(\Wind\Csnd\Domain\Model\Comment $commentToRemove)
+    {
+        $this->comments->detach($commentToRemove);
+    }
+
+    /**
+     * Returns the comments
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Wind\Csnd\Domain\Model\Comment> $comments
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Sets the comments
+     *
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Wind\Csnd\Domain\Model\Comment> $comments
+     * @return void
+     */
+    public function setComments(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $comments)
+    {
+        $this->comments = $comments;
     }
 }
