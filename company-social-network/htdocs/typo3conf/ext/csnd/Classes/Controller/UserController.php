@@ -79,7 +79,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 $this->userRepository->update($userFound);
                 CompanySocialNetwork::registerUserCookie($userFound);
                 $this->addFlashMessage('Benvenuto', 'Login avvenuta con successo');
-                $this->redirectToURI('/personal/dashboard');
+                $this->redirectToURI('/personal/bacheca');
             } else {
                 $this->addFlashMessage('utente o password errata,riprova', 'Login fallito', FlashMessage::ERROR);
                 $this->redirect('login');
@@ -95,7 +95,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     function logoutAction()
     {
         //unset($_COOKIE['user']);
-        setcookie('user', '', -1, '/', 'localhost');
+        setcookie('user', '', -1, '/', 'typo.local');
         $this->redirectToUri('/');
     }
 

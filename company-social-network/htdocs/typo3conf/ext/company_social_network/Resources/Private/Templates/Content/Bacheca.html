@@ -18,11 +18,11 @@
 
     <f:section name="Main">
         <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/PostList.css"/>
-            <div class="">
-               
-                <f:debug>{postList}</f:debug>
+            <div class="">    
+
                 <div class="row">                  
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                     
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">    
+                        
                         <f:for each="{postList}" as="datiutente"> 
                         <f:render partial="BachecaDati" arguments="{item: datiutente}"></f:render>
                         </f:for>

@@ -38,6 +38,14 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     protected $userRepository = null;
 
+     /**
+     * CompanySocialNetwork
+     *
+     * @var \Wind\Csnd\Utility\CompanySocialNetwork
+     * @inject
+     */
+    protected $csn = null;
+
     /**
      * action list
      *
@@ -145,20 +153,80 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $utenteLoggato = $this->userRepository->findByUid($userId);
         $newPost->setUser($utenteLoggato);
         $this->postRepository->add($newPost);
-        $this->redirectToURI('/personal/dashboard');
+        $this->redirectToURI('/personal/bacheca');
     }
+
+    
+    // public function likeAction(int $postUid)
+    //{
+        //// utente che fa il mi piace (??) --> //todo: rivedere il modello di dominio
+        //// assegnare il mi piace a quel post
+      
+        ////query per recuperare il post
+        // serve per accedere più velocemente ai metodi delle classi
+        
+        // /** @var Post $postToLike */
+        //$postToLike = $this->postRepository->findByUid($postUid);
+        
+        //// SEZIONE AZIONI SUL MODELLO
+        //// cambiare il valore dell'item (+1 sul modello)
+        //// il getLikes mi resituisce il valore presente nel campo likes (dalla tabella)
+        
+        //$postToLike->getLikes();
+        //$numLike = $postToLike->getLikes();
+        //$postToLike->setLikes($numLike + 1);
+        //$postToLike->setLikes($postToLike->getLikes() + 1);
+        
+        //// l'oggetto $postToLike ha ora settato il campo likes a n +1
+        //// DOPO AVER FATTO IL CAMBIAMENTO AGGIORNARE NEL REPOSITORY
+        
+        //$this->postRepository->update($postToLike);
+        
+        //// redirect sulla pagina 
+        //$this->redirectToUri('/personal/bacheca');
+    //}
 
     /**
      * @param int $postUid
      */
+
     public function likeAction(int $postUid)
     {
         //utente che fa il mi piace (??) --> //todo: rivedere il modello di dominio
         //assegnare il mi piace a quel post
+        //// ricavo l'utente richiamando 
+        //// \Wind\Csnd\Utility\CompanySocialNetwork su nelle dichiaazione degli oggetto
+        $user = $this->csn->getLoggedUser();
+        
+        //query per recuperare il post
+        // serve per accedere più velocemente ai metodi delle classi
         /** @var Post $postToLike */
         $postToLike = $this->postRepository->findByUid($postUid);
-        $postToLike->setLikes($postToLike->getLikes() + 1);
+        
+        // SEZIONE AZIONI SUL MODELLO
+        // Verifichiamo se è presente un like per l'utente loggato per cambiare 
+        // il testo del button in "Non mi piace"
+        
+        /** @var User $like */
+        $userFound = false;
+        foreach ($postToLike->getLikes() as $like){
+            if ($like->getUid() == $user->getUid()){
+                $userFound = true;
+                break;
+            }
+        }
+        
+         // postToLike è l'array associativo del record ricercato in tabella che è suddiviso in nome campo -> valore 
+        if ($userFound){
+            $postToLike->removeLike($user);
+        } else {
+            $postToLike->addLike($user);
+        }
+
+        // l'oggetto $postToLike ha ora settato il campo likes a n +1
+        // DOPO AVER FATTO IL CAMBIAMENTO AGGIORNARE NEL REPOSITORY
         $this->postRepository->update($postToLike);
-        $this->redirectToUri('/personal/dashboard');
+        // redirect sulla pagina 
+        $this->redirectToUri('/personal/bacheca');
     }
 }

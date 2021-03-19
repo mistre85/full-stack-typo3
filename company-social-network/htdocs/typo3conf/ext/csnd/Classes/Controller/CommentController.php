@@ -1,6 +1,8 @@
 <?php
 namespace Wind\Csnd\Controller;
 
+use Wind\Csnd\Domain\Repository\PostRepository;
+use Wind\Csnd\Domain\Model\Post;
 /***
  *
  * This file is part of the "Company Social Network Data" Extension for TYPO3 CMS.
@@ -24,6 +26,22 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @inject
      */
     protected $commentRepository = null;
+
+    /**
+     * postRepository
+     *
+     * @var \Wind\Csnd\Domain\Repository\PostRepository
+     * @inject
+     */
+    protected $postRepository = null;
+
+    /**
+     * CompanySocialNetwork
+     *
+     * @var \Wind\Csnd\Utility\CompanySocialNetwork
+     * @inject
+     */
+    protected $csn = null;
 
     /**
      * action list
@@ -61,13 +79,21 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * action create
      *
      * @param \Wind\Csnd\Domain\Model\Comment $newComment
+     * @param int $postUid
      * @return void
      */
-    public function createAction(\Wind\Csnd\Domain\Model\Comment $newComment)
+    public function createAction(\Wind\Csnd\Domain\Model\Comment $newComment, $postUid)
     {
-        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
-        $this->commentRepository->add($newComment);
-        $this->redirect('list');
+        /** @var Post $post */
+        $post = $this->postRepository->findByUid($postUid);
+        $loggedUser = $this->csn->getLoggedUser();
+
+        $newComment->setUser($loggedUser);
+        $post->addComment($newComment);
+
+        $this->postRepository->update($post);
+
+        $this->redirectToUri('personal/bacheca');
     }
 
     /**

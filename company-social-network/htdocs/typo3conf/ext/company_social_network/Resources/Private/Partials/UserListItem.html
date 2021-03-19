@@ -1,0 +1,11 @@
+<li class="user-info list.group-item">
+
+    <img src="{f:if(condition: '{user.avatar}', else: '/fileadmin/templates/img/avatar.png')}"
+    class="avatar img-circle"/>
+    <span class="user-name {f:if(condition: '{user.online}', then: 'connected', else: 'offline')}">{user.nome} user.cognome
+
+    </span>
+    <f:if condition="{comment}">
+        <span class="bagede">{comment.text}</span>
+    </f:if>
+</li>

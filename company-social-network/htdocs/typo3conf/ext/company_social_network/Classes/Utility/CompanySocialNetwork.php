@@ -69,7 +69,7 @@ class CompanySocialNetwork
      */
     public static function registerUserCookie(User $userFound)
     {
-        setcookie('user', $userFound->getUid(), 0, '/', "localhost");
+        setcookie('user', $userFound->getUid(), 0, '/', "typo.local");
     }
 
     public static function readCookie($name)
@@ -83,7 +83,7 @@ class CompanySocialNetwork
 
     public static function deleteCookie($cookieName)
     {
-        setcookie($cookieName, "", -1, '/', "localhost");
+        setcookie($cookieName, "", -1, '/', "typo.local");
     }
 
 

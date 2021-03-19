@@ -15,22 +15,58 @@
         </div>
     </div>
     <div class="panel-footer ">
-        <f:debug>{item}</f:debug>
-        <f:if condition="{item.likes}>0">
+      
+         <f:if condition="{item.likes -> f:count()}>0">
             <f:then>
                 Piace a
-                <span class="like-count badge">{item.likes}</span>
+                <span class="like-count badge">{item.likes -> f:count()}</span>
                 dipendenti
             </f:then>
             <f:else>
                 Ancora Nessun Like
             </f:else>
         </f:if>
-        <f:link.action arguments="{postUid: item}" controller="Post" extensionName="csnd"
-                pluginName="postplugin" action="like" 
+       <f:debug>{item.likeButtonLabel}</f:debug>
+       <f:link.action  
+                extensionName="csnd"
+                pluginName="postplugin"
+                controller="Post"
+                action="like" 
+                arguments="{postUid: '{item.uid}'}"                
                 class="btn btn-primary pull-right">
-                Like
+        
+        <f:comment>
+            guida per l'esercizio: trasformare in ViewHelpers
+            <csn:likeButtonText post="post" user="user" else="Mi piace" then="Non mi piace più"/>
+        </f:comment>
+                {item.likeButtonLabel}
         </f:link.action>
+        <hr>
+        <f:form 
+            extensionName="csnd"
+            pluginName="postplugin"
+            controller="Comment"
+            action="create"
+            enctype="multipart/form-data"
+            name="newComment"
+            object="{newComment}"
+            arguments="{postUid: item.uid}"
+            >
+        
+            <label>Scrivi un commento:</label>
+            <f:form.textarea class="form-control" rows="3" property="text" placeholder="scrivi il tuo commento" />
+            <br>
+            <f:form.submit value="Commenta" class="btn btn-primary pull-right" />
+    </f:form>
+
+
+        <hr>
+
+        <label>Commenti degli utenti:</label>
+        <f:for each="{item.comments}" as="comment">
+            <f:render partial="UserListItem" arguments="{user: '{comment.user}', comment: comment}"></f:render>
+        </f:for>
+        
     </div>
 </div>
 

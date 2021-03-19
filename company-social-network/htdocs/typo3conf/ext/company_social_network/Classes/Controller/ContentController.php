@@ -30,6 +30,7 @@ use FluidTYPO3\Fluidcontent\Controller\ContentController as AbstractController;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use Wind\Csnd\Domain\Model\User;
+use Wind\Csnd\Domain\Model\Post;
 
 /**
  * Content Controller
@@ -55,6 +56,13 @@ class ContentController extends AbstractController
      */
     protected $userRepository = null;
 
+       /**
+     * CompanySocialNetwork
+     *
+     * @var \Wind\Csnd\Utility\CompanySocialNetwork
+     * @inject
+     */
+    protected $csn = null;
 
     /**
      * ogni action nel controller viene eseguita
@@ -120,15 +128,52 @@ class ContentController extends AbstractController
 
     function bachecaAction()
     {
+        //$userCookie = $_COOKIE['user'];
         $postList = $this->postRepository->findAll();
+
+        $user = $this->csn->getLoggedUser();
+
+        //$this->view->assign("postList", $postList);
+        //$this->view->assign("userLogged", $user);
+
+
+        $user = $this->csn->getLoggedUser();
+        if (!empty($user)) {
+            $lastPost = $this->postRepository->findMyLastPost($user);
+            $postList = $this->postRepository->findAll();
+
+            $userFound = false;
+            /** @var Post $post  */
+            foreach ($postList as $post) {
+                /** @var User $like  */
+                foreach($post->getLikes() as $like ){
+
+                    if ($user->getUid() == $like->getUid()) {
+                        $userFound = true;
+                        break;
+                    }
+                }
+                if ($userFound) {
+                    $post->likeButtonLabel = "Non mi piace";
+                    $userFound = false;
+                } else {
+                    $post->likeButtonLabel = "Mi piace";
+                }
+            }
+
+                      
+        }
         $this->view->assign("postList", $postList);
+        //$this->view->assign("lastPost", $lastPost);
     }
 
     function contactListAction()
     {
         $userCookie = $_COOKIE['user'];
         /** @var User $user  */
-        $user = $this->userRepository->findAllUserNotMe($userCookie);
+        //$user = $this->userRepository->findAllUserNotMe($userCookie);
+        $user = $this->userRepository->findAllOther($userCookie);
+        
         //$user = $this->userRepository->findByUid($userCookie);
         $this->view->assign("userList", $user);
     }
