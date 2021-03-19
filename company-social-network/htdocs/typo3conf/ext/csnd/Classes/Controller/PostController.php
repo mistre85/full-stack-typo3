@@ -1,4 +1,5 @@
 <?php
+
 namespace Wind\Csnd\Controller;
 
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
@@ -6,6 +7,7 @@ use Wind\Csnd\Domain\Model\Post;
 use Wind\Csnd\Domain\Model\User;
 use Wind\Csnd\Domain\Repository\PostRepository;
 use Wind\Csnd\Utility\CompanySocialNetwork;
+
 /***
  *
  * This file is part of the "Company Social Network Data" Extension for TYPO3 CMS.
@@ -37,6 +39,16 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @inject
      */
     protected $userRepository = null;
+
+
+    /**
+     * CompanySocialNetwork
+     *
+     * @var \Wind\Csnd\Utility\CompanySocialNetwork
+     * @inject
+     */
+    protected $csn = null;
+
 
     /**
      * action list
@@ -154,11 +166,29 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     public function likeAction(int $postUid)
     {
         //utente che fa il mi piace (??) --> //todo: rivedere il modello di dominio
+        $user = $this->csn->getLoggedUser();
+
         //assegnare il mi piace a quel post
         /** @var Post $postToLike */
         $postToLike = $this->postRepository->findByUid($postUid);
-        $postToLike->setLikes($postToLike->getLikes() + 1);
+
+        /** @var User $like */
+        $userFound = false;
+        foreach ($postToLike->getLikes() as $like) {
+            if ($like->getUid() == $user->getUid()) {
+                $userFound = true;
+                break;
+            }
+        }
+
+        if ($userFound) {
+            $postToLike->removeLike($user);
+        } else {
+            $postToLike->addLike($user);
+        }
+
         $this->postRepository->update($postToLike);
+
         $this->redirectToUri('/personal/dashboard');
     }
 }

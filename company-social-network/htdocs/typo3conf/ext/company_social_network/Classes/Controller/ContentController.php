@@ -27,6 +27,8 @@ namespace Wind\CompanySocialNetwork\Controller;
  ***************************************************************/
 
 use FluidTYPO3\Fluidcontent\Controller\ContentController as AbstractController;
+use Wind\Csnd\Domain\Model\Post;
+use Wind\Csnd\Domain\Model\User;
 use Wind\Csnd\Utility\CompanySocialNetwork;
 
 
@@ -88,13 +90,33 @@ class ContentController extends AbstractController
 
     function postListAction()
     {
-        $userId = CompanySocialNetwork::readCookie('user');
-        $user = $this->userRepository->findByUid($userId);
+        $user = $this->csn->getLoggedUser();
 
         if (!empty($user)) {
 
             $lastPost = $this->postRepository->findMyLastPost($user);
             $postList = $this->postRepository->findAll();
+
+            //todo: da trasformare in viewhelper
+            $userFound = false;
+            /** @var Post $post */
+            foreach ($postList as $post) {
+                /** @var User $like */
+                foreach ($post->getLikes() as $like) {
+                    if ($user->getUid() == $like->getUid()) {
+                        $userFound = true;
+                        break;
+                    }
+                }
+
+                if ($userFound) {
+                    $post->likeButtonLabel = "Non mi piace più";
+                    $userFound = false;
+                } else {
+                    $post->likeButtonLabel = "Mi piace";
+                }
+            }
+
 
             $this->view->assign("postList", $postList);
             $this->view->assign("lastPost", $lastPost);
