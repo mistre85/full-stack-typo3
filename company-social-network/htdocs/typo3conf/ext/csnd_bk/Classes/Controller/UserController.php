@@ -1,12 +1,10 @@
 <?php
-
 namespace Wind\Csnd\Controller;
 
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 use Wind\Csnd\Domain\Model\User;
 use Wind\Csnd\Utility\CompanySocialNetwork;
-
 /***
  *
  * This file is part of the "Company Social Network Data" Extension for TYPO3 CMS.
@@ -38,7 +36,6 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @inject
      */
     protected $csn = null;
-
 
     /**
      * action register
@@ -73,21 +70,16 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $query = $this->userRepository->findByUsername($newUser->getUsername());
         /** @var User $userFound */
         $userFound = $query->getFirst();
-
         if (empty($userFound)) {
             $this->addFlashMessage('Non ti abbiamo trovato! riprova', 'Login fallito', FlashMessage::ERROR);
             $this->redirect('login');
         } else {
             if ($newUser->getPassword() == $userFound->getPassword()) {
-
                 $userFound->setOnline(true);
                 $this->userRepository->update($userFound);
-
                 CompanySocialNetwork::registerUserCookie($userFound);
-
                 $this->addFlashMessage('Benvenuto', 'Login avvenuta con successo');
                 $this->redirectToURI('/personal/dashboard');
-
             } else {
                 $this->addFlashMessage('utente o password errata,riprova', 'Login fallito', FlashMessage::ERROR);
                 $this->redirect('login');
@@ -103,7 +95,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     function logoutAction()
     {
         //unset($_COOKIE['user']);
-        setcookie('user', "", -1, '/', "localhost");
+        setcookie('user', '', -1, '/', 'localhost');
         $this->redirectToUri('/');
     }
 
@@ -130,28 +122,18 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     }
 
-    /**
-     *
-     */
     public function statusAction()
     {
         $user = $this->csn->getLoggedUser();
         $this->view->assign('user', $user);
     }
 
-    /**
-     *
-     */
     public function toggleStatusAction()
     {
         $user = $this->csn->getLoggedUser();
-
         $user->setOnline(!$user->getOnline());
-
         $this->userRepository->update($user);
-
         $this->view->assign('user', $user);
-
     }
 
 }

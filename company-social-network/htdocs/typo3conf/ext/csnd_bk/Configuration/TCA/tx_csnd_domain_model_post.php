@@ -16,14 +16,14 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'searchFields' => 'text,likes,user,comments',
+        'searchFields' => 'text,user,comments,likes',
         'iconfile' => 'EXT:csnd/Resources/Public/Icons/tx_csnd_domain_model_post.gif'
     ],
     'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, text, likes, user, comments, crdate',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, text, user, comments, likes',
     ],
     'types' => [
-        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, text, likes, user, comments, crdate, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
+        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, text, user, comments, likes, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -108,58 +108,90 @@ return [
             ],
         ],
         'text' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_post.text',
-            'config' => [
-                'type' => 'text',
-                'cols' => 40,
-                'rows' => 15,
-                'eval' => 'trim,required'
-            ]
-        ],
-        'likes' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_post.likes',
-            'config' => [
-                'type' => 'input',
-                'size' => 4,
-                'eval' => 'int'
-            ]
-        ],
-        'user' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_post.user',
-            'config' => [
-                'type' => 'inline',
-                'foreign_table' => 'tx_csnd_domain_model_user',
-                'minitems' => 0,
-                'maxitems' => 1,
-                'appearance' => [
-                    'collapseAll' => 0,
-                    'levelLinksPosition' => 'top',
-                    'showSynchronizationLink' => 1,
-                    'showPossibleLocalizationRecords' => 1,
-                    'showAllLocalizationLink' => 1
-                ],
-            ],
-        ],
-        'comments' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_post.comments',
-            'config' => [
-                'type' => 'inline',
-                'foreign_table' => 'tx_csnd_domain_model_comment',
-                'foreign_field' => 'post',
-                'maxitems' => 9999,
-                'appearance' => [
-                    'collapseAll' => 0,
-                    'levelLinksPosition' => 'top',
-                    'showSynchronizationLink' => 1,
-                    'showPossibleLocalizationRecords' => 1,
-                    'showAllLocalizationLink' => 1
-                ],
-            ],
-        ],
+	        'exclude' => true,
+	        'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_post.text',
+	        'config' => [
+			    'type' => 'text',
+			    'cols' => 40,
+			    'rows' => 15,
+			    'eval' => 'trim,required'
+			]
+	    ],
+	    'user' => [
+	        'exclude' => true,
+	        'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_post.user',
+	        'config' => [
+			    'type' => 'inline',
+			    'foreign_table' => 'tx_csnd_domain_model_user',
+			    'minitems' => 0,
+			    'maxitems' => 1,
+			    'appearance' => [
+			        'collapseAll' => 0,
+			        'levelLinksPosition' => 'top',
+			        'showSynchronizationLink' => 1,
+			        'showPossibleLocalizationRecords' => 1,
+			        'showAllLocalizationLink' => 1
+			    ],
+			],
+	    ],
+	    'comments' => [
+	        'exclude' => true,
+	        'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_post.comments',
+	        'config' => [
+			    'type' => 'inline',
+			    'foreign_table' => 'tx_csnd_domain_model_comment',
+			    'foreign_field' => 'post',
+			    'maxitems' => 9999,
+			    'appearance' => [
+			        'collapseAll' => 0,
+			        'levelLinksPosition' => 'top',
+			        'showSynchronizationLink' => 1,
+			        'showPossibleLocalizationRecords' => 1,
+			        'showAllLocalizationLink' => 1
+			    ],
+			],
+	    ],
+	    'likes' => [
+	        'exclude' => true,
+	        'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_post.likes',
+	        'config' => [
+			    'type' => 'select',
+			    'renderType' => 'selectMultipleSideBySide',
+			    'foreign_table' => 'tx_csnd_domain_model_user',
+			    'MM' => 'tx_csnd_post_likes_user_mm',
+			    'size' => 10,
+			    'autoSizeMax' => 30,
+			    'maxitems' => 9999,
+			    'multiple' => 0,
+			    'wizards' => [
+			        '_PADDING' => 1,
+			        '_VERTICAL' => 1,
+			        'edit' => [
+			            'module' => [
+			                'name' => 'wizard_edit',
+			            ],
+			            'type' => 'popup',
+			            'title' => 'Edit', // todo define label: LLL:EXT:.../Resources/Private/Language/locallang_tca.xlf:wizard.edit
+			            'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_edit.gif',
+			            'popup_onlyOpenIfSelected' => 1,
+			            'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
+			        ],
+			        'add' => [
+			            'module' => [
+			                'name' => 'wizard_add',
+			            ],
+			            'type' => 'script',
+			            'title' => 'Create new', // todo define label: LLL:EXT:.../Resources/Private/Language/locallang_tca.xlf:wizard.add
+			            'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_add.gif',
+			            'params' => [
+			                'table' => 'tx_csnd_domain_model_user',
+			                'pid' => '###CURRENT_PID###',
+			                'setValue' => 'prepend'
+			            ],
+			        ],
+			    ],
+			],
+	    ],
         'user' => [
             'exclude' => true,
             'label' => "User",

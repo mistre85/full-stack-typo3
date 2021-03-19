@@ -40,6 +40,16 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     protected $userRepository = null;
 
+
+    /**
+     * CompanySocialNetwork
+     *
+     * @var \Wind\Csnd\Utility\CompanySocialNetwork
+     * @inject
+     */
+    protected $csn = null;
+
+
     /**
      * action list
      *
@@ -125,6 +135,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * post action
+     *
      * @return void
      */
     public function postAction()
@@ -142,13 +153,10 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     public function publicPostAction(\Wind\Csnd\Domain\Model\Post $newPost)
     {
         $userId = CompanySocialNetwork::readCookie('user');
-
         /** @var User $utenteLoggato */
         $utenteLoggato = $this->userRepository->findByUid($userId);
-
         $newPost->setUser($utenteLoggato);
         $this->postRepository->add($newPost);
-
         $this->redirectToURI('/personal/dashboard');
     }
 
@@ -158,17 +166,29 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     public function likeAction(int $postUid)
     {
         //utente che fa il mi piace (??) --> //todo: rivedere il modello di dominio
+        $user = $this->csn->getLoggedUser();
 
         //assegnare il mi piace a quel post
         /** @var Post $postToLike */
         $postToLike = $this->postRepository->findByUid($postUid);
 
-        $postToLike->setLikes($postToLike->getLikes() + 1);
+        /** @var User $like */
+        $userFound = false;
+        foreach ($postToLike->getLikes() as $like) {
+            if ($like->getUid() == $user->getUid()) {
+                $userFound = true;
+                break;
+            }
+        }
+
+        if ($userFound) {
+            $postToLike->removeLike($user);
+        } else {
+            $postToLike->addLike($user);
+        }
 
         $this->postRepository->update($postToLike);
 
         $this->redirectToUri('/personal/dashboard');
-
     }
-
 }

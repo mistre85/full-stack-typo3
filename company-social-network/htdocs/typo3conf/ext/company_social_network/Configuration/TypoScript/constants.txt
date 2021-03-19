@@ -2,6 +2,10 @@ plugin.tx_companysocialnetwork.view {
 	templateRootPaths.0 = EXT:company_social_network/Resources/Private/Templates/
 	partialRootPaths.0 = EXT:company_social_network/Resources/Private/Partials/
 	layoutRootPaths.0 = EXT:company_social_network/Resources/Private/Layouts/
+
+
+    partialRootPaths.1 = EXT:csnd/Resources/Private/Partials/
+
 }
 
 plugin.tx_companysocialnetwork.persistence.storagePid =

@@ -4,7 +4,8 @@ defined('TYPO3_MODE') || die('Access denied.');
 //configurazioni di frontend
 
 call_user_func(
-    function ($extKey) {
+    function($extKey)
+	{
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'Wind.Csnd',
@@ -30,9 +31,9 @@ call_user_func(
             ]
         );
 
-        // wizards
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-            'mod {
+	// wizards
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
+		'mod {
 			wizards.newContentElement.wizardItems.plugins {
 				elements {
 					userplugin {
@@ -57,7 +58,7 @@ call_user_func(
 				show = *
 			}
 	   }'
-        );
+	);
     },
     $_EXTKEY
 );
