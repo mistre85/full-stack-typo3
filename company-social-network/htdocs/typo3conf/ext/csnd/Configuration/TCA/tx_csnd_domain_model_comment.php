@@ -108,34 +108,45 @@ return [
             ],
         ],
         'text' => [
-	        'exclude' => true,
-	        'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_comment.text',
-	        'config' => [
-			    'type' => 'input',
-			    'size' => 30,
-			    'eval' => 'trim,required'
-			],
-	    ],
-	    'user' => [
-	        'exclude' => false,
-	        'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_comment.user',
-	        'config' => [
-			    'type' => 'inline',
-			    'foreign_table' => 'tx_csnd_domain_model_user',
-			    'minitems' => 0,
-			    'maxitems' => 1,
-			    'appearance' => [
-			        'collapseAll' => 0,
-			        'levelLinksPosition' => 'top',
-			        'showSynchronizationLink' => 1,
-			        'showPossibleLocalizationRecords' => 1,
-			        'showAllLocalizationLink' => 1
-			    ],
-			],
-	    ],
+            'exclude' => true,
+            'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_comment.text',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim,required'
+            ],
+        ],
+        'user' => [
+            'exclude' => false,
+            'label' => 'LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_comment.user',
+            'config' => [
+                'type' => 'inline',
+                'foreign_table' => 'tx_csnd_domain_model_user',
+                'minitems' => 0,
+                'maxitems' => 1,
+                'appearance' => [
+                    'collapseAll' => 0,
+                    'levelLinksPosition' => 'top',
+                    'showSynchronizationLink' => 1,
+                    'showPossibleLocalizationRecords' => 1,
+                    'showAllLocalizationLink' => 1
+                ],
+            ],
+        ],
         'post' => [
             'config' => [
                 'type' => 'passthrough',
+            ],
+        ],
+        'crdate' => [
+            'exclude' => true,
+            'label' => "Creation date",
+            'config' => [
+                'type' => 'input',
+                'size' => '13',
+                'max' => '20',
+                'eval' => 'datetime',
+                'default' => '0'
             ],
         ],
     ],
