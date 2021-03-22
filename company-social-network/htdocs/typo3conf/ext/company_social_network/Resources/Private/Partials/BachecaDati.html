@@ -27,12 +27,13 @@
             </f:else>
         </f:if>
        <f:debug>{item.likeButtonLabel}</f:debug>
+       <f:comment>arguments="{postUid: '{item.uid}'}"  ..> per definire una variabile di tipo stringa</f:comment> 
        <f:link.action  
                 extensionName="csnd"
                 pluginName="postplugin"
                 controller="Post"
                 action="like" 
-                arguments="{postUid: '{item.uid}'}"                
+                arguments="{postUid: '{item.uid}'}"               
                 class="btn btn-primary pull-right">
         
         <f:comment>
