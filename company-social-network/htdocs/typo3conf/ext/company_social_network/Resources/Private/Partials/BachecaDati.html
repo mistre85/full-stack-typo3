@@ -1,3 +1,5 @@
+{namespace csn=Wind\Csnd\ViewHelpers}
+
 <div class="panel panel-default panelsize">
     <div class="panel-heading">    
         <div class="icon">  
@@ -38,9 +40,10 @@
         
         <f:comment>
             guida per l'esercizio: trasformare in ViewHelpers
-            <csn:likeButtonText post="post" user="user" else="Mi piace" then="Non mi piace più"/>
+           
+             {item.likeButtonLabel}
         </f:comment>
-                {item.likeButtonLabel}
+                <csn:likeButtonText post="{item}" then="Non mi piace più" else="Mi piace" />
         </f:link.action>
         <hr>
         <f:form 

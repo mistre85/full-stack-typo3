@@ -92,3 +92,22 @@ module.tx_csnd_web_csndcnsadmin {
     layoutRootPaths.1 = {$module.tx_csnd_cnsadmin.view.layoutRootPath}
   }
 }
+
+# Configurazione API
+
+plugin.tx_rest.settings {
+  paths {
+      wind-csnd {
+          path = wind-csnd-*
+          read = allow
+          write = deny
+      }
+  }
+
+  aliases {
+        #    content = virtual_object-content
+        post = wind-csnd-post
+        cmt = wind-csnd-comment
+        utenti = wind-csnd-users
+    }
+}
