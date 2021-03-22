@@ -1,10 +1,12 @@
 <?php
+
 namespace Wind\Csnd\Controller;
 
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 use Wind\Csnd\Domain\Model\User;
 use Wind\Csnd\Utility\CompanySocialNetwork;
+
 /***
  *
  * This file is part of the "Company Social Network Data" Extension for TYPO3 CMS.
@@ -134,6 +136,14 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $user->setOnline(!$user->getOnline());
         $this->userRepository->update($user);
         $this->view->assign('user', $user);
+    }
+
+    /**
+     * ripristinata per evitare problema nel BE
+     */
+    public function listAction()
+    {
+
     }
 
 }

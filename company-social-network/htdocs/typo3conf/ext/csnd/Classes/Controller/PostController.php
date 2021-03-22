@@ -52,7 +52,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action list
-     *
+     * @format json
      * @return void
      */
     public function listAction()
@@ -191,4 +191,5 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
         $this->redirectToUri('/personal/dashboard');
     }
+
 }

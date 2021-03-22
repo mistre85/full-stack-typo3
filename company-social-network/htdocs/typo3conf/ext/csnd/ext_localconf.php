@@ -22,12 +22,12 @@ call_user_func(
             'Wind.Csnd',
             'Postplugin',
             [
-                'Post' => 'post, publicPost, like',
+                'Post' => 'post, publicPost, like, list',
                 'Comment' => 'create'
             ],
             // non-cacheable actions
             [
-                'Post' => 'publicPost, like',
+                'Post' => 'publicPost, like, list',
                 'Comment' => 'create'
             ]
         );

@@ -37,5 +37,19 @@ class PageController extends AbstractController
 {
 
 
+    function boxedAction()
+    {
+        $this->view->assign('user_cookie', $_COOKIE['user']);
+    }
+
+    function fullWidthAction()
+    {
+        $this->view->assign('user_cookie', $_COOKIE['user']);
+    }
+
+    function twoColumnPageAction()
+    {
+        $this->view->assign('user_cookie', $_COOKIE['user']);
+    }
 
 }

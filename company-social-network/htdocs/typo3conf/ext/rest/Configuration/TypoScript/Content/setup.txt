@@ -1,22 +1,22 @@
 ### `menuType` must be added manually
-#plugin.tx_rest.settings.virtualObjects.content.mapping.properties {
-#    menuType {
-#        column = menu_type
-#        type = string
-#    }
-#}
+plugin.tx_rest.settings.virtualObjects.content.mapping.properties {
+    menuType {
+        column = menu_type
+        type = string
+    }
+}
 
 plugin.tx_rest.settings {
     paths {
         virtual_object-content {
             path = virtual_object-content
-            read = deny
+            read = allow
             write = deny
         }
     }
 
     aliases {
-        #    content = virtual_object-content
+            content = virtual_object-content
     }
 
     virtualObjects {

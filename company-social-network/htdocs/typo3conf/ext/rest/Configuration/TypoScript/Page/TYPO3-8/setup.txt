@@ -1,22 +1,28 @@
 ### Mapping for `url_scheme` (before TYPO3 8 LTS) must be added manually
-#plugin.tx_rest.settings.virtualObjects.page.mapping.properties {
-#    urlScheme {
-#        column = url_scheme
-#        type = integer
-#    }
-#}
+plugin.tx_rest.settings.virtualObjects.page.mapping.properties {
+    urlScheme {
+        column = url_scheme
+        type = integer
+    }
+}
 
 plugin.tx_rest.settings {
     paths {
         virtual_object-page {
             path = virtual_object-page
-            read = deny
+            read = allow
+            write = deny
+        }
+
+        wind-csnd {
+            path = wind-csnd-*
+            read = allow
             write = deny
         }
     }
 
     aliases {
-        # page = virtual_object-page
+        page = virtual_object-page
     }
 
     virtualObjects {

@@ -97,25 +97,26 @@ class ContentController extends AbstractController
             $lastPost = $this->postRepository->findMyLastPost($user);
             $postList = $this->postRepository->findAll();
 
-            //todo: da trasformare in viewhelper
-            $userFound = false;
-            /** @var Post $post */
-            foreach ($postList as $post) {
-                /** @var User $like */
-                foreach ($post->getLikes() as $like) {
-                    if ($user->getUid() == $like->getUid()) {
-                        $userFound = true;
-                        break;
-                    }
-                }
-
-                if ($userFound) {
-                    $post->likeButtonLabel = "Non mi piace più";
-                    $userFound = false;
-                } else {
-                    $post->likeButtonLabel = "Mi piace";
-                }
-            }
+            //done: trasformato in viewhelper likeTextButton
+            //todo: da rimuovere al prossimo rilascio
+//            $userFound = false;
+//            /** @var Post $post */
+//            foreach ($postList as $post) {
+//                /** @var User $like */
+//                foreach ($post->getLikes() as $like) {
+//                    if ($user->getUid() == $like->getUid()) {
+//                        $userFound = true;
+//                        break;
+//                    }
+//                }
+//
+//                if ($userFound) {
+//                    $post->likeButtonLabel = "Non mi piace più";
+//                    $userFound = false;
+//                } else {
+//                    $post->likeButtonLabel = "Mi piace";
+//                }
+//            }
 
 
             $this->view->assign("postList", $postList);
