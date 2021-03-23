@@ -86,7 +86,7 @@ class ContentController extends AbstractController
         $this->view->assign("emptyBlockData", "Blocco da costruire");
     }
 
-    function beppeHerospaceAction()
+    function HerospaceAction()
     {
         $data = $this->getData();
 
@@ -96,31 +96,14 @@ class ContentController extends AbstractController
         $this->view->assign("emptyBlockData", "Blocco da costruire");
     }
 
-    /*$data = array(
-            'user' => array(
-                'avatar' => 'https://picsum.photos/140/140',
-                'nome' => 'paolo',
-                'cognome' => 'mistretta',
-            ),
-            'postList' => [
-                array('text' => 'buongiornissimo', 'like' => 10),
-                array('text' => 'lavoro ', 'like' => 1),
-                array('text' => 'sono stufo', 'like' => 1)
-            ]
-
-        );*/
-
-
-    function paoloPostListAction()
+    function PostListAction()
     {
         //dati reali
         $postList = $this->postRepository->findAll();
         $this->view->assign("postList", $postList);
-
-
     }
 
-    function paoloChatWidgetAction()
+    function ChatWidgetAction()
     {
         $userList = $this->userRepository->findAll();
         $this->view->assign("userList", $userList);
@@ -130,13 +113,7 @@ class ContentController extends AbstractController
     {
         //$userCookie = $_COOKIE['user'];
         $postList = $this->postRepository->findAll();
-
         $user = $this->csn->getLoggedUser();
-
-        //$this->view->assign("postList", $postList);
-        //$this->view->assign("userLogged", $user);
-
-
         $user = $this->csn->getLoggedUser();
         if (!empty($user)) {
             $lastPost = $this->postRepository->findMyLastPost($user);
@@ -171,10 +148,7 @@ class ContentController extends AbstractController
     {
         $userCookie = $_COOKIE['user'];
         /** @var User $user  */
-        //$user = $this->userRepository->findAllUserNotMe($userCookie);
         $user = $this->userRepository->findAllOther($userCookie);
-        
-        //$user = $this->userRepository->findByUid($userCookie);
         $this->view->assign("userList", $user);
     }
 

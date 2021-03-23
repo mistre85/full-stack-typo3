@@ -44,8 +44,11 @@
              {item.likeButtonLabel}
         </f:comment>
                 <csn:likeButtonText post="{item}" then="Non mi piace più" else="Mi piace" />
+               
         </f:link.action>
+       
         <hr>
+       
         <f:form 
             extensionName="csnd"
             pluginName="postplugin"
@@ -55,22 +58,26 @@
             name="newComment"
             object="{newComment}"
             arguments="{postUid: item.uid}"
-            >
-        
+            >        
+            
             <label>Scrivi un commento:</label>
             <f:form.textarea class="form-control" rows="3" property="text" placeholder="scrivi il tuo commento" />
             <br>
             <f:form.submit value="Commenta" class="btn btn-primary pull-right" />
-    </f:form>
 
-
+        </f:form>
+        
         <hr>
-
+        
         <label>Commenti degli utenti:</label>
+        <ul class="list-group">
+
+       
         <f:for each="{item.comments}" as="comment">
             <f:render partial="UserListItem" arguments="{user: '{comment.user}', comment: comment}"></f:render>
+            
         </f:for>
-        
+         </ul>
     </div>
 </div>
 

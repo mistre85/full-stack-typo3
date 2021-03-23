@@ -1,11 +1,29 @@
-<li class="user-info list.group-item">
+{namespace csn=Wind\Csnd\ViewHelpers}
+<li class="list-group-item">
 
-    <img src="{f:if(condition: '{user.avatar}', else: '/fileadmin/templates/img/avatar.png')}"
-    class="avatar img-circle"/>
-    <span class="user-name {f:if(condition: '{user.online}', then: 'connected', else: 'offline')}">{user.nome} user.cognome
+    <div class="row">
+        <div class="col-lg-12">
+            <img src="{f:if(condition: '{user.avatar}', else: '/fileadmin/templates/img/avatar.png')}"
+            class="avatar img-circle"/>
+            <span class="user-name {f:if(condition: '{user.online}', then: 'connected', else: 'offline')}">{user.nome} {user.cognome}
+            </span>
+        </div>
+        <f:if condition="{comment}">
+            <div class="col-lg-12">
+                <span class="bagede">{comment.text}</span>
+                
+            </div>      
+            <div class="col-lg-12" style="text-align: right;">
+                <csn:DeleteComment post="{comment}" then="Pippo" else="Cancella Commento111">
+                    <f:link.action  
+                    extensionName="csnd"  pluginName="postplugin"
+                    controller="Comment"
+                    action="remove"   arguments="{postUid: '{item.uid}'}"               
+                    class="btn btn-primary pull-right">Delete Comment from VH 1234
+                    </f:link.action>
+                </csn:DeleteComment>
+            </div>   
+        </f:if>
+    </div>
 
-    </span>
-    <f:if condition="{comment}">
-        <span class="bagede">{comment.text}</span>
-    </f:if>
 </li>

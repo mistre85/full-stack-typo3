@@ -96,6 +96,11 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     {
         //unset($_COOKIE['user']);
         setcookie('user', '', -1, '/', 'typo.local');
+        
+        $user = $this->csn->getLoggedUser();
+        $user->setOnline(!$user->getOnline());
+        $this->userRepository->update($user);
+
         $this->redirectToUri('/');
     }
 

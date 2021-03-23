@@ -97,12 +97,25 @@ module.tx_csnd_web_csndcnsadmin {
 
 plugin.tx_rest.settings {
   paths {
-      wind-csnd {
-          path = wind-csnd-*
+      #wind-csnd {
+      #    path = wind-csnd-*
+      #    read = allow
+      #    write = deny
+      #}
+
+      wind-csnd-user {
+          path = wind-csnd-user
+          read = allow
+          write = deny
+      }
+      
+      wind-custom_rest {
+          path = wind-
           read = allow
           write = deny
       }
   }
+
 
   aliases {
         #    content = virtual_object-content
