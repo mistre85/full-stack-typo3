@@ -92,3 +92,56 @@ module.tx_csnd_web_csndcnsadmin {
     layoutRootPaths.1 = {$module.tx_csnd_cnsadmin.view.layoutRootPath}
   }
 }
+
+
+
+#configurazione API
+plugin.tx_rest.settings {
+    paths {
+        wind-csdn {
+            path = wind-csnd-*
+            read = allow
+            write = deny
+        }
+
+        cundd-custom_rest {
+            path = cundd-custom_rest-*
+            read = allow
+            write = deny
+            handlerClass = Wind\Csnd\Rest\Handler
+        }
+
+
+
+
+    }
+
+    aliases {
+        post = wind-csnd-post
+        user = wind-csnd-user
+        comment = wind-csnd-comment
+    }
+
+    aliases {
+        post = wind-csnd-post
+        user = wind-csnd-user
+        comment = wind-csnd-comment
+    }
+
+    plugin.tx_rest.settings.virtualObjects {
+        user {
+            mapping {
+                tableName = tx_csnd_domain_model_user
+                identifier = uid
+                skipUnknownProperties = true
+                properties {
+                    nomeutente {
+                        type = string
+                        column = usertname
+                    }
+                }
+            }
+        }
+    }
+
+}

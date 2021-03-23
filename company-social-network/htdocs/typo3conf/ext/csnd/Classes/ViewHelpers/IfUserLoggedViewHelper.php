@@ -13,6 +13,8 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 class IfUserLoggedViewHelper extends AbstractViewHelper
 {
 
+
+
     /**
      * @param array $page
      * @return mixed|null

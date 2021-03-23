@@ -1,4 +1,5 @@
 <?php
+
 namespace Wind\Csnd\Domain\Repository;
 
 /***
@@ -17,4 +18,17 @@ namespace Wind\Csnd\Domain\Repository;
  */
 class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
+
+    /**
+     * Finds an object matching the given identifier.
+     *
+     * @param int $uid The identifier of the object to find
+     * @return object The matching object if found, otherwise NULL
+     * @api
+     */
+    public function findByUid($uid)
+    {
+        return $this->findByIdentifier($uid);
     }
+
+}

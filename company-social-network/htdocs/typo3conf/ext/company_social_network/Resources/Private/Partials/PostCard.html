@@ -1,4 +1,6 @@
-<div class="user-post-card">
+{namespace csn=Wind\Csnd\ViewHelpers}
+
+<div class="user-post-card" xmlns:f="http://www.w3.org/1999/html">
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="user-info">
@@ -29,13 +31,38 @@
             <f:link.action arguments="{postUid: '{post.uid}'}" controller="Post" extensionName="csnd"
                            pluginName="postplugin" action="like"
                            class="btn btn-primary pull-right">
-
-                <f:comment>
-                    guida per l'esercizio: trasformare in viewhelper
-                    <csn:likeButtonText post="post" user="user" else="Mi piace" then="Non mi piace più"/>
-                </f:comment>
-                {post.likeButtonLabel}
+                <csn:likeButtonText post="{post}" then="Non mi piace" else="Mi piace"/>
             </f:link.action>
+
+            <hr>
+
+            <f:form
+                    extensionName="csnd"
+                    pluginName="postplugin"
+                    controller="Comment"
+                    action="create"
+                    enctype="multipart/form-data"
+                    name="newComment"
+                    object="{newComment}"
+                    arguments="{postUid: post.uid}"
+            >
+                <label>Scrivi un commento:</label>
+                <f:form.textarea class="form-control" property="text" rows="3"/>
+                <br>
+                <f:form.submit value="Commenta" class="btn btn-primary pull-right"/>
+
+            </f:form>
+
+            <hr>
+
+            <label>Commenti presenti:</label>
+            <f:for each="{post.comments}" as="comment">
+
+                <f:render partial="UserListItem"
+                          arguments="{user: '{comment.user}', comment: comment, postUid: '{post.uid}' }"></f:render>
+            </f:for>
+
+
         </div>
     </div>
 </div>

@@ -31,7 +31,6 @@ use Wind\Csnd\Domain\Model\Post;
 use Wind\Csnd\Domain\Model\User;
 use Wind\Csnd\Utility\CompanySocialNetwork;
 
-
 /**
  * Content Controller
  *
@@ -65,6 +64,8 @@ class ContentController extends AbstractController
      */
     protected $postRepository = null;
 
+
+
     /**
      * ogni action nel controller viene eseguita
      * PRIMA del render del content element (componente)
@@ -91,47 +92,44 @@ class ContentController extends AbstractController
     function postListAction()
     {
         $user = $this->csn->getLoggedUser();
-
         if (!empty($user)) {
-
             $lastPost = $this->postRepository->findMyLastPost($user);
             $postList = $this->postRepository->findAll();
 
             //todo: da trasformare in viewhelper
-            $userFound = false;
+
+
+            /** @var  $userFound */
+            //$userFound = false;
             /** @var Post $post */
-            foreach ($postList as $post) {
+            //foreach ($postList as $post) {
+
                 /** @var User $like */
-                foreach ($post->getLikes() as $like) {
-                    if ($user->getUid() == $like->getUid()) {
-                        $userFound = true;
-                        break;
-                    }
-                }
+            //    foreach ($post->getLikes() as $like) {
+            //        if ($user->getUid() == $like->getUid()) {
+            //            $userFound = true;
+            //            break;
+            //        }
+            //    }
 
-                if ($userFound) {
-                    $post->likeButtonLabel = "Non mi piace più";
-                    $userFound = false;
-                } else {
-                    $post->likeButtonLabel = "Mi piace";
-                }
-            }
-
-
+            //    if ($userFound) {
+            //        $post->likeButtonLabel = "Non mi piace più";
+            //        $userFound = false;
+            //    } else {
+            //        $post->likeButtonLabel = "Mi piace";
+            //    }
+            //}
             $this->view->assign("postList", $postList);
             $this->view->assign("lastPost", $lastPost);
         }
-
     }
 
     function chatWidgetAction()
     {
         $userId = CompanySocialNetwork::readUserCookie();
         $userList = $this->userRepository->findAllOther($userId);
-
         //$user = $this->csn->getLoggedUser();
         //$userList = $this->userRepository->findAllExcept($user);
-
         $this->view->assign("userList", $userList);
     }
 

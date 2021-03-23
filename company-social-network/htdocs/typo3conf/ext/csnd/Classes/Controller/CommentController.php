@@ -1,5 +1,10 @@
 <?php
+
 namespace Wind\Csnd\Controller;
+
+use http\Client\Curl\User;
+use Wind\Csnd\Domain\Model\Comment;
+use Wind\Csnd\Domain\Model\Post;
 
 /***
  *
@@ -26,95 +31,66 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     protected $commentRepository = null;
 
     /**
-     * action list
+     * postRepository
      *
-     * @return void
+     * @var \Wind\Csnd\Domain\Repository\PostRepository
+     * @inject
      */
-    public function listAction()
-    {
-        $comments = $this->commentRepository->findAll();
-        $this->view->assign('comments', $comments);
-    }
+    protected $postRepository = null;
 
     /**
-     * action show
+     * postRepository
      *
-     * @param \Wind\Csnd\Domain\Model\Comment $comment
-     * @return void
+     * @var \Wind\Csnd\Utility\CompanySocialNetwork
+     * @inject
      */
-    public function showAction(\Wind\Csnd\Domain\Model\Comment $comment)
-    {
-        $this->view->assign('comment', $comment);
-    }
-
-    /**
-     * action new
-     *
-     * @return void
-     */
-    public function newAction()
-    {
-
-    }
+    protected $csn = null;
 
     /**
      * action create
      *
      * @param \Wind\Csnd\Domain\Model\Comment $newComment
+     * @param int $postUid
      * @return void
      */
-    public function createAction(\Wind\Csnd\Domain\Model\Comment $newComment)
+    public function createAction(\Wind\Csnd\Domain\Model\Comment $newComment, $postUid)
     {
-        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
-        $this->commentRepository->add($newComment);
-        $this->redirect('list');
+        /** @var Post $post */
+        $post = $this->postRepository->findByUid($postUid);
+        $loggedUser = $this->csn->getLoggedUser();
+
+        $newComment->setUser($loggedUser);
+        $post->addComment($newComment);
+
+        $this->postRepository->update($post);
+        $this->redirectToUri('personal/dashboard');
     }
 
     /**
-     * action edit
+     * action remove
      *
-     * @param \Wind\Csnd\Domain\Model\Comment $comment
-     * @ignorevalidation $comment
-     * @return void
+     * @param \Wind\Csnd\Domain\Model\Comment $remComment
+     * @param int $postUid
+     * @param int $commentUid
      */
-    public function editAction(\Wind\Csnd\Domain\Model\Comment $comment)
-    {
-        $this->view->assign('comment', $comment);
-    }
-
-    /**
-     * action update
-     *
-     * @param \Wind\Csnd\Domain\Model\Comment $comment
-     * @return void
-     */
-    public function updateAction(\Wind\Csnd\Domain\Model\Comment $comment)
-    {
-        $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
-        $this->commentRepository->update($comment);
-        $this->redirect('list');
-    }
-
-    /**
-     * action delete
-     *
-     * @param \Wind\Csnd\Domain\Model\Comment $comment
-     * @return void
-     */
-    public function deleteAction(\Wind\Csnd\Domain\Model\Comment $comment)
-    {
-        $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
-        $this->commentRepository->remove($comment);
-        $this->redirect('list');
-    }
-
-    /**
-     * action
-     *
-     * @return void
-     */
-    public function Action()
+    public function removeAction(\Wind\Csnd\Domain\Model\Comment $remComment, $postUid, int $commentUid)
     {
 
+        /** @var Post $post */
+        /** @var Comment $remComment */
+
+        $post = $this->postRepository->findByUid($postUid);
+
+        $remComment= $this->commentRepository->findByUid($commentUid);
+        $userIdpost=$remComment->getUser()->getUid();
+
+        $loggedUser = $this->csn->getLoggedUser();
+        if( $loggedUser->getUid() == $userIdpost){
+            $post->removeComment($remComment);
+            $this->postRepository->update($post);
+        }else{
+
+        }
+        $this->redirectToUri('personal/dashboard');
     }
 }

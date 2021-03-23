@@ -68,6 +68,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     {
         /** @var QueryResult $query */
         $query = $this->userRepository->findByUsername($newUser->getUsername());
+
         /** @var User $userFound */
         $userFound = $query->getFirst();
         if (empty($userFound)) {
