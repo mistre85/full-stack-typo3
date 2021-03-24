@@ -113,7 +113,7 @@ class UserHandler implements HandlerInterface
 
                     $this->persistenceManager->persistAll(); 
 
-                    $this->resp->Res
+                 
 
                     return $user->getOnline();
 
