@@ -94,54 +94,39 @@ module.tx_csnd_web_csndcnsadmin {
 }
 
 
-
-#configurazione API
 plugin.tx_rest.settings {
+
+    responseHeaders {
+        Access-Control-Allow-Origin = localhost
+        Access-Control-Allow-Methods = GET, POST, OPTIONS, DELETE, PUT, PATCH
+    }
+
     paths {
-        wind-csdn {
+
+        wind-csnd {
+            #http://localhost/rest/path-* (wildcard che permette di cercare automaticamente un modello)
             path = wind-csnd-*
             read = allow
             write = deny
         }
 
-        cundd-custom_rest {
-            path = cundd-custom_rest-*
+        #attenzione che stiamo facendo ovverride su automatismo dei modelli http://rest.corn.rest/Configuration/
+            wind-csnd-user {
+            #http://localhost/rest/wind-csnd-user (wildcard che permette di cercare automaticamente un modello)
+            path = wind-csnd-user
             read = allow
-            write = deny
-            handlerClass = Wind\Csnd\Rest\Handler
+            write = allow
+
+            handlerClass = \Wind\Csnd\Rest\UserHandler
         }
-
-
-
 
     }
 
     aliases {
         post = wind-csnd-post
-        user = wind-csnd-user
         comment = wind-csnd-comment
+        user = wind-csnd-user
     }
 
-    aliases {
-        post = wind-csnd-post
-        user = wind-csnd-user
-        comment = wind-csnd-comment
-    }
-
-    plugin.tx_rest.settings.virtualObjects {
-        user {
-            mapping {
-                tableName = tx_csnd_domain_model_user
-                identifier = uid
-                skipUnknownProperties = true
-                properties {
-                    nomeutente {
-                        type = string
-                        column = usertname
-                    }
-                }
-            }
-        }
-    }
 
 }

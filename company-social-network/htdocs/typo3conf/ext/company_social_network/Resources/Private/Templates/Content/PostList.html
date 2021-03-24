@@ -31,6 +31,7 @@
                 </i></small>
             </div>
             <div class="users-post-list">
+                <f:debug>{postList}</f:debug>
                 <f:for each="{postList}" as="item">
                     <f:render partial="PostCard" arguments="{post:item}"/>
                 </f:for>

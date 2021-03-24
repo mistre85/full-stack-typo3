@@ -92,6 +92,7 @@ class ContentController extends AbstractController
     function postListAction()
     {
         $user = $this->csn->getLoggedUser();
+
         if (!empty($user)) {
             $lastPost = $this->postRepository->findMyLastPost($user);
             $postList = $this->postRepository->findAll();
@@ -120,6 +121,7 @@ class ContentController extends AbstractController
             //    }
             //}
             $this->view->assign("postList", $postList);
+
             $this->view->assign("lastPost", $lastPost);
         }
     }
@@ -133,5 +135,10 @@ class ContentController extends AbstractController
         $this->view->assign("userList", $userList);
     }
 
+
+    function loginFormAction()
+    {
+
+    }
 
 }

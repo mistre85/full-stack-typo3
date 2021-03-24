@@ -1,0 +1,106 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="loginform" options="{group: 'Lists'}" label="Login Form API"
+                   description="Permette di effettuare la Login tramite API">
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>Login Form</strong><br/>
+        Permette di inserire un compente che effettua la login tramite chiamata API
+    </f:section>
+
+
+    <f:section name="Main">
+
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/LoginForm.css"/>
+
+        <div class="registration-form">
+
+            <form id="login-form">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3>Login Ajax</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="form-group">
+                            <label for="username">
+                                Username
+                                <span class="required"></span>
+                            </label>
+                            <input autocomplete="false" class="form-control" type="text"
+                                   name="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">
+                                Password
+                                <span class="required"></span>
+                            </label>
+                            <input autocomplete="false" class="form-control" type="password"
+                                   name="password" value="">
+                        </div>
+                        <p id="login-message" class=""></p>
+
+
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-primary">Accedi</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var loginForm = $("#login-form");
+                var loginMessage = $("#login-message");
+
+                loginForm.submit(function (e) {
+                    loginMessage.hide();
+                    e.preventDefault();
+                    let username = loginForm.find("input[name='username']").val();
+                    let password = loginForm.find("input[name='password']").val();
+                    let data = {
+                        username: username,
+                        password: password
+                    }
+                    $.post('/rest/user/login', data, (response) => {
+                        console.log(response);
+                        switch (response.status) {
+                            case "OK":
+                                loginMessage.attr("class", "alert-success");
+                                setTimeout(
+                                    () => window.location.href = "/personal/dashboard", 1000
+                                );
+                                break;
+                            case "PSW Errata":
+                                loginMessage.attr("class", "alert-warning");
+                                setTimeout(
+                                    () => loginMessage.fadeOut(), 4000
+                                );
+                                break;
+                            case "No User":
+                                loginMessage.attr("class", "alert-danger");
+                                setTimeout(
+                                    () => loginMessage.fadeOut(), 4000
+                                );
+                                break;
+                        }
+                        loginMessage.html(response.messages);
+                        loginMessage.show();
+                    });
+                });
+            });
+        </script>
+
+    </f:section>
+</div>
