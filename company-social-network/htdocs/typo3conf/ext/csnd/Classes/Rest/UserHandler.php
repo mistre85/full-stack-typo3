@@ -1,0 +1,114 @@
+<?php
+
+namespace Wind\Csnd\Rest;
+
+use Cundd\Rest\Handler\HandlerInterface;
+use Cundd\Rest\Router\Route;
+use Cundd\Rest\Http\RestRequestInterface;
+use Cundd\Rest\Router\RouterInterface;
+
+use Wind\Csnd\Domain\Model\User;
+use Wind\Csnd\Utility\CompanySocialNetwork;
+
+use Wind\Csnd\Utility\Response;
+
+
+class UserHandler implements HandlerInterface
+{
+            
+    /**
+     * userRepository
+     *
+     * @var \Wind\Csnd\Domain\Repository\UserRepository
+     * @inject
+     */
+    protected $userRepository = null;
+    
+    /**
+     * Let the handler configure the routes
+     *
+     * @param RouterInterface      $router
+     * @param RestRequestInterface $request
+     */
+    
+     /**
+     * CompanySocialNetwork
+     *
+     * @var \Wind\Csnd\Utility\CompanySocialNetwork
+     * @inject
+     */
+    protected $csn = null;
+
+    /**
+     * Response
+     *
+     * @var \Wind\Csnd\Utility\Response
+     * @inject
+     */
+    protected $resp = null;
+
+
+    public function configureRoutes(RouterInterface $router, RestRequestInterface $request)
+    {
+    
+        $router->add(
+            Route::post(
+                $request->getResourceType() . '/login',
+                function (RestRequestInterface $request) {
+                    
+                   // restitusce solo i dati passati dal form o dal front end
+                    $data = $request->getSentData();
+
+
+                    /** @var User $user */
+                    $user = $this->userRepository->findByUsername($data['username'])->current();
+                    
+                    if (!$user) {
+                       
+                       $this->resp->ResponseObj('status','ok');
+                       $this->resp->ResponseObj('message','Utente non registrato!');
+
+                        //$response['status']='ko';
+                        //$response['message']='Utente non registrato!';
+                    }    
+                    else if( ($user->getPassword() != $data['password']) && ($user->getUsername() == $data['username']) ){
+                        //$response['status']='ko';
+                        //$response['message']='Password non corretta per la user inserita!';
+
+                        $this->resp->ResponseObj('status','ko');
+                        $this->resp->ResponseObj('message','CLASS: Password non corretta per la user inserita!');
+                    }
+                    else if( ($user->getPassword() == $data['password']) && ($user->getUsername() == $data['username']) ){
+                        //$response['status']='ok';
+                        //$response['message']='Utente registrato';
+
+                        $this->resp->ResponseObj('status','ok');
+                        $this->resp->ResponseObj('message','CLASS: Utente registrato');
+
+                        CompanySocialNetwork::registerUserCookie($user);                        
+                    }
+                    
+                    return $this->resp->viewResp();                    
+                }
+            )
+        );
+
+
+        $router->add(
+            Route::post(
+                $request->getResourceType() . '/toggleStatus',
+                function (RestRequestInterface $request) {
+                    $user = $this->csn->getLoggedUser();
+                   // $user->setOnline(!$user->getOnline());
+                   // $this->userRepository->update($user);
+                    
+                    $user->setOnline(!$user->getOnline());
+                    $this->userRepository->update($user);
+                    return $user->getOnline();
+
+                }
+            )
+        );
+    }
+
+}

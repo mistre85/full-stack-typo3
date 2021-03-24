@@ -96,31 +96,38 @@ module.tx_csnd_web_csndcnsadmin {
 # Configurazione API
 
 plugin.tx_rest.settings {
-  paths {
-      #wind-csnd {
-      #    path = wind-csnd-*
-      #    read = allow
-      #    write = deny
-      #}
 
-      wind-csnd-user {
-          path = wind-csnd-user
-          read = allow
-          write = deny
-      }
-      
-      wind-custom_rest {
-          path = wind-
-          read = allow
-          write = deny
-      }
-  }
-
-
-  aliases {
-        #    content = virtual_object-content
-        post = wind-csnd-post
-        cmt = wind-csnd-comment
-        utenti = wind-csnd-users
+    responseHeaders {
+        Access-Control-Allow-Origin = typo.local
+        Access-Control-Allow-Methods = GET, POST, OPTIONS, DELETE, PUT, PATCH
     }
+
+    paths {
+
+        wind-csnd {
+            #http://localhost/rest/path-* (wildcard che permette di cercare automaticamente un modello)
+            path = wind-csnd-*
+            read = allow
+            write = deny
+        }
+
+        #attenzione che stiamo facendo ovverride su automatismo dei modelli http://rest.corn.rest/Configuration/
+        wind-csnd-user {
+            #http://localhost/rest/wind-csnd-user (wildcard che permette di cercare automaticamente un modello)
+            path = wind-csnd-user
+            read = allow
+            write = allow
+
+            handlerClass = \Wind\Csnd\Rest\UserHandler
+        }
+
+    }
+
+    aliases {
+        post = wind-csnd-post
+        comment = wind-csnd-comment
+        user = wind-csnd-user
+    }
+
+
 }

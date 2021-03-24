@@ -114,7 +114,6 @@ class ContentController extends AbstractController
         //$userCookie = $_COOKIE['user'];
         $postList = $this->postRepository->findAll();
         $user = $this->csn->getLoggedUser();
-        $user = $this->csn->getLoggedUser();
         if (!empty($user)) {
             $lastPost = $this->postRepository->findMyLastPost($user);
             $postList = $this->postRepository->findAll();
@@ -175,6 +174,17 @@ class ContentController extends AbstractController
         $newUser->setOnLine(false);
 
         $this->userRepository->add($newUser);
+    }
+
+    function loginFormAjaxAction(){
+
+        
+    }
+
+    function UserStatusAction(){
+        // la funzione mi retituisce un oggetto $user con tutti i suoi dati
+        $user = $this->csn->getLoggedUser();
+        $this->view->assign("user", $user);
     }
 
 }

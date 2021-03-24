@@ -20,23 +20,18 @@ class DeleteCommentViewHelper extends AbstractViewHelper
 
     /** 
      * @param $post \Wind\Csnd\Domain\Model\Comment
-     * @param $then string
-     * @param $else string
-     * @return string     * 
+     * @return string     
+     *  
      */
-    public function render(\Wind\Csnd\Domain\Model\Comment $post, $then, $else)
+    public function render(\Wind\Csnd\Domain\Model\Comment $post)
     {
         /** @var User $user  */
         $userUid = CompanySocialNetwork::readUserCookie();
-        
 
-
-            if ($userUid == $post->getUser()) {          
-                return "il comennto è mio"; 
-                         
+            if ($userUid == $post->getUser()->getUid()) {          
+                return $this->renderChildren();                          
             }
-
-       return "--------------".$post->getUser()->getUid();
-       // return $this->renderChildren();       
+       //return "--------------".$post->getUser()->getUid();
+             
     }
 }

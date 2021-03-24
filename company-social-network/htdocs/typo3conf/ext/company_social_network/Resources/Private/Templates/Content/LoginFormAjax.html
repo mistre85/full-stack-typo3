@@ -1,0 +1,113 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="loginForm" label="Login form Ajax" 
+                    description="Il form Ajax che permette l'accesso al sistema"
+                    options="{group: 'Forms'}">
+            <flux:field.input name="title" label="Titolo"/>
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>Login Form</strong>
+        <br>
+        <i>Preview in costruzione</i>
+    </f:section>
+
+    <f:section name="Main">
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/form.css"/>
+        
+        <form id="loginFormAjax" class="formAjax">
+                
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Login</h3>
+                </div>
+                <div class="panel-body">                                    
+                    <div class="form-group">
+                        <label for="username">
+                            Username
+                            <span class="required"></span>
+                        </label>
+                        <input autocomplete="false" class="form-control" type="text" 
+                                name="usernameAjax">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">
+                            Password
+                            <span class="required"></span>
+                        </label>
+                        <input autocomplete="false" class="form-control" type="password" name="passwordAjax" value="">
+                    </div>                
+                </div>
+                <div class="panel-footer">
+                    <input class="btn btn-primary" type="submit" value="Accedi">
+                </div>
+                <div class="" id="answer"></div>
+            </div>
+        </form>
+        <script type="text/javascript">
+            $( document ).ready(function() {
+                
+                var ajaxForm =  $("#loginFormAjax");
+                var loginMessage = $("#answer");
+
+                $("#answer").hide();
+                ajaxForm.submit(function (e) {
+
+                    e.preventDefault();
+
+                    let ajaxUsername =  ajaxForm.find("input[name='usernameAjax']").val();
+                    let ajaxPassword =  ajaxForm.find("input[name='passwordAjax']").val();
+
+                    let data = {
+                    username: ajaxUsername,
+                    password: ajaxPassword
+
+                    }
+
+                    $.post( "/rest/user/login", data, (response) => {
+                      
+                        /*if (response) {
+                            window.location.href = "/personal/bacheca";
+                            $("#answer").html("login ok");
+                        }
+                        */
+                      
+                        switch (response.status) {
+                            case 'ok':
+                                                                
+                                loginMessage.attr("class", "alert alert-success" );
+                                //setTimeout(function(){ $("#answer").show(); }, 3000);
+                                setTimeout(
+                                    () => window.location.href = "/personal/bacheca", 1000
+                                );
+                                
+                                break;
+
+                            case 'ko':
+
+                                loginMessage.attr("class","alert alert-danger" );
+                                
+                                break;                          
+                            
+                            default:
+                                //Comandi eseguiti quando nessuno dei valori coincide col valore dell'epressione
+                                break;
+                        }
+                        loginMessage.html(response.message);
+                        loginMessage.show();
+
+                    }).fail((error) => {
+                        //??
+                    });
+                })
+            });
+        </script>
+    </f:section>
+</div>

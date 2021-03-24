@@ -1,0 +1,67 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="example" options="{group: 'FCE'}" label="User Status Ajax" description="Lista user status">
+
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>---</strong><br/>
+
+    </f:section>
+
+    <f:section name="Main">
+        <div class="status-info">
+            <h2 class="title">
+                Stato                
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>                
+            </h2>
+            <button id="changeStatus" value="{user.online}">
+                <f:if condition="{user.online}">
+                    <f:then>
+                        Passa offline <span class="glyphicon glyphicon-eye-close"
+                                            aria-hidden="true"></span>
+                    </f:then>
+                    <f:else>
+                        Passa online <span class="glyphicon glyphicon-eye-open"
+                                        aria-hidden="true"></span>
+                    </f:else>
+                </f:if>
+            </button>
+      </div>
+
+        <script type="text/javascript">
+            $( document ).ready(function() {
+                
+                var buttonAjax =  $("#changeStatus");
+               
+
+                buttonAjax.click(function (e) {
+
+                    e.preventDefault();
+
+                    let data =  buttonAjax.val();
+                    
+
+                    $.post( "/rest/user/toggleStatus", (response) => {
+                        
+                        if(response){
+                            
+                        }
+                           
+
+
+                    }).fail((error) => {
+                        //??
+                    });
+                })
+            });
+        </script>
+    </f:section>
+</div>
