@@ -32,5 +32,36 @@
             </ul>
         </div>
 
+        <script type="text/javascript">
+
+            function getUserStatusList() {
+
+                $.get('/rest/user/status/list', function (response) {
+
+                    if (response.status == "ok") {
+                        $(response.data).each((index, user) => {
+
+                            let userItem = $('.chat-block .user-uid-' + user.id);
+                            let userName = userItem.find('.user-name');
+
+                            if (user.online) {
+                                userName.removeClass('offline').addClass('connected');
+                            } else {
+                                userName.removeClass('connected').addClass('offline');
+                            }
+
+
+                        })
+                    } else {
+                        console.log("error", response);
+                    }
+                });
+            }
+
+            $(document).ready(() => {
+                setInterval(getUserStatusList, 1000);
+            });
+
+        </script>
     </f:section>
 </div>

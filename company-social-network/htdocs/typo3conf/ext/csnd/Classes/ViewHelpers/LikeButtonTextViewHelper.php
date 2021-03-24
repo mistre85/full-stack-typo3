@@ -4,13 +4,13 @@ namespace Wind\Csnd\ViewHelpers;
 
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 use Wind\Csnd\Domain\Model\Post;
-use Wind\Csnd\Domain\Model\User;
 use Wind\Csnd\Utility\CompanySocialNetwork;
 
 
 class LikeButtonTextViewHelper extends AbstractViewHelper
 {
 
+    //rimosso perchè non mi serve tutto l'oggetto
     /*
      * CompanySocialNetwork
      *
@@ -20,12 +20,12 @@ class LikeButtonTextViewHelper extends AbstractViewHelper
     //protected $csn = null;
 
     /**
-     * @param $post \Wind\Csnd\Domain\Model\Post
-     * @param $then string
-     * @param $else string
+     * @param \Wind\Csnd\Domain\Model\Post $post
+     * @param string $then
+     * @param string $else
      * @return string
      */
-    public function render(Post $post, $then, $else)
+    public function render(Post $post, string $then, string $else)
     {
 
         /*
@@ -33,6 +33,8 @@ class LikeButtonTextViewHelper extends AbstractViewHelper
          */
         //$user = $this->csn->getLoggedUser();
         //uso il valore intero del cookie (uid) salvato direttamente nel cookie
+        //come ottimizzazione
+
         $userUid = CompanySocialNetwork::readUserCookie();
 
         foreach ($post->getLikes() as $like) {

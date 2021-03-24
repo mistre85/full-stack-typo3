@@ -137,4 +137,11 @@ class ContentController extends AbstractController
     }
 
 
+    function userStatusAction()
+    {
+        $user = $this->csn->getLoggedUser();
+        $this->view->assign('user', $user);
+    }
+
+
 }

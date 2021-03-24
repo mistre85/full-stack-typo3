@@ -92,3 +92,53 @@ module.tx_csnd_web_csndcnsadmin {
     layoutRootPaths.1 = {$module.tx_csnd_cnsadmin.view.layoutRootPath}
   }
 }
+
+
+
+#configurazioni API
+plugin.tx_rest.settings {
+
+    responseHeaders {
+        Access-Control-Allow-Origin = localhost
+        Access-Control-Allow-Methods = GET, POST, OPTIONS, DELETE, PUT, PATCH
+    }
+
+    paths {
+
+        wind-csnd {
+            #http://localhost/rest/path-* (wildcard che permette di cercare automaticamente un modello)
+            path = wind-csnd-*
+            read = allow
+            write = deny
+        }
+
+        #attenzione che stiamo facendo ovverride su automatismo dei modelli http://rest.corn.rest/Configuration/
+        wind-csnd-user {
+            #http://localhost/rest/wind-csnd-user (wildcard che permette di cercare automaticamente un modello)
+            path = wind-csnd-user
+            read = allow
+            write = allow
+
+            handlerClass = \Wind\Csnd\Rest\UserHandler
+        }
+
+    }
+
+    aliases {
+        post = wind-csnd-post
+        comment = wind-csnd-comment
+        user = wind-csnd-user
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+

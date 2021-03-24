@@ -16,8 +16,8 @@
 
             <f:render partial="FormErrors" arguments="{object:User}"/>
 
-
             <f:form
+                    id="login-form"
                     additionalAttributes="{autocomplete: 'chrome-off'}"
                     action="doLogin"
                     enctype="multipart/form-data" name="newUser"
@@ -36,5 +36,37 @@
             </f:form>
 
         </div>
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+
+                debugger;
+                var loginForm = $("#login-form");
+
+                loginForm.submit(function (e) {
+
+                    e.preventDefault();
+
+                    let username = loginForm.find("input[name='tx_csnd_userplugin[newUser][username]']").val();
+                    let password = loginForm.find("input[name='tx_csnd_userplugin[newUser][password]']").val();
+
+                    let data = {
+                        username: username,
+                        password: password
+                    }
+
+                    $.post('/rest/user/login', data, (response) => {
+
+                        if (response) {
+                            window.location.href = "/personal/dashboard";
+                        }
+
+                    }).fail((error) => {
+                        //??
+                    })
+                });
+
+            });
+        </script>
     </f:section>
 </div>

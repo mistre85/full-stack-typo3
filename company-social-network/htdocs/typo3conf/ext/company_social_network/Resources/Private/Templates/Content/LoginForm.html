@@ -1,0 +1,116 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="loginForm" options="{group: 'Forms'}" label="Login (ajax)"
+                   description="Permette di effettuare un login asincrono">
+
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>Login</strong><br/>
+        Permette di effettuare un login asincrono
+    </f:section>
+
+    <f:section name="Main">
+
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/registrationForm.css"/>
+
+        <div class="registration-form">
+            <form id="login-form">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3>Login (Ajax)</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="username">
+                                Username
+                                <span class="required"></span>
+                            </label>
+                            <input autocomplete="false" class="form-control" type="text"
+                                   name="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">
+                                Password
+                                <span class="required"></span>
+                            </label>
+                            <input autocomplete="false" class="form-control" type="password"
+                                   name="password" value="">
+                        </div>
+                        <p id="login-error-message" class="" style="display: none">
+                    </div>
+                    <div class="panel-footer">
+                        <button id="button-login" class="btn btn-primary">
+                            Accedi
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <script type="text/javascript">
+
+                $(document).ready(function () {
+
+                    var loginForm = $("#login-form");
+                    var loginErrorMessage = $("#login-error-message");
+                    var buttonLogin = $("#button-login");
+
+                    loginForm.submit((e) => {
+
+                        buttonLogin.button('loading')
+
+                        loginErrorMessage.hide();
+                        e.preventDefault();
+
+                        let username = loginForm.find("input[name='username']").val();
+                        let password = loginForm.find("input[name='password']").val();
+
+                        let data = {
+                            username: username,
+                            password: password
+                        }
+
+                        $.post('/rest/user/login', data, (response) => {
+
+                            console.log(response);
+
+                            switch (response.status) {
+                                case "ok":
+                                    loginErrorMessage.attr("class", "bg-success");
+
+                                    setTimeout(
+                                        () => window.location.href = "/personal/dashboard",
+                                        3000
+                                    );
+                                    break;
+                                case "ko":
+                                    loginErrorMessage.attr("class", "bg-danger");
+                                    setTimeout(
+                                        () => loginErrorMessage.fadeOut(),
+                                        5000
+                                    );
+                                    break;
+
+                            }
+
+                            loginErrorMessage.html(response.message);
+                            loginErrorMessage.show();
+                            buttonLogin.button('reset')
+
+                        });
+                    });
+
+                });
+
+            </script>
+        </div>
+    </f:section>
+</div>
+
+

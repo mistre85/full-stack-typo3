@@ -52,13 +52,12 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     /**
      * action list
-     * @format json
      * @return void
      */
     public function listAction()
     {
         $posts = $this->postRepository->findAll();
-        $this->view->assign('posts', $posts);
+        $this->view->assign('posts', $posts->toArray());
     }
 
     /**

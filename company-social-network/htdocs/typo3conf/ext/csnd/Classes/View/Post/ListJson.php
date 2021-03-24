@@ -8,7 +8,6 @@ class ListJson extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView
     public function render()
     {
 
-        $postList = $this->variables['post'];
-        return json_encode($postList);
+        return json_encode(array('id' => 1, 'text' => 'buongiorno'));
     }
 }
