@@ -13,6 +13,8 @@ use Wind\Csnd\Utility\CompanySocialNetwork;
 use Wind\Csnd\Utility\Response;
 
 
+
+
 class UserHandler implements HandlerInterface
 {
             
@@ -39,6 +41,12 @@ class UserHandler implements HandlerInterface
      */
     protected $csn = null;
 
+    /**
+     * 
+     * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
+     * @inject
+     */
+    protected $persistenceManager = null; 
     /**
      * Response
      *
@@ -96,14 +104,17 @@ class UserHandler implements HandlerInterface
 
         $router->add(
             Route::post(
-                $request->getResourceType() . '/toggleStatus',
+                $request->getResourceType() . '/status/toggle',
                 function (RestRequestInterface $request) {
                     $user = $this->csn->getLoggedUser();
-                   // $user->setOnline(!$user->getOnline());
-                   // $this->userRepository->update($user);
-                    
+                   
                     $user->setOnline(!$user->getOnline());
                     $this->userRepository->update($user);
+
+                    $this->persistenceManager->persistAll(); 
+
+                    $this->resp->Res
+
                     return $user->getOnline();
 
                 }
