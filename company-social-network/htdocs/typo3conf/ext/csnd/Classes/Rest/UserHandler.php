@@ -6,6 +6,7 @@ use Cundd\Rest\Handler\HandlerInterface;
 use Cundd\Rest\Http\RestRequestInterface;
 use Cundd\Rest\Router\Route;
 use Cundd\Rest\Router\RouterInterface;
+use TYPO3\CMS\Core\Database\DatabaseConnection;
 use Wind\Csnd\Domain\Model\User;
 use Wind\Csnd\Utility\CompanySocialNetwork;
 use Wind\Csnd\Utility\Response;
@@ -42,8 +43,15 @@ class UserHandler implements HandlerInterface
      */
     private $response = null;
 
+    /**
+     * @var \TYPO3\CMS\Core\Database\DatabaseConnection
+     */
+    private $databaseConnection = null;
 
-    private $responseArray = [];
+    public function __construct()
+    {
+        $this->databaseConnection = $GLOBALS['TYPO3_DB'];
+    }
 
     /**
      * @param RouterInterface $router
@@ -67,20 +75,17 @@ class UserHandler implements HandlerInterface
                         CompanySocialNetwork::registerUserCookie($user);
                         //return $user->getUid();
                         //arricchimento response
-                        //$response['status'] = "ok";
-                        $this->response->setStatus(Response::STATUS_OK);
 
+                        $this->response->setStatus(Response::STATUS_OK);
                         $this->response->addMessage("Accesso avvenuto correttamente.", true, "<br/>");
                         $this->response->addMessage("Redirect in 3 secondi.");
                     } else {
                         //return false;
                         //in caso di "errore"
-                        $response['status'] = "ko";
-                        $this->response->setStatus(Response::STATUS_KO);
 
+                        $this->response->setStatus(Response::STATUS_KO);
                         $this->response->addMessage("Nome utente o password errati.", true, "<br/>");
                         $this->response->addMessage("Redirect in 3 secondi.");
-
 
                     }
 
@@ -95,15 +100,27 @@ class UserHandler implements HandlerInterface
                 $request->getResourceType() . "/status/toggle",
                 function (RestRequestInterface $request) {
 
-                    $user = $this->csn->getLoggedUser();
-                    $user->setOnline(!$user->getOnline());
-                    $this->userRepository->update($user);
+                    /*
+                     * rimuovo per non utilizzare la persistenza
+                     */
+                    //$user = $this->csn->getLoggedUser();
+                    //$user->setOnline(!$user->getOnline());
+                    //$this->userRepository->update($user);
 
                     //todo: fare una query diretta!
-                    $this->persistenceManager->persistAll();
+                    //$this->persistenceManager->persistAll();
+                    $userId = CompanySocialNetwork::readUserCookie();
+
+                    //recupero l'utente
+                    $where = " uid = '$userId' ";
+                    $user = $this->databaseConnection->exec_SELECTgetSingleRow('online', 'tx_csnd_domain_model_user', $where);
+                    $this->databaseConnection->exec_UPDATEquery('tx_csnd_domain_model_user',
+                        $where,
+                        array('online' => !$user['online'])
+                    );
 
                     $this->response->addData([
-                        'online' => $user->getOnline()
+                        'online' => !$user['online']
                     ]);
 
                     $this->response->setStatus(Response::STATUS_OK);
@@ -120,6 +137,7 @@ class UserHandler implements HandlerInterface
 
                     $userList = $this->userRepository->findAll();
 
+                    /** @var User $user */
                     foreach ($userList as $user) {
                         $this->response->addData(
                             [
