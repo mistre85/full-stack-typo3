@@ -11,14 +11,18 @@ class UserResponse extends Response
 
     /**
      *
-     * @param User $user
+     * @param mixed $user
      */
-    public function addData(\Wind\Csnd\Domain\Model\User $user)
+    public function addData($user)
     {
-        $userResponse = [
-            'id' => $user->getUid(),
-            'online' => $user->getOnline()
-        ];
+        if ($user instanceof Wind\Csnd\Domain\Model\User) {
+            $userResponse = [
+                'id' => $user->getUid(),
+                'online' => $user->getOnline()
+            ];
+        } else {
+            $userResponse = $user;
+        }
 
         parent::addData($userResponse);
 
