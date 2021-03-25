@@ -58,3 +58,13 @@
 .right{
     text-align: right;
 }
+
+.fillbadgeOnline{
+
+    fill: green;
+}
+
+.fillbadgeOffLine{
+
+    fill: red;
+}

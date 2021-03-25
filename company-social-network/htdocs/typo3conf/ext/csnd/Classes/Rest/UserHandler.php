@@ -133,6 +133,30 @@ class UserHandler implements HandlerInterface
                 }
             )
         );
-    }
 
+        $router->add(
+            Route::get(
+                $request->getResourceType() . '/status/updateListStatus',
+                function (RestRequestInterface $request) {
+                    
+                    
+                    $users = $this->userRepository->findAll();
+                    /** @var User $user */
+                    foreach ($users as $user){                        
+                        
+                        $this->response->addData([
+                            'username' => $user->getUsername(),
+                            'online'   => $user->getOnline(),
+                            'uid'      => $user->getUid()
+                        ]);
+                    } 
+                    
+                    return $this->response->toArray();
+
+                }
+            )
+        );
+
+
+    }
 }

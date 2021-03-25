@@ -14,11 +14,12 @@
                 
             </div>      
             <div class="col-lg-12" style="text-align: right;">
-                <csn:DeleteComment post="{comment}">
+                <csn:DeleteComment comment="{comment}">
                     <f:link.action  
-                    extensionName="csnd"  pluginName="postplugin"
+                    extensionName="csnd"  
+                    pluginName="postplugin"
                     controller="Comment"
-                    action="remove"   arguments="{postUid: '{item.uid}'}"               
+                    action="remove"   arguments="{comment: comment }"               
                     class="btn btn-primary pull-right">Cancella Commento
                     </f:link.action>
                 </csn:DeleteComment>

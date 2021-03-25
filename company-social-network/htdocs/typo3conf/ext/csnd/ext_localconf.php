@@ -24,12 +24,12 @@ call_user_func(
             'Postplugin',
             [
                 'Post' => 'post, publicPost, like',
-				'Comment' => 'create','remove'
+				'Comment' => 'create , remove'
             ],
             // non-cacheable actions
             [
                 'Post' => 'publicPost, like',
-				'Comment' => 'create','remove'
+				'Comment' => 'create , remove'
             ]
         );
 

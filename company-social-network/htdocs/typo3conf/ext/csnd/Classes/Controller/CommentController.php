@@ -139,13 +139,15 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * action remove
      *
      * @param \Wind\Csnd\Domain\Model\Comment $comment
-     * @param int $postUid
      * @return void
      */
 
-    public function removeAction($postUid)
+    public function removeAction(\Wind\Csnd\Domain\Model\Comment $comment)
     {
-        
+        //$this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
+        $this->commentRepository->remove($comment);
+        //$this->redirect('list');
+        $this->redirectToUri('personal/bacheca');
     }
 
 

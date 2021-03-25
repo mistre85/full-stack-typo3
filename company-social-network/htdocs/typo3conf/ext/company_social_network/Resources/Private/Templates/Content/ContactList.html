@@ -39,6 +39,42 @@
                         </f:for>
                     </div>
                 </div>
-            </div>            
+            </div>     
+            
+            
+            
+        <script type="text/javascript">
+            $( document ).ready(function() {
+                
+                setInterval(function(){
+                    
+                    $.get( "/rest/user/status/updateListStatus", (response) => {                 
+                                        
+                        $.each(response.data, function( index, value ) {
+
+                            
+                            let uid = $('.chat-block .user-uid'+value.uid);
+                            let userName = uid.find('.statoUtente');
+
+                            if (value.online){
+                                
+                                userName.removeClass("fillbadgeOffLine").addClass("fillbadgeOnline");
+                            }
+                            else {
+                                userName.removeClass("fillbadgeOnline").addClass("fillbadgeOffLine");
+                            }
+                            
+                        });
+
+                    }).fail((error) => {
+                        //??
+                    });
+
+                 }, 3000);
+                    
+               
+            });
+        </script>
+
     </f:section>
 </div>

@@ -19,19 +19,19 @@ class DeleteCommentViewHelper extends AbstractViewHelper
     protected $csn = null;
 
     /** 
-     * @param $post \Wind\Csnd\Domain\Model\Comment
+     * @param $comment \Wind\Csnd\Domain\Model\Comment
      * @return string     
      *  
      */
-    public function render(\Wind\Csnd\Domain\Model\Comment $post)
+    public function render(\Wind\Csnd\Domain\Model\Comment $comment)
     {
         /** @var User $user  */
         $userUid = CompanySocialNetwork::readUserCookie();
 
-            if ($userUid == $post->getUser()->getUid()) {          
+            if ($userUid == $comment->getUser()->getUid()) {          
                 return $this->renderChildren();                          
             }
-       //return "--------------".$post->getUser()->getUid();
+       //return "--------------".$comment->getUser()->getUid();
              
     }
 }
