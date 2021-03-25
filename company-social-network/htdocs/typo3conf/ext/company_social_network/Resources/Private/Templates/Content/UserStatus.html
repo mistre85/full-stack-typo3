@@ -22,6 +22,7 @@
                 Stato                
                 <span id="status-label" 
                         class=" pull-right label {f:if(condition:'{user.online}',then:'label-success',else:'label-default')}">
+                    
                     <span   id="status-icon" 
                             class="glyphicon glyphicon-eye-{f:if(condition:'{user.online}',then:'open',else:'close')}"
                             aria-hidden="true">
@@ -32,17 +33,17 @@
                 </span>              
             </h2>
 
-            <button id="changeStatus" class="btn
+            <button id="toggle-status-button" class="btn
                 {f:if(condition:'{user.online}',then:'btn-default',else:'btn-success')}
                 btn-xs btn-block">
                 <f:if condition="{user.online}">
                     <f:then>
-                        Passa offline <span class="glyphicon glyphicon-eye-close"
-                                            aria-hidden="true"></span>
+                        <span id="status-button-label">Passa offline</span>
+                            <span id="status-button-icon" class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                     </f:then>
                     <f:else>
-                        Passa online <span  class="glyphicon glyphicon-eye-open"
-                                        aria-hidden="true"></span>
+                        <span id="status-button-label">Passa online</span>
+                        <span id="status-button-icon" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                     </f:else>
                 </f:if>
             </button>
@@ -51,15 +52,40 @@
         <script type="text/javascript">
             $( document ).ready(function() {
                 
-                var statoUser =  $("#status-icon");
-               
+                $("#toggle-status-button").click( ()=> {
 
-                buttonAjax.click( ()=> {
+                    var tsb =  $("#toggle-status-button");
+                    tsb.button("loading");
            
                     $.post( "/rest/user/status/toggle", (response) => {
                         
-                        if(response){
-                            statoUser.addClass
+                        if(response.status == "ok"){
+
+                            var st = $("#status-text");
+                            var sl = $("#status-label");
+                            var tsb = $("#toggle-status-button");
+                            var si = $("#status-icon");
+                            var sbi = $("#status-button-icon");
+                            var sbl = $("#status-button-label");
+
+                            $("#toggle-status-button").button("reset");
+
+                            if (response.data.online){
+                                st.text("online");
+                                tsb.removeClass("btn-success").addClass("btn-default");
+                                sl.removeClass("label-default").addClass("label-success");
+                                si.removeClass("glyphicon-eye-close").addClass("glyphicon-eye-open");
+                                sbi.removeClass("glyphicon-eye-open").addClass("glyphicon-eye-close");
+                                sbl.text("Passa offline");
+                            } else {
+                                st.text("offline");
+                                tsb.removeClass("btn-default").addClass("btn-success");
+                                sl.removeClass("label-success").addClass("label-default");
+                                si.removeClass("glyphicon-eye-open").addClass("glyphicon-eye-close");
+                                sbi.removeClass("glyphicon-eye-close").addClass("glyphicon-eye-open");
+                                sbl.text("Passa online");
+
+                            }
                         }                       
 
 

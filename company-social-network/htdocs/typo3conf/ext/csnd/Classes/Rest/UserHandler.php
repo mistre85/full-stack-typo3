@@ -11,6 +11,7 @@ use Wind\Csnd\Domain\Model\User;
 use Wind\Csnd\Utility\CompanySocialNetwork;
 
 use Wind\Csnd\Utility\Response;
+use Wind\Csnd\Utility\ResponseMia;
 
 
 
@@ -50,10 +51,18 @@ class UserHandler implements HandlerInterface
     /**
      * Response
      *
-     * @var \Wind\Csnd\Utility\Response
+     * @var \Wind\Csnd\Utility\ResponseMia
      * @inject
      */
     protected $resp = null;
+
+    /**
+     * Response
+     *
+     * @var \Wind\Csnd\Utility\Response
+     * @inject
+     */
+    protected $response = null;
 
 
     public function configureRoutes(RouterInterface $router, RestRequestInterface $request)
@@ -113,9 +122,13 @@ class UserHandler implements HandlerInterface
 
                     $this->persistenceManager->persistAll(); 
 
-                 
-
-                    return $user->getOnline();
+                    $this->response->addData([
+                        //'id' => $user->getUid(),
+                        'online' => $user->getOnline()
+                    ]);
+                    
+                    $this->response->setStatus(Response::STATUS_OK);
+                    return $this->response->toArray();
 
                 }
             )
