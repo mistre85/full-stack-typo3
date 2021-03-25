@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2021-03-19T09:55:59Z" product-name="csnd">
+		<header/>
+		<body>
+			<trans-unit id="tx_csnd_domain_model_userplugin">
+				<source>User Plugin</source>
+			</trans-unit>
+			<trans-unit id="tx_csnd_domain_model_userplugin.description">
+				<source></source>
+			</trans-unit>
+			<trans-unit id="commento.description">
+				<source>commento</source>
+			</trans-unit>
+			<trans-unit id="user.description">
+				<source>user</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

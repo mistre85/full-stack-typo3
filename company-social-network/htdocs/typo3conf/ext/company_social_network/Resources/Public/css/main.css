@@ -139,7 +139,6 @@ html, body {
     border-radius: 50%;
     position: relative;
     top: -13px;
-    left: 40px;
     border: 1px solid white;
 }
 
@@ -250,6 +249,15 @@ h2 {
     border-radius: 20px;
 }
 
-.public_post textarea:focus, .public_post_submit:focus {
+.public_post textarea:focus, .public_post_submit:focus, .public_comment textarea:focus {
     outline: none;
+}
+
+.public_comment textarea {
+    width: 450px;
+    background-color: lightgrey;
+    border: 0px;
+    border-radius: 20px;
+    height: 35px;
+    padding: 7px;
 }

@@ -125,8 +125,8 @@
         {
             "config": {
                 "position": [
-                    592,
-                    202
+                    915,
+                    113
                 ]
             },
             "name": "New Model Object",
@@ -164,16 +164,6 @@
                             "propertyName": "text",
                             "propertyType": "Text",
                             "uid": "329052806230"
-                        },
-                        {
-                            "allowedFileTypes": "",
-                            "maxItems": "1",
-                            "propertyDescription": "",
-                            "propertyIsExcludeField": true,
-                            "propertyIsRequired": false,
-                            "propertyName": "likes",
-                            "propertyType": "Integer",
-                            "uid": "1390235326442"
                         }
                     ]
                 },
@@ -189,6 +179,90 @@
                             "relationWire": "[wired]",
                             "renderType": "selectSingle",
                             "uid": "967023998302"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "likes",
+                            "relationType": "manyToMany",
+                            "relationWire": "[wired]",
+                            "renderType": "selectMultipleSideBySide",
+                            "uid": "897822374382"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "commenti",
+                            "relationType": "zeroToMany",
+                            "relationWire": "[wired]",
+                            "renderType": "inline",
+                            "uid": "782422128117"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "config": {
+                "position": [
+                    574,
+                    355
+                ]
+            },
+            "name": "New Model Object",
+            "value": {
+                "actionGroup": {
+                    "_default0_list": true,
+                    "_default1_show": true,
+                    "_default2_new_create": true,
+                    "_default3_edit_update": true,
+                    "_default4_delete": true,
+                    "customActions": []
+                },
+                "name": "Commenti",
+                "objectsettings": {
+                    "addDeletedField": true,
+                    "addHiddenField": true,
+                    "addStarttimeEndtimeFields": true,
+                    "aggregateRoot": true,
+                    "categorizable": false,
+                    "description": "",
+                    "mapToTable": "",
+                    "parentClass": "",
+                    "sorting": false,
+                    "type": "Entity",
+                    "uid": "439064217137"
+                },
+                "propertyGroup": {
+                    "properties": [
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsRequired": false,
+                            "propertyName": "commento",
+                            "propertyType": "Text",
+                            "uid": "892571845552"
+                        }
+                    ]
+                },
+                "relationGroup": {
+                    "relations": [
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "user",
+                            "relationType": "zeroToMany",
+                            "relationWire": "[wired]",
+                            "renderType": "inline",
+                            "uid": "1030421201043"
                         }
                     ]
                 }
@@ -224,7 +298,7 @@
         "extensionKey": "csnd",
         "name": "Company Social Network Data",
         "originalExtensionKey": "csnd",
-        "originalVendorName": "Wind",
+        "originalVendorName": "Windtre",
         "persons": [],
         "plugins": [
             {
@@ -263,10 +337,46 @@
                 "terminal": "SOURCES",
                 "uid": "316194828816"
             }
+        },
+        {
+            "src": {
+                "moduleId": 1,
+                "terminal": "relationWire_1",
+                "uid": "897822374382"
+            },
+            "tgt": {
+                "moduleId": 0,
+                "terminal": "SOURCES",
+                "uid": "316194828816"
+            }
+        },
+        {
+            "src": {
+                "moduleId": 2,
+                "terminal": "relationWire_0",
+                "uid": "1030421201043"
+            },
+            "tgt": {
+                "moduleId": 0,
+                "terminal": "SOURCES",
+                "uid": "316194828816"
+            }
+        },
+        {
+            "src": {
+                "moduleId": 1,
+                "terminal": "relationWire_2",
+                "uid": "782422128117"
+            },
+            "tgt": {
+                "moduleId": 2,
+                "terminal": "SOURCES",
+                "uid": "439064217137"
+            }
         }
     ],
     "log": {
-        "last_modified": "2021-03-10 08:19",
+        "last_modified": "2021-03-19 09:56",
         "extension_builder_version": "7.10.0",
         "be_user": " (1)"
     }

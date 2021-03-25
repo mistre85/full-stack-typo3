@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2021-03-10T08:19:10Z" product-name="csnd">
+	<file source-language="en" datatype="plaintext" original="messages" date="2021-03-19T09:55:59Z" product-name="csnd">
 		<header/>
 		<body>
 			<trans-unit id="tx_csnd_domain_model_userplugin">
@@ -42,18 +42,30 @@
 			<trans-unit id="tx_csnd_domain_model_post.text">
 				<source>Text</source>
 			</trans-unit>
-			<trans-unit id="tx_csnd_domain_model_post.likes">
-				<source>Likes</source>
-			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_post.user">
 				<source>User</source>
 			</trans-unit>
-            <trans-unit id="tx_csnd_domain_model_postplugin">
-                <source>Post Plugin</source>
-            </trans-unit>
-            <trans-unit id="tx_csnd_domain_model_postplugin.description">
-                <source>Permette di pubblicare post agli utenti iscritti</source>
-            </trans-unit>
+			<trans-unit id="tx_csnd_domain_model_postplugin">
+				<source>Post Plugin</source>
+			</trans-unit>
+			<trans-unit id="tx_csnd_domain_model_postplugin.description">
+				<source>Permette di pubblicare post agli utenti iscritti</source>
+			</trans-unit>
+			<trans-unit id="tx_csnd_domain_model_post.likes">
+				<source>Likes</source>
+			</trans-unit>
+			<trans-unit id="tx_csnd_domain_model_post.commenti">
+				<source>Commenti</source>
+			</trans-unit>
+			<trans-unit id="tx_csnd_domain_model_commenti">
+				<source>Commenti</source>
+			</trans-unit>
+			<trans-unit id="tx_csnd_domain_model_commenti.commento">
+				<source>Commento</source>
+			</trans-unit>
+			<trans-unit id="tx_csnd_domain_model_commenti.user">
+				<source>User</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

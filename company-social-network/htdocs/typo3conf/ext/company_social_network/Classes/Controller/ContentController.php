@@ -31,6 +31,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use Windtre\CompanySocialNetwork\Utility\CompanySocialNetwork;
+use Windtre\Csnd\Controller\PostController;
+use Windtre\Csnd\Domain\Model\Post;
 use Windtre\Csnd\Domain\Model\User;
 
 /**
@@ -84,7 +86,28 @@ class ContentController extends AbstractController
 
     public function postBachecaAction()
     {
+        $user = $this->csn->getLoggedUser();
         $posts = $this->postRepository->findAll();
+        $userFound = false;
+
+        /** @var Post $post */
+        foreach( $posts as $post ) {
+            /** @var User $like */
+            foreach( $post->getLikes() as $like ) {
+                if( $user->getUid() == $like->getUid() ) {
+                    $userFound = true;
+                    break;
+                }
+            }
+
+            if( $userFound ) {
+                $post->likeButtonLabel = 'Non mi piace più';
+                $userFound = false;
+            } else {
+                $post->likeButtonLabel = 'Mi piace';
+
+            }
+        }
         $this->view->assign('posts', $posts);
     }
 
@@ -101,5 +124,11 @@ class ContentController extends AbstractController
         $name = GeneralUtility::_GP('name');
 
         DebuggerUtility::var_dump([$username, $email, $name]);
+    }
+
+    public function userStatusAction()
+    {
+        $user = $this->userRepository->findByUid($this->csn->getLoggedUser());
+        $this->view->assign('user', $user);
     }
 }

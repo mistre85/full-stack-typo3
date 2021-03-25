@@ -92,3 +92,37 @@ module.tx_csnd_web_csndcnsadmin {
     layoutRootPaths.1 = {$module.tx_csnd_cnsadmin.view.layoutRootPath}
   }
 }
+
+#CONFIGURAZIONE API
+plugin.tx_rest.settings {
+
+    responseHeaders {
+        Access-Control-Allow-Origin = csn.local
+        Access-Control-Allow-Methods = GET, POST, OPTIONS, DELETE, PUT, PATCH
+    }
+
+    paths {
+        windtre-csnd {
+            path = windtre-csnd-*
+            read = allow
+            write = deny
+        }
+
+        #OVERRIDE SU AUTOMATISMO DEI MODELLI
+        windtre-csnd-user {
+            path = windtre-csnd-user
+            read = allow
+            write = allow
+
+            handlerClass = \Windtre\Csnd\Rest\UserHandler
+        }
+    }
+
+    aliases {
+        post = windtre-csnd-post
+        user = windtre-csnd-user
+        commenti = windtre-csnd-commenti
+    }
+}
+
+

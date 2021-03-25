@@ -11,11 +11,6 @@ call_user_func(
             'User Plugin'
         );
 
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'Windtre.Csnd',
-            'Postplugin',
-            'Post Plugin'
-        );
 
 
 
@@ -29,6 +24,7 @@ call_user_func(
                 [
                     'User' => 'list, show, new, create, edit, update, delete',
                     'Post' => 'list, show, new, create, edit, update, delete',
+                    'Commenti' => 'list, show, new, create, edit, update, delete',
                 ],
                 [
                     'access' => 'user,group',
@@ -47,6 +43,9 @@ call_user_func(
 
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_csnd_domain_model_post', 'EXT:csnd/Resources/Private/Language/locallang_csh_tx_csnd_domain_model_post.xlf');
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_csnd_domain_model_post');
+
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_csnd_domain_model_commenti', 'EXT:csnd/Resources/Private/Language/locallang_csh_tx_csnd_domain_model_commenti.xlf');
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_csnd_domain_model_commenti');
 
 
 

@@ -17,4 +17,7 @@ namespace Windtre\Csnd\Domain\Repository;
  */
 class PostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
-    }
+//    protected $defaultOrderings = array(
+//        'crdate' => QueryInterface::ORDER_DESCENDING
+//    );
+}

@@ -21,42 +21,45 @@ call_user_func(
             'Windtre.Csnd',
             'Postplugin',
             [
-                'Post' => 'post, savepost, like'
+                'Post' => 'post, savepost, like',
+                'Commenti' => 'savecomment'
             ],
             // non-cacheable actions
             [
-                'Post' => 'savepost, like'
+                'Post' => 'savepost, like',
+                'Commenti' => 'savecomment'
             ]
         );
 
-        // wizards
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-            'mod {
-                wizards.newContentElement.wizardItems.plugins {
-                    elements {
-                        userplugin {
-                            icon = ' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($extKey) . 'Resources/Public/Icons/user_plugin_userplugin.svg
-                            title = LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_userplugin
-                            description = LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_userplugin.description
-                            tt_content_defValues {
-                                CType = list
-                                list_type = csnd_userplugin
-                            }
-                        }
-                        Postplugin {
-                            icon = ' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($extKey) . 'Resources/Public/Icons/post_plugin_postplugin.svg
-                            title = LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_postplugin
-                            description = LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_postplugin.description
-                            tt_content_defValues {
-                                CType = list
-                                list_type = csnd_postplugin
-                            }
+
+	// wizards
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
+		'mod {
+			wizards.newContentElement.wizardItems.plugins {
+				elements {
+					userplugin {
+						icon = ' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($extKey) . 'Resources/Public/Icons/user_plugin_userplugin.svg
+						title = LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_userplugin
+						description = LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_userplugin.description
+						tt_content_defValues {
+							CType = list
+							list_type = csnd_userplugin
+						}
+					}
+					Postplugin {
+                        icon = ' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($extKey) . 'Resources/Public/Icons/post_plugin_postplugin.svg
+                        title = LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_postplugin
+                        description = LLL:EXT:csnd/Resources/Private/Language/locallang_db.xlf:tx_csnd_domain_model_postplugin.description
+                        tt_content_defValues {
+                            CType = list
+                            list_type = csnd_postplugin
                         }
                     }
-                    show = *
-                }
-           }'
-        );
+				}
+				show = *
+			}
+	   }'
+	);
     },
     $_EXTKEY
 );

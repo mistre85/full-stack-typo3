@@ -1,3 +1,4 @@
+{namespace csn=Windtre\CompanySocialNetwork\ViewHelpers}
 <div class="post">
     <div class="post_head">
         <div class="photo"><img src="{post.user.avatar}"></div>
@@ -8,13 +9,23 @@
             {post.text}
         </div>
         <div class="likes l{index}">
-            {f:if(condition: '{post.likes} == 0', then: 'Ancora nessun like', else: 'Piace a {post.likes} persone')}
-
+            {f:if(condition: '{post.likes -> f:count()} == 0', then: 'Ancora nessun like', else: 'Piace a {post.likes -> f:count()} persone')}
         </div>
         <div class="buttons b{index}" data-index="{index}">
             <f:link.action action="like" arguments="{postuid: post.uid}" controller="Post" pluginName="Postplugin" extensionName="csnd" >
-                <img src="http://csn.local/fileadmin/assets/like.png">
+                <button type="button" class="btn btn-primary btn-xs"><csn:likeButtonText post="{post}" then="Non mi piace più <span class='glyphicon glyphicon-thumbs-down' aria-hidden='true'></span>" else="Mi piace <span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span>" /></button>
             </f:link.action>
         </div>
+        <f:form action="savecomment" class="form-inline" extensionName="csnd" pluginName="postplugin" controller="Commenti" enctype="multipart/form-data" name="newCommenti" object="{newCommenti}" arguments="{postuid: post.uid}">
+            <div class="form-group public_comment">
+                <f:form.textarea property="commento" cols="40" rows="2" placeholder="Scrivi un commento..." />
+            </div>
+            <div class="form-group">
+                <f:form.submit class="btn btn-primary public_post_submit" value="Commenta" />
+            </div>
+        </f:form>
+        <f:for each="{post.commenti}" as="c">
+            {c.commento}<hr>
+        </f:for>
     </div>
 </div>

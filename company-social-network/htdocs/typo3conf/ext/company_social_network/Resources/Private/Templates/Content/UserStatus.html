@@ -1,0 +1,48 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="userStatus" options="{group: 'FCE'}" label="User Status Ajax" description="Cambia lo stato dell'utente">
+
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>User Status Ajax</strong><br/>
+        Cambia lo stato dell'utente
+    </f:section>
+
+    <f:section name="Main">
+        <div class="showhide">
+            <div class="btn-group">
+                <button type="button" class="btn btn-success">Sei {f:if(condition: '{user.online}', then: 'Online', else: 'Offline')}</button>
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#" id="changestatus" data-status="{user.online}">{f:if(condition: '{user.online}', then: 'Offline', else: 'Online')}</a></li>
+                </ul>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                let cstatus = $('#changestatus');
+                let showhide = $('.showhide');
+                let status = cstatus.data('status');
+
+                cstatus.click(function(e) {
+                    e.preventDefault();
+
+                    $.post('/rest/user/status', status, (response) => {
+                        console.log(response);
+                    })
+                });
+            });
+        </script>
+    </f:section>
+</div>

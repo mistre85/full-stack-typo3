@@ -1,0 +1,89 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="loginFormAjax" label="Login form Ajax" description="Il form che permette l'accesso al sistema con Ajax"
+                   options="{group: 'Forms'}">
+            <flux:field.input name="title" label="Titolo"/>
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>Login Form</strong>
+        <br>
+        <i>Preview in costruzione</i>
+    </f:section>
+
+    <f:section name="Main">
+        <div class="container">
+            <div class="row">
+                <div class="formlogin">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">{title}</div>
+                        <div class="panel-body">
+                            <form id="formajax">
+                                <div class="form-group">
+                                    <label for="username">
+                                        Username
+                                    </label><br>
+                                    <input class="form-control" type="text" name="username">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">
+                                        Password
+                                    </label><br>
+                                    <input class="form-control" type="password" name="password">
+                                </div>
+                                <div class="messages"></div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary col-lg-12">Accedi</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+                let form = $('#formajax');
+
+                form.submit(function(e) {
+                    e.preventDefault();
+
+                    let username = $(form).find("input[name='username']").val();
+                    let password = $(form).find("input[name='password']").val();
+                    let diverr = $('.messages');
+
+                    let data = {
+                        username: username,
+                        password: password
+                    }
+
+
+                    $.post('/rest/user/login', data, (response) =>  {
+                        if( response ) {
+                            switch( response.status ) {
+                                case 'ok':
+                                    diverr.text( response.message ).addClass('alert alert-success').delay(2000).fadeOut();
+                                    window.location.href = "/area-personale/bacheca/";
+                                    break;
+                                case 'ko':
+                                    diverr.text( response.message ).addClass('alert alert-danger').delay(2000).fadeOut();
+                                    break;
+                            }
+                            //
+                        }
+                    }).fail((error) => {
+                        console.log("ERR::", error);
+                    })
+                });
+            });
+        </script>
+    </f:section>
+</div>

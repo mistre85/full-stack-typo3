@@ -229,5 +229,10 @@ return [
 			    ],
 			],
 	    ],
+        'commenti' => [
+            'config' => [
+                'type' => 'passthrough',
+            ],
+        ],
     ],
 ];

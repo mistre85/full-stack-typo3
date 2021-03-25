@@ -1,0 +1,264 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers">
+    <f:layout name="Content" />
+    <f:section name="Configuration">
+        <flux:form id="visoreoffertamobile"
+                   options="{useTypoScript: 0, group: 'Visori', Fluidcontent: {sorting: 1}, icon: '{f:uri.resource(path: \'Icons/icon-row.gif\')}'}">
+
+            <flux:form.sheet name="general" label="Impostazioni ">
+
+                <flux:field.file name="desktopimage" label="Immagine per versione Desktop" multiple="FALSE" maxItems="1"
+                                 showThumbnails="1" />
+                <flux:field.file name="mobileimage" label="Immagine per versione Mobile" multiple="FALSE" maxItems="1"
+                                 showThumbnails="1" />
+
+                <flux:field.file name="desktopVideo" label="Upload Desktop Video" multiple="FALSE" maxItems="1"
+                                 showThumbnails="1" />
+                <flux:field.file name="mobileVideo" label="Upload Mobile Video" multiple="FALSE" maxItems="1"
+                                 showThumbnails="1" />
+
+                <flux:field.select name="content.video" items="{
+          0:{0:'autoplay',1:'autoplay'},
+          1:{0:'loop',1:'autoplay loop'}
+          }" label="video autoplay or loop">
+                </flux:field.select>
+                <flux:field.input name="content.textdisplay" label="Text delay Ex:1000, 1000 = 1 second"></flux:field.input>
+
+                <flux:field.file name="desktopVideo" label="Upload Desktop Video" multiple="FALSE" maxItems="1" showThumbnails="1"/>
+                <flux:field.file name="mobileVideo" label="Upload Mobile Video" multiple="FALSE" maxItems="1" showThumbnails="1"/>
+
+                <flux:field.select name="content.video" items="{
+          0:{0:'autoplay',1:'autoplay'},
+          1:{0:'loop',1:'autoplay loop'}
+          }" label="video autoplay or loop">
+                </flux:field.select>
+                <flux:field.input name="content.textdisplay" label="Text delay Ex:1000, 1000 = 1 second"></flux:field.input>
+
+                <flux:field.input name="titolo" label="Titolo" maxCharacters="58" />
+                <flux:field.input name="specialoffer" label="Special Offer" />
+                <flux:field.input name="price" label="Prezzo barrato (usare il formato 0,00)" />
+                <flux:field.input name="oldprice" label="Prezzo"></flux:field.input>
+                <flux:field.input name="recurrence" label="Ricorrenza"></flux:field.input>
+
+                <flux:field.select name="content.cta" items="{
+            0: {0: 'Checkout',1: '1'},
+            1: {0: 'Trova Negozio', 1: '2'},
+            2: {0: 'Manuale', 1: '3'}
+            }" label="Tipo di azione CTA">
+                </flux:field.select>
+                <flux:field.input name="content.ropz" label="ROPZ(se azione Checkout)"></flux:field.input>
+
+                <flux:field.input name="content.btnLink" label="Link CTA(se azione manuale)"></flux:field.input>
+                <flux:field.input name="content.btnLabel" label="Testo CTA"></flux:field.input>
+
+                <flux:field.select name="content.button-color" items="{
+            0: {0: 'Orange',1: 'voorg'},
+            1: {0: 'Transparent',1:'votrp'},
+            2: {0: 'Blue Color',1:'vobv'}
+            }" label="Button color">
+                </flux:field.select>
+
+                <flux:form.sheet name="focuspointsection" label="Elenco Puntato">
+                    <flux:field.checkbox name="officon" label="Off-Icon" />
+                    <flux:form.section name="sections" label="Elenco Puntato (max 5)">
+                        <flux:form.object name="aggiungi" label="Aggiungi">
+                            <flux:field.select name="icon" items="{
+                    0:{0:'Icona giga',1:'icon-giga'},
+                    1:{0:'Icona link',1:'icon-link'},
+                    2:{0:'Icona minuti',1:'icon-minuti'},
+                    3:{0:'Icona telefono',1:'icon-phone'},
+                    4:{0:'Icona discorso',1:'icon-speech-bubble'}
+                    }" />
+                            <flux:field.input name="title" label="Titolo"></flux:field.input>
+                            <flux:field.input name="description" label="Descrizione" maxCharacters="135"></flux:field.input>
+                        </flux:form.object>
+                    </flux:form.section>
+                </flux:form.sheet>
+
+                <flux:form.sheet name="iconsection" label="Icone">
+                    <flux:field.checkbox name="activeIcons" label="Abilitare" />
+                    <flux:field.input name="label" label="Testo per l'icona"></flux:field.input>
+                    <flux:form.section name="icon" label="Sezione icone">
+                        <flux:form.object name="add" label="Aggiungi">
+                            <flux:field.file name="image" label="Icona" multiple="FALSE" maxItems="1" showThumbnails="1" />
+                        </flux:form.object>
+                    </flux:form.section>
+                </flux:form.sheet>
+
+                <flux:form.sheet name="spsection" label="Scheda Prodotto">
+                    <flux:field.input name="nomeofferta" label="Nome Offerta" maxCharacters="22"></flux:field.input>
+                    <flux:field.input name="plusbold" label="Plus in evidenza (bold)" maxCharacters="18"></flux:field.input>
+                    <flux:field.input name="row1" label="Riga n.1" maxCharacters="32"></flux:field.input>
+                    <flux:field.input name="row2" label="Riga n.2" maxCharacters="32"></flux:field.input>
+                    <flux:field.input name="row3" label="Riga n.3" maxCharacters="32"></flux:field.input>
+                    <flux:field.input name="row4" label="Riga n.4" maxCharacters="32"></flux:field.input>
+                    <flux:field.input name="costoattoff" label="Costo attivazione offerta"></flux:field.input>
+                    <flux:field.input name="costoattsim" label="Costo attivazione SIM"></flux:field.input>
+                    <flux:field.input name="costoattdvc" label="Costo attivazione device"></flux:field.input>
+                </flux:form.sheet>
+            </flux:form.sheet>
+        </flux:form>
+    </f:section>
+
+
+    <f:section name="Main">
+        <script id="dynamicJSONLD" type="application/ld+json"></script>
+        <section class="image-viewer mobile-offer__maincontainer">
+            <div class="image-viewer__background mobile-offer__bgcontainer">
+                <f:if condition="{0:desktopVideo, 1:mobileVideo} == {0:'', 1:''}">
+                    <f:then>
+                        <picture>
+                            <source media="(min-width:767px)" class="desktopimage" srcset="{desktopimage}">
+                            <source media="(min-width:300px)" class="mobileimage" srcset="{mobileimage}">
+                            <img src="{desktopimage}" alt="">
+                        </picture>
+                    </f:then>
+                    <f:else>
+                        <f:if condition="{desktopVideo} != ''">
+                            <f:then>
+                                <!-- Mod Cltorrento -->
+                                <div class="hp_vetrinavi_bg_video hp_vetrinavi_desktop" data-text="{content.textdisplay}">
+                                    <video {content.video} muted class="hp_vetrinavi_desktop" type="video/mp4">
+                                        <source src="{desktopVideo}" type="video/mp4">
+                                    </video>
+                                </div>
+                            </f:then>
+                            <f:else>
+                                <div class="hp_vetrinavi_bg_img hp_vetrinavi_desktop">
+                                    <img src="{desktopimage}" class="hp_vetrinavi_desktop {content.textposition}"
+                                         alt="">
+                                </div>
+                            </f:else>
+                        </f:if>
+                        <f:if condition="{mobileVideo} != ''">
+                            <f:then>
+                                <div class="hp_vetrinavi_bg_video hp_vetrinavi_mobile" data-text="{content.textdisplay}">
+                                    <!-- Mod Cltorrento -->
+                                    <video {content.video} playsinline muted class="hp_vetrinavi_mobile" type="video/mp4">
+                                        <source src="{mobileVideo}" type="video/mp4">
+                                    </video>
+                                </div>
+                            </f:then>
+                            <f:else>
+                                <div class="hp_vetrinavi_bg_img hp_vetrinavi_mobile">
+                                    <img src="{mobileimage}" class="hp_vetrinavi_mobile"
+                                         alt="">
+                                </div>
+                            </f:else>
+                        </f:if>
+                    </f:else>
+                </f:if>
+            </div>
+            <div class="image-viewer__container container mobile-offer__subcontainer">
+                <!-- card -->
+                <div class="mobile-offer bg--white">
+                    <f:if condition="{specialoffer} != ''">
+                        <div class="mobile-offer__specialoffer">{specialoffer}</div>
+                    </f:if>
+                    <f:if condition="{titolo} != '' ">
+                        <h1 class="mobile-offer__title text--black weight--light mb-20">
+                            <f:format.raw>{titolo}</f:format.raw>
+                        </h1>
+                    </f:if>
+                    <br>
+                    <br>
+                    <br>
+                    <ul class="mobile-offer__list list-unstyled mb-20">
+                        <f:for each="{sections}" iteration="iter" as="obj">
+                            <li class="item">
+                                <div class="d-flex align-items-stretch">
+
+                                    <f:if condition="{officon} == '0'">
+                                        <div class="item__icon">
+                                            <i class="icon {obj.aggiungi.icon}"></i>
+                                        </div>
+                                    </f:if>
+
+                                    <div class="item__text">
+                                        <f:if condition="{obj.aggiungi.title}">
+                                            <label class="item__text-title weight--normal">
+                                                <f:format.raw>{obj.aggiungi.title}</f:format.raw>
+                                            </label>
+                                        </f:if>
+                                        <f:if condition="{obj.aggiungi.description}">
+                                            <p class="item__text-description">
+                                                <f:format.raw>{obj.aggiungi.description}</f:format.raw>
+                                            </p>
+                                        </f:if>
+                                        <f:if condition="{0:activeIcons, 1:iter.isLast} == {0:1,1:1}">
+                                            <div class="item_icons">
+                                                <label class="item__icons-text weight--normal mt-10">
+                                                    <f:format.raw>{label}</f:format.raw>
+                                                </label>
+                                                <ul class="list-unstyled d-flex">
+                                                    <f:for each="{icon}" as="icons">
+                                                        <li class="pr-5 mobile-offer__icon">
+                                                            <img src="{icons.add.image}" alt=""
+                                                                 width="20" height="20">
+                                                        </li>
+                                                    </f:for>
+                                                </ul>
+                                            </div>
+                                        </f:if>
+                                    </div>
+                                </div>
+                            </li>
+                        </f:for>
+                    </ul>
+                    <div class="mobile-offer__price__container d-flex justify-content-between align-items-center">
+                        <div class="price-block">
+                            <f:if condition="{price} != ''"><label
+                                    class="price-block__old mb-0 mr-2 text--orangedark weight--light">{price}€</label></f:if>
+                            <div class="price-block__offer d-flex align-items-center">
+                                <v:iterator.explode content="{oldprice}" glue="," as="discount">
+                                    <f:for each="{discount}" as="value" key="k">
+                                        <f:if condition="{k} == 0">
+                                            <div class="price-block__offer-integer text--orange--gradient weight--bold">{value}</div>
+                                        </f:if>
+                                        <f:if condition="{k} == 1">
+                                            <div>
+                                                <div class="price-block__offer-decimals text--orange--gradient weight--bold">,{value}€</div>
+                                        </f:if>
+                                    </f:for>
+                                </v:iterator.explode>
+                                <div class="price-block__offer-recurrency text--orange--gradient">{recurrence}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- CTA -->
+                    <f:if condition="{content.cta} == 1">
+
+                        <form action='<f:cObject typoscriptObjectPath="lib.checkoutEndPoint" />' method="POST">
+                            <input type="hidden" name="productIds" value="{content.ropz}">
+                            <button class="mobile-offer__btn {content.button-color}  bg--transition text--white weight--bold"
+                                    onClick="JavaScript:pushData('1')">{content.btnLabel}</button>
+                        </form>
+                    </f:if>
+                    <f:if condition="{content.cta} == 2">
+                        <a href="{settings.trovanegoziopage}">
+                            <button class="mobile-offer__btn {content.button-color} bg--transition text--white weight--bold"
+                                    onClick="JavaScript:pushData('2')"> Negozio </button>
+                        </a>
+                    </f:if>
+                    <f:if condition="{content.cta} == 3">
+                        <f:link.typolink parameter="{content.btnLink}"
+                                         class="mobile-offer__btn {content.button-color} bg--transition text--white weight--bold">
+                            {content.btnLabel}
+                        </f:link.typolink>
+                    </f:if>
+                    <f:if condition="{row1}">
+                        <p>{row1}</p>
+                    </f:if>
+                </div>
+            </div>
+</div>
+<!-- end -->
+</div>
+</section>
+
+</f:section>
+
+<f:section name="Preview">
+    Visore Offerta Mobile
+</f:section>
+</div>

@@ -1,0 +1,15 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+<f:section name="main">
+	<f:flashMessages />
+	<f:render partial="FormErrors" arguments="{object:Post}" />
+	<f:form class="form-inline" action="savepost" enctype="multipart/form-data"  name="newPost" object="{newPost}">
+		<div class="form-group public_post">
+			<f:form.textarea property="text" cols="40" rows="2" placeholder="Cosa stai pensando?" />
+		</div>
+		<div class="form-group">
+			<f:form.submit class="btn btn-primary public_post_submit" value="Post!" />
+		</div>
+	</f:form>
+</f:section>
+</html>
