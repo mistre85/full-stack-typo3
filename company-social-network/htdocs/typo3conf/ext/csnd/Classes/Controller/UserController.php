@@ -129,6 +129,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $this->view->assign('user', $user);
     }
 
+
     public function toggleStatusAction()
     {
         $user = $this->csn->getLoggedUser();
@@ -136,5 +137,7 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $this->userRepository->update($user);
         $this->view->assign('user', $user);
     }
+
+
 
 }

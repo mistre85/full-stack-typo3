@@ -10,9 +10,18 @@ use Cundd\Rest\Router\RouterInterface;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use Wind\Csnd\Domain\Model\User;
 use Wind\Csnd\Utility\CompanySocialNetwork;
+use Wind\Csnd\Utility\ResponseManager;
 
 class UserHandler implements HandlerInterface
 {
+
+    /**
+     * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
+     * @inject
+     *
+     */
+    private $persistenceManager = null;
+
     /**
      * userRepository
      *
@@ -20,6 +29,14 @@ class UserHandler implements HandlerInterface
      * @inject
      */
     protected $userRepository = null;
+
+    /**
+     * CompanySocialNetwork
+     *
+     * @var \Wind\Csnd\Utility\CompanySocialNetwork
+     * @inject
+     */
+    protected $csn = null;
 
 
     /**
@@ -47,21 +64,45 @@ class UserHandler implements HandlerInterface
                     if ($user) {
                         if ($user->getPassword() == $data['password']) {
                             CompanySocialNetwork::registerUserCookie($user);
-                            $response['status'] = "OK";
-                            $response['data']['uid'] = $user->getUid();
-                            $response['messages'] = "Login effettuata correttamente";
+                            $response = ResponseManager::responseStatus('OK', 'Login effettuata correttamente', $user->getUid());
+                            //$response['status'] = "OK";
+                            //$response['data']['uid'] = $user->getUid();
+                            //$response['messages'] = "Login effettuata correttamente";
+                            $user->setOnline(!$user->getOnline());
+                            $this->userRepository->update($user);
+                            $this->persistenceManager->persistAll();
                         } else {
-                            $response['status'] = "PSW Errata";
-                            $response['messages'] = "La password non e corretta";
+                            $response = ResponseManager::responseStatus('PSW Errata', 'La password non e corretta', '');
+                            //$response['status'] = "PSW Errata";
+                            //$response['messages'] = "La password non e corretta";
                         }
                     } else {
-                        $response['status'] = "No User";
-                        $response['messages'] = "Utente non trovato";
+                        $response = ResponseManager::responseStatus('No User', 'Utente non trovato', '');
+                        //$response['status'] = "No User";
+                        //$response['messages'] = "Utente non trovato";
                     }
+
                     return $response;
                 }
             )
         );
+
+
+        $router->add(
+            Route::post(
+                $request->getResourceType() . '/dashboard',
+                function (RestRequestInterface $request) {
+                    $user = $this->csn->getLoggedUser();
+                    $user->setOnline(!$user->getOnline());
+                    $this->userRepository->update($user);
+                    $this->persistenceManager->persistAll();
+
+                    return $user->getOnline();
+                }
+            )
+        );
+
+
     }
 
 }

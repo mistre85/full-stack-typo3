@@ -1,0 +1,66 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="toggleUserStaus" options="{group: 'Lists'}" label="Metti offline/online un utente API"
+                   description="Permette di mettere Offline/online un utente tramite API toggle">
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>Offline/online Form</strong><br/>
+        Permette di Offline/online un utente tramite API toggle
+    </f:section>
+
+
+    <f:section name="Main">
+
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/LoginForm.css"/>
+
+
+        <div class="registration-form">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>User Status change API</h3>
+                </div>
+<f:debug>{user.online}</f:debug>
+                <div class="panel-body">
+                    <button id="button-toggle-User-Status"
+                            class="btn {f:if(condition:'{user.online}',then:'btn-success glyphicon glyphicon-eye-open',else:'btn-default glyphicon glyphicon-eye-close')}">
+                        {f:if(condition:'{user.online}',then:'online',else:'offline')}
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                var buttonToggleUserStatus = $("#button-toggle-User-Status");
+                var data = {}
+                buttonToggleUserStatus.click(function () {
+                    $.post('/rest/user/dashboard', data, (response) => {
+
+                        if (response) {
+                            buttonToggleUserStatus.removeClass("btn-default glyphicon glyphicon-eye-close").addClass("btn-success glyphicon glyphicon-eye-open");
+                            buttonToggleUserStatus.html(" OnLine");
+                        } else {
+                            buttonToggleUserStatus.removeClass("btn-success glyphicon glyphicon-eye-open").addClass("btn-default glyphicon glyphicon-eye-close");
+                            buttonToggleUserStatus.html(" OffLine");
+                        }
+                    })
+                });
+            });
+
+        </script>
+
+
+    </f:section>
+
+</div>
