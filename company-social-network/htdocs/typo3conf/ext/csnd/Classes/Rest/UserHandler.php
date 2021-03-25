@@ -9,7 +9,6 @@ use Cundd\Rest\Router\RouterInterface;
 use TYPO3\CMS\Core\Database\DatabaseConnection;
 use Wind\Csnd\Domain\Model\User;
 use Wind\Csnd\Utility\CompanySocialNetwork;
-use Wind\Csnd\Utility\Response;
 
 /**
  * Example handler
@@ -38,7 +37,7 @@ class UserHandler implements HandlerInterface
 
 
     /**
-     * @var \Wind\Csnd\Utility\Response
+     * @var \Wind\Csnd\Rest\UserResponse
      * @inject
      */
     private $response = null;
@@ -48,6 +47,9 @@ class UserHandler implements HandlerInterface
      */
     private $databaseConnection = null;
 
+    /**
+     *
+     */
     public function __construct()
     {
         $this->databaseConnection = $GLOBALS['TYPO3_DB'];
@@ -102,6 +104,7 @@ class UserHandler implements HandlerInterface
 
                     /*
                      * rimuovo per non utilizzare la persistenza
+                     * versione con persistenza
                      */
                     //$user = $this->csn->getLoggedUser();
                     //$user->setOnline(!$user->getOnline());
@@ -109,17 +112,28 @@ class UserHandler implements HandlerInterface
 
                     //todo: fare una query diretta!
                     //$this->persistenceManager->persistAll();
+
+
+                    /*
+                     * verisone con query dirette
+                     */
                     $userId = CompanySocialNetwork::readUserCookie();
 
                     //recupero l'utente
                     $where = " uid = '$userId' ";
                     $user = $this->databaseConnection->exec_SELECTgetSingleRow('online', 'tx_csnd_domain_model_user', $where);
+
+                    //cambio lo stato utente online
                     $this->databaseConnection->exec_UPDATEquery('tx_csnd_domain_model_user',
                         $where,
                         array('online' => !$user['online'])
                     );
 
+                    //ricordiamoci che la guida ci consiglia di usare, piuttosto, statement ma comunque di incapsulare tutto in un repository
+                    // https://docs.typo3.org/m/typo3/book-extbasefluid/8.7/en-us/6-Persistence/3-implement-individual-database-queries.html
+
                     $this->response->addData([
+                        'id' => $userId,
                         'online' => !$user['online']
                     ]);
 
@@ -139,11 +153,7 @@ class UserHandler implements HandlerInterface
 
                     /** @var User $user */
                     foreach ($userList as $user) {
-                        $this->response->addData(
-                            [
-                                'id' => $user->getUid(),
-                                'online' => $user->getOnline()
-                            ]);
+                        $this->response->addData($user);
                     }
 
                     $this->response->setMessage("");

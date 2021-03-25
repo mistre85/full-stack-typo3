@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Wind\Csnd\Utility;
+namespace Wind\Csnd\Rest;
 
 
 class Response
