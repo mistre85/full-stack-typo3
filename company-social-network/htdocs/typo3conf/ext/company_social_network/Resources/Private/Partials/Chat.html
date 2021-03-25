@@ -1,20 +1,32 @@
-<div class="post_head">
+<div id="user{user.uid}" class="post_head" data-uid="{user.uid}">
     <div class="photo">
         <img src="{user.avatar}">
-        <div class="conn{index.index}" data-active="{user.online}"></div>
+        <div class="conn{user.uid}" data-active="{user.online}"></div>
     </div>
     <div class="user_info">{user.nome} {user.cognome}</div>
 </div><br>
 <script>
     $(document).ready(() => {
-        $('.photo').each((i) => {
-            if( $('.conn' + i).data('active') == 1 ) {
-                $('.conn' + i).removeClass('offline');
-                $('.conn' + i).addClass('online');
-            } else {
-                $('.conn' + i).removeClass('online');
-                $('.conn' + i).addClass('offline');
-            }
-        });
+        function reloadStatus() {
+            $.get('/rest/user/userstatus', (response)=>{
+                $.each(response.data, (i) => {
+                    let cuser = $('#user' + response.data[i].uid);
+
+                    if( cuser.data('uid') != undefined && cuser.data('uid') == response.data[i].uid ) {
+                        if(response.data[i].status == true ) {
+                            $('.conn' + cuser.data('uid')).removeClass('offline').addClass('online');
+                        } else {
+                            $('.conn' + cuser.data('uid')).removeClass('online').addClass('offline');
+                        }
+                    }
+                })
+            }).fail((error) => {
+                console.log("ERR::", error);
+            })
+        }
+        reloadStatus();
+        setInterval(()=>{
+            reloadStatus()
+        }, 1000);
     });
 </script>

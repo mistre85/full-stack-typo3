@@ -74,17 +74,33 @@ class UserHandler implements HandlerInterface
                     $status = $request->getSentData();
                     /** @var User $user */
                     $user = $this->csn->getLoggedUser();
-
-                    if( $status == '1' ) {
-                        $user->setOnline(false);
-                    } else {
-                        $user->setOnline(true);
-                    }
+                    $user->setOnline(!$user->isOnline());
                     $this->userRepository->update($user);
-                    $this->persistenceManager->persistAll();
-                    $this->apiResponse->setStatus($user->getOnline());
-                    $this->apiResponse->setMessage('Status modificato in ' . $user->getOnline());
 
+                    $this->persistenceManager->persistAll();
+
+                    $this->apiResponse->setStatus('ok');
+                    $this->apiResponse->setMessage('Status modificato da ' . $status['status']);
+                    $this->apiResponse->setData(['status'=>$user->isOnline()]);
+
+                    return $this->apiResponse->sendResponse();
+                }
+            )
+        );
+
+
+        $router->add(
+            Route::get(
+                $request->getResourceType() . '/userstatus',
+                function( RestRequestInterface $request ) {
+                    /** @var User $users */
+                    $users = $this->userRepository->findAll();
+                    /** @var User $user */
+                    foreach( $users as $user ) {
+                        $data[] = ['uid'=>$user->getUid(), 'status'=>$user->isOnline()];
+                    }
+                    $this->apiResponse->setStatus('ok');
+                    $this->apiResponse->setData($data);
                     return $this->apiResponse->sendResponse();
                 }
             )

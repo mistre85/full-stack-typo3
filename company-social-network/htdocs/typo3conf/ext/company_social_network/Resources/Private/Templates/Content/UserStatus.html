@@ -17,9 +17,10 @@
     </f:section>
 
     <f:section name="Main">
+
         <div class="showhide">
             <div class="btn-group">
-                <button type="button" class="btn btn-success">Sei {f:if(condition: '{user.online}', then: 'Online', else: 'Offline')}</button>
+                <button type="button" class="btn btn-success">Ciao {user.nome} | Sei {f:if(condition: '{user.online}', then: 'Online', else: 'Offline')}</button>
                 <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                     <span class="sr-only">Toggle Dropdown</span>
@@ -31,17 +32,32 @@
         </div>
         <script type="text/javascript">
             $(document).ready(function() {
-                let cstatus = $('#changestatus');
-                let showhide = $('.showhide');
-                let status = cstatus.data('status');
+                function reloadStatus() {
+                    var cstatus = $('#changestatus');
+                    var showhide = $('.showhide');
+                    var status = cstatus.data('status');
+                    var data = {
+                        'status': status
+                    };
 
-                cstatus.click(function(e) {
-                    e.preventDefault();
+                    cstatus.click(function(e) {
+                        e.preventDefault();
+                        //console.log(typeof(data.status));
+                        $.post('/rest/user/status', data, (response) => {
+                            if( response ) {
+                                console.log(response);
+                                cstatus.data('status', response.data.status);
+                            }
+                        }).fail((err) => {
+                            console.log(err);
+                        })
+                    });
+                }
 
-                    $.post('/rest/user/status', status, (response) => {
-                        console.log(response);
-                    })
-                });
+                reloadStatus();
+                setInterval(()=>{
+                    reloadStatus()
+                }, 1000);
             });
         </script>
     </f:section>
