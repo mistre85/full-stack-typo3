@@ -120,12 +120,23 @@ plugin.tx_rest.settings {
             handlerClass = \Wind\Csnd\Rest\UserHandler
         }
 
+        #attenzione che stiamo facendo ovverride su automatismo dei modelli http://rest.corn.rest/Configuration/
+            wind-csnd-content {
+            #http://localhost/rest/wind-csnd-content (wildcard che permette di cercare automaticamente un modello)
+            path = wind-csnd-content
+            read = allow
+            write = allow
+
+            handlerClass = \Wind\Csnd\Rest\ContentHandler
+        }
+
     }
 
     aliases {
         post = wind-csnd-post
         comment = wind-csnd-comment
         user = wind-csnd-user
+        content = wind-csnd-content
     }
 
 

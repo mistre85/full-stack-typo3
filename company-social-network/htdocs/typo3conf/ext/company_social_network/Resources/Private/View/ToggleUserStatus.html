@@ -1,0 +1,49 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>User Status change API -- View </h3>
+    </div>
+
+    <div class="panel-body">
+        <button id="button-toggle-User-Status"
+                class="btn {f:if(condition:'{user.online}',then:'btn-success glyphicon glyphicon-eye-open',else:'btn-default glyphicon glyphicon-eye-close')}">
+            {f:if(condition:'{user.online}',then:'online',else:'offline')}
+        </button>
+    </div>
+</div>
+
+
+
+
+
+<!--
+<div class="status-info">
+    <h2 class="title">
+        Stato
+        <span
+                class=" pull-right label {f:if(condition:'{user.online}',then:'label-success',else:'label-default')}">
+
+
+                <span class="glyphicon glyphicon-eye-{f:if(condition:'{user.online}',then:'open',else:'close')}"
+                      aria-hidden="true"></span> {f:if(condition:'{user.online}',then:'online',else:'offline')}
+            <span>{user.uid} </span>
+            </span>
+
+    </h2>
+
+    <button action="toggleStatus" class="btn
+        {f:if(condition:'{user.online}',then:'btn-default',else:'btn-success')}
+        btn-xs btn-block">
+        <f:if condition="{user.online}">
+            <f:then>
+                Passa offline <span class="glyphicon glyphicon-eye-close"
+                                    aria-hidden="true"></span>
+            </f:then>
+            <f:else>
+                Passa online <span class="glyphicon glyphicon-eye-open"
+                                   aria-hidden="true"></span>
+            </f:else>
+        </f:if>
+    </button>
+
+</div>
+-->

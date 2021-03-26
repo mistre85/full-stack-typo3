@@ -61,6 +61,14 @@ call_user_func(
 			}
 	   }'
 	);
+
+
+        /* Dichiarazione del COMMAND utilizzato per fare la clear cache */
+        if (TYPO3_MODE === 'BE') {
+            $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers']['Csnd-CsndCommandController'] =
+                \Wind\Csnd\Command\CsndCommandController::class;
+        }
+
     },
     $_EXTKEY
 );

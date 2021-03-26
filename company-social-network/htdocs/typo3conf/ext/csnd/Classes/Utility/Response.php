@@ -6,8 +6,9 @@ namespace Wind\Csnd\Utility;
 
 use http\QueryString;
 
-class ResponseManager
+class Response
 {
+
     const STATUS_OK = "OK";
     const STATUS_KO_GEN = "KO";
     const STATUS_KO_USR = "KO_USER_ERRATA";
@@ -25,6 +26,9 @@ class ResponseManager
 
     /**
      * Setto di default lo stato ad un valore di errore generico
+     * Settando la variabile a PRIVATE in modo che non possa essere manipolata dall'esterno.
+     * Creero dopo i metodi di set e get
+     *
      * @var string
      */
     private $status = self::STATUS_KO_GEN;
@@ -50,7 +54,8 @@ class ResponseManager
     /**
      * @return string
      */
-    public function getMessage{
+    public function getMessage()
+    {
         return $this->message;
     }
 
@@ -76,6 +81,8 @@ class ResponseManager
      */
     public function addData($data)
     {
+
+
         $this->data[] = $data;
     }
 
@@ -89,6 +96,11 @@ class ResponseManager
 
     public function toArray()
     {
+
+        if(count($this->data) == 1){
+            $this->data =$this->data[0];
+        }
+
         return [
             'status' => $this->status,
             'message' => $this->message,

@@ -1,0 +1,36 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="toggleUserStausView" options="{group: 'Lists'}" label="Metti offline/online un utente VIEW"
+                   description="Permette di mettere Offline/online un utente tramite toggle VIEW">
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong>Offline/online Form VIEW</strong><br/>
+        Permette di Offline/online un utente tramite toggle VIEW
+    </f:section>
+
+
+    <f:section name="Main">
+
+        <div id="toggle-user-status-view" style="margin-top: 100px;">
+        </div>
+
+        <script type="text/javascript">
+
+            $.get('/rest/content/status', function (response) {
+                //return response.message;
+                $("#toggle-user-status-view").html(response.message);
+            })
+
+        </script>
+
+    </f:section>
+
+</div>

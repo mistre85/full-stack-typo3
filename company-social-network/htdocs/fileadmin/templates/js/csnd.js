@@ -1,0 +1,10 @@
+var CSND = {
+
+
+    content:{
+        userStatus:{
+
+
+        }
+    }
+}

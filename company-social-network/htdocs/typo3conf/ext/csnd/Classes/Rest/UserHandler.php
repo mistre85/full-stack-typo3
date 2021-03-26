@@ -10,7 +10,8 @@ use Cundd\Rest\Router\RouterInterface;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use Wind\Csnd\Domain\Model\User;
 use Wind\Csnd\Utility\CompanySocialNetwork;
-use Wind\Csnd\Utility\ResponseManager;
+
+
 
 class UserHandler implements HandlerInterface
 {
@@ -38,6 +39,14 @@ class UserHandler implements HandlerInterface
      */
     protected $csn = null;
 
+    /**
+     *
+     * @var \Wind\Csnd\Utility\UserResponse
+     * ß
+     * @inject
+     *
+     */
+    protected $response = null;
 
     /**
      * @param RouterInterface $router
@@ -50,39 +59,30 @@ class UserHandler implements HandlerInterface
             Route::post(
                 $request->getResourceType() . '/login',
                 function (RestRequestInterface $request) {
-                    /*
-                        return [
-                        'path' => $request->getPath(),
-                        'uri' => (string)$request->getUri(),
-                        'resourceType' => (string)$request->getResourceType(),
-                        'data' => $request->getSentData(),
-                    ];
-                    */
+
                     $data = $request->getSentData();
                     /** @var User $user */
                     $user = $this->userRepository->findByUsername($data['username'])->current();
                     if ($user) {
                         if ($user->getPassword() == $data['password']) {
+
                             CompanySocialNetwork::registerUserCookie($user);
-                            $response = ResponseManager::responseStatus('OK', 'Login effettuata correttamente', $user->getUid());
-                            //$response['status'] = "OK";
-                            //$response['data']['uid'] = $user->getUid();
-                            //$response['messages'] = "Login effettuata correttamente";
                             $user->setOnline(!$user->getOnline());
                             $this->userRepository->update($user);
                             $this->persistenceManager->persistAll();
+
+                            $this->response->setStatus('OK');
+                            $this->response->setMessage('Login effettuata correttamente');
+
                         } else {
-                            $response = ResponseManager::responseStatus('PSW Errata', 'La password non e corretta', '');
-                            //$response['status'] = "PSW Errata";
-                            //$response['messages'] = "La password non e corretta";
+                            $this->response->setStatus('PSW Errata');
+                            $this->response->setMessage('La password non é corretta');
                         }
                     } else {
-                        $response = ResponseManager::responseStatus('No User', 'Utente non trovato', '');
-                        //$response['status'] = "No User";
-                        //$response['messages'] = "Utente non trovato";
+                        $this->response->setStatus('No User');
+                        $this->response->setMessage('Utente non trovato');
                     }
-
-                    return $response;
+                    return $this->response->toArray();
                 }
             )
         );
@@ -96,9 +96,34 @@ class UserHandler implements HandlerInterface
                     $user->setOnline(!$user->getOnline());
                     $this->userRepository->update($user);
                     $this->persistenceManager->persistAll();
-
                     return $user->getOnline();
                 }
+            )
+        );
+
+
+        $router->add(
+            Route::get(
+                $request->getResourceType() . '/getUserStatus',
+                function (RestRequestInterface $request) {
+                    $users = $this->userRepository->findAll();
+                    /** @var User $user */
+                    foreach ($users as $user) {
+                        /*
+                        $this->response->addData(
+                            [
+                                'UserId' => $user->getUid(),
+                                'status' => $user->getOnline()
+                            ]);
+                        */
+                        $this->response->addData($user);
+                    }
+                    $this->response->setStatus('OK');
+
+                    return $this->response->toArray();
+
+                }
+
             )
         );
 

@@ -31,6 +31,39 @@
                 </f:for>
             </ul>
         </div>
+        <script type="text/javascript">
+
+            function getUserStaus() {
+                $.get('/rest/user/getUserStatus', function (response) {
+                    console.log(response);
+
+                    if(response.status == "OK"){
+                        $(response.data).each((index, user) => {
+
+                            let userItem = $('.api-user-uid-' + user.id);
+
+                            if(user.online){
+                                userItem.removeClass('offline').addClass('connected');
+                            }else{
+                                userItem.removeClass('connected').addClass('offline');
+                            }
+
+                        });
+
+
+                    }
+
+                });
+            }
+
+            $(document).ready(
+                () => {
+                    setInterval(getUserStaus, 9000);
+                }
+            );
+
+        </script>
+
 
     </f:section>
 </div>

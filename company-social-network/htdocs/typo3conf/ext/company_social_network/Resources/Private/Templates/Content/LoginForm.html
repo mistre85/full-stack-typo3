@@ -74,7 +74,7 @@
                         password: password
                     }
                     $.post('/rest/user/login', data, (response) => {
-                        console.log(response);
+
                         switch (response.status) {
                             case "OK":
                                 loginMessage.attr("class", "alert-success");
@@ -89,13 +89,14 @@
                                 );
                                 break;
                             case "No User":
+                                console.log('ppppp');
                                 loginMessage.attr("class", "alert-danger");
                                 setTimeout(
                                     () => loginMessage.fadeOut(), 4000
                                 );
                                 break;
                         }
-                        loginMessage.html(response.messages);
+                        loginMessage.html(response.message);
                         loginMessage.show();
                     });
                 });

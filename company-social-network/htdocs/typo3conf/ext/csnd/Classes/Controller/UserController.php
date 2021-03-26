@@ -96,7 +96,11 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     function logoutAction()
     {
         //unset($_COOKIE['user']);
-        setcookie('user', '', -1, '/', 'localhost');
+        CompanySocialNetwork::deleteCookie('user');
+        $user = $this->csn->getLoggedUser();
+        $user->setOnline(false);
+        $this->userRepository->update($user);
+
         $this->redirectToUri('/');
     }
 

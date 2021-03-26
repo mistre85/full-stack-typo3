@@ -8,8 +8,8 @@
 
 .chat-block .user-info .user-name:before {
     content: "";
-    width: 10px;
-    height: 10px;
+    width: 14px;
+    height: 14px;
     left: -11px;
     top: 14px;
     position: relative;
@@ -23,5 +23,10 @@
 }
 
 .chat-block .user-info .user-name.offline:before {
-    background-color: gray;
+    background-color: red;
+
 }
+
+
+
+
