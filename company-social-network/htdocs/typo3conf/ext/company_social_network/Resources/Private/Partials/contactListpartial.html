@@ -2,7 +2,6 @@
 <div class="row chat-block">
     <div class="col-lg-12 margin user-uid-{item.uid}">
         <div class="icon">  
-            <!-- <img src="{item.user.avatar}" class="img-circle resize" /> -->
             <img src="https://picsum.photos/150" class="img-circle" />                       
         </div>
         <svg height="14" width="14" class="badgeImg" >
@@ -10,7 +9,7 @@
             fill="{f:if(condition:'{item.online}', then: 'green', else: 'red')}" />
          </svg>
         <div class="title">
-            <h4>{item.nome} {item.cognome} ---- {item.username} **** {item.uid}</h4>
+            <h5>{item.nome} {item.cognome}--{item.username} uid:{item.uid}</h5>
         </div>
     </div>
 </div>

@@ -1,0 +1,48 @@
+.boxPost111{
+    width: 500px;
+    margin: 12px;
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+.img-circle{
+    width: 40px;
+}
+
+.title{
+    display: inline-block;
+    font-size: small;
+    margin-top: 1px;    
+}
+
+.margin{
+    margin-bottom: 5px;
+}
+
+.badgeImg{
+
+    margin-left:-15px;
+    margin-bottom:-18px;    
+    display: inline-block;
+}
+
+.textBox{
+
+    width:100%;
+    border-color: lightgrey; 
+    border-radius: 10px;
+}
+
+.right{
+    text-align: right;
+}
+
+.fillbadgeOnline{
+
+    fill: green;
+}
+
+.fillbadgeOffLine{
+
+    fill: red;
+}

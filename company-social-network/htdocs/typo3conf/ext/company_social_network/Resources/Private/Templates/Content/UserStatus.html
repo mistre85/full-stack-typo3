@@ -17,32 +17,30 @@
     </f:section>
 
     <f:section name="Main">
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/userStatus.css"/>
         <div class="status-info">
-            <h2 class="title">
-                Stato  : {user.username}
+            <h3 class="status-title">Utente: {user.username}
                 <span id="status-label" 
-                        class=" pull-right label {f:if(condition:'{user.online}',then:'label-success',else:'label-default')}">
+                        class="pull-right label {f:if(condition:'{user.online}',then:'label-success',else:'label-default')}">
                     
                     <span   id="status-icon" 
                             class="glyphicon glyphicon-eye-{f:if(condition:'{user.online}',then:'open',else:'close')}"
                             aria-hidden="true">
                     </span>
-                    <span 
-                            id="status-text">{f:if(condition:'{user.online}',then:'online',else:'offline')}
-                    </span>
+                    <span id="status-text">{f:if(condition:'{user.online}',then:'online',else:'offline')}</span>
                 </span>              
-            </h2>
+            </h3>
 
             <button id="toggle-status-button" class="btn
                 {f:if(condition:'{user.online}',then:'btn-default',else:'btn-success')}
                 btn-xs btn-block">
                 <f:if condition="{user.online}">
                     <f:then>
-                        <span id="status-button-label">Passa offline</span>
+                        <span id="status-button-label">Passa offline1234</span>
                             <span id="status-button-icon" class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                     </f:then>
                     <f:else>
-                        <span id="status-button-label">Passa online</span>
+                        <span id="status-button-label">Passa online777</span>
                         <span id="status-button-icon" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                     </f:else>
                 </f:if>
@@ -52,6 +50,9 @@
         <script type="text/javascript">
             $( document ).ready(function() {
                 
+                CSND.debug = true;
+                CSND.log();
+
                 $("#toggle-status-button").click( ()=> {
 
                     var tsb =  $("#toggle-status-button");
@@ -68,7 +69,7 @@
                             var sbi = $("#status-button-icon");
                             var sbl = $("#status-button-label");
 
-                            $("#toggle-status-button").button("reset");
+                            tsb.button("reset");
 
                             if (response.data.online){
                                 st.text("online");
@@ -76,18 +77,16 @@
                                 sl.removeClass("label-default").addClass("label-success");
                                 si.removeClass("glyphicon-eye-close").addClass("glyphicon-eye-open");
                                 sbi.removeClass("glyphicon-eye-open").addClass("glyphicon-eye-close");
-                                sbl.text("Passa offline");
+                                sbl.text('Passa online888');
                             } else {
                                 st.text("offline");
                                 tsb.removeClass("btn-default").addClass("btn-success");
                                 sl.removeClass("label-success").addClass("label-default");
                                 si.removeClass("glyphicon-eye-open").addClass("glyphicon-eye-close");
                                 sbi.removeClass("glyphicon-eye-close").addClass("glyphicon-eye-open");
-                                sbl.text("Passa online");
-
+                                sbl.text('Passa online');
                             }
-                        }                       
-
+                        }
 
                     }).fail((error) => {
                         //??

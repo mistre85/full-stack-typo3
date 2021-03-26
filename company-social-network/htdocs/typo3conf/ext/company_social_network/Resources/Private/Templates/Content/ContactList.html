@@ -17,12 +17,13 @@
     </f:section>
 
     <f:section name="Main">
-        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/PostList.css"/>
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/contactList.css"/>
+        
                    
             <div class="panel panel-default panelsize">
                 <div class="panel-heading clearfix">
                     <div class="row">
-                        <div class="col-lg-5">Contatti</div> 
+                        <div class="col-lg-5">Contact List</div> 
                         <div class="col-lg-1 col-lg-offset-4">
                             <span class="glyphicon-class glyphicon glyphicon-facetime-video">                                  
                         </div>
@@ -53,7 +54,7 @@
                         $.each(response.data, function( index, value ) {
 
                             
-                            let uid = $('.chat-block .user-uid'+value.uid);
+                            let uid = $('.chat-block .user-uid-'+value.uid);
                             let userName = uid.find('.statoUtente');
 
                             if (value.online){
