@@ -122,12 +122,23 @@ plugin.tx_rest.settings {
             handlerClass = \Wind\Csnd\Rest\UserHandler
         }
 
+
+        wind-csnd-content {
+            #http://localhost/rest/wind-csnd-user (wildcard che permette di cercare automaticamente un modello)
+            path = wind-csnd-content
+            read = allow
+            write = allow
+
+            handlerClass = \Wind\Csnd\Rest\ContentHandler
+        }
+
     }
 
     aliases {
         post = wind-csnd-post
         comment = wind-csnd-comment
         user = wind-csnd-user
+        content = wind-csnd-content
     }
 
 

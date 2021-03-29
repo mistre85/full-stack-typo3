@@ -34,7 +34,7 @@
             </f:link.action>
             <hr>
             <label>Scrivi un commento:</label>
-            <f:form extensionName="csnd"
+            <f:form class="comment-form" extensionName="csnd"
                     pluginName="postplugin"
                     controller="Comment"
                     action="create"
@@ -42,19 +42,21 @@
                     name="newComment"
                     object="{newComment}"
                     arguments="{postUid: post.uid}"
+                    additionalAttributes="{data-postuid: post.uid}"
             >
 
-                <f:form.textarea class="form-control" property="text"
+                <f:form.textarea class="form-control post-text" property="text"
                                  rows="3"/>
                 <br>
                 <f:form.submit value="Commenta" class="btn btn-primary pull-right"/>
             </f:form>
             <hr>
             <label>Commenti presenti:</label>
-            <f:for each="{post.comments}" as="comment">
-                <f:render partial="UserListItem" arguments="{user: '{comment.user}',comment: comment}"></f:render>
-                <br/>
-            </f:for>
+            <div class="comments-list">
+                <f:for each="{post.comments}" as="comment">
+                    <f:render partial="UserListItem" arguments="{user: '{comment.user}',comment: comment}"></f:render>
+                </f:for>
+            </div>
 
         </div>
     </div>

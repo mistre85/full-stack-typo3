@@ -3,7 +3,12 @@
 namespace Wind\Csnd\Command;
 
 
-class CommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandController
+/**
+ * https://docs.typo3.org/m/typo3/book-extbasefluid/8.7/en-us/10-Outlook/3-Command-controllers.html
+ * Class CsndCommandController
+ * @package Wind\Csnd\Command
+ */
+class CsndCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandController
 {
 
     public function clearCacheCommand()

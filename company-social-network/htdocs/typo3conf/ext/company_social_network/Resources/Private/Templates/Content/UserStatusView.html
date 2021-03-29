@@ -6,19 +6,30 @@
     <f:layout name="Content"/>
 
     <f:section name="Configuration">
-        <flux:form id="userStatus" options="{group: 'Common'}" label="User Status (ajax)"
+        <flux:form id="userStatusView" options="{group: 'Common'}" label="User Status (View)"
                    description="Permette di inserire lo stato dell'utente e di cambiarlo in modo asincrono">
 
         </flux:form>
     </f:section>
 
     <f:section name="Preview">
-        <strong>User status Ajax</strong><br/>
+        <strong>User status View</strong><br/>
     </f:section>
 
     <f:section name="Main">
 
-        <f:render partial="UserStatus" arguments="{_all}"/>
+        <div id="user-status-view">
+
+            <!-- caricato async -->
+            <!-- stato default iniziale della vista "ajax" -->
+            <f:render partial="UserStatus" arguments="{_all}"/>
+
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                CSND.contentElement.userStatusView.init();
+            });
+        </script>
 
     </f:section>
 </div>

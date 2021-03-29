@@ -61,9 +61,16 @@ call_user_func(
 	   }'
         );
 
+        //https://docs.typo3.org/m/typo3/book-extbasefluid/8.7/en-us/10-Outlook/3-Command-controllers.html
         if (TYPO3_MODE === 'BE') {
-            $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers']["CSND-CommandController"] = \Wind\Csnd\Command\CommandController::class;
+            $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers']["Csnd-CsndCommandController"] =
+                \Wind\Csnd\Command\CsndCommandController::class;
         }
+
+        //if (TYPO3_MODE === 'BE') {
+        //    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers']['ExtensionName-MeaningFullName'] =
+        //        \Vendor\ExtKey\Command\SimpleCommandController::class;
+        //}
 
     },
     $_EXTKEY
