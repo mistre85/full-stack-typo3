@@ -14,36 +14,18 @@
 
     <f:section name="Preview">
         <strong>USER STATUS VIEW</strong><br/>
-
     </f:section>
 
     <f:section name="Main">
         
-    <div id="user-status-view">
-        <!-- caricato async -->
-        <!-- stato default iniziale della vista "ajax" -->
-        <f:render partial="UserStatus" arguments="{_all}" />
-    </div>
-
-    <script type="text/javascript">
-        
-        $(document).ready(function (){
-
-            //alert('ppppppppppppp');
-
-            $("#toggle-status-button").click(function (){
-
-                $.post('/rest/user/status/toggle', function (response){
-
-                    //if (response.status = "ok") {
-                        $.get('/rest/content/user/status', function (response){
-
-                        $("#user-status-view").html(response.message);
-                        });
-                    //}
-                });
-            })
-        });  
-    </script>
+        <div id="user-status-view">
+            <!-- caricato async -->
+            <f:render partial="UserStatus" arguments="{_all}" />
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function (){
+                CSND.contentElement.userStatusView.init();
+            });
+        </script>
     </f:section>
 </div>

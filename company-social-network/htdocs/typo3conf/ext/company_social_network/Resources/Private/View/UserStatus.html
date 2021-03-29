@@ -1,22 +1,28 @@
 <f:render partial="UserStatus" arguments="{_all}" />
 
+<!-- 
+    Quando viene richiamata questa view, 
+    
+    il DOM presente del  $("#toggle-status-button") viene cancellato e con essi tutte le azioni collegate ad esso 
+    Tutt gli eventi collegati spariscono perchè stiamo aggiungendo un NUOVO pezzo di html.
+    Per ricostrire il DOM (azioni colegate ad un elemento), inserendo lo script, il browser è costretto ad eseguirlo 
+    e ad associale quell'evento ad una azione
+-->
+
 <script type="text/javascript">
-        
-    $(document).ready(function (){
-
-        //alert('ppppppppppppp');
-
-        $("#toggle-status-button").click(function (){
-
-            $.post('/rest/user/status/toggle', function (response){
-
-                //if (response.status = "ok") {
-                    $.get('/rest/content/user/status', function (response){
-
-                        $("#user-status-view").html(response.message);
-                    });
-                //}
-            });
-        })
-    });  
+    CSND.contentElement.userStatusView.init();
 </script>
+<!--
+<script type="text/javascript">
+    $("#toggle-status-button").click(function (){        
+        $.post('/rest/user/status/toggle', function (response){            
+            if (response.status = "ok") {                
+                $.get('/rest/content/user/status', function (response){
+                    $("#user-status-view").html(response.message);
+                });
+            }
+        });
+    })
+</script>
+-->
+

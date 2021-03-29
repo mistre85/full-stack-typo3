@@ -123,7 +123,7 @@ class UserHandler implements HandlerInterface
                     $this->persistenceManager->persistAll(); 
 
                     $this->response->addData([
-                        //'id' => $user->getUid(),
+                        'id' => $user->getUid(),
                         'online' => $user->getOnline()
                     ]);
                     
