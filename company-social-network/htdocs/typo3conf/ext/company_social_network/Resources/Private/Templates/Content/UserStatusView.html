@@ -19,15 +19,31 @@
 
     <f:section name="Main">
         
-    <div id="user-status-view"></div>
+    <div id="user-status-view">
+        <!-- caricato async -->
+        <!-- stato default iniziale della vista "ajax" -->
+        <f:render partial="UserStatus" arguments="{_all}" />
+    </div>
 
-        <script type="text/javascript">
+    <script type="text/javascript">
+        
+        $(document).ready(function (){
 
-        $.get('/rest/content/user/status', function (response){
-                 
-            $("#user-status-view").html(response.message);
-        });
+            //alert('ppppppppppppp');
 
-        </script>
+            $("#toggle-status-button").click(function (){
+
+                $.post('/rest/user/status/toggle', function (response){
+
+                    //if (response.status = "ok") {
+                        $.get('/rest/content/user/status', function (response){
+
+                        $("#user-status-view").html(response.message);
+                        });
+                    //}
+                });
+            })
+        });  
+    </script>
     </f:section>
 </div>

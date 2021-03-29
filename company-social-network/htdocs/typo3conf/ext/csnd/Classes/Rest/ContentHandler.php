@@ -15,7 +15,7 @@ class ContentHandler implements HandlerInterface
      * @var \Wind\CompanySocialNetwork\View\UserStatusStandaloneView
      * @inject
      */
-    private $useStatusView = null;
+    private $userStatusView = null;
 
     /**
      * CompanySocialNetwork
@@ -38,10 +38,10 @@ class ContentHandler implements HandlerInterface
                 function (RestRequestInterface $request) {
                     
                     $user = $this->csn->getLoggedUser();
-                    $this->useStatusView->assign('user', $user);
+                    $this->userStatusView->assign('user', $user);
 
                     //return "sono passato dalla chiamata GET Ajax";
-                    return $this->useStatusView->render();
+                    return $this->userStatusView->render();
 
                 }
             )

@@ -49,24 +49,33 @@
        
         <hr>
        
-        <f:form 
-            extensionName="csnd"
-            pluginName="postplugin"
-            controller="Comment"
-            action="create"
-            enctype="multipart/form-data"
-            name="newComment"
-            object="{newComment}"
-            arguments="{postUid: item.uid}"
-            >        
-            
-            <label>Scrivi un commento:</label>
-            <f:form.textarea class="form-control" rows="3" property="text" placeholder="scrivi il tuo commento" />
-            <br>
-            <f:form.submit value="Commenta" class="btn btn-primary pull-right" />
+        <!-- 
+            <f:form 
+                extensionName="csnd"
+                pluginName="postplugin"
+                controller="Comment"
+                action="create"
+                enctype="multipart/form-data"
+                name="newComment"
+                object="{newComment}"
+                arguments="{postUid: item.uid}"
+                >        
+                
+                <label>Scrivi un commento:</label>
+                <f:form.textarea class="form-control" rows="3" property="text" placeholder="scrivi il tuo commento" />
+                <br>
+                <f:form.submit value="Commenta" class="btn btn-primary pull-right" />
 
-        </f:form>
+            </f:form>
+        -->
         
+        <form id="newCommentAjax" enctype="multipart/form-data">
+            <label>Scrivi un commento:</label>
+            <input type="hidden"  name="postUid" value="{item.uid}" />
+            <textarea name="commentoUtente" class="form-control" rows="3" placeholder="scrivi il tuo commento"></textarea>
+            <button type="submit" class="btn btn-primary pull-right">CommentaAjaxCall</button>
+        </form>
+
         <hr>
         
         <label>Commenti degli utenti:</label>
@@ -80,6 +89,33 @@
          </ul>
     </div>
 </div>
+<script type="text/javascript">
+        
+    $(document).ready(function (){
+
+        alert('pppppppppppppppppppppp');
+
+        $("form").on( "submit", function( event ) {
+
+            alert('1111111');
+            event.preventDefault();
+            console.log( $( this ).serialize() );
+        });
+
+        /*$("#toggle-status-button").click(function (){
+
+            $.post('/rest/user/status/toggle', function (response){
+
+                if (response.status = "ok") {
+                    $.get('/rest/content/user/status', function (response){
+
+                    $("#user-status-view").html(response.message);
+                    });
+                }
+            });
+        })*/
+    });  
+</script>
 
             
 

@@ -22,7 +22,11 @@ class UserStatusStandaloneView extends \TYPO3\CMS\Fluid\View\StandaloneView{
         //assegno alla vista
         $this->setTemplatePathAndFilename($template);
 
+        //per caricare i partial
+        $this->setPartialRootPaths(array('EXT:company_social_network/Resources/Private/Partials'));
+
         $extensionKey = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase("company_social_network");
+        
         $this->getRequest()->setControllerExtensionName($extensionKey);
     }
 }
