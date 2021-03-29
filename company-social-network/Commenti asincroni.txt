@@ -1,0 +1,11 @@
+modificare il comportamento dei commenti con tecnologia asyncrona ajax + nuova rotta content handler + ???StandAloneView
+
+- caricamento della lista dei commenti --> plugin
+- aggiunta un commento (ajax + view):
+    - mando una post del commento --> ??
+    - recupero il nuovo commento (template html) e lo aggiungo ai commenti precendeti
+
+bonus:
+ - eliminazione dei commenti ??
+ - caricamento di tutti i commenti
+
