@@ -48,6 +48,7 @@ class UserHandler implements HandlerInterface
      * @inject
      */
     protected $persistenceManager = null; 
+    
     /**
      * Response
      *
