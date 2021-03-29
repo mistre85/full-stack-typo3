@@ -75,8 +75,8 @@ class PageController extends AbstractController
             'nome' => 'Roberto',
             'cognome' => 'Brambilla',
             'account' => array(
-                'username' => 'brambillar',
-                'mail' => 'roberto.brambilla@windtre.it.it'
+            'username' => 'brambillar',
+            'mail' => 'roberto.brambilla@windtre.it.it'
             )
         );
 
