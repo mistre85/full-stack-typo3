@@ -123,6 +123,7 @@ class ContentHandler implements HandlerInterface
                     /** @var User %loggedUser */
                     $loggedUser = $this->csn->getLoggedUser();
 
+                    /** var $response  */
                     if(empty($loggedUser) || $loggedUser != $userUid){
                         $response->setStatus(Response::)
                     }
