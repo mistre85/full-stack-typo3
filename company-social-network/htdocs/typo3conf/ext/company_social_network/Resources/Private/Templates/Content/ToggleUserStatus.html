@@ -42,20 +42,7 @@
         <script type="text/javascript">
 
             $(document).ready(function () {
-                var buttonToggleUserStatus = $("#button-toggle-User-Status");
-                var data = {}
-                buttonToggleUserStatus.click(function () {
-                    $.post('/rest/user/dashboard', data, (response) => {
-
-                        if (response) {
-                            buttonToggleUserStatus.removeClass("btn-default glyphicon glyphicon-eye-close").addClass("btn-success glyphicon glyphicon-eye-open");
-                            buttonToggleUserStatus.html(" OnLine");
-                        } else {
-                            buttonToggleUserStatus.removeClass("btn-success glyphicon glyphicon-eye-open").addClass("btn-default glyphicon glyphicon-eye-close");
-                            buttonToggleUserStatus.html(" OffLine");
-                        }
-                    })
-                });
+                CSND.contentElement.toggleUserStatus.init();
             });
 
         </script>

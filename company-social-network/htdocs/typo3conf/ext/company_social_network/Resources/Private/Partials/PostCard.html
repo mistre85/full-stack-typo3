@@ -35,8 +35,9 @@
             </f:link.action>
 
             <hr>
-
+            <!-- Aggiunta classe class="comment-form" per poi poter intercettare il form in csdn.js -->
             <f:form
+                    class="comment-form"
                     extensionName="csnd"
                     pluginName="postplugin"
                     controller="Comment"
@@ -45,22 +46,47 @@
                     name="newComment"
                     object="{newComment}"
                     arguments="{postUid: post.uid}"
+                    additionalAttributes="{data-postuid: post.uid}"
             >
-                <label>Scrivi un commento:</label>
-                <f:form.textarea class="form-control" property="text" rows="3"/>
-                <br>
-                <f:form.submit value="Commenta" class="btn btn-primary pull-right"/>
 
+                <label>Scrivi un commento:</label>
+                <!-- Aggiunta classe "post-text" per poter poi prelevare il testo della textarea direttamente da csnd.js utilizzando la classe -->
+                <f:form.textarea class="form-control post-text" property="text" rows="3"/>
+
+                <br>
+
+                <f:form.submit value="Commenta" class="btn btn-primary pull-right"/>
             </f:form>
+
 
             <hr>
 
             <label>Commenti presenti:</label>
-            <f:for each="{post.comments}" as="comment">
+            <div class="comment-list">
+                <f:for each="{post.comments}" as="comment">
+                    <f:render partial="UserListItem"
+                              arguments="{user: '{comment.user}', comment: comment, postUid: '{post.uid}', loggedUser:user }"></f:render>
+                </f:for>
+            </div>
+            <script type="text/javascript">
+                /*
+                    $(document).ready(function () {
+                        var buttonNewComment = $(".button-new-comment");
+                        buttonNewComment.click(function () {
+                            console.log('click-button-ajax');
+                            console.log($(this).serialize());
+                        });
+                    });
+                */
 
-                <f:render partial="UserListItem"
-                          arguments="{user: '{comment.user}', comment: comment, postUid: '{post.uid}' }"></f:render>
-            </f:for>
+                /*
+                    $( 'form[name = "newComment"]' ).on( "submit", function( event ) {
+                        event.preventDefault();
+                        console.log( $( this ).serialize() );
+                    });
+
+                */
+            </script>
 
 
         </div>

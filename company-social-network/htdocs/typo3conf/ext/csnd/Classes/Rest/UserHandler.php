@@ -127,6 +127,17 @@ class UserHandler implements HandlerInterface
             )
         );
 
+        $router->add(
+            Route::get(
+                $request->getResourceType() . '/getUid',
+                function (RestRequestInterface $request) {
+                    $user = $this->csn->getLoggedUser();
+                    return $user->getUid();
+                }
+
+            )
+        );
+
 
     }
 

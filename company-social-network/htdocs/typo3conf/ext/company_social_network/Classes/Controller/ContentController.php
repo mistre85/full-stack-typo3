@@ -96,15 +96,10 @@ class ContentController extends AbstractController
         if (!empty($user)) {
             $lastPost = $this->postRepository->findMyLastPost($user);
             $postList = $this->postRepository->findAll();
-
-            //todo: da trasformare in viewhelper
-
-
             /** @var  $userFound */
             //$userFound = false;
             /** @var Post $post */
             //foreach ($postList as $post) {
-
                 /** @var User $like */
             //    foreach ($post->getLikes() as $like) {
             //        if ($user->getUid() == $like->getUid()) {
@@ -112,7 +107,6 @@ class ContentController extends AbstractController
             //            break;
             //        }
             //    }
-
             //    if ($userFound) {
             //        $post->likeButtonLabel = "Non mi piace più";
             //        $userFound = false;
@@ -121,8 +115,8 @@ class ContentController extends AbstractController
             //    }
             //}
             $this->view->assign("postList", $postList);
-
             $this->view->assign("lastPost", $lastPost);
+            $this->view->assign("user", $user);
         }
     }
 
@@ -137,6 +131,12 @@ class ContentController extends AbstractController
 
 
     public function toggleUserStatusAction()
+    {
+        $user = $this->csn->getLoggedUser();
+        $this->view->assign('user', $user);
+    }
+
+    function toggleUserStatusViewAction()
     {
         $user = $this->csn->getLoggedUser();
         $this->view->assign('user', $user);
