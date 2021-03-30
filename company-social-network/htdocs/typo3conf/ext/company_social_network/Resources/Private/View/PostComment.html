@@ -1,1 +1,5 @@
-<f:render partial="UserListItem" arguments="{user: '{comment.user}',comment: comment}"></f:render>
+<f:render partial="UserListItem" arguments="{user: '{comment.user}',comment: comment,loggedUser: user}"></f:render>
+<script type="text/javascript">
+    //todo: sistemare doppia inizalizzazione eventi
+    CSND.contentElement.postList.initDelete();
+</script>

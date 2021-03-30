@@ -1,10 +1,18 @@
-<li class="user-info list-group-item user-uid-{user.uid}">
+<li class="user-info list-group-item user-uid-{user.uid} {f:if(condition:'{comment}',then:'comment-delete-{comment.uid}',else:'')} clearfix">
     <img src="{f:if(condition:'{user.avatar}',then: '{user.avatar}', else: '/fileadmin/templates/img/avatar.png')}"
          class="avatar img-circle"/>
     <!-- <span class=" bg-info badge user-status">{user.connected}</span> -->
     <span class="user-name {f:if(condition:'{user.online}',then: 'connected', else: 'offline')}">{user.nome} {user.cognome}</span>
     <f:if condition="{comment}">
         <span class="badge">{comment.text}</span>
+        <br/>
+        <f:if condition="{loggedUser.uid} == {user.uid}">
+            <button
+                    data-comment-uid="{comment.uid}"
+                    data-user-uid="{loggedUser.uid}"
+                    class="pull-right btn btn-xs btn-danger delete-comment-button">Elimina
+            </button>
+        </f:if>
     </f:if>
 </li>
 <br/>

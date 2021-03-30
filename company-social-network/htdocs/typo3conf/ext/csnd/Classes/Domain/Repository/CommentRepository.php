@@ -2,6 +2,8 @@
 
 namespace Wind\Csnd\Domain\Repository;
 
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+
 /***
  *
  * This file is part of the "Company Social Network Data" Extension for TYPO3 CMS.

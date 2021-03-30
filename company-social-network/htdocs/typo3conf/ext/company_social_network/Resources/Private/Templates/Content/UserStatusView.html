@@ -9,6 +9,7 @@
         <flux:form id="userStatusView" options="{group: 'Common'}" label="User Status (View)"
                    description="Permette di inserire lo stato dell'utente e di cambiarlo in modo asincrono">
 
+            <flux:field.input name="title" label="Titolo blocco"/>
         </flux:form>
     </f:section>
 
@@ -19,7 +20,6 @@
     <f:section name="Main">
 
         <div id="user-status-view">
-
             <!-- caricato async -->
             <!-- stato default iniziale della vista "ajax" -->
             <f:render partial="UserStatus" arguments="{_all}"/>

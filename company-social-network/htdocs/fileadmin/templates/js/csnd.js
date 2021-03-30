@@ -92,6 +92,14 @@ CSND = {
         postList: {
 
             init: function () {
+
+                this.initSubmit();
+
+                this.initDelete();
+            },
+
+            initSubmit: function () {
+
                 $(".comment-form").submit(function (event) {
 
                     event.preventDefault();
@@ -107,10 +115,34 @@ CSND = {
                         postText: postText
                     }
 
-                    $.post('/rest/content/post/add', data, function (response) {
+                    $.post('/rest/content/comment/add', data, function (response) {
                         $(".comments-list").append(response.message);
                     });
                 })
+            },
+
+            initDelete: function () {
+
+                $('.delete-comment-button').click(function (event) {
+
+                    let data = {
+                        commentUid: $(this).data('comment-uid'),
+                        userUid: $(this).data('user-uid')
+                    }
+
+                    $(this).button('loading');
+                    $.post('/rest/content/comment/remove', data, function (response) {
+
+                        if (response.status == "ok") {
+                            $(".comment-delete-" + data.commentUid).fadeOut('slow');
+                        } else {
+                            //errore
+                        }
+
+                        $(this).button('reset');
+                    });
+                })
+
             }
 
         }

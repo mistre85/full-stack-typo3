@@ -30,3 +30,31 @@ html, body {
 .content-margin {
     margin-top: 50px;
 }
+
+.user-info img {
+    width: 30px;
+}
+
+.user-info .user-status {
+    margin-top: 6px;
+}
+
+.user-info .user-name:before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    left: -11px;
+    top: 14px;
+    position: relative;
+    display: inline-block;
+    border-radius: 50px;
+    border: 1px solid white;
+}
+
+.user-info .user-name.connected:before {
+    background-color: green;
+}
+
+.user-info .user-name.offline:before {
+    background-color: gray;
+}

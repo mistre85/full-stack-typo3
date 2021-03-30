@@ -25,6 +25,14 @@ class ContentHandler implements HandlerInterface
      */
     protected $postRepository = null;
 
+    /**
+     * postRepository
+     *
+     * @var \Wind\Csnd\Domain\Repository\CommentRepository
+     * @inject
+     */
+    protected $commentRepository = null;
+
 
     /**
      * @var \Wind\CompanySocialNetwork\View\UserStatusStandaloneView
@@ -52,6 +60,7 @@ class ContentHandler implements HandlerInterface
      */
     private $persistenceManager = null;
 
+
     /**
      * @param RouterInterface $router
      * @param RestRequestInterface $request
@@ -73,7 +82,7 @@ class ContentHandler implements HandlerInterface
 
         $router->add(
             Route::post(
-                $request->getResourceType() . "/post/add",
+                $request->getResourceType() . "/comment/add",
                 function (RestRequestInterface $request) {
 
                     //recupero i dati del form
@@ -106,11 +115,56 @@ class ContentHandler implements HandlerInterface
                     //fine db / persistenza
 
                     $this->postCommentStandaloneView->assign('comment', $newComment);
+                    $this->postCommentStandaloneView->assign('user', $loggedUser);
 
                     return $this->postCommentStandaloneView->render();
 
                 })
         );
+
+        $router->add(
+            Route::post(
+                $request->getResourceType() . "/comment/remove",
+                function (RestRequestInterface $request) {
+
+                    $response = new Response();
+
+                    //recupero i dati del form
+                    $data = $request->getSentData();
+
+                    $userUid = $data['userUid'];
+                    $commentUid = $data['commentUid'];
+
+                    /** @var User $loggedUser */
+                    $loggedUser = $this->csn->getLoggedUser();
+
+                    if (empty($loggedUser) || $loggedUser->getUid() != $userUid) {
+                        $response->setStatus(Response::STATUS_KO);
+                        $response->setMessage("User not able to perform this action");
+                        return $response->toArray();
+                    }
+
+                    /** @var Comment $comment */
+                    $comment = $this->commentRepository->findByUid($commentUid);
+
+                    if (empty($comment)) {
+                        $response->setStatus(Response::STATUS_KO);
+                        $response->setMessage("Post not found");
+                        return $response->toArray();
+                    }
+
+                    $this->commentRepository->remove($comment);
+                    $this->persistenceManager->persistAll();
+                    //fine db / persistenza
+
+                    $response->setStatus(Response::STATUS_OK);
+                    $response->setMessage("Post deleted");
+
+                    return $response->toArray();
+
+                })
+        );
+
     }
 
 }

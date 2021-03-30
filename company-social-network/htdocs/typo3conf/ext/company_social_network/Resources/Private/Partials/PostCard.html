@@ -52,9 +52,11 @@
             </f:form>
             <hr>
             <label>Commenti presenti:</label>
+
             <div class="comments-list">
                 <f:for each="{post.comments}" as="comment">
-                    <f:render partial="UserListItem" arguments="{user: '{comment.user}',comment: comment}"></f:render>
+                    <f:render partial="UserListItem"
+                              arguments="{user: '{comment.user}',comment: comment,loggedUser: user}"></f:render>
                 </f:for>
             </div>
 
