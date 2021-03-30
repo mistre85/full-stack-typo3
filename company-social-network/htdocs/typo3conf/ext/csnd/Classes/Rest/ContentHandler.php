@@ -111,7 +111,7 @@ class ContentHandler implements HandlerInterface
 
         $router->add(
             Route::post(
-                $request->getResourceType() . "/post/add",
+                $request->getResourceType() . "/comment/remove",
                 function (RestRequestInterface $request) {
                     $response = new Response();
 
@@ -124,7 +124,7 @@ class ContentHandler implements HandlerInterface
                     $loggedUser = $this->csn->getLoggedUser();
 
                     if(empty($loggedUser) || $loggedUser != $userUid){
-                        $response->
+                        $response->setStatus(Response::)
                     }
 
 
