@@ -6,7 +6,7 @@ use Cundd\Rest\Handler\HandlerInterface;
 use Cundd\Rest\Http\RestRequestInterface;
 use Cundd\Rest\Router\Route;
 use Cundd\Rest\Router\RouterInterface;
-use http\Env\Response;
+use Wind\Csnd\Utility\Response;
 use Wind\Csnd\Domain\Model\Comment;
 use Wind\Csnd\Domain\Model\User;
 use Wind\Csnd\Domain\Model\Post;
@@ -22,6 +22,14 @@ class ContentHandler implements HandlerInterface
     protected $postRepository = null;
 
     /**
+     * postRepository
+     *
+     * @var \Wind\Csnd\Domain\Repository\CommentRepository
+     * @inject
+     */
+    protected $commentRepository = null;
+
+    /**
      * @var \Wind\CompanySocialNetwork\View\UserStatusStandaloneView
      * @inject
      */
@@ -31,7 +39,7 @@ class ContentHandler implements HandlerInterface
      * @var \Wind\CompanySocialNetwork\View\PostCommentStandaloneView
      * @inject
      */
-    private  $postCommentStandaloeView = null;
+    private $postCommentStandaloeView = null;
 
     /**
      * CompanySocialNetwork
@@ -102,6 +110,7 @@ class ContentHandler implements HandlerInterface
                         postCommentStandaloeView è la nuova view che ho dovuto creare per poter gestire l'inserimento/append dei commenti
                     */
                     $this->postCommentStandaloeView->assign('comment', $newComment);
+                    //var_dump($newComment->getUser()->getUsername());
                     $this->postCommentStandaloeView->assign('user', $loggedUser);
 
                     return $this->postCommentStandaloeView->render();
@@ -113,27 +122,93 @@ class ContentHandler implements HandlerInterface
             Route::post(
                 $request->getResourceType() . "/comment/remove",
                 function (RestRequestInterface $request) {
+                    /* Creo una nuova istanza di response (Aggiunto in testa use Wind\Csnd\Utility\Response;) */
                     $response = new Response();
 
-                    /* Recupero i dati della chiamata e li metto in due variabili */
-                    $data = $request->getSentData();use
+                    /* Recupero i dati della chiamata e li metto in due variabili (i dati li recupero dalla chiamata presente in cnsd.js che intercetta il click sul button */
+                    $data = $request->getSentData();
                     $userUid = $data['userUid'];
                     $commentUid = $data['commentUid'];
 
-                    /** @var User %loggedUser */
+                    /** @var User $loggedUser */
+                    /* Sfruttando l'utility csn sfrutto la funzione getLoggedUser() per farmi dare l'utrente loggato  */
                     $loggedUser = $this->csn->getLoggedUser();
-
-                    /** var $response  */
-                    if(empty($loggedUser) || $loggedUser != $userUid){
-                        $response->setStatus(Response::)
+                   /*
+                        Se l'utente loggato è nullo o lauid dell'utente che ha scritto il post è diversa dalla uid dell'utente loggato
+                        allora comilo la response per l'errore
+                    */
+                    if ( empty($loggedUser) || $loggedUser->getUid() != $userUid ) {
+                        $response->setStatus(Response::STAUS_KO);
+                        $response->setMessage("Utente non abilitato all'azione");
+                        return $response->toArray();
                     }
 
+                    /** @var Comment $comment */
+                    /* Recupero il commento tramite l'uid */
+                    $comment = $this->commentRepository->findByUid($commentUid);
+                    /* Se il commento è vuoto, quindi non è stato trovato allora compilo la response per l'errore */
+                    if (empty($comment)) {
+                        $response->setStatus(Response::STAUS_KO);
+                        $response->setMessage("Post non trovato");
+                        return $response->toArray();
+                    }
+                    /* Se il commento è stato trovato, ne faccio la remove e quindi richiamo persistAll */
+                    $this->commentRepository->remove($comment);
+                    $this->persistenceManager->persistAll();
+                    /* Compilo la response per l'attività completata */
+                    $response->setStatus(Response::STAUS_OK);
+                    $response->setMessage("Post cancellato");
 
-
-
+                    $response->addData(['commentUid' => $commentUid]);
+                    return $response->toArray();
                 }
             )
-        )
+        );
+
+        $router->add(
+            Route::post(
+                $request->getResourceType() . '/comment/like',
+                function (RestRequestInterface $request) {
+                    $response = new Response();
+
+                    $data = $request->getSentData();
+                    $postUid = $data['postUid'];
+
+                    /* Recupero l'utente tramite l'utility csn */
+                    $user = $this->csn->getLoggedUser();
+                    /* recupero l'oggetto post tramite l'Uid che mi sono passato */
+                    $postToLike = $this->postRepository->findByUid($postUid);
+
+                    /** @var User $like */
+                    /** @var Post $postToLike */
+                    $userFound = false;
+                    foreach ($postToLike->getLikes() as $like){
+                        if($like->getUid() == $user->getUid()){
+                            $userFound=true;
+                            break;
+                        }
+                    }
+
+                    if($userFound){
+                        $postToLike->removeLike($user);
+                    }else{
+                        $postToLike->addLike($user);
+                    }
+
+                    $this->postRepository->update($postToLike);
+                    $this->persistenceManager->persistAll();
+
+                    $data =[
+                        'postUid' => $postToLike->getUid(),
+                        'likes' => $postToLike->getLikes()
+                    ];
+
+                    return $response->toArray();
+
+                }
+
+            )
+        );
     }
 
 

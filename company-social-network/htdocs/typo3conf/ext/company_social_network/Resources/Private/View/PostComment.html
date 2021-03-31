@@ -1,1 +1,2 @@
-<f:render partial="UserListItem" arguments="{user: 'comment.user', comment: comment}"></f:render>
+<v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/postList.css"/>
+<f:render partial="UserListItem" arguments="{user: comment.user, comment: comment,  loggedUser: user}"></f:render>

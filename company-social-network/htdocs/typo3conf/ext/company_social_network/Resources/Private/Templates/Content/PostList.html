@@ -9,6 +9,14 @@
         <flux:form id="postList" options="{group: 'Lists'}" label="Post List "
                    description="Permette di inserire un compente che recupera la lista dei post di tutti gli utenti">
 
+            <flux:field.select
+                name="tipologiaFunzione"
+                items="{
+                   0:{0:'API',1:'API'},
+                   1:{0:'Content',1:'Content'}
+                }"
+            />
+
         </flux:form>
     </f:section>
 
@@ -24,6 +32,7 @@
         <div class="post-list-block clearfix">
             <div class="header">
                 <h2 class="title">Ultimi post</h2>
+                <h2 class="title">---{tipologiaFunzione}</h2>
 
                 <small class="pull-right">
                     <b>Data tuo ultimo post:</b><i>
@@ -33,12 +42,13 @@
             <div class="users-post-list">
 
                 <f:for each="{postList}" as="item">
-                    <f:render partial="PostCard" arguments="{post:item, user:user}"/>
+                    <f:render partial="PostCard" arguments="{post:item, user:user, tipo:tipologiaFunzione  }"/>
                 </f:for>
             </div>
         </div>
         <script type="text/javascript">
             CSND.contentElement.post.comment.initSubmit();
+
         </script>
 
     </f:section>

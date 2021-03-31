@@ -23,6 +23,15 @@ class Response
     protected $userRepository = null;
 
 
+    /**
+     * status OK
+     */
+    const STAUS_OK = 'ok';
+
+    /**
+     * status KO
+     */
+    const STAUS_KO = 'ko';
 
     /**
      * Setto di default lo stato ad un valore di errore generico

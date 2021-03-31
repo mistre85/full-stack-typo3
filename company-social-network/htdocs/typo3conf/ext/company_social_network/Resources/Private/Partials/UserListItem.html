@@ -1,25 +1,32 @@
-<li class="user-info list-group-item user-uid-{user.uid} {f:if(condition: '{comment}', then:'comment-delete-{comment.uid}', else:''  )}">
-
-    <img src="{f:if(condition:'{user.avatar}',then: '{user.avatar}', else: '/fileadmin/templates/img/avatar.png')}"
-         class="avatar img-circle"/>
-    <span class="api-user-uid-{user.uid}  user-name {f:if(condition:'{user.online}',then: 'connected', else: 'offline')}">{user.nome} {user.cognome}</span>
-
-
+<li class="user-info list-group-item user-uid-{user.uid} {f:if(condition: '{comment}', then:'comment-delete-{comment.uid}', else:'')} clearfix">
+    <div class="row">
+        <div class="col-md-12">
+            <img src="{f:if(condition:'{user.avatar}',then: '{user.avatar}', else: '/fileadmin/templates/img/avatar.png')}"
+                 class="avatar img-circle"/>
+            <span class="api-user-uid-{user.uid}  user-name {f:if(condition:'{user.online}',then: 'connected', else: 'offline')}">{user.nome} {user.cognome}</span>
+        </div>
+    </div>
     <f:if condition="{comment}">
-        <span class="badge">{comment.text}</span>
-        <f:if condition="{loggedUser.uid} == {user.uid}">
-            <button
-                data-content-uid="{comment.uid}"
-                data-user-uid="loggedUser.uid"
-                class="pull-right btn btn-danger delete-comment-button-{comment.uid}"
-            >Elimina</button>
-            <script type="text/javascript">
-                CSND.contentElement.post.comment.initDeleteComment('{comment.uid}');
-            </script>
+        <div class="row">
+            <div class="col-md-10 text-area-custom">
+                <textarea cols="80" >{comment.text}</textarea>
+            </div>
+            <div class="col-md-2">
+                <f:if condition="{loggedUser.uid} == {user.uid}">
+                    <button
+                            data-comment-uid="{comment.uid}"
+                            data-user-uid="{loggedUser.uid}"
+                            class="pull-right btn btn-danger custom-button delete-comment-button-{comment.uid}"
+                    >Elimina
+                    </button>
+                    <script type="text/javascript">
+                        CSND.contentElement.post.comment.initDeleteComment('{comment.uid}');
+                    </script>
 
-        </f:if>
-
-</f:if>
+                </f:if>
+            </div>
+        </div>
+    </f:if>
 
 
 </li>

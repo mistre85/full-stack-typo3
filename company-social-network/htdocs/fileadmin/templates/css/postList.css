@@ -1,6 +1,7 @@
-.user-post-card .user-info img {
+ .user-info img {
     width: 50px;
 }
+
 
 .user-post-card .post-info .text {
     padding: 20px;
@@ -10,3 +11,32 @@
     line-height: 35px;
     display: inline-block;
 }
+
+.user-info .user-name:before {
+     content: "";
+     width: 14px;
+     height: 14px;
+     left: -11px;
+     top: 11px;
+     position: relative;
+     display: inline-block;
+     border-radius: 50px;
+     border: 1px solid white;
+ }
+
+.user-info .user-name.connected:before {
+     background-color: green;
+ }
+
+ .user-info .user-name.offline:before {
+     background-color: red;
+
+ }
+
+ .custom-button{
+     margin-top: 2px;
+ }
+
+ .text-area-custom{
+     margin-top: 2px;
+ }

@@ -16,13 +16,15 @@ var CSND = {
                         event.preventDefault();
                         /* Metto nella variabile "commentForm" tutto l'oggetto del Form */
                         let commentForm = $(this);
-                        /* Da questo oggetto recupero il testo della Textarea sfruttando la classe che ho aggiunto in "PostCard.html" */
-                        let postText = commentForm.find(".post-text").val();
                         /*
                             Sfruttanto l'additionalAttributes="{data-postuid: post.uid}" messo nel form, recuper dal suffisso data il valore del parametro postuid
                             (Sfruttando una funzionalita di Jquery che splitta il parametro data-postuid )
                         */
                         let postUid = commentForm.data('postuid');
+                        /* Da questo oggetto recupero il testo della Textarea sfruttando la classe che ho aggiunto in "PostCard.html" */
+
+                        let postText = commentForm.find(".post-text-" + postUid).val();
+
                         /* metto nell'oggetto data i valori che mi serviranno nella chiamata Ajax ovvero il postUid ed il testo della textarea */
                         let data = {
                             postUid: postUid,
@@ -31,10 +33,12 @@ var CSND = {
                         /* effettuo la chiamata Ajax che devo andare a costruire in quanto la funzionalità non era presente */
                         $.post('/rest/content/post/add', data, function (response) {
                             /* Invece di ricaricare tutta la lista dei Commenti, dato che sono in un for, faccio l'append del singolo commento */
-                            console.log('passo da ajax');
-                            $(".comment-list").append(response.message);
+                            console.log(response);
+                            $(".comment-list").prepend(response.message);
                         });
+                        $(".post-text-" + postUid).val('');
                     })
+
                 },
 
                 initDeleteComment: function(commentUid) {
@@ -44,18 +48,42 @@ var CSND = {
                             commentUid: $(this).data('comment-uid'),
                             userUid: $(this).data('user-uid')
                         }
+                        //console.log( $(this).data('comment-uid') + '------' + $(this).data('user-uid') )
 
                         $(this).button('loading');
                         $.post('/rest/content/comment/remove', data, function(response){
+                            //console.log(response);
                             if(response.status == 'ok'){
-                                $("comment-delete-" + data.commentUid).fadeOut('slow');
+                                //console.log('cancellato il post ci passo == ' + response.data.commentUid + "--------");
+                                $(".comment-delete-" + response.data.commentUid).fadeOut('slow');
                             }else{
-                                //errore
+                                // gestione eventuali errori
                             }
+                            $(this).button('reset');
+
+                        });
+
+                    })
+                }
+            },
+
+            like:{
+                initLike: function( postUid ) {
+
+                    $('.like-button-' + postUid).click(function (event) {
+                        console.log('dopo il click del post =' + postUid)
+                        let data = {
+                            postUid: postUid
+                        }
+                        $.post('/rest/content/comment/like', data, function(response){
+                            console.log(response)
+
+
                         });
                     })
                 }
             }
+
 
         },
         user: {

@@ -15,6 +15,7 @@
                 </div>
             </div>
         </div>
+
         <div class="panel-footer clearfix">
             <div class="likes-text">
                 <f:if condition="{post.likes -> f:count()}>0">
@@ -28,11 +29,24 @@
                     </f:else>
                 </f:if>
             </div>
-            <f:link.action arguments="{postUid: '{post.uid}'}" controller="Post" extensionName="csnd"
-                           pluginName="postplugin" action="like"
-                           class="btn btn-primary pull-right">
-                <csn:likeButtonText post="{post}" then="Non mi piace" else="Mi piace"/>
-            </f:link.action>
+            <f:if condition="{tipo} == 'Content'">
+                <f:then>
+                    <f:link.action arguments="{postUid: '{post.uid}'}"
+                                   controller="Post"
+                                   extensionName="csnd"
+                                   pluginName="postplugin"
+                                   action="like"
+                                   class="btn btn-primary pull-right">
+                        <csn:likeButtonText post="{post}" then="Non mi piace" else="Mi piace"/>
+                    </f:link.action>
+                </f:then>
+                <f:else>
+                    <button class="pull-right btn btn-primary custom-button like-button-{post.uid}">
+                        <csn:likeButtonText post="{post}" then="Non mi piace" else="Mi piace"/>
+                    </button>
+                </f:else>
+            </f:if>
+
 
             <hr>
             <!-- Aggiunta classe class="comment-form" per poi poter intercettare il form in csdn.js -->
@@ -51,7 +65,7 @@
 
                 <label>Scrivi un commento:</label>
                 <!-- Aggiunta classe "post-text" per poter poi prelevare il testo della textarea direttamente da csnd.js utilizzando la classe -->
-                <f:form.textarea class="form-control post-text" property="text" rows="3"/>
+                <f:form.textarea class="form-control post-text-{post.uid}" property="text" rows="3"/>
 
                 <br>
 
@@ -69,6 +83,9 @@
                 </f:for>
             </div>
             <script type="text/javascript">
+
+                CSND.contentElement.post.like.initLike('{post.uid}');
+
                 /*
                     $(document).ready(function () {
                         var buttonNewComment = $(".button-new-comment");
