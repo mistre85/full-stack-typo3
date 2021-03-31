@@ -22,7 +22,7 @@ class ContentHandler implements HandlerInterface
     private $userStatusView = null;
 
     /**
-     * @var \Wind\CompanySocialNetwork\View\PostStatusStandaloneView
+     * @var \Wind\CompanySocialNetwork\View\PostStandaloneView
      * @inject
      */
     private $postCommentStandAloneView = null;

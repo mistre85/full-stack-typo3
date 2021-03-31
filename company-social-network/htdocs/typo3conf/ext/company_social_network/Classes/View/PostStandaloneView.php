@@ -14,7 +14,15 @@ class PostStandaloneView extends \TYPO3\CMS\Fluid\View\StandaloneView{
         // da indagare altri formati
         $this->setFormat('html');
 
-        $this->setPostCommentView();
+        //$this->setPostCommentView();
+
+        // trasforma in path assoluto
+         $template = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName(
+            'EXT:company_social_network/Resources/Private/Partials/UserListItem.html'
+        );
+
+        //assegno alla vista
+        $this->setTemplatePathAndFilename($template);
        
         //per caricare i partial
         //$this->setPartialRootPaths(array('EXT:company_social_network/Resources/Private/Partials'));
