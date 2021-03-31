@@ -41,10 +41,10 @@ class ContentHandler implements HandlerInterface
     private $userStatusView = null;
 
     /**
-     * @var \Wind\CompanySocialNetwork\View\PostCommentStandaloneView
+     * @var \Wind\CompanySocialNetwork\View\PostStandaloneView
      * @inject
      */
-    private $postCommentStandaloneView = null;
+    private $postStandaloneView = null;
 
     /**
      * CompanySocialNetwork
@@ -114,10 +114,10 @@ class ContentHandler implements HandlerInterface
                     $this->persistenceManager->persistAll();
                     //fine db / persistenza
 
-                    $this->postCommentStandaloneView->assign('comment', $newComment);
-                    $this->postCommentStandaloneView->assign('user', $loggedUser);
+                    $this->postStandaloneView->assign('comment', $newComment);
+                    $this->postStandaloneView->assign('user', $loggedUser);
 
-                    return $this->postCommentStandaloneView->render();
+                    return $this->postStandaloneView->render();
 
                 })
         );

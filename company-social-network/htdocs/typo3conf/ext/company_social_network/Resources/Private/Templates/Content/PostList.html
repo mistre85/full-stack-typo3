@@ -1,3 +1,4 @@
+{namespace csn=Wind\Csnd\ViewHelpers}
 <div xmlns="http://www.w3.org/1999/xhtml" lang="en"
      xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
      xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
@@ -8,6 +9,13 @@
     <f:section name="Configuration">
         <flux:form id="postList" options="{group: 'Lists'}" label="Post List "
                    description="Permette di inserire un compente che recupera la lista dei post di tutti gli utenti">
+
+            <flux:field.select name="buttonLikeMode" label="Modalità pulsante mi piace"
+                               items="{
+                           0:{0:'Plugin mode',1:'plugin'},
+                           1:{0:'Ajax mode',1:'ajax'}
+                           }"
+            />
 
         </flux:form>
     </f:section>
@@ -32,7 +40,7 @@
             </div>
             <div class="users-post-list">
                 <f:for each="{postList}" as="item">
-                    <f:render partial="PostCard" arguments="{post:item,user:user}"/>
+                    <f:render partial="PostCard" arguments="{post:item, user:user, buttonLikeMode:buttonLikeMode}"/>
                 </f:for>
             </div>
         </div>

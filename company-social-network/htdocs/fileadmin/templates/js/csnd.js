@@ -147,6 +147,30 @@ CSND = {
                     });
                 })
 
+            },
+
+            initLikeButton: function (postUid) {
+
+                let data = {
+                    postUid: postUid
+                }
+
+                $(".like-button-" + postUid).click(function () {
+
+                    let button = $(this);
+                    button.button('loading');
+
+                    $.post('/rest/post/like', data, function (response) {
+
+                        if (response.status = "ok") {
+
+                            button.button('reset');
+
+                            $(".like-result-" + response.data.postUid).html(response.data.html.likes);
+                            $(".like-button-" + response.data.postUid).replaceWith(response.data.html.button);
+                        }
+                    })
+                });
             }
 
         }

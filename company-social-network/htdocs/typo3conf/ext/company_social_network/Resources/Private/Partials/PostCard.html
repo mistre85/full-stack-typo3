@@ -1,4 +1,3 @@
-{namespace csn=Wind\Csnd\ViewHelpers}
 <div class="user-post-card">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -15,23 +14,22 @@
             </div>
         </div>
         <div class="panel-footer clearfix">
-            <div class="likes-text">
-                <f:if condition="{post.likes -> f:count()}>0">
-                    <f:then>
-                        Piace a
-                        <span class="likes-count badge">{post.likes -> f:count()}</span>
-                        dipendenti
-                    </f:then>
-                    <f:else>
-                        Ancora nessun like
-                    </f:else>
-                </f:if>
+            <div class="likes-text like-result-{post.uid}">
+                <f:render partial="LikesText" arguments="{post:post}"/>
             </div>
-            <f:link.action arguments="{postUid: '{post.uid}'}" controller="Post" extensionName="csnd"
-                           pluginName="postplugin" action="like"
-                           class="btn btn-primary pull-right">
-                <csn:likeButtonText post="{post}" then="Non mi piace più" else="Mi piace"/>
-            </f:link.action>
+            <f:switch expression="{buttonLikeMode}">
+                <f:case value="plugin">
+                    <f:link.action arguments="{postUid: '{post.uid}'}" controller="Post" extensionName="csnd"
+                                   pluginName="postplugin" action="like"
+                                   class="btn btn-primary pull-right">
+                        <csn:likeButtonText post="{post}" then="Non mi piace più" else="Mi piace"/>
+                    </f:link.action>
+                </f:case>
+                <f:case value="ajax">
+                    <f:render partial="LikeButton" arguments="{post:post}"/>
+                </f:case>
+            </f:switch>
+
             <hr>
             <label>Scrivi un commento:</label>
             <f:form class="comment-form" extensionName="csnd"
