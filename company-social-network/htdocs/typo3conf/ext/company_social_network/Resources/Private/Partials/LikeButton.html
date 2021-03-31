@@ -1,0 +1,12 @@
+{namespace csn=Wind\Csnd\ViewHelpers}
+<!-- Ci sere il namespace per poter utilizzare il viewHelper CSN -->   
+
+ <!-- {item.uid} è l'id del post dal quale poi ricaveremo i singoli likes fatti dagli utenti-->
+ <button class="btn btn-primary pull-right ajax-Like-Btn-{item.uid}">                        
+     
+    <csn:likeButtonText post="{item}" then="Non mi piace più" else="Mi piace" />
+
+</button>
+<script type="text/javascript">
+    CSND.contentElement.postList.like('{item.uid}');       
+</script>

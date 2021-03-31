@@ -17,38 +17,31 @@
         </div>
     </div>
     <div class="panel-footer ">
-      
-         <f:if condition="{item.likes -> f:count()}>0">
-            <f:then>
-                Piace a
-                <span class="like-count badge">{item.likes -> f:count()}</span>
-                dipendenti
-            </f:then>
-            <f:else>
-                Ancora Nessun Like
-            </f:else>
-        </f:if>
-      
-       <f:comment>arguments="{postUid: '{item.uid}'}"  ..> per definire una variabile di tipo stringa</f:comment> 
-       <f:link.action  
-                extensionName="csnd"
-                pluginName="postplugin"
-                controller="Post"
-                action="like" 
-                arguments="{postUid: '{item.uid}'}"               
-                class="btn btn-primary pull-right">
         
-        <f:comment>
-            guida per l'esercizio: trasformare in ViewHelpers
-           
-             {item.likeButtonLabel}
-        </f:comment>
-                <csn:likeButtonText post="{item}" then="Non mi piace più" else="Mi piace" />
-               
-        </f:link.action>
-       
-        <hr>
-       
+        <div class="likes-text like-result-{item.uid}">
+            <f:render partial="LikesText" arguments="{item: item}"></f:render>
+        </div>
+        
+        <f:swith expression="{actionCall}">
+            <f:case value="pluginC">                
+                <f:link.action  
+                            extensionName="csnd"
+                            pluginName="postplugin"
+                            controller="Post"
+                            action="like" 
+                            arguments="{postUid: '{item.uid}'}"               
+                            class="btn btn-primary pull-right">                   
+    
+                    <csn:likeButtonText post="{item}" then="Non mi piace più" else="Mi piace" />                         
+                </f:link.action>
+            </f:case>            
+            <f:case value="ajaxC">
+                <f:render partial="LikeButton" arguments="{item: item}"></f:render>
+            </f:case>
+
+        </f:swith>
+       <f:comment>arguments="{postUid: '{item.uid}'}"  ..> per definire una variabile di tipo stringa</f:comment> 
+       <hr>
         <!-- 
             <f:form 
                 extensionName="csnd"
@@ -103,7 +96,7 @@
         <label>Commenti degli utenti:</label>
         <ul class="list-group comments-list">       
         <f:for each="{item.comments}" as="comment">
-            
+
             <f:render partial="UserListItem" arguments="{user: '{comment.user}', comment: comment}"></f:render>
             
         </f:for>

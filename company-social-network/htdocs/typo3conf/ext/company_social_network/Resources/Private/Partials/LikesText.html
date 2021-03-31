@@ -1,0 +1,11 @@
+{namespace csn=Wind\Csnd\ViewHelpers}
+<f:if condition="{item.likes -> f:count()}>0">
+    <f:then>
+        Piace a
+        <span class="like-count badge">{item.likes -> f:count()}</span>
+        dipendenti
+    </f:then>
+    <f:else>
+        Ancora Nessun Like
+    </f:else>
+</f:if>

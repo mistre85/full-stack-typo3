@@ -113,33 +113,55 @@ CSND = {
                 });
             },
 
-           deleteComment: function (uid) {
+            deleteComment: function (uid) {
 
-            $(".deleteComment-"+uid).click(function () {
+                $(".deleteComment-"+uid).click(function () {
 
-                
-                let buttonDelete = $(this);
-                let commentUid = buttonDelete.val();                
-                alert(commentUid);
-                //todo: aggiungere controlli di validazione
+                    
+                    let buttonDelete = $(this);
+                    let commentUid = buttonDelete.val();                
+                    alert(commentUid);
+                    //todo: aggiungere controlli di validazione
+
+                    let data = {
+                        commentUid: commentUid                   
+                    }
+
+                    $.post('/rest/content/comment/delete', data, function (response) {
+                        if(response.esito == 'ok'){
+                            $(".commento-utente-"+response.idCommento).remove().fadeOut('slow');
+                        }
+                        
+                    });
+                });
+            },
+
+            like: function (postUid) {
 
                 let data = {
-                    commentUid: commentUid                   
+                    postUid: postUid                   
                 }
 
-                $.post('/rest/content/comment/delete', data, function (response) {
-                    if(response.esito == 'ok'){
-                        $(".commento-utente-"+response.idCommento).remove().fadeOut('slow');
-                    }
-                    
+                // postUid è il valore del campo Uid della repository dei post
+                $(".ajax-Like-Btn-" + postUid).click(function () {                    
+
+                    let btn = $(this);
+                    btn.button('loading');
+
+                    $.post('/rest/post/like', data, function (response) {
+                        if(response.status == 'ok'){
+                          
+                            btn.button('reset');
+
+                            $(".like-result-" + response.data.postUid).html(response.data.html.likes);
+                            $(".ajax-Like-Btn-" + response.data.postUid).replaceWith(response.data.html.button);                
+
+
+                        }
+                        
+                    });
                 });
-            });
-
-
-           }
-
-
-
+            }
         }
     },
 

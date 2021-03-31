@@ -130,6 +130,15 @@ plugin.tx_rest.settings {
             handlerClass = \Wind\Csnd\Rest\ContentHandler
         }
 
+        wind-csnd-post {
+            #http://localhost/rest/wind-csnd-post (wildcard che permette di cercare automaticamente un modello)
+            path = wind-csnd-post
+            read = allow
+            write = allow
+
+            handlerClass = \Wind\Csnd\Rest\PostHandler
+        }
+
     }
 
     aliases {

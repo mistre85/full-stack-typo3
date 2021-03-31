@@ -26,8 +26,7 @@ class LikeButtonTextViewHelper extends AbstractViewHelper
     public function render(\Wind\Csnd\Domain\Model\Post $post, $then, $else)
     {
         /** @var User $user  */
-        // $user = $this->csn->getLoggedUser();
-        // var_dump($user);
+        /** @var User $like  */
         $userUid = CompanySocialNetwork::readUserCookie();
 
         foreach($post->getLikes() as $like ){
