@@ -110,8 +110,35 @@ CSND = {
                     $.post('/rest/content/post/add', data, function (response) {
                         $(".comments-list").append(response.message);
                     });
-                })
-            }
+                });
+            },
+
+           deleteComment: function (uid) {
+
+            $(".deleteComment-"+uid).click(function () {
+
+                
+                let buttonDelete = $(this);
+                let commentUid = buttonDelete.val();                
+                alert(commentUid);
+                //todo: aggiungere controlli di validazione
+
+                let data = {
+                    commentUid: commentUid                   
+                }
+
+                $.post('/rest/content/comment/delete', data, function (response) {
+                    if(response.esito == 'ok'){
+                        $(".commento-utente-"+response.idCommento).remove().fadeOut('slow');
+                    }
+                    
+                });
+            });
+
+
+           }
+
+
 
         }
     },

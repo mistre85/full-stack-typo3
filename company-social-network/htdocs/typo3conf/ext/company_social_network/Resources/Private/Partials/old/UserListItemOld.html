@@ -1,5 +1,5 @@
 {namespace csn=Wind\Csnd\ViewHelpers}
-<li class="list-group-item commento-utente-{comment.uid}">
+<li class="list-group-item">
 
     <div class="row">
         <div class="col-lg-12">
@@ -15,11 +15,13 @@
             </div>      
             <div class="col-lg-12" style="text-align: right;">
                 <csn:DeleteComment comment="{comment}">
-                    
-                    <button class="btn btn-primary pull-right deleteComment-{comment.uid} " value="{comment.uid}">Cancella Comm Ajax</button>
-                    <script type="text/javascript">
-                        CSND.contentElement.postList.deleteComment("{comment.uid}");
-                    </script>
+                    <f:link.action  
+                    extensionName="csnd"  
+                    pluginName="postplugin"
+                    controller="Comment"
+                    action="remove"   arguments="{comment: comment }"               
+                    class="btn btn-primary pull-right">Cancella Commento
+                    </f:link.action>
                 </csn:DeleteComment>
             </div>   
         </f:if>

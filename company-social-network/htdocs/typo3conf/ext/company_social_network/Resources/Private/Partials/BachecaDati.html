@@ -78,7 +78,7 @@
                 name="newComment"
                 object="{newComment}"
                 arguments="{postUid: item.uid}" 
-                additionalAttributes="{data-postuid: post.uid}"
+                additionalAttributes="{data-postuid: item.uid}"
                 >        
                 
                 <label>Scrivi un commento:</label>
@@ -103,6 +103,7 @@
         <label>Commenti degli utenti:</label>
         <ul class="list-group comments-list">       
         <f:for each="{item.comments}" as="comment">
+            
             <f:render partial="UserListItem" arguments="{user: '{comment.user}', comment: comment}"></f:render>
             
         </f:for>

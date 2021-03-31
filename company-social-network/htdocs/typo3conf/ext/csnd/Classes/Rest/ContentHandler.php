@@ -52,6 +52,14 @@ class ContentHandler implements HandlerInterface
     protected $postRepository = null;
 
     /**
+     * commentRepository
+     *
+     * @var \Wind\Csnd\Domain\Repository\CommentRepository
+     * @inject
+     */
+    protected $commentRepository = null;
+
+    /**
      * @param RouterInterface $router
      * @param RestRequestInterface $request
      */
@@ -104,7 +112,7 @@ class ContentHandler implements HandlerInterface
                     // compilati dalla coppia form|link.ction + param della action del Controller di riferimento
                     $newComment = new Comment();
                     $newComment->setText($postText);
-                    $newComment->setUser($postUid);
+                    $newComment->setUser($loggerUser);
 
                     $post->addComment($newComment);
                      
@@ -116,6 +124,34 @@ class ContentHandler implements HandlerInterface
                     $this->postCommentStandAloneView->assign('comment', $newComment);
                     
                     return $this->postCommentStandAloneView->render();
+
+                }
+            )
+        );
+
+        $router->add(
+            Route::post(
+                $request->getResourceType() . '/comment/delete',
+                function (RestRequestInterface $request) {
+                    
+                    // recupero i dati dal form o dal front end
+                    $data = $request->getSentData();
+                    $commentUid = $data['commentUid'];
+
+                    // creo Model /Record per il DB
+                    /** @var Comment $comment  */
+                    $comment = $this->commentRepository->findByUid($commentUid);
+
+                    /** @var User $loggerUser  */
+                    $loggerUser = $this->csn->getLoggedUser();                   
+                    // nei plugin questo passaggio avviene automaticamente
+                    // compilati dalla coppia form|link.ction + param della action del Controller di riferimento
+                    $this->commentRepository->remove($comment);
+
+                    $this->persistenceManager->persistAll();
+                    // fine DB persistenza
+                    $response = ['esito' =>'ok',  'idCommento' => $commentUid ];
+                    return $response;
 
                 }
             )
