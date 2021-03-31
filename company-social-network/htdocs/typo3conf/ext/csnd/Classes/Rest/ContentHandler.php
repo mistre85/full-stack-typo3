@@ -149,7 +149,7 @@ class ContentHandler implements HandlerInterface
 
                     if (empty($comment)) {
                         $response->setStatus(Response::STATUS_KO);
-                        $response->setMessage("Post not found");
+                        $response->setMessage("Comment not found");
                         return $response->toArray();
                     }
 
@@ -159,6 +159,8 @@ class ContentHandler implements HandlerInterface
 
                     $response->setStatus(Response::STATUS_OK);
                     $response->setMessage("Post deleted");
+
+                    $response->addData(['commentUid' => $commentUid]);
 
                     return $response->toArray();
 

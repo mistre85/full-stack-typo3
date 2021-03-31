@@ -48,7 +48,7 @@
                 <f:form.textarea class="form-control post-text" property="text"
                                  rows="3"/>
                 <br>
-                <f:form.submit value="Commenta" class="btn btn-primary pull-right"/>
+                <f:form.submit value="Commenta" class="btn btn-primary pull-right comment-button"/>
             </f:form>
             <hr>
             <label>Commenti presenti:</label>
@@ -57,6 +57,7 @@
                 <f:for each="{post.comments}" as="comment">
                     <f:render partial="UserListItem"
                               arguments="{user: '{comment.user}',comment: comment,loggedUser: user}"></f:render>
+
                 </f:for>
             </div>
 

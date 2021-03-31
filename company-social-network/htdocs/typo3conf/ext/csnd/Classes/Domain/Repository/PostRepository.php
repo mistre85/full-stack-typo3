@@ -22,7 +22,7 @@ use Wind\Csnd\Domain\Model\User;
 class PostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
     protected $defaultOrderings = array(
-        'crdate' => QueryInterface::ORDER_DESCENDING
+        'crdate' => QueryInterface::ORDER_DESCENDING,
     );
 
     /**
@@ -35,5 +35,19 @@ class PostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $posts = $query->execute();
         //ultimo per data descending
         return $posts->getFirst();
+    }
+
+    /**
+     * @param User $user
+     */
+    public function findAllOrderedComment()
+    {
+        $query = $this->createQuery();
+
+        $query->setOrderings([
+            'comments.crdate' => QueryInterface::ORDER_DESCENDING
+        ]);
+
+        return $query->execute();
     }
 }

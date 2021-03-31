@@ -91,12 +91,6 @@ CSND = {
 
         postList: {
 
-            init: function () {
-
-                this.initSubmit();
-
-                this.initDelete();
-            },
 
             initSubmit: function () {
 
@@ -107,6 +101,7 @@ CSND = {
                     let commentForm = $(this);
                     let postText = commentForm.find('.post-text').val();
                     let postUid = commentForm.data('postuid');
+                    let commentButton = commentForm.find('.comment-button');
 
                     //todo: aggiungere controlli di validazione
 
@@ -115,15 +110,24 @@ CSND = {
                         postText: postText
                     }
 
+                    commentButton.button('loading');
+
                     $.post('/rest/content/comment/add', data, function (response) {
-                        $(".comments-list").append(response.message);
+
+                        //if (response.status == "ok") {
+                        $(".comments-list").prepend(response.message);
+                        //} else {
+
+                        //}
+                    }).fail(function () {
+
                     });
                 })
             },
 
-            initDelete: function () {
+            initDeleteComment: function (commentUid) {
 
-                $('.delete-comment-button').click(function (event) {
+                $('.delete-comment-button-' + commentUid).click(function (event) {
 
                     let data = {
                         commentUid: $(this).data('comment-uid'),
@@ -134,7 +138,7 @@ CSND = {
                     $.post('/rest/content/comment/remove', data, function (response) {
 
                         if (response.status == "ok") {
-                            $(".comment-delete-" + data.commentUid).fadeOut('slow');
+                            $(".comment-delete-" + response.data.commentUid).fadeOut('slow');
                         } else {
                             //errore
                         }

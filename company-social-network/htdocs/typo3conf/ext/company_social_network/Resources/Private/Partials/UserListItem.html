@@ -1,4 +1,4 @@
-<li class="user-info list-group-item user-uid-{user.uid} {f:if(condition:'{comment}',then:'comment-delete-{comment.uid}',else:'')} clearfix">
+<li class="user-info list-group-item user-uid-{user.uid} comment-delete-{comment.uid} clearfix">
     <img src="{f:if(condition:'{user.avatar}',then: '{user.avatar}', else: '/fileadmin/templates/img/avatar.png')}"
          class="avatar img-circle"/>
     <!-- <span class=" bg-info badge user-status">{user.connected}</span> -->
@@ -8,12 +8,17 @@
         <br/>
         <f:if condition="{loggedUser.uid} == {user.uid}">
             <button
-                    data-comment-uid="{comment.uid}"
                     data-user-uid="{loggedUser.uid}"
-                    class="pull-right btn btn-xs btn-danger delete-comment-button">Elimina
+                    data-comment-uid="{comment.uid}"
+                    class="pull-right btn btn-xs btn-danger delete-comment-button-{comment.uid}">Elimina
             </button>
+            <script type="text/javascript">
+                //todo: sistemare doppia inizalizzazione eventi
+                CSND.contentElement.postList.initDeleteComment('{comment.uid}');
+            </script>
         </f:if>
     </f:if>
+    <br/>
 </li>
-<br/>
+
 
