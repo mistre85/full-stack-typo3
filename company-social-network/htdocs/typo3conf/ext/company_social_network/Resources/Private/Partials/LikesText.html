@@ -1,12 +1,14 @@
-<f:if condition="{post.likes -> f:count()}>0">
-    <f:then>
-        Piace a
-        <span class="likes-count like-result-{post.uid} badge">{post.likes -> f:count()}</span>
-        dipendenti
-    </f:then>
-    <f:else>
-        Ancora nessun like
-    </f:else>
-</f:if>
+<div class="like-result-{post.uid}">
+    <f:if condition="{post.likes -> f:count()}>0">
+        <f:then>
+            Piace a
+            <span class="likes-count badge">{post.likes -> f:count()}</span>
+            dipendenti
+        </f:then>
+        <f:else>
+            Ancora nessun like
+        </f:else>
+    </f:if>
 
+</div>
 

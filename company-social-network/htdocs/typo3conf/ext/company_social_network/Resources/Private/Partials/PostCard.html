@@ -17,9 +17,9 @@
         </div>
 
         <div class="panel-footer clearfix">
-            <div class="likes-text">
+
                 <f:render partial="LikesText" arguments="{post:post}"/>
-            </div>
+
             <f:if condition="{tipo} == 'Content'">
                 <f:then>
                     <f:link.action arguments="{postUid: '{post.uid}'}"
