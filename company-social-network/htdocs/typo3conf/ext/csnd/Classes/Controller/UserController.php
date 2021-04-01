@@ -1,10 +1,12 @@
 <?php
+
 namespace Wind\Csnd\Controller;
 
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 use Wind\Csnd\Domain\Model\User;
 use Wind\Csnd\Utility\CompanySocialNetwork;
+
 /***
  *
  * This file is part of the "Company Social Network Data" Extension for TYPO3 CMS.
@@ -142,6 +144,56 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $this->view->assign('user', $user);
     }
 
+    public function listAction()
+    {
+        $userList = $this->userRepository->findAll();
+        $this->view->assign('users', $userList);
+    }
+
+    public function importCSVAction()
+    {
+        //var_dump($_FILES); die;
+        /*
+            Quando dal form clicco su carica mi si genera una variabile $_FILES che contiene le informazioni del file
+            tra cui il nome del fileTMP che si crea
+         */
+        $uploadFile = $_FILES['tx_csnd_web_csndcnsadmin']['tmp_name']['file'];
+        $contenutoDelFile = file_get_contents($uploadFile);
+        //var_dump($uploadFile); die;
+        $records = explode(PHP_EOL, $contenutoDelFile);
+        //var_dump($records); die;
+        foreach ($records as $record) {
+
+            $userArray = explode(',', $record);
+
+            $getUserFromDB = $this->userRepository->findByUsername($userArray[0])->current();
+
+            if (!empty($getUserFromDB)) {
+                /* Storicizzo eventuali utenti gia presenti */
+                $userPresent[] = $getUserFromDB;
+            } else {
+                /* Creo una nuova istanza dell'oggetto User e lo popolo con i dati contenuti nel file */
+                $newUser = new User();
+                $newUser->setUsername($userArray[0]);
+                $newUser->setEmail($userArray[1]);
+                $newUser->setPassword($userArray[2]);
+                $newUser->setNome($userArray[3]);
+                $newUser->setCognome($userArray[4]);
+                /* Effettuo l'aggiornamento al database  */
+                $this->userRepository->add($newUser);
+                /* Storicizzo i nuovi utenti */
+                $userInserted[] = $newUser;
+            }
+        }
+        var_dump($userInserted);die;
+        $this->view->assign('userPresent', $userPresent);
+        $this->view->assign('userInserted', $userInserted);
+    }
+
+    public function importFormAction()
+    {
+
+    }
 
 
 }

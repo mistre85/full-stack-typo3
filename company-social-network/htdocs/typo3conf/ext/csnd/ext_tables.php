@@ -25,7 +25,9 @@ call_user_func(
                 'cnsadmin', // Submodule key
                 '', // Position
                 [
-                    'User' => 'list, show, new, create, edit, update, delete','Post' => 'list, show, new, create, edit, update, delete','Comment' => 'list, show, new, create, edit, update, delete, ',
+                    'User' => 'importForm, importCSV, list, show, new, create, edit, update, delete,  ',
+                    'Post' => 'list, show, new, create, edit, update, delete',
+                    'Comment' => 'list, show, new, create, edit, update, delete, ',
                 ],
                 [
                     'access' => 'user,group',

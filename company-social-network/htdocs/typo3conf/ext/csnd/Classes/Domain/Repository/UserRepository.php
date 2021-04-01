@@ -38,4 +38,6 @@ class UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $query->matching($query->logicalNot($query->equals('uid', $user->getUid())));
         return $query->execute();
     }
+
+
 }

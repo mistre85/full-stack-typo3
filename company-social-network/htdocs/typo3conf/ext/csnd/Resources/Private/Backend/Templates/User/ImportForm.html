@@ -1,0 +1,12 @@
+<f:layout name="Default" />
+<f:section name="content">
+<h1>Import User from CSV</h1>
+
+<f:form action="importCSV" enctype="multipart/form-data" name="userImport">
+    <div class="form-group">
+        <label>file CSV</label>
+        <f:form.upload name="file" />
+    </div>
+    <f:form.submit value="Upload" class="btn btn-primary"/>
+</f:form>
+</f:section>

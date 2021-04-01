@@ -14,18 +14,21 @@ class PostStandaloneView extends \TYPO3\CMS\Fluid\View\StandaloneView
         parent::__construct();
 
         $this->setFormat('html');
-        $template = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName(
-            'EXT:company_social_network/Resources/Private/View/PostComment.html'
-        );
-
-        /* Assegno alla vista */
-        $this->setTemplatePathAndFilename($template);
 
         /* Serve per permettere il caricamento dei Partials */
         $this->setPartialRootPaths(array('EXT:company_social_network/Resources/Private/Partials'));
 
         $extensionKey = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase("company_social_network");
         $this->getRequest()->setControllerExtensionName($extensionKey);
+    }
+
+    public function setPostComment()
+    {
+        $template = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName(
+            'EXT:company_social_network/Resources/Private/View/PostComment.html'
+        );
+        /* Assegno alla vista */
+        $this->setTemplatePathAndFilename($template);
     }
 
     public function setLikeTextView()

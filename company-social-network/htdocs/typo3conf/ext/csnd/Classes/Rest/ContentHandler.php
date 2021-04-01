@@ -39,7 +39,7 @@ class ContentHandler implements HandlerInterface
      * @var \Wind\CompanySocialNetwork\View\PostStandaloneView
      * @inject
      */
-    private $postCommentStandaloeView = null;
+    private $postStandaloneView = null;
 
     /**
      * @var \Wind\CompanySocialNetwork\View\PostStandaloneView
@@ -119,13 +119,15 @@ class ContentHandler implements HandlerInterface
 
                     /*
                         Assegno alla variabile comment il contenuto di $newComment
-                        postCommentStandaloeView è la nuova view che ho dovuto creare per poter gestire l'inserimento/append dei commenti
+                        postStandaloeView è la nuova view che ho dovuto creare per poter gestire l'inserimento/append dei commenti
                     */
-                    $this->postCommentStandaloeView->assign('comment', $newComment);
-                    //var_dump($newComment->getUser()->getUsername());
-                    $this->postCommentStandaloeView->assign('user', $loggedUser);
+                    $this->postStandaloneView->setPostComment();
+                    $this->postStandaloneView->assign('comment', $newComment);
 
-                    return $this->postCommentStandaloeView->render();
+
+                    $this->postStandaloneView->assign('user', $loggedUser);
+
+                    return $this->postStandaloneView->render();
                 }
             )
         );
@@ -145,11 +147,11 @@ class ContentHandler implements HandlerInterface
                     /** @var User $loggedUser */
                     /* Sfruttando l'utility csn sfrutto la funzione getLoggedUser() per farmi dare l'utrente loggato  */
                     $loggedUser = $this->csn->getLoggedUser();
-                   /*
-                        Se l'utente loggato è nullo o lauid dell'utente che ha scritto il post è diversa dalla uid dell'utente loggato
-                        allora comilo la response per l'errore
-                    */
-                    if ( empty($loggedUser) || $loggedUser->getUid() != $userUid ) {
+                    /*
+                         Se l'utente loggato è nullo o lauid dell'utente che ha scritto il post è diversa dalla uid dell'utente loggato
+                         allora comilo la response per l'errore
+                     */
+                    if (empty($loggedUser) || $loggedUser->getUid() != $userUid) {
                         $response->setStatus(Response::STAUS_KO);
                         $response->setMessage("Utente non abilitato all'azione");
                         return $response->toArray();
@@ -183,6 +185,7 @@ class ContentHandler implements HandlerInterface
                 function (RestRequestInterface $request) {
                     /* Creo una nuova istanza di Response */
                     $response = new Response();
+
                     /* Recupero i dati passati in post dalla chiamata Ajax e valorizzo la variabile del postUid*/
                     $data = $request->getSentData();
                     $postUid = $data['postUid'];
@@ -194,29 +197,30 @@ class ContentHandler implements HandlerInterface
 
                     /** @var User $like */
                     /** @var Post $postToLike */
+                    /* ciclo su $postLike, di ogli like verifico se l'utente corrisponde all'utente loggato */
                     $userFound = false;
-                    foreach ($postToLike->getLikes() as $like){
-                        if($like->getUid() == $user->getUid()){
-                            $userFound=true;
+                    foreach ($postToLike->getLikes() as $like) {
+                        if ($like->getUid() == $user->getUid()) {
+                            $userFound = true;
                             break;
                         }
                     }
-
-                    if($userFound){
+                    /* Se trovo l'utente vuol dire che questo ha già messo un like, quindi lo rimuovo, altrimenti lo aggiungo */
+                    if ($userFound) {
                         $postToLike->removeLike($user);
-                    }else{
+                    } else {
                         $postToLike->addLike($user);
                     }
-
+                    /* Eseguo l'update e faccio la persistenza */
                     $this->postRepository->update($postToLike);
                     $this->persistenceManager->persistAll();
-
-                    $data =[
+                    /* popolo l'array data */
+                    $data = [
                         'postUid' => $postToLike->getUid(),
-                        'likes'   => $postToLike->getLikesCount()
+                        'likes' => $postToLike->getLikesCount()
                     ];
 
-                    /* Preparazione Template */
+                    /* Preparazione Template per i numero di like e per il bottone*/
                     $this->likeStandalone->setLikeTextView();
                     $this->likeStandalone->assign('post', $postToLike);
                     $data['html']['likes'] = $this->likeStandalone->render();
@@ -225,10 +229,11 @@ class ContentHandler implements HandlerInterface
                     $this->buttonStandalone->assign('post', $postToLike);
                     $data['html']['button'] = $this->buttonStandalone->render();
 
-                   $response->setStatus(Response::STAUS_OK);
-                   $response->setMessage("funzione Like correttamente terminata");
-                   $response->addData($data);
-                   return $response->toArray();
+                    /* completo la response e quindi ritorno la conversione in array */
+                    $response->setStatus(Response::STAUS_OK);
+                    $response->setMessage("funzione Like correttamente terminata");
+                    $response->addData($data);
+                    return $response->toArray();
 
                 }
 

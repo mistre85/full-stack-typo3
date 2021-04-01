@@ -14,6 +14,7 @@ var CSND = {
                     $(".comment-form").submit(function (event) {
                         /* Con il prevent mi assicuro che una volta intercettata la summit blocco la possibile intercettazione di ulteriori submit */
                         event.preventDefault();
+
                         /* Metto nella variabile "commentForm" tutto l'oggetto del Form */
                         let commentForm = $(this);
                         /*
@@ -21,8 +22,8 @@ var CSND = {
                             (Sfruttando una funzionalita di Jquery che splitta il parametro data-postuid )
                         */
                         let postUid = commentForm.data('postuid');
-                        /* Da questo oggetto recupero il testo della Textarea sfruttando la classe che ho aggiunto in "PostCard.html" */
 
+                        /* Da questo oggetto recupero il testo della Textarea sfruttando la classe che ho aggiunto in "PostCard.html" */
                         let postText = commentForm.find(".post-text-" + postUid).val();
 
                         /* metto nell'oggetto data i valori che mi serviranno nella chiamata Ajax ovvero il postUid ed il testo della textarea */
