@@ -220,4 +220,12 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->likes = $likes;
     }
+
+    /**
+     * @return int
+     */
+    public function getLikesCount()
+    {
+        return count($this->likes);
+    }
 }

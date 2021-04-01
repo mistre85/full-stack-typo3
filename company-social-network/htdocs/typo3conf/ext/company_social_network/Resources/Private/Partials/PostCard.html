@@ -18,16 +18,7 @@
 
         <div class="panel-footer clearfix">
             <div class="likes-text">
-                <f:if condition="{post.likes -> f:count()}>0">
-                    <f:then>
-                        Piace a
-                        <span class="likes-count badge">{post.likes -> f:count()}</span>
-                        dipendenti
-                    </f:then>
-                    <f:else>
-                        Ancora nessun like
-                    </f:else>
-                </f:if>
+                <f:render partial="LikesText" arguments="{post:post}"/>
             </div>
             <f:if condition="{tipo} == 'Content'">
                 <f:then>
@@ -41,9 +32,7 @@
                     </f:link.action>
                 </f:then>
                 <f:else>
-                    <button class="pull-right btn btn-primary custom-button like-button-{post.uid}">
-                        <csn:likeButtonText post="{post}" then="Non mi piace" else="Mi piace"/>
-                    </button>
+                    <f:render partial="LikesButton" arguments="{post: post}"/>
                 </f:else>
             </f:if>
 
@@ -84,7 +73,7 @@
             </div>
             <script type="text/javascript">
 
-                CSND.contentElement.post.like.initLike('{post.uid}');
+
 
                 /*
                     $(document).ready(function () {

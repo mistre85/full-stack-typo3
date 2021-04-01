@@ -1,0 +1,7 @@
+{namespace csn=Wind\Csnd\ViewHelpers}
+<button class="pull-right btn btn-primary custom-button like-button-{post.uid}">
+    <csn:likeButtonText post="{post}" then="Non mi piace" else="Mi piace"/>
+</button>
+<script type="text/javascript">
+    CSND.contentElement.post.like.initLikeButton('{post.uid}');
+</script>

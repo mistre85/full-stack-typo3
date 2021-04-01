@@ -36,10 +36,22 @@ class ContentHandler implements HandlerInterface
     private $userStatusView = null;
 
     /**
-     * @var \Wind\CompanySocialNetwork\View\PostCommentStandaloneView
+     * @var \Wind\CompanySocialNetwork\View\PostStandaloneView
      * @inject
      */
     private $postCommentStandaloeView = null;
+
+    /**
+     * @var \Wind\CompanySocialNetwork\View\PostStandaloneView
+     * @inject
+     */
+    private $likeStandalone = null;
+
+    /**
+     * @var \Wind\CompanySocialNetwork\View\PostStandaloneView
+     * @inject
+     */
+    private $buttonStandalone = null;
 
     /**
      * CompanySocialNetwork
@@ -169,12 +181,13 @@ class ContentHandler implements HandlerInterface
             Route::post(
                 $request->getResourceType() . '/comment/like',
                 function (RestRequestInterface $request) {
+                    /* Creo una nuova istanza di Response */
                     $response = new Response();
-
+                    /* Recupero i dati passati in post dalla chiamata Ajax e valorizzo la variabile del postUid*/
                     $data = $request->getSentData();
                     $postUid = $data['postUid'];
 
-                    /* Recupero l'utente tramite l'utility csn */
+                    /* Recupero del info dell'utente tramite l'utility csn */
                     $user = $this->csn->getLoggedUser();
                     /* recupero l'oggetto post tramite l'Uid che mi sono passato */
                     $postToLike = $this->postRepository->findByUid($postUid);
@@ -200,10 +213,22 @@ class ContentHandler implements HandlerInterface
 
                     $data =[
                         'postUid' => $postToLike->getUid(),
-                        'likes' => $postToLike->getLikes()
+                        'likes'   => $postToLike->getLikesCount()
                     ];
 
-                    return $response->toArray();
+                    /* Preparazione Template */
+                    $this->likeStandalone->setLikeTextView();
+                    $this->likeStandalone->assign('post', $postToLike);
+                    $data['html']['likes'] = $this->likeStandalone->render();
+
+                    $this->buttonStandalone->setLikeButtonView();
+                    $this->buttonStandalone->assign('post', $postToLike);
+                    $data['html']['button'] = $this->buttonStandalone->render();
+
+                   $response->setStatus(Response::STAUS_OK);
+                   $response->setMessage("funzione Like correttamente terminata");
+                   $response->addData($data);
+                   return $response->toArray();
 
                 }
 

@@ -1,15 +1,15 @@
 var CSND = {
 
 
-    contentElement:{
-        post:{
-            comment:{
+    contentElement: {
+        post: {
+            comment: {
                 init: function () {
                     this.initSubmit();
                     this.initDeleteComment();
                 },
 
-                initSubmit: function(){
+                initSubmit: function () {
                     /* Intercetto la submit del bottone nell' HTML "PostCard" */
                     $(".comment-form").submit(function (event) {
                         /* Con il prevent mi assicuro che una volta intercettata la summit blocco la possibile intercettazione di ulteriori submit */
@@ -41,7 +41,7 @@ var CSND = {
 
                 },
 
-                initDeleteComment: function(commentUid) {
+                initDeleteComment: function (commentUid) {
 
                     $('.delete-comment-button-' + commentUid).click(function (event) {
                         let data = {
@@ -51,12 +51,12 @@ var CSND = {
                         //console.log( $(this).data('comment-uid') + '------' + $(this).data('user-uid') )
 
                         $(this).button('loading');
-                        $.post('/rest/content/comment/remove', data, function(response){
+                        $.post('/rest/content/comment/remove', data, function (response) {
                             //console.log(response);
-                            if(response.status == 'ok'){
+                            if (response.status == 'ok') {
                                 //console.log('cancellato il post ci passo == ' + response.data.commentUid + "--------");
                                 $(".comment-delete-" + response.data.commentUid).fadeOut('slow');
-                            }else{
+                            } else {
                                 // gestione eventuali errori
                             }
                             $(this).button('reset');
@@ -67,20 +67,31 @@ var CSND = {
                 }
             },
 
-            like:{
-                initLike: function( postUid ) {
+            like: {
+                initLikeButton: function (postUid) {
 
-                    $('.like-button-' + postUid).click(function (event) {
+                    $('.like-button-' + postUid).click(function () {
                         console.log('dopo il click del post =' + postUid)
+                        /* Valorizzo data con il postUid che mi sono passato nella chiamata Ajax */
                         let data = {
-                            postUid: postUid
+                            'postUid': postUid
                         }
-                        $.post('/rest/content/comment/like', data, function(response){
+
+                        let button = $(this);
+                        button.button('loading');
+
+                        $.post('/rest/content/comment/like', data, function (response) {
                             console.log(response)
+                            if(response.status == "ok"){
+                                button.button('reset');
+                                //console.log($(".like-result-" + response.data.postUid).html(response.data.html.likes))
+                                $(".like-result-" + response.data.postUid).replaceWith(response.data.html.likes);
+                                //$(".like-result-" + response.data.postUid).html(response.data.likes);
 
-
+                                $(".like-button-" + response.data.postUid).replaceWith(response.data.html.button);
+                            }
                         });
-                    })
+                    });
                 }
             }
 
@@ -126,7 +137,7 @@ var CSND = {
                 }
 
             },
-            getUserId:{
+            getUserId: {
                 init: function () {
                     $.get('/rest/user/getUid', function (response) {
                         console.log(response.message);

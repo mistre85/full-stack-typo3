@@ -6,7 +6,7 @@ namespace Wind\CompanySocialNetwork\View;
 
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
-class PostCommentStandaloneView extends \TYPO3\CMS\Fluid\View\StandaloneView
+class PostStandaloneView extends \TYPO3\CMS\Fluid\View\StandaloneView
 {
 
     public function __construct()
@@ -20,6 +20,7 @@ class PostCommentStandaloneView extends \TYPO3\CMS\Fluid\View\StandaloneView
 
         /* Assegno alla vista */
         $this->setTemplatePathAndFilename($template);
+
         /* Serve per permettere il caricamento dei Partials */
         $this->setPartialRootPaths(array('EXT:company_social_network/Resources/Private/Partials'));
 
@@ -27,5 +28,22 @@ class PostCommentStandaloneView extends \TYPO3\CMS\Fluid\View\StandaloneView
         $this->getRequest()->setControllerExtensionName($extensionKey);
     }
 
+    public function setLikeTextView()
+    {
+        $template = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName(
+            'EXT:company_social_network/Resources/Private/Partials/LikesText.html'
+        );
+        /* Assegno alla vista */
+        $this->setTemplatePathAndFilename($template);
+    }
+
+    public function setLikeButtonView()
+    {
+        $template = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName(
+            'EXT:company_social_network/Resources/Private/Partials/LikesButton.html'
+        );
+        /* Assegno alla vista */
+        $this->setTemplatePathAndFilename($template);
+    }
 
 }
