@@ -3,6 +3,7 @@
 namespace Wind\Csnd\Controller;
 
 use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 use Wind\Csnd\Domain\Model\User;
 use Wind\Csnd\Utility\CompanySocialNetwork;
@@ -146,7 +147,68 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function listAction()
     {
+        $users = $this->userRepository->findAll();
+        $this->view->assign('users', $users);
+    }
 
+    public function importCSVAction()
+    {
+
+        //ricevere il file dal form
+        //-- php / form html - typo3 ci può aiutare
+
+        $uploadedFile = $_FILES['tx_csnd_web_csndcnsadmin']['tmp_name']['file'];
+        $content = file_get_contents($uploadedFile);
+
+
+        //cosa fa typo3 in merito?
+        // -- conversione CVS?
+        // -- i file uplodati dove vanno a finire?
+
+        //converire il file in stringa e elaborarlo
+        $records = explode(PHP_EOL, $content);
+
+
+        $insertedUsers = [];
+        $skippedUsers = [];
+        //inserire nel DB
+        // -- inseriamo solo nuovi utenti
+        // -- esiste o no l'utente? lo scarto? mostro un errore?
+        foreach ($records as $record) {
+
+            $userArray = explode(',', $record);
+
+            $existingUser = $this->userRepository->findByUsername($userArray[3])->current();
+
+            if (!empty($existingUser)) {
+                $skippedUsers[] = $existingUser;
+            } else {
+
+                $newUser = new User();
+                $newUser->setNome($userArray[0]);
+                $newUser->setCognome($userArray[1]);
+                $newUser->setEmail($userArray[2]);
+                $newUser->setUsername($userArray[3]);
+                $newUser->setPassword(md5(rand(1000, 9999)));
+
+                $this->userRepository->add($newUser);
+
+                //avete lo stesso oggetto del DB
+
+                $insertedUsers[] = $newUser;
+            }
+        }
+
+        $this->view->assign('insertedUsers', $insertedUsers);
+        $this->view->assign('skippedUsers', $skippedUsers);
+
+
+    }
+
+    public function importFormAction()
+    {
+
+        //vedere il form in pagina
     }
 
 }

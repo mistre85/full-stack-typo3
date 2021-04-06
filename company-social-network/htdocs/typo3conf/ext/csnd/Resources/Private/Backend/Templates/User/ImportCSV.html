@@ -1,14 +1,11 @@
 <f:layout name="Default"/>
 
 <f:section name="content">
-    <h1>Import User CSV</h1>
+    <h1>Import User CSV - Imported results</h1>
 
-    <f:form action="importCSV" enctype="multipart/form-data" name="userImport">
-        <div class="form-group">
-            <label>File csv</label>
-            <f:form.upload name="file"/>
-        </div>
-        <f:form.submit value="Upload" class="btn btn-primary"/>
-    </f:form>
+    <f:render partial="User/List" arguments="{users:insertedUsers,tableTitle:'Utenti inseriti'}"/>
+
+    <f:render partial="User/List" arguments="{users:skippedUsers,tableTitle: 'Utenti scartati'}"/>
+
 </f:section>
 
