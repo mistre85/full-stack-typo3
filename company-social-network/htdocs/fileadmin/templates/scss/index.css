@@ -1,0 +1,105 @@
+nav {
+  display: block;
+}
+
+nav ul {
+  display: inline;
+}
+
+nav {
+  display: block;
+}
+nav ul {
+  display: inline;
+}
+
+#a {
+  color: red;
+  font-size: 1.5em;
+  text-decoration: none;
+}
+#a:hover {
+  text-decoration: underline;
+}
+
+#main {
+  color: black;
+}
+#main-sidebar {
+  border: 1px solid;
+}
+body #main {
+  line-height: 1.5em;
+}
+
+#main {
+  font-family: Arial;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+#main {
+  margin: 0;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.box, .mybox {
+  color: red;
+}
+
+.block, .mybox {
+  float: left;
+}
+
+.mybox {
+  font-size: 10px;
+}
+
+.block {
+  width: 100px;
+}
+
+.otherBox {
+  color: red;
+}
+
+button.green {
+  background: green;
+  outline: 1px solid green;
+  box-shadow: 0 0 10px green;
+  color: white;
+  border: 1px solid white;
+}
+button.green:hover {
+  color: green;
+  background: white;
+  box-shadow: none;
+}
+
+button.red {
+  background: red;
+  outline: 1px solid red;
+  box-shadow: 0 0 10px red;
+  color: white;
+  border: 1px solid white;
+}
+button.red:hover {
+  color: red;
+  background: white;
+  box-shadow: none;
+}
+
+@media only screen and (max-width: 1280px) {
+  box {
+    color: red;
+  }
+}
+a {
+  text-decoration: none;
+}
+.no-touch a:hover, a:active {
+  text-decoration: underline;
+}
+
+/*# sourceMappingURL=index.css.map */

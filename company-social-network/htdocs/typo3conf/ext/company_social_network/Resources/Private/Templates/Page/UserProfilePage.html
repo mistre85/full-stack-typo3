@@ -24,15 +24,15 @@
 
             <v:render.uncache partial="TopMenu" arguments="{navBarClass: 'navbar-default'}"/>
 
-            <div class="jumbotron">
-                <h1>Benevenuto user!</h1>
+            <div class="header">
+                <div class="title">
+                    <h1>{page.title}</h1>
+                    <hr>
+                </div>
             </div>
-
-
-
-            <v:content.render column="0"/>
-
-            <f:render partial="ProfileForm" arguments="{_all}"/>
+            <div class="col-lg-8">
+                <v:content.render column="0"/>
+            </div>
 
         </div>
 

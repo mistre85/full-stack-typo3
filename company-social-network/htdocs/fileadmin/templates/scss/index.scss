@@ -1,0 +1,146 @@
+//uso classico
+nav {
+  display: block;
+}
+
+nav ul {
+  display: inline;
+}
+
+//uso nidificato
+nav {
+  display: block;
+
+  ul {
+    display: inline;
+  }
+}
+
+//quale usare?
+//entrambe, usare la nidificazione quando serve, ma non esagerare.
+
+//l'operatore &
+#a {
+  color: red;
+  font-size: 1.5em;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+#main {
+  color: black;
+
+  &-sidebar {
+    border: 1px solid;
+  }
+
+  body & {
+    line-height: 1.5em
+  }
+}
+
+//proprietà nidificate
+#main {
+
+  font: {
+    family: Arial;
+    size: 1.5em;
+    weight: bold;
+  }
+}
+
+//si potrebbe anche ...
+#main {
+  margin: 0 {
+    left: 10px;
+    right: 20px;
+  }
+}
+
+//La direttiva @extend e i placeholeder (con %)
+.box {
+  color: red;
+}
+
+
+%float-left {
+  float: left
+}
+
+.mybox {
+  @extend .box;
+  @extend %float-left;
+  font-size: 10px;
+}
+
+
+.block {
+  width: 100px;
+  @extend %float-left;
+}
+
+
+%color-red {
+  color: red;
+}
+
+.otherBox {
+  @extend %color-red;
+}
+
+//la direttiva mixin
+@mixin baseButton($bgColor) {
+  background: $bgColor;
+  outline: 1px solid $bgColor;
+  box-shadow: 0 0 10px $bgColor;
+  color: white;
+  border: 1px solid white;
+  &:hover {
+    color: $bgColor;
+    background: white;
+    box-shadow: none;
+  }
+}
+
+button.green {
+  @include baseButton(green);
+}
+
+button.red {
+  @include baseButton(red);
+}
+
+//tipi di variabili
+//numero:   1, 2, 3 ma anche 10px o 2em
+//stringa:  ‘center’, “underline” ma anche senza apici quando non collide con altri tipi di variabili
+//colore:   red, blue, oppure #FF00A2 o rgba(10,0,230,0.5), da notare l’assenza degli apici
+//boolean:  true o false
+//null: 	null
+//lista:	10px 2px 3px oppure Helvetica, Arial, sans-serif
+//mappa:    (nome: Sandro, cognome: Paganotti)
+
+//interpolazione
+$large-screen: 1280px;
+$large: "only screen and (max-width: #{$large-screen})";
+@media #{$large}{
+  box {
+    color: red;
+  }
+}
+
+//content
+@mixin hoverEffect() {
+  .no-touch &:hover, &:active {
+    @content
+  }
+}
+
+a {
+  text-decoration: none;
+  @include hoverEffect {
+    text-decoration: underline;
+  }
+}

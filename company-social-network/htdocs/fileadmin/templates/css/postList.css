@@ -1,12 +1,13 @@
 .user-post-card .user-info img {
-    width: 50px;
+  width: 50px;
 }
-
 .user-post-card .post-info .text {
-    padding: 20px;
+  padding: 20px;
 }
 
 .likes-text {
-    line-height: 35px;
-    display: inline-block;
+  line-height: 35px;
+  display: inline-block;
 }
+
+/*# sourceMappingURL=postList.css.map */

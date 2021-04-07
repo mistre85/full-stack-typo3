@@ -1,0 +1,18 @@
+.user-profile {
+    width: 80%;
+    margin: 0 auto;
+
+    .header {
+        width: 60%;
+        margin: 0 auto;
+
+        .top-info {
+            .name {
+                font-size: 30px;
+            }
+            .mail {
+                font-size: 20px;
+            }
+        }
+    }
+}

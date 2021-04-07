@@ -1,0 +1,88 @@
+@font-face {
+  src: url("/fileadmin/templates/fonts/tt-norm-fonts/TTNorms-Regular.otf");
+  font-family: "tt-norm";
+}
+
+@font-face {
+  src: url("/fileadmin/templates/fonts/tt-norm-fonts/TTNorms-Bold.otf");
+  font-family: "tt-norm";
+  font-weight: bold;
+}
+
+
+%font-tt-norm {
+  font-family: tt-norm;
+}
+
+html, body {
+  @extend %font-tt-norm;
+}
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.header {
+
+  vertical-align: middle;
+  line-height: 50px;
+
+  .title {
+    display: inline;
+  }
+}
+
+.content-margin {
+  margin-top: 50px;
+}
+
+.user-info {
+
+  img {
+    width: 30px;
+  }
+
+  .user-status {
+    margin-top: 6px;
+  }
+
+  .user-name:before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    left: -11px;
+    top: 14px;
+    position: relative;
+    display: inline-block;
+    border-radius: 50px;
+    border: 1px solid white;
+  }
+
+  .user-name {
+
+    &.connected:before {
+      background-color: green;
+    }
+
+    &.offline:before {
+      background-color: gray;
+    }
+  }
+}
+
+.card {
+  color: red;
+
+  .icon {
+    color: red;
+  }
+
+  .title {
+    color: red;
+  }
+
+  .description {
+    color: red;
+  }
+}

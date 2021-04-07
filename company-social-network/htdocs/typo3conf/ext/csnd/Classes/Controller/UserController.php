@@ -207,8 +207,18 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
     public function importFormAction()
     {
-
         //vedere il form in pagina
     }
 
+
+    /**
+     * action edit
+     *
+     * @return void
+     */
+    public function editAction()
+    {
+        $user = $this->csn->getLoggedUser();
+        $this->view->assign('user', $user);
+    }
 }

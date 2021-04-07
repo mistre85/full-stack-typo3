@@ -1,0 +1,35 @@
+%team-margin{
+    margin: 50px;
+}
+
+.team-blocks {
+    background-color: #F1F1F1;
+    .title{
+        @extend %team-margin;
+    }
+    .description{
+        @extend %team-margin;
+    }
+}
+
+.person {
+
+    margin: 20px;
+    text-align: center;
+
+
+    .name {
+        margin: 20px;
+        font-weight: bold;
+    }
+
+    .cv {
+        line-height: 25px;
+        color: gray;
+    }
+}
+
+.title-block {
+    height: 100px;
+    background-color: red;
+}

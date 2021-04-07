@@ -9,13 +9,13 @@
     font-weight: bold;
 }
 
+html, body {
+    font-family: tt-norm;
+}
+
 .starter-template {
     padding: 40px 15px;
     text-align: center;
-}
-
-html, body {
-    font-family: tt-norm;
 }
 
 .header {
@@ -58,3 +58,6 @@ html, body {
 .user-info .user-name.offline:before {
     background-color: gray;
 }
+
+
+/*# sourceMappingURL=main.css.map */

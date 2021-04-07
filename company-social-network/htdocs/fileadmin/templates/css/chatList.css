@@ -1,27 +1,25 @@
-.user-info img {
-    width: 30px;
+.chat-block .user-info img {
+  width: 30px;
 }
-
-.user-info .user-status {
-    margin-top: 6px;
+.chat-block .user-info .user-status {
+  margin-top: 6px;
 }
-
-.chat-block .user-info .user-name:before {
-    content: "";
-    width: 10px;
-    height: 10px;
-    left: -11px;
-    top: 14px;
-    position: relative;
-    display: inline-block;
-    border-radius: 50px;
-    border: 1px solid white;
-}
-
 .chat-block .user-info .user-name.connected:before {
-    background-color: green;
+  background-color: green;
+}
+.chat-block .user-info .user-name.offline:before {
+  background-color: gray;
+}
+.chat-block .user-info .user-name:before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  left: -11px;
+  top: 14px;
+  position: relative;
+  display: inline-block;
+  border-radius: 50px;
+  border: 1px solid white;
 }
 
-.chat-block .user-info .user-name.offline:before {
-    background-color: gray;
-}
+/*# sourceMappingURL=chatList.css.map */

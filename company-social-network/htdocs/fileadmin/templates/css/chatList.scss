@@ -1,0 +1,38 @@
+.chat-block {
+
+  .user-info {
+
+    img {
+      width: 30px;
+    }
+
+    .user-status {
+      margin-top: 6px;
+    }
+
+    .user-name {
+
+      &.connected:before {
+        background-color: green;
+      }
+
+      &.offline:before {
+        background-color: gray;
+      }
+
+      &:before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        left: -11px;
+        top: 14px;
+        position: relative;
+        display: inline-block;
+        border-radius: 50px;
+        border: 1px solid white;
+      }
+
+    }
+
+  }
+}
