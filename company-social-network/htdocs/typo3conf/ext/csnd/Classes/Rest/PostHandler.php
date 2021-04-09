@@ -35,7 +35,7 @@ class PostHandler implements HandlerInterface
      */
     private $buttonStandAloneView = null;
 
-    /**
+     /**
      * CompanySocialNetwork
      *
      * @var \Wind\Csnd\Utility\CompanySocialNetwork
@@ -78,15 +78,15 @@ class PostHandler implements HandlerInterface
      * @inject
      */
     protected $persistenceManager = null; 
-    
+
     /**
      * Response
      *
-     * @var \Wind\Csnd\Utility\ResponseMia
+     * @var \Wind\Csnd\Utility\Response
      * @inject
      */
-    protected $resp = null;
-
+    protected $response = null;
+    
     public function configureRoutes(RouterInterface $router, RestRequestInterface $request)
     {
         $router->add(
@@ -131,19 +131,21 @@ class PostHandler implements HandlerInterface
                     // preparo la risposta
                     $data = [
                         'postUid' => $postToLike->getUid(),  
-                        //'likes' => $postToLike->getLikesCount(),
+                        // 'likes' => $postToLike->getLikesCount(),
                     ];
 
                     //preparo il template
-
+                 
                     $this->likesStandAloneView->setLikesTextView();
+                       
                     $this->likesStandAloneView->assign('item', $postToLike);
+                    
                     $data['html']['likes'] = $this->likesStandAloneView->render();
-
+                    
                     $this->buttonStandAloneView->setLikeButtonView();
                     $this->buttonStandAloneView->assign('item', $postToLike);
                     $data['html']['button'] = $this->buttonStandAloneView->render();
-
+                    
                     $this->response->setStatus(Response::STATUS_OK);
                     $this->response->addData($data);
 

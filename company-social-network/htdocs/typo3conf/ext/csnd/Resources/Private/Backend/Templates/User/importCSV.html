@@ -1,0 +1,11 @@
+<f:layout name="Default"/>
+
+<f:section name="content">
+    <h1>Import User by CSV file - Imported Results</h1>
+
+    <f:render partial="User/List" arguments="{users: newUsers, tableTitle: 'Nuovi utenti inseriti in tabella'}" />
+
+    <f:render partial="User/List" arguments="{users: userAlreadyExist, tableTitle: 'Utenti scartati perchè già presenti'}" />
+
+   
+</f:section>

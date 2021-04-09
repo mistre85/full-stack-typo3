@@ -5,6 +5,7 @@ use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 use Wind\Csnd\Domain\Model\User;
 use Wind\Csnd\Utility\CompanySocialNetwork;
+
 /***
  *
  * This file is part of the "Company Social Network Data" Extension for TYPO3 CMS.
@@ -36,6 +37,14 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @inject
      */
     protected $csn = null;
+
+    /**
+     * pwdValidator
+     *
+     * @var \Wind\Csnd\Domain\Validator\UserValidator
+     * @inject
+     */
+    protected $pwdValidator = null;
 
     /**
      * action register
@@ -138,5 +147,109 @@ class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $this->userRepository->update($user);
         $this->view->assign('user', $user);
     }
+
+    /**
+     * action new
+     *
+     * @return void
+     */
+    public function listAction()
+    {
+        $userList = $this->userRepository->findAll();
+        $this->view->assign('users', $userList);
+        
+    }
+
+     /**
+     * action new
+     *
+     * @return void
+     */
+    public function importCSVAction()
+    {
+        //var_dump($_FILES);
+
+        $uploadedFile = $_FILES ['tx_csnd_web_csndcnsadmin'] ['tmp_name'] ['file'];
+
+        $content = file_get_contents($uploadedFile);
+        //var_dump($content);        
+        // converto il file in stringa
+        $records = explode(PHP_EOL, $content);
+        
+        //var_dump($records);
+
+        
+        // inserisco nel DB
+        foreach ($records as $record){
+            
+            $useArray = explode(",", $record);
+//            var_dump($useArray);
+            /** @var User $userExist */
+            // qui verifico che la username non sia già esistente nel repository (tabella)
+            $userExist = $this->userRepository->findByUsername($useArray[3])->current();
+            
+            if(!empty($userExist)){
+                $utentiPresenti[] = $userExist;
+            }
+            else {
+
+                // istanzio una nuova classe per "settare" i campi da inserire poi in tabella
+                $newUser = new User();
+                $newUser->setNome($useArray[0]);
+                $newUser->setCognome($useArray[1]);
+                $newUser->setEmail($useArray[2]);
+                $newUser->setUsername($useArray[3]);
+                $newUser->setPassword(mt_rand());
+
+                // sto aggiungendo al repository (tabella del DB) l'oggeto che mi sono preparato
+                $this->userRepository->add($newUser);
+
+                $utentiNuovi[] = $newUser;
+                
+                //$this->persistenceManager->persistAll(); 
+            }                  
+        }
+
+        $this->view->assign('newUsers', $utentiNuovi);
+        $this->view->assign('userAlreadyExist', $utentiPresenti);        
+    }
+
+    /**
+     * action new
+     *
+     * @return void
+     */
+    public function importFormAction()
+    {
+       
+        
+    }
+
+    /**
+     * edit new
+     *
+     * @return void
+     */
+    public function editAction()
+    {
+       $user = $this->csn->getLoggedUser();
+       $this->view->assign('user', $user);
+        
+    }
+
+    /**
+     * action update
+     *
+     * @param \Wind\Csnd\Domain\Model\User $user
+     * @return void
+     */
+    public function updateAction(\Wind\Csnd\Domain\Model\User $user)
+    {
+            
+        $this->addFlashMessage('Dati modificati correttamente', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::INFO);
+        $this->userRepository->update($user);
+        $this->redirect('edit');
+    }
+
 
 }

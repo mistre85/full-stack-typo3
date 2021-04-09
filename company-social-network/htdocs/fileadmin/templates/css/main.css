@@ -1,19 +1,19 @@
 @font-face {
-    src: url("/fileadmin/templates/fonts/tt-norm-fonts/TTNorms-Regular.otf");
-    font-family: "tt-norm";
+  src: url("/fileadmin/templates/fonts/tt-norm-fonts/TTNorms-Regular.otf");
+  font-family: "tt-norm";
 }
-
 @font-face {
-    src: url("/fileadmin/templates/fonts/tt-norm-fonts/TTNorms-Bold.otf");
-    font-family: "tt-norm";
-    font-weight: bold;
+  src: url("/fileadmin/templates/fonts/tt-norm-fonts/TTNorms-Bold.otf");
+  font-family: "tt-norm";
+  font-weight: bold;
 }
-
 .starter-template {
-    padding: 40px 15px;
-    text-align: center;
+  padding: 40px 15px;
+  text-align: center;
 }
 
 html, body {
-    font-family: tt-norm;
+  font-family: tt-norm;
 }
+
+/*# sourceMappingURL=main.css.map */

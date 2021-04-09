@@ -1,0 +1,30 @@
+.title {
+  display: inline-block;
+  font-size: small;
+  margin-top: 1px;
+}
+
+.icon {
+  display: inline-block;
+  width: auto;
+}
+
+.in-line {
+  display: inline;
+}
+
+.form-profile {
+  margin: 0 auto;
+  width: 300px;
+}
+
+.profile-Content {
+  display: block;
+  width: 100%;
+}
+
+.displayBlock {
+  display: block;
+}
+
+/*# sourceMappingURL=profile.css.map */

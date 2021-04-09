@@ -1,18 +1,19 @@
 .user-profile {
-    width: 80%;
-    margin: 0 auto;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .user-profile .header {
-
-    width: 60%;
-    margin: 0 auto;
+  width: 60%;
+  margin: 0 auto;
 }
 
 .user-profile .header .top-info .name {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 .user-profile .header .top-info .mail {
-    font-size: 20px;
+  font-size: 20px;
 }
+
+/*# sourceMappingURL=paoloUserProfile.css.map */

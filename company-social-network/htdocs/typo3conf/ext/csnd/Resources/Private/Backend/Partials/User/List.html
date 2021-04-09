@@ -1,0 +1,31 @@
+
+<h2>{tableTitle}</h2>
+<table class="tx-csnd" >
+	<tr>
+		<th>
+			<f:translate key="tx_csnd_domain_model_user.nome" />
+		</th>
+        <th>
+            <f:translate key="tx_csnd_domain_model_user.cognome" />
+        </th>
+        <th>
+            <f:translate key="tx_csnd_domain_model_user.email" />
+        </th>
+        <th>
+            <f:translate key="tx_csnd_domain_model_user.username" />
+        </th>
+        <th>
+		    <f:translate key="tx_csnd_domain_model_user.password" />
+        </th>
+		
+	</tr>
+    <f:for each="{users}" as="value" >
+        <tr>
+            <td>{value.nome}</td>
+            <td>{value.cognome}</td>
+            <td>{value.username}</td>
+            <td>{value.password}</td>
+            <td>{value.email}</td>
+        </tr>
+    </f:for>	
+</table>

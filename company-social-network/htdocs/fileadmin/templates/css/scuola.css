@@ -1,0 +1,74 @@
+//uso classico
+nav {
+  display: block;
+}
+nav ul {
+  display: inline;
+}
+//uso nidificato
+nav {
+  display: block;
+  ul {
+    display: inline;
+  }
+}
+//quale usare?
+//entrambe, usare la nidificazione quando serve, ma non esagerare.
+//l'operatore &
+#a {
+  color: red;
+  font-size: 1.5em;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+#main {
+  color: black;
+  &-sidebar {
+    border: 1px solid;
+  }
+  body & {
+    line-height: 1.5em
+  }
+}
+//proprietà nidificate
+#main {
+  font: {
+    family: Arial;
+    size: 1.5em;
+    weight: bold;
+  }
+}
+//si potrebbe anche
+#main {
+  margin: 0 {
+    left: 10px;
+    right: 20px;
+  }
+}
+//La direttiva @extend e i placeholeder (con %)
+.box {
+  color: red;
+}
+
+%float-left {
+  float: left
+}
+.mybox {
+  @extend .box;
+  @extend %float-left;
+  font-size: 10px;
+}
+
+.block {
+  width: 100px;
+  @extend %float-left;
+}
+
+%color-red {
+  color: red;
+}
+.otherBox {
+  @extend %color-red;
+}

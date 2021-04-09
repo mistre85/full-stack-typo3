@@ -51,6 +51,14 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $password = '';
 
     /**
+     * confirmPassword
+     *
+     * @var string
+     * @validate NotEmpty
+     */
+    protected $confirmPassword = '';
+
+    /**
      * nome
      *
      * @var string
@@ -76,7 +84,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * postList
-     *
+     * @lazy
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Wind\Csnd\Domain\Model\Post>
      * @cascade remove
      */
@@ -144,6 +152,29 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->password = $password;
     }
+
+    /**
+     * Returns the confirmPassword
+     *
+     * @return string $confirmPassword
+     */
+    public function getConfirmPassword()
+    {
+        return $this->confirmPassword;
+    }
+
+    /**
+     * Sets the confirmPassword
+     *
+     * @param string $confirmPassword
+     * @return void
+     */
+    public function setConfirmPassword($confirmPassword)
+    {
+        $this->confirmPassword = $confirmPassword;
+    }
+
+
 
     /**
      * Returns the nome
@@ -233,7 +264,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Returns the postList
-     *
+     * @lazy
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Wind\Csnd\Domain\Model\Post> $postList
      */
     public function getPostList()
@@ -243,7 +274,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Sets the postList
-     *
+     * 
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Wind\Csnd\Domain\Model\Post> $postList
      * @return void
      */

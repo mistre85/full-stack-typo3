@@ -1,15 +1,17 @@
-.top{
-    position: relative;
-    margin: 100px auto;
-    border: 0px solid red;
-    width: 300px;
+.top {
+  position: relative;
+  margin: 100px auto;
+  border: 0px solid red;
+  width: 300px;
 }
 
 .marginTop {
-    margin-top: 100px;
+  margin-top: 100px;
 }
 
 .formAjax {
-    margin: 100px auto;
-    width: 350px;
+  margin: 100px auto;
+  width: 350px;
 }
+
+/*# sourceMappingURL=form.css.map */

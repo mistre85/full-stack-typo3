@@ -1,27 +1,29 @@
 .team-blocks {
-    background-color: #F1F1F1;
+  background-color: #F1F1F1;
 }
 
 .team-blocks .title, .team-blocks .description {
-    margin: 50px;
+  margin: 50px;
 }
 
 .person {
-    margin: 20px;
-    text-align: center;
+  margin: 20px;
+  text-align: center;
 }
 
 .person .name {
-    margin: 20px;
-    font-weight: bold;
+  margin: 20px;
+  font-weight: bold;
 }
 
 .person .cv {
-    line-height: 25px;
-    color: gray;
+  line-height: 25px;
+  color: gray;
 }
 
 .title-block {
-    height: 100px;
-    background-color: red;
+  height: 100px;
+  background-color: red;
 }
+
+/*# sourceMappingURL=paoloTeam.css.map */

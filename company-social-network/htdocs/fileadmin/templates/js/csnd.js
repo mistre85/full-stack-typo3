@@ -137,13 +137,15 @@ CSND = {
             },
 
             like: function (postUid) {
-
+                
                 let data = {
                     postUid: postUid                   
                 }
 
                 // postUid è il valore del campo Uid della repository dei post
-                $(".ajax-Like-Btn-" + postUid).click(function () {                    
+                $(".ajax-Like-Btn-" + postUid).click(function () {       
+                    
+                    alert(postUid + '-------');
 
                     let btn = $(this);
                     btn.button('loading');

@@ -1,70 +1,68 @@
-.boxPost{
-    width: 500px;
-    margin: 12px;
-    border: 1px solid grey;
-    border-radius: 10px;
+.boxPost {
+  width: 500px;
+  margin: 12px;
+  border: 1px solid grey;
+  border-radius: 10px;
 }
 
-.img-circle{
-    width: 40px;
+.img-circle {
+  width: 40px;
 }
 
-
-.flex{
-    display: flex;    
+.flex {
+  display: flex;
 }
 
-.title{
-    display: inline-block;
-    font-size: small;
-    margin-top: 1px;    
+.title {
+  display: inline-block;
+  font-size: small;
+  margin-top: 1px;
 }
 
-.icon{
-    display: inline-block;
+.icon {
+  display: inline-block;
 }
 
-.padding{
-    padding-bottom: 20px; 
+.padding {
+  padding-bottom: 20px;
 }
 
-.userconnect{
-   font-weight: bold;
-   margin-left: 10px;
+.userconnect {
+  font-weight: bold;
+  margin-left: 10px;
 }
 
-.float{
-    float: left;
-    border: 1px solid red;
-}
-.margin{
-    margin-bottom: 5px;
+.float {
+  float: left;
+  border: 1px solid red;
 }
 
-.badgeImg{
-
-    margin-left:-15px;
-    margin-bottom:-18px;    
-    display: inline-block;
+.margin {
+  margin-bottom: 5px;
 }
 
-.textBox{
-
-    width:100%;
-    border-color: lightgrey; 
-    border-radius: 10px;
+.badgeImg {
+  margin-left: -15px;
+  margin-bottom: -18px;
+  display: inline-block;
 }
 
-.right{
-    text-align: right;
+.textBox {
+  width: 100%;
+  border-color: lightgrey;
+  border-radius: 10px;
 }
 
-.fillbadgeOnline{
-
-    fill: green;
+.right {
+  text-align: right;
 }
 
-.fillbadgeOffLine{
-
-    fill: red;
+.fillbadgeOnline {
+  fill: green;
 }
+
+.fillbadgeOffLine {
+  fill: red;
+}
+
+/*# sourceMappingURL=PostList.css.map */

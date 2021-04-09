@@ -4,7 +4,7 @@ namespace Wind\CompanySocialNetwork\View;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-class PostStandaloneView extends \TYPO3\CMS\Fluid\View\StandaloneView{
+class PostStandaloneView extends \TYPO3\CMS\Fluid\View\StandaloneView {
 
 
     public function __construct()
@@ -14,9 +14,7 @@ class PostStandaloneView extends \TYPO3\CMS\Fluid\View\StandaloneView{
         // da indagare altri formati
         $this->setFormat('html');
 
-        //$this->setPostCommentView();
-
-        // trasforma in path assoluto
+       // trasforma in path assoluto
          $template = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName(
             'EXT:company_social_network/Resources/Private/Partials/UserListItem.html'
         );
@@ -32,22 +30,12 @@ class PostStandaloneView extends \TYPO3\CMS\Fluid\View\StandaloneView{
         $this->getRequest()->setControllerExtensionName($extensionKey);
     }
 
-    public function setPostCommentView(){
-
-         // trasforma in path assoluto
-         $template = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName(
-            'EXT:company_social_network/Resources/Private/Partials/UserListItem.html'
-        );
-
-        //assegno alla vista
-        $this->setTemplatePathAndFilename($template);
-    }
-
+    
     public function setLikesTextView(){
 
         // trasforma in path assoluto
         $template = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName(
-           'EXT:company_social_network/Resources/Private/Partials/LikeText.html'
+           'EXT:company_social_network/Resources/Private/Partials/LikesText.html'
        );
 
        //assegno alla vista

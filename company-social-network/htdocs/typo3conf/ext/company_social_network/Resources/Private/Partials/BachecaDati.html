@@ -22,7 +22,7 @@
             <f:render partial="LikesText" arguments="{item: item}"></f:render>
         </div>
         
-        <f:swith expression="{actionCall}">
+        <f:switch expression="{actionCall}">
             <f:case value="pluginC">                
                 <f:link.action  
                             extensionName="csnd"
@@ -39,7 +39,7 @@
                 <f:render partial="LikeButton" arguments="{item: item}"></f:render>
             </f:case>
 
-        </f:swith>
+        </f:switch>
        <f:comment>arguments="{postUid: '{item.uid}'}"  ..> per definire una variabile di tipo stringa</f:comment> 
        <hr>
         <!-- 

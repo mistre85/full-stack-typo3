@@ -1,0 +1,27 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+<f:layout name="Default" />
+
+<f:section name="main">
+    <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/profile.css"/>
+    
+    <div class="jumbotron">
+        <h2>
+            <div class="icon">  
+            <img src="https://picsum.photos/100" class="img-circle resize" /> 
+           </div>
+           <span class="in-line">Bentornartoooo {user.nome}!</span>
+        </h2>
+        
+    </div>
+
+    <f:flashMessages />
+
+    <f:render partial="FormErrors" />
+    <div class="profile-Content">
+        <f:form action="update" class="form-profile" name="user" object="{user}" >
+            <f:render partial="User/FormFields" arguments="{user:user}" />
+            <f:form.submit class="btn btn-primary" value="Save" />
+        </f:form>
+    </div>
+    
+</f:section>
