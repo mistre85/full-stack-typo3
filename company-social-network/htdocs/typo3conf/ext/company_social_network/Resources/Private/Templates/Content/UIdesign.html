@@ -1,0 +1,67 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="uiDesign" options="{group: 'Examples'}" label="UI Design Example" 
+        description="Design Example Components">
+
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <strong></strong><br/>
+
+    </f:section>
+
+    <f:section name="Main">
+        <v:page.header.link rel="stylesheet" href="/fileadmin/templates/css/uidesign.css" />
+        <label>TYPOGRAPHY</label>
+
+
+        <div class="block">
+
+            <div class="float-left"><h1 class="h-36px">Headline</h1></div>
+            <div class="float-left"><h1 class="h-36px">Lato Light 36px - H1</h1></div>
+
+        </div>
+
+        <div class="block">
+
+            <div class="float-left"><h2 class="h-24px">Title</h2></div>
+            <div class="float-left"><h2 class="h-24px">Lato Light 24px - H2</h2></div>
+
+        </div>
+        <div class="block">
+
+            <div class="float-left"><h3 class="h-18px">Subheader</h3></div>
+            <div class="float-left"><h3 class="h-18px">Lato Regular 18px - H3</h3></div>
+            
+        </div>
+        <div class="block">
+
+            <div class="float-left"><span class="h-16px">Body2/Menu</span></div>
+            <div class="float-left"><span class="h-16px">Lato Semibold 16px</span></div>
+            
+        </div>
+        <div class="block">
+
+            <div class="float-left"><span class="h-14px">Body1</span></div>
+            <div class="float-left"><span class="h-14px">Lato Regular 14px</span></div>
+            
+        </div>
+
+        <div class="block">
+
+            <div class="float-left"><span class="h-12px">Caption</span></div>
+            <div class="float-left"><span class="h-12px">Lato Regular 12px</span></div>
+            
+        </div>
+
+
+
+    </f:section>
+</div>

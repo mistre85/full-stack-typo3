@@ -1,0 +1,48 @@
+@font-face {
+  src: url("/fileadmin/templates/fonts/Lato/Lato-Light.ttf");
+  font-family: "lato-Light";
+}
+@font-face {
+  src: url("/fileadmin/templates/fonts/Lato/Lato-Light.ttf");
+  font-family: "lato-Light";
+  font-weight: bold;
+}
+.float-left {
+  float: left;
+  margin-right: 20px;
+}
+
+.block {
+  clear: left;
+  display: block;
+}
+
+.h-12px, .h-14px, .h-16px, .h-18px, .h-24px, .h-36px {
+  font-family: lato-Light;
+}
+
+.h-36px {
+  font-size: 36px;
+}
+
+.h-24px {
+  font-size: 24px;
+}
+
+.h-18px {
+  font-size: 18px;
+}
+
+.h-16px {
+  font-size: 16px;
+}
+
+.h-14px {
+  font-size: 14px;
+}
+
+.h-12px {
+  font-size: 12px;
+}
+
+/*# sourceMappingURL=uidesign.css.map */

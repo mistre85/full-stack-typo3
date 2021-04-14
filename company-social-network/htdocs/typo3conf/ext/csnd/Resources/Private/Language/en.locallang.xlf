@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2021-03-18T11:54:07Z" product-name="csnd">
+	<file source-language="it" datatype="plaintext" original="messages" date="2021-03-18T11:54:07Z" product-name="csnd">
 		<header/>
 		<body>
 			<trans-unit id="tx_csnd_domain_model_userplugin">
@@ -17,6 +17,7 @@
 			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_user.registratione_form">
 				<source>Campi di Registrazione</source>
+				<target>Registration Form</target>
 			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_user">
 				<source>User</source>
@@ -35,9 +36,11 @@
 			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_user.nome">
 				<source>Nome</source>
+				<target>Name</target>
 			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_user.cognome">
 				<source>Cognome</source>
+				<target>Surname</target>
 			</trans-unit>
 			<trans-unit id="tx_csnd_domain_model_user.online">
 				<source>Online</source>

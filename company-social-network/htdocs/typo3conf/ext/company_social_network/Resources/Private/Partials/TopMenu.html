@@ -48,6 +48,18 @@
                             </csn:ifUserLogged>
                         </v:page.menu.directory>
                     </f:for>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false"
+                           class="caret">
+                            <v:page.language languages="italiano,english"></v:page.language>
+                        </a>
+                        <v:page.languageMenu as="languageMenu" defaultIsoFlag="it"
+                                             defaultLanguageLabel="ITA" class="dropdown-menu user"
+                                             hideNotTranslated="1"
+                                             layout="flag,name">
+                        </v:page.languageMenu>
+                    </li>                    
                 </v:page.menu.directory>
             </ul>
         </div>
